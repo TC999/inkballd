@@ -1,0 +1,11 @@
+void __stdcall ExpandRect(struct tagRECT *a1, int a2)
+{
+  _BYTE v2[8]; // [esp+0h] [ebp-8h] BYREF
+
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "ExpandRect", 0);
+  a1->top -= a2;
+  a1->bottom += a2;
+  a1->left -= a2;
+  a1->right += a2;
+  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+}

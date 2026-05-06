@@ -1,0 +1,73 @@
+struct CBoardTile *__stdcall CheckForBallCollisionWithTile(struct CBall *a1)
+{
+  int v1; // edi
+  int v2; // ebx
+  CBoardObject *v3; // esi
+  long double v4; // st7
+  CBoardTile *v5; // esi
+  struct tagPOINT v7[4]; // [esp+10h] [ebp-A0h] BYREF
+  struct tagRECT v8; // [esp+30h] [ebp-80h] BYREF
+  _BYTE v9[8]; // [esp+40h] [ebp-70h] BYREF
+  _DWORD v10[8]; // [esp+48h] [ebp-68h] BYREF
+  CBoardObject *v11[4]; // [esp+68h] [ebp-48h]
+  struct tagPOINT v12; // [esp+78h] [ebp-38h] BYREF
+  struct tagPOINT v13; // [esp+80h] [ebp-30h] BYREF
+  long double v14; // [esp+88h] [ebp-28h]
+  struct tagRECT v15; // [esp+90h] [ebp-20h] BYREF
+  int v16; // [esp+A0h] [ebp-10h]
+  int v17; // [esp+ACh] [ebp-4h]
+
+  v1 = 0;
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CheckForBallCollisionWithTile", 0);
+  v14 = 1.797693134862316e308;
+  v17 = 0;
+  v2 = -1;
+  CBoardObject::GetCenterPoint(a1, &v12);
+  CBoardObject::GetBoundingRect(a1, &v15);
+  v11[0] = CGameBoard::GetTile(g_pCGameBoard, v15.left, v15.top);
+  v10[0] = v15.left;
+  v10[1] = v15.top;
+  v11[1] = CGameBoard::GetTile(g_pCGameBoard, v15.right, v15.top);
+  v10[2] = v15.right;
+  v10[3] = v15.top;
+  v11[2] = CGameBoard::GetTile(g_pCGameBoard, v15.left, v15.bottom);
+  v10[4] = v15.left;
+  v10[5] = v15.bottom;
+  v11[3] = CGameBoard::GetTile(g_pCGameBoard, v15.right, v15.bottom);
+  v10[6] = v15.right;
+  v10[7] = v15.bottom;
+  do
+  {
+    v3 = v11[v1];
+    if ( (*(int (__thiscall **)(CBoardObject *, struct CBall *, _DWORD *))(*(_DWORD *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
+    {
+      CBoardObject::GetBoundingRect(v3, &v8);
+      if ( CBall::VerifyCollision(a1, &v8, &v7[v1]) )
+      {
+        CBoardObject::GetCenterPoint(v3, &v13);
+        v16 = v13.y - v12.y;
+        v4 = sqrt((double)(v13.x - v12.x) * (double)(v13.x - v12.x) + (double)(v13.y - v12.y) * (double)(v13.y - v12.y));
+        if ( v14 > v4 )
+        {
+          v14 = v4;
+          v2 = v1;
+        }
+      }
+    }
+    ++v1;
+  }
+  while ( v1 < 4 );
+  if ( v2 == -1 )
+  {
+    v5 = 0;
+  }
+  else
+  {
+    v5 = v11[v2];
+    CBoardTile::SetClosestSide(v5, &v7[v2]);
+    (*(void (__thiscall **)(CBoardTile *, struct CBall *))(*(_DWORD *)v5 + 4))(v5, a1);
+  }
+  v17 = -1;
+  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  return v5;
+}

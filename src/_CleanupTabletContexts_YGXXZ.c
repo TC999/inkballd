@@ -1,0 +1,38 @@
+void __stdcall CleanupTabletContexts()
+{
+  int v0; // ebx
+  int v1; // esi
+  int v2; // eax
+  int v3; // eax
+  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
+  int v5; // [esp+20h] [ebp-4h]
+
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CleanupTabletContexts", 0);
+  v0 = 0;
+  v5 = 0;
+  if ( dword_10B068C > 0 )
+  {
+    v1 = 0;
+    do
+    {
+      v2 = *(_DWORD *)((char *)g_arrTCI + v1 + 4);
+      if ( v2 )
+      {
+        (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v2 + 8))(*(_DWORD *)((char *)g_arrTCI + v1 + 4));
+        *(_DWORD *)((char *)g_arrTCI + v1 + 4) = 0;
+      }
+      v3 = *(_DWORD *)((char *)g_arrTCI + v1);
+      if ( v3 )
+      {
+        (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v3 + 8))(*(_DWORD *)((char *)g_arrTCI + v1));
+        *(_DWORD *)((char *)g_arrTCI + v1) = 0;
+      }
+      ++v0;
+      v1 += 24;
+    }
+    while ( v0 < dword_10B068C );
+  }
+  CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetSize((int)&g_arrTCI, 0, -1);
+  v5 = -1;
+  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+}

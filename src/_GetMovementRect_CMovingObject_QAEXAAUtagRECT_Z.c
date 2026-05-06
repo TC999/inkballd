@@ -1,0 +1,49 @@
+void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRECT *a2)
+{
+  int v3; // eax
+  int v4; // ebx
+  int v5; // eax
+  double v6; // st7
+  bool v7; // c0
+  bool v8; // c3
+  double v9; // st7
+  double v10; // st7
+  _BYTE v11[8]; // [esp+8h] [ebp-Ch] BYREF
+  int v12; // [esp+10h] [ebp-4h]
+
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CMovingObject::GetMovementRect", 0);
+  v3 = *((_DWORD *)this + 6);
+  if ( v3 <= *((_DWORD *)this + 28) )
+    v3 = *((_DWORD *)this + 28);
+  v4 = v3 + 2;
+  v5 = *((_DWORD *)this + 7);
+  if ( v5 <= *((_DWORD *)this + 29) )
+    v5 = *((_DWORD *)this + 29);
+  v6 = *((double *)this + 10);
+  v7 = v6 < *((double *)this + 1);
+  v8 = v6 == *((double *)this + 1);
+  v12 = v5 + 2;
+  if ( v7 || v8 )
+  {
+    a2->left = (int)*((double *)this + 10);
+    v9 = *((double *)this + 1);
+  }
+  else
+  {
+    a2->left = (int)*((double *)this + 1);
+    v9 = *((double *)this + 10);
+  }
+  a2->right = v4 + (int)v9;
+  if ( *((double *)this + 11) <= *((double *)this + 2) )
+  {
+    a2->top = (int)*((double *)this + 11);
+    v10 = *((double *)this + 2);
+  }
+  else
+  {
+    a2->top = (int)*((double *)this + 2);
+    v10 = *((double *)this + 11);
+  }
+  a2->bottom = v12 + (int)v10;
+  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+}
