@@ -1,8 +1,12 @@
-void __stdcall StartTimer()
-{
-  _BYTE v0[8]; // [esp+0h] [ebp-8h] BYREF
+#include <cstdint>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v0, "StartTimer", 0);
-  *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2479) + 56) = 1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v0);
+extern "C" {
+    void __stdcall StartTimer()
+    {
+      uint8_t log_buffer[8]; // [esp+0h] [ebp-8h] BYREF
+
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "StartTimer", 0);
+      *reinterpret_cast<uint32_t*>(*reinterpret_cast<uint32_t*>(g_pCGameBoard + 2479) + 56) = 1;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    }
 }

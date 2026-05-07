@@ -1,18 +1,22 @@
-CBoardTile *__thiscall CBoardTileBreakWall::CBoardTileBreakWall(CBoardTile *this, int a2, int a3, int a4, int a5)
-{
-  _BYTE v7[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
 
-  CBoardTile::CBoardTile(this);
-  *(_DWORD *)this = &CBoardTileBreakWall::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CBoardTileBreakWall::CBoardTileBreakWall", 0);
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 16) = 0;
-  *((_DWORD *)this + 19) = a2;
-  *((_DWORD *)this + 20) = a3;
-  *((_DWORD *)this + 8) = a4;
-  *((_DWORD *)this + 17) = 9;
-  *((_DWORD *)this + 18) = 4;
-  *((_DWORD *)this + 11) = a5;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
-  return this;
+extern "C" {
+    CBoardTile* CBoardTileBreakWall::CBoardTileBreakWall(CBoardTile* this_ptr, int x, int y, int rect_param, int color)
+    {
+      uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
+
+      CBoardTile::CBoardTile(this_ptr);
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CBoardTileBreakWall::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBoardTileBreakWall::CBoardTileBreakWall", 0);
+      *reinterpret_cast<uint32_t*>(this_ptr + 22) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 16) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 19) = x;
+      *reinterpret_cast<uint32_t*>(this_ptr + 20) = y;
+      *reinterpret_cast<uint32_t*>(this_ptr + 8) = rect_param;
+      *reinterpret_cast<uint32_t*>(this_ptr + 17) = 9;
+      *reinterpret_cast<uint32_t*>(this_ptr + 18) = 4;
+      *reinterpret_cast<uint32_t*>(this_ptr + 11) = color;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
 }

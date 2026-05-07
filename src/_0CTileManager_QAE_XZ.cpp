@@ -1,25 +1,37 @@
-CTileManager *__thiscall CTileManager::CTileManager(CTileManager *this)
-{
-  _BYTE pExceptionObject[12]; // [esp+10h] [ebp-20h] BYREF
-  _BYTE v4[16]; // [esp+1Ch] [ebp-14h] BYREF
-  int v5; // [esp+2Ch] [ebp-4h]
+#include <cstdint>
+#include <new>
 
-  *(_DWORD *)this = &CTileManager::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CTileManager::CTileManager", 0);
-  *((_DWORD *)this + 1) = 445;
-  *((_DWORD *)this + 5) = 445;
-  v5 = 0;
-  *((_DWORD *)this + 2) = 0;
-  *((_DWORD *)this + 3) = 42;
-  *((_DWORD *)this + 4) = 42;
-  *((_DWORD *)this + 6) = 0;
-  *((_DWORD *)this + 7) = 487;
-  *((_DWORD *)this + 8) = 42;
-  if ( CTileManager::InitSurface(this) < 0 )
-  {
-    std::bad_alloc::bad_alloc((std::bad_alloc *)pExceptionObject);
-    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVbad_alloc_std__);
-  }
+extern "C" {
+    CTileManager* CTileManager::CTileManager(CTileManager* this_ptr)
+    {
+      uint8_t exception_object[12]; // [esp+10h] [ebp-20h] BYREF
+      uint8_t log_buffer[16]; // [esp+1Ch] [ebp-14h] BYREF
+      int cleanup_flag; // [esp+2Ch] [ebp-4h]
+
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CTileManager::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CTileManager::CTileManager", 0);
+      *reinterpret_cast<uint32_t*>(this_ptr + 1) = 445;
+      *reinterpret_cast<uint32_t*>(this_ptr + 5) = 445;
+      cleanup_flag = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 2) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 3) = 42;
+      *reinterpret_cast<uint32_t*>(this_ptr + 4) = 42;
+      *reinterpret_cast<uint32_t*>(this_ptr + 6) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 7) = 487;
+      *reinterpret_cast<uint32_t*>(this_ptr + 8) = 42;
+      if (CTileManager::InitSurface(this_ptr) < 0)
+      {
+        new (exception_object) std::bad_alloc();
+        _CxxThrowException(exception_object, (_ThrowInfo*)&_TI2_AVbad_alloc_std__);
+      }
+      cleanup_flag = -1;
+      *reinterpret_cast<uint32_t*>(this_ptr + 9) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 10) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 11) = 1600;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
+}
   v5 = -1;
   *((_DWORD *)this + 9) = 0;
   *((_DWORD *)this + 10) = 0;

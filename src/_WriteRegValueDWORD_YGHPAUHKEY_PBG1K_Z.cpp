@@ -1,22 +1,27 @@
-BOOL __stdcall WriteRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, BYTE Data)
-{
-  BOOL v4; // edi
-  int *v6; // [esp+0h] [ebp-28h]
-  int *v7; // [esp+0h] [ebp-28h]
-  int *v8; // [esp+0h] [ebp-28h]
-  _BYTE v9[8]; // [esp+10h] [ebp-18h] BYREF
-  HKEY phkResult; // [esp+18h] [ebp-10h] BYREF
-  int v11; // [esp+24h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "WriteRegValueDWORD", 0);
-  v11 = 0;
-  v4 = 0;
-  if ( !Helpers::RegOpenKeyExW(hKey, lpSubKey, 0, 0x2001Fu, &phkResult, 0, v6) )
-  {
-    v4 = Helpers::RegSetValueExW(phkResult, lpValueName, 0, 4u, &Data, 4u, 0, v7) == 0;
-    Helpers::RegCloseKey(phkResult, 0, v8);
-  }
-  v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
-  return v4;
+extern "C" {
+    BOOL __stdcall WriteRegValueDWORD(HKEY key, HKEY sub_key, HKEY value_name, uint8_t data)
+    {
+      BOOL result; // edi
+      int* unused1; // [esp+0h] [ebp-28h]
+      int* unused2; // [esp+0h] [ebp-28h]
+      int* unused3; // [esp+0h] [ebp-28h]
+      uint8_t log_buffer[8]; // [esp+10h] [ebp-18h] BYREF
+      HKEY result_key; // [esp+18h] [ebp-10h] BYREF
+      int cleanup_flag; // [esp+24h] [ebp-4h]
+
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "WriteRegValueDWORD", 0);
+      cleanup_flag = 0;
+      result = 0;
+      if (!Helpers::RegOpenKeyExW(key, sub_key, 0, 0x2001Fu, &result_key, 0, unused1))
+      {
+        result = Helpers::RegSetValueExW(result_key, value_name, 0, 4u, &data, 4u, 0, unused2) == 0;
+        Helpers::RegCloseKey(result_key, 0, unused3);
+      }
+      cleanup_flag = -1;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return result;
+    }
 }

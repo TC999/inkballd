@@ -1,20 +1,24 @@
-void __stdcall WppCleanupUm()
-{
-  _QWORD *v0; // esi
+#include <cstdint>
 
-  v0 = WPP_GLOBAL_Control;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control )
-  {
-    while ( v0 )
+extern "C" {
+    void __stdcall WppCleanupUm()
     {
-      if ( v0[1] )
+      uint64_t* control_ptr; // esi
+
+      control_ptr = WPP_GLOBAL_Control;
+      if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control)
       {
-        UnregisterTraceGuids(v0[1]);
-        *((_DWORD *)v0 + 2) = 0;
-        *((_DWORD *)v0 + 3) = 0;
+        while (control_ptr)
+        {
+          if (control_ptr[1])
+          {
+            UnregisterTraceGuids(control_ptr[1]);
+            *reinterpret_cast<uint32_t*>(control_ptr + 2) = 0;
+            *reinterpret_cast<uint32_t*>(control_ptr + 3) = 0;
+          }
+          control_ptr = *reinterpret_cast<uint64_t**>(control_ptr);
+        }
+        WPP_GLOBAL_Control = &WPP_GLOBAL_Control;
       }
-      v0 = *(_QWORD **)v0;
     }
-    WPP_GLOBAL_Control = &WPP_GLOBAL_Control;
-  }
 }

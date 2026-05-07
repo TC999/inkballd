@@ -1,11 +1,15 @@
-void __stdcall AddBallToUpdateList(struct CBall *a1)
-{
-  _BYTE v1[16]; // [esp+10h] [ebp-14h] BYREF
-  int v2; // [esp+20h] [ebp-4h]
+#include <cstdint>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v1, "AddBallToUpdateList", 0);
-  v2 = 0;
-  CGameBoard::AddBallToUpdateList(g_pCGameBoard, a1);
-  v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+extern "C" {
+    void __stdcall AddBallToUpdateList(CBall* ball)
+    {
+      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
+      int cleanup_flag; // [esp+20h] [ebp-4h]
+
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "AddBallToUpdateList", 0);
+      cleanup_flag = 0;
+      CGameBoard::AddBallToUpdateList(g_pCGameBoard, ball);
+      cleanup_flag = -1;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    }
 }

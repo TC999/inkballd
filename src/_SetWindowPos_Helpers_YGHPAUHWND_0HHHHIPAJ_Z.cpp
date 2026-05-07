@@ -1,33 +1,38 @@
-BOOL __stdcall Helpers::SetWindowPos(
-        HWND hWnd,
-        HWND hWndInsertAfter,
-        HWND X,
-        int Y,
-        int a5,
-        int cy,
-        UINT uFlags,
-        _DWORD *a8,
-        int *a9)
-{
-  BOOL v9; // esi
-  signed int LastError; // eax
-  const char *v12[2]; // [esp+4h] [ebp-Ch] BYREF
-  char v13[4]; // [esp+Ch] [ebp-4h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  *(_DWORD *)v13 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v12, "Helpers::SetWindowPos", (int *)v13);
-  v9 = SetWindowPos(hWnd, hWndInsertAfter, (int)X, Y, a5, cy, uFlags);
-  if ( !v9 )
-  {
-    LastError = GetLastError();
-    if ( LastError > 0 )
-      LastError = (unsigned __int16)LastError | 0x80070000;
-    *(_DWORD *)v13 = LastError;
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x5Bu, &stru_10036F8, v13[0]);
-  }
-  if ( a8 )
-    *a8 = *(_DWORD *)v13;
-  Helpers::CLogBlock::~CLogBlock(v12);
-  return v9;
+extern "C" {
+    BOOL __stdcall Helpers::SetWindowPos(
+            HWND hWnd,
+            HWND hWndInsertAfter,
+            int x,
+            int y,
+            int width,
+            int height,
+            UINT flags,
+            uint32_t* error_result,
+            int* unused)
+    {
+      BOOL result; // esi
+      uint32_t last_error; // eax
+      const char* log_buffer[2]; // [esp+4h] [ebp-Ch] BYREF
+      uint32_t error_code[1]; // [esp+Ch] [ebp-4h] BYREF
+
+      error_code[0] = 0;
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "Helpers::SetWindowPos", reinterpret_cast<int*>(error_code));
+      result = SetWindowPos(hWnd, hWndInsertAfter, x, y, width, height, flags);
+      if (!result)
+      {
+        last_error = GetLastError();
+        if (last_error > 0)
+          last_error = static_cast<uint16_t>(last_error) | 0x80070000;
+        error_code[0] = last_error;
+        if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+          WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0x5Bu, &stru_10036F8, error_code[0]);
+      }
+      if (error_result)
+        *error_result = error_code[0];
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return result;
+    }
 }

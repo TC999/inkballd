@@ -1,0 +1,1 @@
+[VS2022 OK] 60 files compiled.

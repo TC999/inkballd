@@ -1,21 +1,26 @@
-ULONG __stdcall WppInitUm(int a1)
-{
-  ULONG64 *v1; // esi
-  const GUID **v2; // edi
-  const GUID *v3; // eax
-  ULONG result; // eax
-  _TRACE_GUID_REGISTRATION TraceGuidReg; // [esp+8h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  v1 = (ULONG64 *)WPP_GLOBAL_Control;
-  v2 = (const GUID **)&WPP_REGISTRATION_GUIDS;
-  while ( v1 )
-  {
-    v3 = *v2;
-    TraceGuidReg.RegHandle = 0;
-    ++v2;
-    TraceGuidReg.Guid = v3;
-    result = RegisterTraceGuidsW((WMIDPREQUEST)WppControlCallback, v1, v3, 1u, &TraceGuidReg, 0, 0, v1 + 1);
-    v1 = *(ULONG64 **)v1;
-  }
-  return result;
+extern "C" {
+    uint32_t __stdcall WppInitUm(int unused_param)
+    {
+      uint64_t* control_ptr; // esi
+      const GUID** guid_ptr; // edi
+      const GUID* current_guid; // eax
+      uint32_t result; // eax
+      TRACE_GUID_REGISTRATION trace_guid_reg; // [esp+8h] [ebp-8h] BYREF
+
+      control_ptr = reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control);
+      guid_ptr = reinterpret_cast<const GUID**>(&WPP_REGISTRATION_GUIDS);
+      while (control_ptr)
+      {
+        current_guid = *guid_ptr;
+        trace_guid_reg.RegHandle = 0;
+        ++guid_ptr;
+        trace_guid_reg.Guid = current_guid;
+        result = RegisterTraceGuidsW(reinterpret_cast<WMIDPREQUEST>(WppControlCallback), control_ptr, current_guid, 1u, &trace_guid_reg, 0, 0, control_ptr + 1);
+        control_ptr = *reinterpret_cast<uint64_t**>(control_ptr);
+      }
+      return result;
+    }
 }

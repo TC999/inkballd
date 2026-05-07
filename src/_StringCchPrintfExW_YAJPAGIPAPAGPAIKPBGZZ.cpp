@@ -1,95 +1,101 @@
-int __usercall StringCchPrintfExW@<eax>(
-        STRSAFE_LPWSTR *a1@<ebx>,
-        unsigned __int16 *Buffer,
-        unsigned int a3,
-        unsigned __int16 **a4,
-        unsigned int *a5,
-        size_t cchOriginalDestLength,
-        wchar_t *Format,
-        ...)
-{
-  int v7; // esi
-  unsigned int v9; // ebx
-  int v10; // eax
-  size_t *v12; // [esp+0h] [ebp-10h]
-  DWORD v13; // [esp+4h] [ebp-Ch]
-  size_t cbDest; // [esp+8h] [ebp-8h] BYREF
-  unsigned int v15; // [esp+Ch] [ebp-4h]
-  va_list Args; // [esp+30h] [ebp+20h] BYREF
+#include <cstdint>
+#include <cstdarg>
+#include <cstring>
 
-  va_start(Args, Format);
-  v7 = 0;
-  if ( (cchOriginalDestLength & 0x100) != 0 )
-  {
-    if ( Buffer || !a3 )
+extern "C" {
+    int StringCchPrintfExW(
+            wchar_t** destination,
+            uint16_t* buffer,
+            uint32_t buffer_size,
+            uint16_t** new_buffer,
+            uint32_t* remaining,
+            size_t flags,
+            const wchar_t* format,
+            ...)
     {
+      int result; // esi
+      uint32_t remaining_space; // ebx
+      int format_result; // eax
+      size_t* temp_ptr; // [esp+0h] [ebp-10h]
+      DWORD error_code; // [esp+4h] [ebp-Ch]
+      size_t dest_size; // [esp+8h] [ebp-8h] BYREF
+      uint32_t original_size; // [esp+Ch] [ebp-4h]
+      va_list args; // [esp+30h] [ebp+20h] BYREF
+
+      va_start(args, format);
+      result = 0;
+      if ((flags & 0x100) != 0)
+      {
+        if (buffer || !buffer_size)
+        {
 LABEL_6:
-      if ( a3 <= 0x7FFFFFFF )
-        goto LABEL_8;
-    }
-  }
-  else
-  {
-    v7 = 0;
-    if ( a3 )
-      goto LABEL_6;
-  }
-  v7 = -2147024809;
+          if (buffer_size <= 0x7FFFFFFF)
+            goto LABEL_8;
+        }
+      }
+      else
+      {
+        result = 0;
+        if (buffer_size)
+          goto LABEL_6;
+      }
+      result = -2147024809; // STRSAFE_E_INVALID_PARAMETER
 LABEL_8:
-  if ( v7 < 0 )
-    return v7;
-  cbDest = (size_t)Buffer;
-  v15 = a3;
-  if ( (cchOriginalDestLength & 0x100) != 0 && !Format )
-    Format = (wchar_t *)dword_10035B8;
-  v7 = 0;
-  if ( (cchOriginalDestLength & 0xFFFFE000) != 0 )
-  {
-    v7 = -2147024809;
-    if ( a3 )
-      *Buffer = 0;
-    goto LABEL_15;
-  }
-  if ( a3 )
-  {
-    v7 = 0;
-    v9 = a3 - 1;
-    v10 = __vsnwprintf(Buffer, a3 - 1, Format, Args);
-    if ( v10 < 0 || v10 > v9 )
-    {
-      v7 = -2147024774;
-    }
-    else if ( v10 != v9 )
-    {
-      v9 = v10;
-      goto LABEL_34;
-    }
-    Buffer[v9] = 0;
+      if (result < 0)
+        return result;
+      dest_size = reinterpret_cast<size_t>(buffer);
+      original_size = buffer_size;
+      if ((flags & 0x100) != 0 && !format)
+        format = reinterpret_cast<wchar_t*>(dword_10035B8);
+      result = 0;
+      if ((flags & 0xFFFFE000) != 0)
+      {
+        result = -2147024809; // STRSAFE_E_INVALID_PARAMETER
+        if (buffer_size)
+          *buffer = 0;
+        goto LABEL_15;
+      }
+      if (buffer_size)
+      {
+        result = 0;
+        remaining_space = buffer_size - 1;
+        format_result = __vsnwprintf(buffer, buffer_size - 1, format, args);
+        if (format_result < 0 || format_result > remaining_space)
+        {
+          result = -2147024774; // STRSAFE_E_INSUFFICIENT_BUFFER
+        }
+        else if (format_result != remaining_space)
+        {
+          remaining_space = format_result;
+          goto LABEL_34;
+        }
+        buffer[remaining_space] = 0;
 LABEL_34:
-    cbDest = (size_t)&Buffer[v9];
-    v15 = a3 - v9;
-    if ( v7 >= 0 )
-    {
-      if ( (cchOriginalDestLength & 0x200) != 0 && v15 > 1 && 2 * v15 > 2 )
-        memset((void *)(cbDest + 2), (unsigned __int8)cchOriginalDestLength, 2 * v15 - 2);
-      goto LABEL_20;
-    }
-    goto LABEL_15;
-  }
-  if ( !*Format )
-  {
+        dest_size = reinterpret_cast<size_t>(&buffer[remaining_space]);
+        original_size = buffer_size - remaining_space;
+        if (result >= 0)
+        {
+          if ((flags & 0x200) != 0 && original_size > 1 && 2 * original_size > 2)
+            memset(reinterpret_cast<void*>(dest_size + 2), static_cast<uint8_t>(flags), 2 * original_size - 2);
+          goto LABEL_20;
+        }
+        goto LABEL_15;
+      }
+      if (!*format)
+      {
 LABEL_20:
-    if ( a4 )
-      *a4 = (unsigned __int16 *)cbDest;
-    if ( a5 )
-      *a5 = v15;
-    return v7;
-  }
-  v7 = Buffer != 0 ? -2147024774 : -2147024809;
+        if (new_buffer)
+          *new_buffer = reinterpret_cast<uint16_t*>(dest_size);
+        if (remaining)
+          *remaining = original_size;
+        return result;
+      }
+      result = buffer != 0 ? -2147024774 : -2147024809; // STRSAFE_E_INSUFFICIENT_BUFFER or STRSAFE_E_INVALID_PARAMETER
 LABEL_15:
-  if ( (cchOriginalDestLength & 0x1C00) != 0 && a3 )
-    StringExHandleOtherFlagsW((STRSAFE_LPWSTR)(2 * a3), (size_t)&cbDest, cchOriginalDestLength, a1, v12, v13);
-  if ( v7 >= 0 || v7 == -2147024774 )
-    goto LABEL_20;
-  return v7;
+      if ((flags & 0x1C00) != 0 && buffer_size)
+        StringExHandleOtherFlagsW(reinterpret_cast<STRSAFE_LPWSTR>(2 * buffer_size), &dest_size, flags, destination, temp_ptr, error_code);
+      if (result >= 0 || result == -2147024774) // STRSAFE_E_INSUFFICIENT_BUFFER
+        goto LABEL_20;
+      return result;
+    }
 }

@@ -1,87 +1,91 @@
-int __stdcall TabUtils::TabQueryPolicyValue(
-        LPCWSTR pszValue,
-        const unsigned __int16 *pvData,
-        _DWORD *a3,
-        int *a4,
-        int *a5)
-{
-  int ValueW; // eax
-  int v6; // eax
-  int v7; // esi
-  const char *v9[2]; // [esp+Ch] [ebp-10h] BYREF
-  DWORD pcbData; // [esp+14h] [ebp-8h] BYREF
-  int v11; // [esp+18h] [ebp-4h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  v11 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "TabUtils::TabQueryPolicyValue", &v11);
-  if ( pszValue && a3 )
-  {
-    *a3 = pvData;
-    pvData = 0;
-    pcbData = 4;
-    ValueW = SHRegGetValueW(
-               HKEY_LOCAL_MACHINE,
-               L"SOFTWARE\\Policies\\Microsoft\\TabletPC",
-               pszValue,
-               536870936,
-               0,
-               &pvData,
-               &pcbData);
-    if ( ValueW )
+extern "C" {
+    int __stdcall TabUtils::TabQueryPolicyValue(
+            LPCWSTR value_name,
+            const uint16_t* default_data,
+            uint32_t* result_data,
+            int* data_type,
+            int* status)
     {
-      if ( ValueW == 2 )
+      int reg_result; // eax
+      int user_result; // eax
+      int return_code; // esi
+      const char* log_buffer[2]; // [esp+Ch] [ebp-10h] BYREF
+      DWORD data_size; // [esp+14h] [ebp-8h] BYREF
+      int error_code; // [esp+18h] [ebp-4h] BYREF
+
+  error_code = 0;
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "TabUtils::TabQueryPolicyValue", &error_code);
+  if (value_name && result_data)
+  {
+    *result_data = reinterpret_cast<uint32_t>(default_data);
+    default_data = 0;
+    data_size = 4;
+    reg_result = SHRegGetValueW(
+                   HKEY_LOCAL_MACHINE,
+                   L"SOFTWARE\\Policies\\Microsoft\\TabletPC",
+                   value_name,
+                   SRRF_RT_REG_DWORD,
+                   0,
+                   &default_data,
+                   &data_size);
+    if (reg_result)
+    {
+      if (reg_result == 2)
       {
-        pcbData = 4;
-        pvData = 0;
-        v6 = SHRegGetValueW(
-               HKEY_CURRENT_USER,
-               L"SOFTWARE\\Policies\\Microsoft\\TabletPC",
-               pszValue,
-               536870936,
-               0,
-               &pvData,
-               &pcbData);
-        if ( v6 )
+        data_size = 4;
+        default_data = 0;
+        user_result = SHRegGetValueW(
+                       HKEY_CURRENT_USER,
+                       L"SOFTWARE\\Policies\\Microsoft\\TabletPC",
+                       value_name,
+                       SRRF_RT_REG_DWORD,
+                       0,
+                       &default_data,
+                       &data_size);
+        if (user_result)
         {
-          if ( v6 != 2 )
+          if (user_result != 2)
           {
-            if ( v6 > 0 )
-              v6 = (unsigned __int16)v6 | 0x80070000;
-            v11 = v6;
-            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-              WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0xCu, &stru_1003974, v11);
+            if (user_result > 0)
+              user_result = static_cast<uint16_t>(user_result) | 0x80070000;
+            error_code = user_result;
+            if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+              WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xCu, &stru_1003974, error_code);
           }
         }
         else
         {
-          *a3 = pvData != 0;
-          if ( a4 )
-            *a4 = 0;
+          *result_data = reinterpret_cast<uint32_t>(default_data != 0);
+          if (data_type)
+            *data_type = 0;
         }
       }
       else
       {
-        if ( ValueW > 0 )
-          ValueW = (unsigned __int16)ValueW | 0x80070000;
-        v11 = ValueW;
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-          WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0xBu, &stru_1003974, v11);
+        if (reg_result > 0)
+          reg_result = static_cast<uint16_t>(reg_result) | 0x80070000;
+        error_code = reg_result;
+        if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+          WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xBu, &stru_1003974, error_code);
       }
     }
     else
     {
-      *a3 = pvData != 0;
-      if ( a4 )
-        *a4 = 1;
+      *result_data = reinterpret_cast<uint32_t>(default_data != 0);
+      if (data_type)
+        *data_type = 1;
     }
   }
   else
   {
-    v11 = -2147467261;
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0xAu, &stru_1003974, 3);
+    error_code = -2147467261;
+    if (WPP_Global_Control != &WPP_Global_Control && ((*reinterpret_cast<uint8_t*>(WPP_Global_Control) + 28) & 4) != 0)
+      WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xAu, &stru_1003974, 3);
   }
-  v7 = v11;
-  Helpers::CLogBlock::~CLogBlock(v9);
-  return v7;
+  return_code = error_code;
+  Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+  return return_code;
 }

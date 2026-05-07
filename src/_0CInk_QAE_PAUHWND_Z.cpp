@@ -1,18 +1,23 @@
-CInk *__thiscall CInk::CInk(CInk *this, HWND hWnd)
-{
-  int *v4; // [esp+0h] [ebp-24h]
-  _BYTE v5[16]; // [esp+10h] [ebp-14h] BYREF
-  int v6; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  *(_DWORD *)this = &CInk::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CInk::CInk", 0);
-  v6 = 0;
-  Helpers::GetClientRect(hWnd, &g_rcClient, 0, v4);
-  v6 = -1;
-  dword_10B0664 = 10 * (dword_10B0674 - g_rcClient.unused);
-  g_hWnd = hWnd;
-  dword_10B0668 = 10 * (dword_10B0678 - dword_10B0670);
-  *((_DWORD *)this + 4) = 0;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
-  return this;
+extern "C" {
+    CInk* CInk::CInk(CInk* this_ptr, HWND window_handle)
+    {
+      int* unused_ptr; // [esp+0h] [ebp-24h]
+      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
+      int cleanup_flag; // [esp+20h] [ebp-4h]
+
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CInk::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CInk::CInk", 0);
+      cleanup_flag = 0;
+      Helpers::GetClientRect(window_handle, &g_rcClient, 0, unused_ptr);
+      cleanup_flag = -1;
+      dword_10B0664 = 10 * (dword_10B0674 - g_rcClient.left);
+      g_hWnd = window_handle;
+      dword_10B0668 = 10 * (dword_10B0678 - dword_10B0670);
+      *reinterpret_cast<uint32_t*>(this_ptr + 4) = 0;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
 }

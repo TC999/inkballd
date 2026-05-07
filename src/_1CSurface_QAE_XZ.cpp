@@ -1,17 +1,21 @@
-void __thiscall CSurface::~CSurface(CSurface *this)
-{
-  int v2; // eax
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CSurface::~CSurface", 0);
-  v2 = *(_DWORD *)this;
-  v4 = 0;
-  if ( v2 )
-  {
-    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);
-    *(_DWORD *)this = 0;
-  }
-  v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    void CSurface::~CSurface(CSurface* this_ptr)
+    {
+      int interface_ptr; // eax
+      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
+      int cleanup_flag; // [esp+20h] [ebp-4h]
+
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CSurface::~CSurface", 0);
+      interface_ptr = *reinterpret_cast<uint32_t*>(this_ptr);
+      cleanup_flag = 0;
+      if (interface_ptr)
+      {
+        (*(void(__stdcall**)(uint32_t))(*reinterpret_cast<uint32_t*>(interface_ptr) + 8))(interface_ptr);
+        *reinterpret_cast<uint32_t*>(this_ptr) = 0;
+      }
+      cleanup_flag = -1;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    }
 }

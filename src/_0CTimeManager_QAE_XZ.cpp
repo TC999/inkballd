@@ -1,35 +1,55 @@
-CTimeManager *__thiscall CTimeManager::CTimeManager(CTimeManager *this)
-{
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
-  struct IDirectDrawSurface7Vtbl *lpVtbl; // edi
-  struct IDirectDrawSurface7 *v4; // eax
-  char *BitmapRect; // [esp-8h] [ebp-40h]
-  _BYTE pExceptionObject[12]; // [esp+10h] [ebp-28h] BYREF
-  _BYTE v8[8]; // [esp+1Ch] [ebp-1Ch] BYREF
-  struct IDirectDrawSurface7 *v9; // [esp+24h] [ebp-14h]
-  int v10[3]; // [esp+28h] [ebp-10h] BYREF
-  int v11; // [esp+34h] [ebp-4h]
+#include <cstdint>
+#include <new>
 
-  *(_DWORD *)this = &CTimeManager::`vftable';
-  v10[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CTimeManager::CTimeManager", v10);
-  *((_DWORD *)this + 1) = 486;
-  *((_DWORD *)this + 5) = 486;
-  *((_DWORD *)this + 2) = 0;
-  *((_DWORD *)this + 3) = 58;
-  *((_DWORD *)this + 4) = 42;
-  *((_DWORD *)this + 6) = 0;
-  *((_DWORD *)this + 7) = 544;
-  *((_DWORD *)this + 8) = 42;
-  v11 = 0;
-  dwTimeDigitWidth = 9;
-  dwTopDrawLoc = 13;
-  dwLeftDrawDif = 3;
-  if ( CTimeManager::InitSurface(this) < 0 )
-  {
-    std::bad_alloc::bad_alloc((std::bad_alloc *)pExceptionObject);
-    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVbad_alloc_std__);
-  }
+extern "C" {
+    CTimeManager* CTimeManager::CTimeManager(CTimeManager* this_ptr)
+    {
+      IDirectDrawSurface7* ddraw_surface; // eax
+      IDirectDrawSurface7Vtbl* vtable; // edi
+      IDirectDrawSurface7* game_surface; // eax
+      char* bitmap_rect; // [esp-8h] [ebp-40h]
+      uint8_t exception_object[12]; // [esp+10h] [ebp-28h] BYREF
+      uint8_t log_buffer[8]; // [esp+1Ch] [ebp-1Ch] BYREF
+      IDirectDrawSurface7* target_surface; // [esp+24h] [ebp-14h]
+      int error_code[3]; // [esp+28h] [ebp-10h] BYREF
+      int cleanup_flag; // [esp+34h] [ebp-4h]
+
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CTimeManager::`vftable`);
+      error_code[0] = 0;
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CTimeManager::CTimeManager", error_code);
+      *reinterpret_cast<uint32_t*>(this_ptr + 1) = 486;
+      *reinterpret_cast<uint32_t*>(this_ptr + 5) = 486;
+      *reinterpret_cast<uint32_t*>(this_ptr + 2) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 3) = 58;
+      *reinterpret_cast<uint32_t*>(this_ptr + 4) = 42;
+      *reinterpret_cast<uint32_t*>(this_ptr + 6) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 7) = 544;
+      *reinterpret_cast<uint32_t*>(this_ptr + 8) = 42;
+      cleanup_flag = 0;
+      dwTimeDigitWidth = 9;
+      dwTopDrawLoc = 13;
+      dwLeftDrawDif = 3;
+      if (CTimeManager::InitSurface(this_ptr) < 0)
+      {
+        new (exception_object) std::bad_alloc();
+        _CxxThrowException(exception_object, (_ThrowInfo*)&_TI2_AVbad_alloc_std__);
+      }
+      ddraw_surface = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
+      vtable = ddraw_surface->lpVtbl;
+      target_surface = ddraw_surface;
+      bitmap_rect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 109);
+      game_surface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+      vtable->BltFast(target_surface, 0, 0, game_surface, reinterpret_cast<LPRECT>(bitmap_rect), 0);
+      *reinterpret_cast<uint32_t*>(this_ptr + 9) = -1;
+      cleanup_flag = -1;
+      *reinterpret_cast<uint32_t*>(this_ptr + 10) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 11) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 12) = 1;
+      *reinterpret_cast<uint32_t*>(this_ptr + 14) = 0;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
+}
   DDrawSurface = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
   lpVtbl = DDrawSurface->lpVtbl;
   v9 = DDrawSurface;

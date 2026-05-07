@@ -1,17 +1,21 @@
-CBoardTile *__thiscall CBoardTileDrain::CBoardTileDrain(CBoardTile *this, int a2, int a3, int a4, int a5, int a6)
-{
-  _BYTE v8[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
 
-  CBoardTile::CBoardTile(this);
-  *(_DWORD *)this = &CBoardTileDrain::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CBoardTileDrain::CBoardTileDrain", 0);
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 16) = 0;
-  *((_DWORD *)this + 17) = a2;
-  *((_DWORD *)this + 19) = a3;
-  *((_DWORD *)this + 20) = a4;
-  *((_DWORD *)this + 8) = a5;
-  *((_DWORD *)this + 11) = a6;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
-  return this;
+extern "C" {
+    CBoardTile* CBoardTileDrain::CBoardTileDrain(CBoardTile* this_ptr, int tile_type, int x, int y, int rect_param, int color)
+    {
+      uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
+
+      CBoardTile::CBoardTile(this_ptr);
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CBoardTileDrain::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBoardTileDrain::CBoardTileDrain", 0);
+      *reinterpret_cast<uint32_t*>(this_ptr + 18) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 16) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 17) = tile_type;
+      *reinterpret_cast<uint32_t*>(this_ptr + 19) = x;
+      *reinterpret_cast<uint32_t*>(this_ptr + 20) = y;
+      *reinterpret_cast<uint32_t*>(this_ptr + 8) = rect_param;
+      *reinterpret_cast<uint32_t*>(this_ptr + 11) = color;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
 }

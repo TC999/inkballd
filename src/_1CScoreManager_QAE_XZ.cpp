@@ -1,14 +1,18 @@
-void __thiscall CScoreManager::~CScoreManager(CScoreManager *this)
-{
-  int v2; // [esp-4h] [ebp-28h]
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
 
-  *(_DWORD *)this = &CScoreManager::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CScoreManager::~CScoreManager", 0);
-  v2 = *((_DWORD *)this + 9);
-  v4 = 0;
-  CRegistryManager::WriteHiScore((CRegistryManager *)&g_CRegistryManager, v2);
-  v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    void CScoreManager::~CScoreManager(CScoreManager* this_ptr)
+    {
+      int current_score; // [esp-4h] [ebp-28h]
+      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
+      int cleanup_flag; // [esp+20h] [ebp-4h]
+
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CScoreManager::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CScoreManager::~CScoreManager", 0);
+      current_score = *reinterpret_cast<uint32_t*>(this_ptr + 9);
+      cleanup_flag = 0;
+      CRegistryManager::WriteHiScore(reinterpret_cast<CRegistryManager*>(&g_CRegistryManager), current_score);
+      cleanup_flag = -1;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    }
 }

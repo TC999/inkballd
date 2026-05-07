@@ -1,16 +1,20 @@
-CBoardTile *__thiscall CBoardTileChevron::CBoardTileChevron(CBoardTile *this, int a2, int a3, int a4, int a5)
-{
-  _BYTE v7[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
 
-  CBoardTile::CBoardTile(this);
-  *(_DWORD *)this = &CBoardTileChevron::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CBoardTileChevron::CBoardTileChevron", 0);
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 16) = 0;
-  *((_DWORD *)this + 19) = a2;
-  *((_DWORD *)this + 20) = a3;
-  *((_DWORD *)this + 22) = a5;
-  *((_DWORD *)this + 8) = a4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
-  return this;
+extern "C" {
+    CBoardTile* CBoardTileChevron::CBoardTileChevron(CBoardTile* this_ptr, int x, int y, int rect_param, int direction)
+    {
+      uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
+
+      CBoardTile::CBoardTile(this_ptr);
+      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CBoardTileChevron::`vftable`);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBoardTileChevron::CBoardTileChevron", 0);
+      *reinterpret_cast<uint32_t*>(this_ptr + 18) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 16) = 0;
+      *reinterpret_cast<uint32_t*>(this_ptr + 19) = x;
+      *reinterpret_cast<uint32_t*>(this_ptr + 20) = y;
+      *reinterpret_cast<uint32_t*>(this_ptr + 22) = direction;
+      *reinterpret_cast<uint32_t*>(this_ptr + 8) = rect_param;
+      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      return this_ptr;
+    }
 }

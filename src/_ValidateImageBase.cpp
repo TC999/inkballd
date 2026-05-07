@@ -1,9 +1,15 @@
-BOOL __cdecl _ValidateImageBase(int a1)
-{
-  int v2; // eax
+#include <cstdint>
 
-  if ( *(_WORD *)a1 == 23117 && (v2 = a1 + *(_DWORD *)(a1 + 60), *(_DWORD *)v2 == 17744) )
-    return *(_WORD *)(v2 + 24) == 267;
-  else
-    return 0;
+extern "C" {
+    BOOL __cdecl _ValidateImageBase(const void* image_base)
+    {
+      uint32_t optional_header_offset; // eax
+
+      if (*reinterpret_cast<const uint16_t*>(image_base) == 23117 && 
+          (optional_header_offset = reinterpret_cast<uint32_t>(image_base) + *reinterpret_cast<const uint32_t*>(reinterpret_cast<const uint8_t*>(image_base) + 60),
+           *reinterpret_cast<const uint32_t*>(reinterpret_cast<const uint8_t*>(image_base) + optional_header_offset) == 17744))
+        return *reinterpret_cast<const uint16_t*>(reinterpret_cast<const uint8_t*>(image_base) + optional_header_offset + 24) == 267;
+      else
+        return 0;
+    }
 }
