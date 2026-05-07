@@ -1,11 +1,21 @@
-std::bad_alloc *__thiscall std::bad_alloc::bad_alloc(std::bad_alloc *this)
-{
-  bool v2; // zf
+#include <cstdint>
 
-  exception::exception(this);
-  v2 = *((_DWORD *)this + 1) == 0;
-  *(_DWORD *)this = &std::bad_alloc::`vftable';
-  if ( v2 && !*((_DWORD *)this + 2) )
-    *((char **)this + 1) = off_101704C[0];
-  return this;
+std::bad_alloc* std::bad_alloc::bad_alloc(std::bad_alloc* this_ptr)
+{
+    struct BadAllocLayout {
+        uint32_t vftable_ptr;
+        uint32_t field_4;
+        uint32_t field_8;
+        char* field_C;
+    };
+    
+    bool is_empty; // zf
+
+    exception::exception(this_ptr);
+    auto layout = reinterpret_cast<BadAllocLayout*>(this_ptr);
+    is_empty = layout->field_4 == 0;
+    layout->vftable_ptr = reinterpret_cast<uint32_t>(&std::bad_alloc::`vftable');
+    if (is_empty && !layout->field_8)
+        layout->field_C = off_101704C[0];
+    return this_ptr;
 }

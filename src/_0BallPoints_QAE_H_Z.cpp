@@ -1,88 +1,94 @@
-BallPoints *__thiscall BallPoints::BallPoints(BallPoints *this, int a2)
-{
-  int *v3; // eax
-  int v4; // edi
-  double v5; // st7
-  _BYTE v7[8]; // [esp+18h] [ebp-20h] BYREF
-  double v8; // [esp+20h] [ebp-18h]
-  int v9; // [esp+34h] [ebp-4h]
+#include <cstdint>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "BallPoints::BallPoints", 0);
-  v9 = 1;
-  v8 = (double)a2 * 0.5;
-  v3 = (int *)operator new[](0x100u);
-  *(_DWORD *)this = v3;
-  v9 = 0;
-  if ( v3 )
-  {
-    v4 = (int)-v8;
-    *v3 = v4;
-    *(_DWORD *)(*(_DWORD *)this + 4) = 0;
-    *(_DWORD *)(*(_DWORD *)this + 8) = (int)-(cosd(11.25) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 12) = (int)-(sind(11.25) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 16) = (int)-(cosd(22.5) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 20) = (int)-(sind(22.5) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 24) = (int)-(cosd(33.75) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 28) = (int)-(sind(33.75) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 32) = (int)-(cosd(45.0) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 36) = (int)-(sind(45.0) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 40) = (int)-(cosd(56.25) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 44) = (int)-(sind(56.25) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 48) = (int)-(cosd(67.5) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 52) = (int)-(sind(67.5) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 56) = (int)-(cosd(78.75) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 60) = (int)-(sind(78.75) * v8);
-    *(_DWORD *)(*(_DWORD *)this + 64) = 0;
-    *(_DWORD *)(*(_DWORD *)this + 68) = v4;
-    *(_DWORD *)(*(_DWORD *)this + 72) = -*(_DWORD *)(*(_DWORD *)this + 56);
-    *(_DWORD *)(*(_DWORD *)this + 76) = *(_DWORD *)(*(_DWORD *)this + 60);
-    *(_DWORD *)(*(_DWORD *)this + 80) = -*(_DWORD *)(*(_DWORD *)this + 48);
-    v5 = v8;
-    *(_DWORD *)(*(_DWORD *)this + 84) = *(_DWORD *)(*(_DWORD *)this + 52);
-    *(_DWORD *)(*(_DWORD *)this + 88) = -*(_DWORD *)(*(_DWORD *)this + 40);
-    *(_DWORD *)(*(_DWORD *)this + 92) = *(_DWORD *)(*(_DWORD *)this + 44);
-    *(_DWORD *)(*(_DWORD *)this + 96) = -*(_DWORD *)(*(_DWORD *)this + 32);
-    *(_DWORD *)(*(_DWORD *)this + 100) = *(_DWORD *)(*(_DWORD *)this + 36);
-    *(_DWORD *)(*(_DWORD *)this + 104) = -*(_DWORD *)(*(_DWORD *)this + 24);
-    *(_DWORD *)(*(_DWORD *)this + 108) = *(_DWORD *)(*(_DWORD *)this + 28);
-    *(_DWORD *)(*(_DWORD *)this + 112) = -*(_DWORD *)(*(_DWORD *)this + 16);
-    *(_DWORD *)(*(_DWORD *)this + 116) = *(_DWORD *)(*(_DWORD *)this + 20);
-    *(_DWORD *)(*(_DWORD *)this + 120) = -*(_DWORD *)(*(_DWORD *)this + 8);
-    *(_DWORD *)(*(_DWORD *)this + 124) = *(_DWORD *)(*(_DWORD *)this + 12);
-    *(_DWORD *)(*(_DWORD *)this + 128) = (int)v5;
-    *(_DWORD *)(*(_DWORD *)this + 132) = 0;
-    *(_DWORD *)(*(_DWORD *)this + 136) = *(_DWORD *)(*(_DWORD *)this + 120);
-    *(_DWORD *)(*(_DWORD *)this + 140) = -*(_DWORD *)(*(_DWORD *)this + 124);
-    *(_DWORD *)(*(_DWORD *)this + 144) = *(_DWORD *)(*(_DWORD *)this + 112);
-    *(_DWORD *)(*(_DWORD *)this + 148) = -*(_DWORD *)(*(_DWORD *)this + 116);
-    *(_DWORD *)(*(_DWORD *)this + 152) = *(_DWORD *)(*(_DWORD *)this + 104);
-    *(_DWORD *)(*(_DWORD *)this + 156) = -*(_DWORD *)(*(_DWORD *)this + 108);
-    *(_DWORD *)(*(_DWORD *)this + 160) = *(_DWORD *)(*(_DWORD *)this + 96);
-    *(_DWORD *)(*(_DWORD *)this + 164) = -*(_DWORD *)(*(_DWORD *)this + 100);
-    *(_DWORD *)(*(_DWORD *)this + 168) = *(_DWORD *)(*(_DWORD *)this + 88);
-    *(_DWORD *)(*(_DWORD *)this + 172) = -*(_DWORD *)(*(_DWORD *)this + 92);
-    *(_DWORD *)(*(_DWORD *)this + 176) = *(_DWORD *)(*(_DWORD *)this + 80);
-    *(_DWORD *)(*(_DWORD *)this + 180) = -*(_DWORD *)(*(_DWORD *)this + 84);
-    *(_DWORD *)(*(_DWORD *)this + 184) = *(_DWORD *)(*(_DWORD *)this + 72);
-    *(_DWORD *)(*(_DWORD *)this + 188) = -*(_DWORD *)(*(_DWORD *)this + 76);
-    *(_DWORD *)(*(_DWORD *)this + 192) = 0;
-    *(_DWORD *)(*(_DWORD *)this + 196) = (int)v5;
-    *(_DWORD *)(*(_DWORD *)this + 200) = -*(_DWORD *)(*(_DWORD *)this + 184);
-    *(_DWORD *)(*(_DWORD *)this + 204) = *(_DWORD *)(*(_DWORD *)this + 188);
-    *(_DWORD *)(*(_DWORD *)this + 208) = -*(_DWORD *)(*(_DWORD *)this + 176);
-    *(_DWORD *)(*(_DWORD *)this + 212) = *(_DWORD *)(*(_DWORD *)this + 180);
-    *(_DWORD *)(*(_DWORD *)this + 216) = -*(_DWORD *)(*(_DWORD *)this + 168);
-    *(_DWORD *)(*(_DWORD *)this + 220) = *(_DWORD *)(*(_DWORD *)this + 172);
-    *(_DWORD *)(*(_DWORD *)this + 224) = -*(_DWORD *)(*(_DWORD *)this + 160);
-    *(_DWORD *)(*(_DWORD *)this + 228) = *(_DWORD *)(*(_DWORD *)this + 164);
-    *(_DWORD *)(*(_DWORD *)this + 232) = -*(_DWORD *)(*(_DWORD *)this + 152);
-    *(_DWORD *)(*(_DWORD *)this + 236) = *(_DWORD *)(*(_DWORD *)this + 156);
-    *(_DWORD *)(*(_DWORD *)this + 240) = -*(_DWORD *)(*(_DWORD *)this + 144);
-    *(_DWORD *)(*(_DWORD *)this + 244) = *(_DWORD *)(*(_DWORD *)this + 148);
-    *(_DWORD *)(*(_DWORD *)this + 248) = -*(_DWORD *)(*(_DWORD *)this + 136);
-    *(_DWORD *)(*(_DWORD *)this + 252) = *(_DWORD *)(*(_DWORD *)this + 140);
-  }
-  v9 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
-  return this;
+BallPoints* BallPoints::BallPoints(BallPoints* this_ptr, int radius)
+{
+    struct BallPointsLayout {
+        uint32_t* data_array;
+        // Rest of the structure would be defined based on usage patterns
+    };
+    
+    uint8_t log_buffer[8]; // [esp+18h] [ebp-20h] BYREF
+    double radius_half; // [esp+20h] [ebp-18h]
+    int log_state; // [esp+34h] [ebp-4h]
+
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "BallPoints::BallPoints", 0);
+    log_state = 1;
+    radius_half = static_cast<double>(radius) * 0.5;
+    
+    auto data_array = reinterpret_cast<uint32_t*>(operator new[](0x100u));
+    this_ptr->data_array = data_array;
+    log_state = 0;
+    
+    if (data_array)
+    {
+        int negative_radius = static_cast<int>(-radius_half);
+        data_array[0] = negative_radius;
+        data_array[1] = 0;
+        data_array[2] = static_cast<int>(-cosd(11.25) * radius_half);
+        data_array[3] = static_cast<int>(-sind(11.25) * radius_half);
+        data_array[4] = static_cast<int>(-cosd(22.5) * radius_half);
+        data_array[5] = static_cast<int>(-sind(22.5) * radius_half);
+        data_array[6] = static_cast<int>(-cosd(33.75) * radius_half);
+        data_array[7] = static_cast<int>(-sind(33.75) * radius_half);
+        data_array[8] = static_cast<int>(-cosd(45.0) * radius_half);
+        data_array[9] = static_cast<int>(-sind(45.0) * radius_half);
+        data_array[10] = static_cast<int>(-cosd(56.25) * radius_half);
+        data_array[11] = static_cast<int>(-sind(56.25) * radius_half);
+        data_array[12] = static_cast<int>(-cosd(67.5) * radius_half);
+        data_array[13] = static_cast<int>(-sind(67.5) * radius_half);
+        data_array[14] = static_cast<int>(-cosd(78.75) * radius_half);
+        data_array[15] = static_cast<int>(-sind(78.75) * radius_half);
+        data_array[16] = 0;
+        data_array[17] = negative_radius;
+        data_array[18] = -data_array[14];
+        data_array[19] = data_array[15];
+        data_array[20] = -data_array[12];
+        radius_half = radius_half;
+        data_array[21] = data_array[13];
+        data_array[22] = -data_array[10];
+        data_array[23] = data_array[11];
+        data_array[24] = -data_array[8];
+        data_array[25] = data_array[9];
+        data_array[26] = -data_array[6];
+        data_array[27] = data_array[7];
+        data_array[28] = -data_array[4];
+        data_array[29] = data_array[5];
+        data_array[30] = -data_array[2];
+        data_array[31] = data_array[3];
+        data_array[32] = static_cast<int>(radius_half);
+        data_array[33] = 0;
+        data_array[34] = data_array[30];
+        data_array[35] = -data_array[31];
+        data_array[36] = data_array[28];
+        data_array[37] = -data_array[29];
+        data_array[38] = data_array[26];
+        data_array[39] = -data_array[27];
+        data_array[40] = data_array[24];
+        data_array[41] = -data_array[25];
+        data_array[42] = data_array[22];
+        data_array[43] = -data_array[23];
+        data_array[44] = data_array[20];
+        data_array[45] = -data_array[21];
+        data_array[46] = data_array[18];
+        data_array[47] = -data_array[19];
+        data_array[48] = 0;
+        data_array[49] = static_cast<int>(radius_half);
+        data_array[50] = -data_array[46];
+        data_array[51] = data_array[47];
+        data_array[52] = -data_array[44];
+        data_array[53] = data_array[45];
+        data_array[54] = -data_array[42];
+        data_array[55] = data_array[43];
+        data_array[56] = -data_array[40];
+        data_array[57] = data_array[41];
+        data_array[58] = -data_array[38];
+        data_array[59] = data_array[39];
+        data_array[60] = -data_array[36];
+        data_array[61] = data_array[37];
+        data_array[62] = -data_array[34];
+        data_array[63] = data_array[35];
+    }
+    log_state = -1;
+    Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    return this_ptr;
 }
