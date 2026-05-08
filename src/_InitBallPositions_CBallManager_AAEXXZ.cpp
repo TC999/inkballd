@@ -1,26 +1,65 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    double position_x; // offset 0x10 (1 * 8)
+    double position_y; // offset 0x18 (2 * 8)
+    // ... other members
+};
+
+struct CBallManager {
+    uint32_t active_ball_count; // offset 0x38 (14 * 4)
+    uint32_t ball_indices[5]; // offset 0x3C (60 bytes from start)
+    // ... other members
+};
+
 void __thiscall CBallManager::InitBallPositions(CBallManager *this)
 {
-  char *v2; // eax
-  int v3; // edx
-  int v4; // ecx
-  _BYTE v5[8]; // [esp+4h] [ebp-8h] BYREF
+    uint8_t* ball_ptr;
+    uint32_t ball_index;
+    uint32_t current_ball;
+    uint8_t log_buffer[8];
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBallManager::InitBallPositions", 0);
-  *(double *)(*((_DWORD *)this + 14) + 8) = 104.0;
-  *(double *)(*((_DWORD *)this + 14) + 16) = 14.0;
-  v2 = (char *)this + 60;
-  v3 = 5;
-  do
-  {
-    *(double *)(*(_DWORD *)v2 + 8) = (double)*(int *)(*((_DWORD *)v2 - 1) + 24)
-                                   + *(double *)(*((_DWORD *)v2 - 1) + 8)
-                                   + 0.0;
-    v4 = *(_DWORD *)v2;
-    v2 += 4;
-    *(double *)(v4 + 16) = 14.0;
-    *((_DWORD *)this + 13) = 0;
-    --v3;
-  }
-  while ( v3 );
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::InitBallPositions", 0);
+    
+    // Initialize first ball position
+    CBall* first_ball = reinterpret_cast<CBall*>(this->active_ball_count);
+    first_ball->position_x = 104.0;
+    first_ball->position_y = 14.0;
+    
+    ball_ptr = reinterpret_cast<uint8_t*>(this) + 60;
+    ball_index = 5;
+    do
+    {
+        uint32_t ball_data_offset = *reinterpret_cast<uint32_t*>(ball_ptr);
+        CBall* current_ball_ptr = reinterpret_cast<CBall*>(ball_data_offset);
+        
+        // Calculate position based on launcher position
+        uint32_t launcher_offset = *reinterpret_cast<uint32_t*>(ball_ptr - 4);
+        CBall* launcher_ball = reinterpret_cast<CBall*>(launcher_offset);
+        current_ball_ptr->position_x = static_cast<double>(*reinterpret_cast<int*>(reinterpret_cast<uint8_t*>(launcher_ball) + 24)) +
+                                       launcher_ball->position_x + 0.0;
+        
+        current_ball = *reinterpret_cast<uint32_t*>(ball_ptr);
+        ball_ptr += 4;
+        
+        CBall* ball = reinterpret_cast<CBall*>(current_ball);
+        ball->position_y = 14.0;
+        
+        this->ball_indices[0] = 0;
+        --ball_index;
+    }
+    while (ball_index);
+    
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

@@ -1,62 +1,100 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardObject {
+    uint32_t update_flags; // offset 0x9C (39 * 4)
+    uint32_t tile_type; // offset 0x2C (11 * 4)
+    // ... other members
+};
+
+struct CBallManager {
+    uint32_t ball_indices[6]; // offset 0x38 (56 bytes from start)
+    RECT* screen_rect; // offset 0x14 (20 bytes from start)
+    uint32_t hidden_flag; // offset 0x34 (13 * 4)
+    // ... other members
+};
+
+struct IDirectDrawSurface7; // Forward declaration
+struct IDirectDrawSurface7Vtbl; // Forward declaration
+
+extern "C" void* g_pBallManagerSurface; // Global ball manager surface
+extern "C" void* g_pGamePiecesSurface; // Global game pieces surface
+extern "C" void* g_CBitmapRects; // Global bitmap rectangles
+
 void __thiscall CBallManager::DrawToSurface(CBallManager *this)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // edi
-  struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
-  struct IDirectDrawSurface7 *v4; // eax
-  CBoardObject **v5; // edi
-  char *v6; // eax
-  struct IDirectDrawSurface7 *v7; // eax
-  struct IDirectDrawSurface7Vtbl *v8; // esi
-  CBoardObject *v9; // edi
-  char *BitmapRect; // [esp-Ch] [ebp-60h]
-  struct tagRECT v11; // [esp+10h] [ebp-44h] BYREF
-  int v12; // [esp+20h] [ebp-34h]
-  int v13; // [esp+24h] [ebp-30h]
-  int v14; // [esp+28h] [ebp-2Ch]
-  int v15; // [esp+2Ch] [ebp-28h]
-  _BYTE v16[8]; // [esp+30h] [ebp-24h] BYREF
-  struct IDirectDrawSurface7 *v17; // [esp+38h] [ebp-1Ch]
-  CBallManager *v18; // [esp+3Ch] [ebp-18h]
-  struct tagRECT *v19; // [esp+40h] [ebp-14h]
-  int i; // [esp+44h] [ebp-10h]
-  int v21; // [esp+50h] [ebp-4h]
+    IDirectDrawSurface7* ddraw_surface;
+    IDirectDrawSurface7Vtbl* surface_vtable;
+    IDirectDrawSurface7* game_pieces_surface;
+    CBoardObject** ball_object_ptr;
+    RECT* bitmap_rect;
+    RECT bounding_rect;
+    uint32_t rect_left;
+    uint32_t rect_top;
+    uint32_t rect_right;
+    uint32_t rect_bottom;
+    IDirectDrawSurface7* target_surface;
+    IDirectDrawSurface7Vtbl* target_vtable;
+    CBoardObject* current_ball;
+    IDirectDrawSurface7* source_surface;
+    uint8_t log_buffer[8];
+    CBallManager* manager;
+    RECT* update_rect;
+    int ball_index;
+    int flag;
 
-  v18 = this;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v16, "CBallManager::DrawToSurface", 0);
-  v21 = 0;
-  DDrawSurface = CSurface::GetDDrawSurface(g_pBallManagerSurface);
-  lpVtbl = DDrawSurface->lpVtbl;
-  v19 = (struct tagRECT *)((char *)this + 20);
-  BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 106);
-  v4 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  lpVtbl->Blt(DDrawSurface, v19, v4, (LPRECT)BitmapRect, 0, 0);
-  for ( i = 0; i < 6; ++i )
-  {
-    v5 = (CBoardObject **)((char *)v18 + 4 * i + 56);
-    if ( *((_DWORD *)*v5 + 39) && (i || !*((_DWORD *)v18 + 13)) )
+    manager = this;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::DrawToSurface", 0);
+    flag = 0;
+    
+    ddraw_surface = CSurface::GetDDrawSurface(g_pBallManagerSurface);
+    surface_vtable = ddraw_surface->lpVtbl;
+    update_rect = reinterpret_cast<RECT*>(reinterpret_cast<uint8_t*>(this) + 20);
+    bitmap_rect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 106);
+    game_pieces_surface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+    surface_vtable->Blt(ddraw_surface, update_rect, game_pieces_surface, bitmap_rect, 0, 0);
+    
+    for (ball_index = 0; ball_index < 6; ++ball_index)
     {
-      CBoardObject::GetBoundingRect(*v5, &v11);
-      v6 = CBitmapRects::GetBitmapRect(g_CBitmapRects, *((_DWORD *)*v5 + 11) + 12);
-      v12 = *(_DWORD *)v6;
-      v13 = *((_DWORD *)v6 + 1);
-      v14 = *((_DWORD *)v6 + 2);
-      v15 = *((_DWORD *)v6 + 3);
-      if ( v11.left < 104 )
-      {
-        if ( v11.right > 104 )
-          v14 += 104 - v11.right;
-        v7 = CSurface::GetDDrawSurface(g_pBallManagerSurface);
-        v8 = v7->lpVtbl;
-        v9 = *v5;
-        v17 = v7;
-        CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-        ((void (__stdcall *)(struct IDirectDrawSurface7 *, _DWORD))v8->BltFast)(
-          v17,
-          (unsigned __int64)*((double *)v9 + 1));
-      }
+        ball_object_ptr = reinterpret_cast<CBoardObject**>(reinterpret_cast<uint8_t*>(manager) + 4 * ball_index + 56);
+        CBoardObject* ball_object = *ball_object_ptr;
+        
+        if (ball_object->update_flags && (ball_index || !manager->hidden_flag))
+        {
+            CBoardObject::GetBoundingRect(ball_object, &bounding_rect);
+            bitmap_rect = CBitmapRects::GetBitmapRect(g_CBitmapRects, ball_object->tile_type + 12);
+            rect_left = bitmap_rect->left;
+            rect_top = bitmap_rect->top;
+            rect_right = bitmap_rect->right;
+            rect_bottom = bitmap_rect->bottom;
+            
+            if (bounding_rect.left < 104)
+            {
+                if (bounding_rect.right > 104)
+                    rect_right += 104 - bounding_rect.right;
+                    
+                target_surface = CSurface::GetDDrawSurface(g_pBallManagerSurface);
+                target_vtable = target_surface->lpVtbl;
+                current_ball = ball_object;
+                source_surface = target_surface;
+                CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+                target_vtable->BltFast(source_surface, 
+                    static_cast<uint64_t>(reinterpret_cast<double*>(reinterpret_cast<uint8_t*>(current_ball) + 16)[0]));
+            }
+        }
     }
-  }
-  AddDisplayUpdateRect(v19);
-  v21 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v16);
+    
+    AddDisplayUpdateRect(update_rect);
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

@@ -1,67 +1,106 @@
-void __thiscall CBallManager::UpdateObject(CBallManager *this, unsigned int a2)
-{
-  bool v3; // zf
-  int v4; // eax
-  struct CBall *Ball; // edi
-  int v6; // eax
-  int v7; // [esp+4h] [ebp-28h]
-  _BYTE v8[16]; // [esp+18h] [ebp-14h] BYREF
-  int v9; // [esp+28h] [ebp-4h]
-  struct CBoardTile *RandomBallLauncher; // [esp+34h] [ebp+8h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CBallManager::UpdateObject", 0);
-  v3 = *((_DWORD *)this + 321) == 0;
-  v9 = 0;
-  if ( !v3 )
-  {
-    CBallManager::UpdateBallList(this);
-    CBallManager::InitBallPositions(this);
-    *((_DWORD *)this + 321) = 0;
-  }
-  if ( *((int *)this + 10) <= 0 )
-    goto LABEL_12;
-  CBallManager::UpdateBallPositions(this, a2);
-  *((_DWORD *)this + 322) -= a2;
-  v4 = *((_DWORD *)this + 322);
-  if ( v4 <= 800 )
-  {
-    *((_DWORD *)this + 12) += a2;
-    if ( *((_DWORD *)this + 12) >= 0x64u )
-    {
-      v3 = *((_DWORD *)this + 13) == 0;
-      *((_DWORD *)this + 12) = 0;
-      *((_DWORD *)this + 13) = v3;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
     }
-  }
-  if ( v4 <= 0 && *((int *)this + 20) > 0 )
-  {
-    RandomBallLauncher = CBallManager::GetRandomBallLauncher(this);
-    if ( BallOnTile(RandomBallLauncher) )
+}
+
+struct CBall;
+struct CBoardTile;
+
+struct CBallManager {
+    uint32_t update_flags; // offset 0x140 (321 * 4)
+    uint32_t ball_count; // offset 0x28 (10 * 4)
+    uint32_t ball_start_index; // offset 0x24 (9 * 4)
+    uint32_t next_ball_timer; // offset 0x134 (322 * 4)
+    uint32_t spawn_timer; // offset 0x30 (12 * 4)
+    uint32_t spawn_delay; // offset 0x34 (13 * 4)
+    uint32_t generator_count; // offset 0x50 (20 * 4)
+    uint32_t active_ball_count; // offset 0x38 (14 * 4)
+    uint32_t timer_started; // offset 0x144 (323 * 4)
+    void* update_function; // offset 0x10 (4 * 4)
+    // ... other members
+};
+
+void __thiscall CBallManager::UpdateObject(CBallManager *this, uint32_t delta_time)
+{
+    bool should_update;
+    uint32_t time_remaining;
+    CBall* ball;
+    uint32_t next_ball_index;
+    CBoardTile* random_ball_launcher;
+    uint8_t log_buffer[16];
+    int flag;
+    uint32_t current_spawn_timer;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::UpdateObject", 0);
+    should_update = this->update_flags == 0;
+    flag = 0;
+    
+    if (!should_update)
     {
-      *((_DWORD *)this + 322) = 0;
-      goto LABEL_13;
+        CBallManager::UpdateBallList(this);
+        CBallManager::InitBallPositions(this);
+        this->update_flags = 0;
     }
-    v7 = *((_DWORD *)this + 9);
-    *((_DWORD *)this + 9) = v7 + 1;
-    Ball = GetBall(v7);
-    CBallManager::SetBallOnLauncher(this, Ball, RandomBallLauncher);
-    CBallManager::SetBallSpeed(this, Ball, -1.0);
-    *((_DWORD *)Ball + 40) = 1;
-    *((_DWORD *)Ball + 39) = 1;
-    v6 = *((_DWORD *)this + 11);
-    --*((_DWORD *)this + 10);
-    *((_DWORD *)this + 13) = 0;
-    *((_DWORD *)this + 322) = v6;
-    CBallManager::UpdateBallList(this);
-    if ( !*((_DWORD *)this + 323) )
+    
+    if (this->ball_count <= 0)
+        goto LABEL_12;
+    
+    CBallManager::UpdateBallPositions(this, delta_time);
+    this->next_ball_timer -= delta_time;
+    time_remaining = this->next_ball_timer;
+    
+    if (time_remaining <= 800)
     {
-      *((_DWORD *)this + 323) = 1;
+        this->spawn_timer += delta_time;
+        if (this->spawn_timer >= 100)
+        {
+            bool was_hidden = this->spawn_delay == 0;
+            this->spawn_timer = 0;
+            this->spawn_delay = was_hidden;
+        }
+    }
+    
+    if (time_remaining <= 0 && this->generator_count > 0)
+    {
+        random_ball_launcher = CBallManager::GetRandomBallLauncher(this);
+        if (BallOnTile(random_ball_launcher))
+        {
+            this->next_ball_timer = 0;
+            goto LABEL_13;
+        }
+        
+        next_ball_index = this->ball_start_index;
+        this->ball_start_index = next_ball_index + 1;
+        ball = GetBall(next_ball_index);
+        CBallManager::SetBallOnLauncher(this, ball, random_ball_launcher);
+        CBallManager::SetBallSpeed(this, ball, -1.0);
+        reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(ball) + 160)[0] = 1; // offset 0xA0 (40 * 4)
+        reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(ball) + 156)[0] = 1; // offset 0x9C (39 * 4)
+        
+        uint32_t spawn_interval = this->active_ball_count;
+        --this->ball_count;
+        this->spawn_delay = 0;
+        this->next_ball_timer = spawn_interval;
+        CBallManager::UpdateBallList(this);
+        
+        if (!this->timer_started)
+        {
+            this->timer_started = 1;
 LABEL_12:
-      StartTimer();
+            StartTimer();
+        }
     }
-  }
+    
 LABEL_13:
-  (*(void (__thiscall **)(CBallManager *))(*(_DWORD *)this + 4))(this);
-  v9 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+    (reinterpret_cast<void(__thiscall*)(CBallManager*)>(this->update_function))(this);
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

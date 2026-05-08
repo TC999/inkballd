@@ -1,15 +1,40 @@
-struct CBoardTile *__thiscall CBallManager::GetRandomBallLauncher(CBallManager *this)
-{
-  int v2; // esi
-  int v4; // [esp-4h] [ebp-28h]
-  _BYTE v5[16]; // [esp+10h] [ebp-14h] BYREF
-  int v6; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBallManager::GetRandomBallLauncher", 0);
-  v4 = *((_DWORD *)this + 20);
-  v6 = 0;
-  v2 = *((_DWORD *)this + GetRandomNumber(v4) + 21);
-  v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
-  return (struct CBoardTile *)v2;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTile; // Forward declaration
+
+struct CBallManager {
+    uint32_t generator_count; // offset 0x50 (20 * 4)
+    CBoardTile* generators[16]; // offset 0x54 (21 * 4, 64 bytes total)
+    // ... other members
+};
+
+extern "C" int GetRandomNumber(int max_value);
+
+CBoardTile* __thiscall CBallManager::GetRandomBallLauncher(CBallManager *this)
+{
+    CBoardTile* random_launcher;
+    uint32_t generator_count;
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::GetRandomBallLauncher", 0);
+    generator_count = this->generator_count;
+    flag = 0;
+    
+    random_launcher = this->generators[GetRandomNumber(generator_count)];
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return random_launcher;
 }

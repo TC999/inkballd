@@ -1,8 +1,32 @@
-void __thiscall CBallManager::AddBallGenerator(CBallManager *this, struct CBoardTile *a2)
-{
-  _BYTE v3[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBallManager::AddBallGenerator", 0);
-  *((_DWORD *)this + (*((_DWORD *)this + 20))++ + 21) = a2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTile; // Forward declaration
+
+struct CBallManager {
+    uint32_t generator_count; // offset 0x50 (20 * 4)
+    CBoardTile* generators[16]; // offset 0x54 (21 * 4, 64 bytes total)
+    // ... other members
+};
+
+void __thiscall CBallManager::AddBallGenerator(CBallManager *this, CBoardTile* tile)
+{
+    uint8_t log_buffer[8];
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::AddBallGenerator", 0);
+    
+    uint32_t current_count = this->generator_count++;
+    this->generators[current_count] = tile;
+    
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }
