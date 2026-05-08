@@ -1,7 +1,9 @@
 #include <cstdint>
 #include <cstring>
 #include <new>
+#include <exception>
 #include <windows.h>
+#include <cstddef>
 
 class Helpers {
 public:

@@ -1,6 +1,6 @@
 #include <cstdint>
 #include <new>
-#include <cstdint>
+#include <cstddef>
 
 class Helpers {
 public:
@@ -82,8 +82,8 @@ extern "C" {
         }
         layout->field_124 = static_cast<uint32_t>(-1);
         layout->field_120 = reinterpret_cast<uintptr_t>(ball_points);
-        layout->field_144 = 1.0;
-        layout->field_56 = 1.0;
+        layout->field_144 = 1;
+        layout->field_56 = 1;
         layout->field_44 = rect_y;
         layout->field_32 = rect_x;
         log_state = 0;
