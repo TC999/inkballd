@@ -1,26 +1,52 @@
-void __thiscall CBallManager::~CBallManager(CBallManager *this)
-{
-  CBall **v2; // esi
-  int v3; // ebx
-  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
-  int v5; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  *(_DWORD *)this = &CBallManager::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBallManager::~CBallManager", 0);
-  v5 = 0;
-  v2 = (CBall **)((char *)this + 56);
-  v3 = 6;
-  do
-  {
-    if ( *v2 )
-    {
-      CBall::Release(*v2);
-      *v2 = 0;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
     }
-    ++v2;
-    --v3;
-  }
-  while ( v3 );
-  v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+}
+
+struct CBall; // Forward declaration
+
+struct CBallManager {
+    void* vftable; // offset 0x0
+    CBall* ball_list[6]; // offset 0x38 (56 bytes from start)
+    // ... other members
+};
+
+extern "C" void* CBallManager_vftable; // Forward declaration of virtual table
+
+CBallManager::~CBallManager(CBallManager *this)
+{
+    CBall** ball_ptr;
+    int ball_count;
+    uint8_t log_buffer[16];
+    int flag;
+
+    this->vftable = &CBallManager_vftable;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::~CBallManager", 0);
+    flag = 0;
+    
+    ball_ptr = reinterpret_cast<CBall**>(reinterpret_cast<uint8_t*>(this) + 56);
+    ball_count = 6;
+    
+    do
+    {
+        if (*ball_ptr)
+        {
+            CBall::Release(*ball_ptr);
+            *ball_ptr = nullptr;
+        }
+        ++ball_ptr;
+        --ball_count;
+    }
+    while (ball_count);
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

@@ -1,27 +1,54 @@
-int __thiscall CBoardManager::LoadBoardFromResources(
-        CBoardManager *this,
-        unsigned __int16 *a2,
-        unsigned __int8 *a3,
-        int *a4)
-{
-  int v4; // esi
-  int v5; // edi
-  _BYTE v7[16]; // [esp+10h] [ebp-14h] BYREF
-  int v8; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CBoardManager::LoadBoardFromResources", 0);
-  v8 = 0;
-  v4 = 0;
-  v5 = 0;
-  do
-  {
-    if ( v4 >= iBoardCollectionsCount )
-      break;
-    v5 = SearchBoardList(a2, a3, *(&iBoardCounts + v4), *(&pBoardCollections + v4), a4);
-    ++v4;
-  }
-  while ( !v5 );
-  v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
-  return v5;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardManager {
+    // ... members
+};
+
+extern "C" int SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection, int* result);
+extern "C" int iBoardCollectionsCount; // Global board collections count
+extern "C" int* iBoardCounts; // Global board counts array
+extern "C" void** pBoardCollections; // Global board collections array
+
+int __thiscall CBoardManager::LoadBoardFromResources(
+    CBoardManager *this,
+    wchar_t* board_name,
+    uint8_t* output_buffer,
+    int* result)
+{
+    int collection_index;
+    int search_result;
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::LoadBoardFromResources", 0);
+    flag = 0;
+    collection_index = 0;
+    search_result = 0;
+    
+    do
+    {
+        if (collection_index >= iBoardCollectionsCount)
+            break;
+        
+        int* current_board_count = &iBoardCounts[collection_index];
+        void* current_board_collection = pBoardCollections[collection_index];
+        search_result = SearchBoardList(board_name, output_buffer, *current_board_count, current_board_collection, result);
+        ++collection_index;
+    }
+    while (!search_result);
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return search_result;
 }

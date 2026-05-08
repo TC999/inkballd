@@ -1,13 +1,37 @@
-void __thiscall CBoardManager::~CBoardManager(CBoardManager *this)
-{
-  unsigned int v2; // [esp-4h] [ebp-28h]
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBoardManager::~CBoardManager", 0);
-  v2 = *((_DWORD *)this + 33281);
-  v4 = 0;
-  CRegistryManager::WriteDifficulty((CRegistryManager *)&g_CRegistryManager, v2);
-  v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardManager {
+    uint32_t difficulty_level; // offset 0x82201 (33281 * 4)
+    // ... other members
+};
+
+struct CRegistryManager; // Forward declaration
+
+extern "C" CRegistryManager g_CRegistryManager; // Global registry manager
+
+CBoardManager::~CBoardManager(CBoardManager *this)
+{
+    uint32_t current_difficulty;
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::~CBoardManager", 0);
+    current_difficulty = this->difficulty_level;
+    flag = 0;
+    
+    CRegistryManager::WriteDifficulty(&g_CRegistryManager, current_difficulty);
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

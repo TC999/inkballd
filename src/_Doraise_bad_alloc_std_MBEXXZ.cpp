@@ -1,7 +1,20 @@
-void __thiscall __noreturn std::bad_alloc::_Doraise(std::bad_alloc *this)
-{
-  _BYTE pExceptionObject[12]; // [esp+0h] [ebp-Ch] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  std::bad_alloc::bad_alloc((std::bad_alloc *)pExceptionObject, this);
-  _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVbad_alloc_std__);
+extern "C" {
+    extern void _CxxThrowException(void* exception_object, void* throw_info);
+}
+
+struct std::bad_alloc {
+    // ... exception members
+};
+
+extern "C" void* _TI2_AVbad_alloc_std__; // Forward declaration of throw info
+
+[[noreturn]] void __thiscall std::bad_alloc::_Doraise(std::bad_alloc *this)
+{
+    uint8_t exception_object[12];
+
+    std::bad_alloc::bad_alloc(reinterpret_cast<std::bad_alloc*>(exception_object), this);
+    _CxxThrowException(exception_object, &_TI2_AVbad_alloc_std__);
 }
