@@ -1,16 +1,34 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    // ... members
+};
+
 int __thiscall CBall::GetPrevBallPoint(CBall *this)
 {
-  int v2; // esi
-  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
-  int v5; // [esp+20h] [ebp-4h]
+    int prev_ball_point;
+    uint8_t log_buffer[16];
+    int flag;
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBall::GetPrevBallPoint", 0);
-  v5 = 0;
-  if ( CBall::GetCurrBallPoint(this) )
-    v2 = CBall::GetCurrBallPoint(this) - 1;
-  else
-    v2 = 31;
-  v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
-  return v2;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetPrevBallPoint", 0);
+    flag = 0;
+    int current_point = CBall::GetCurrBallPoint(this);
+    if (current_point > 0)
+        prev_ball_point = current_point - 1;
+    else
+        prev_ball_point = 31;
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return prev_ball_point;
 }

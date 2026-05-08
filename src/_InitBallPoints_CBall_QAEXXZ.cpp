@@ -1,34 +1,65 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct BallPoint {
+    int x;
+    int y;
+};
+
+struct CBall {
+    double velocity_x; // offset 0x20 (8 * 8)
+    double velocity_y; // offset 0x28 (9 * 8)
+    uint32_t ball_points_data_offset; // offset 0x78 (30 * 4)
+    int best_point_index; // offset 0x7C (31 * 4)
+    int current_point_index; // offset 0x80 (32 * 4)
+    // ... other members
+};
+
 void __thiscall CBall::InitBallPoints(CBall *this)
 {
-  int v2; // eax
-  int v3; // edx
-  int v4; // edi
-  int *v5; // ecx
-  _BYTE v6[8]; // [esp+8h] [ebp-10h] BYREF
-  float v7; // [esp+10h] [ebp-8h]
-  float v8; // [esp+14h] [ebp-4h]
+    uint32_t ball_data_offset;
+    int max_dot_product = 0;
+    int point_index = 1;
+    BallPoint* point_array;
+    double max_value;
+    double current_dot_product;
+    uint8_t log_buffer[8];
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CBall::InitBallPoints", 0);
-  v2 = *((_DWORD *)this + 30);
-  v3 = 0;
-  v4 = 1;
-  v5 = (int *)(*(_DWORD *)v2 + 8);
-  v7 = (double)*(int *)(*(_DWORD *)v2 + 4) * *((double *)this + 9) + (double)**(int **)v2 * *((double *)this + 8);
-  do
-  {
-    v8 = (double)v5[1] * *((double *)this + 9) + (double)*v5 * *((double *)this + 8);
-    if ( v8 > (double)v7 )
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::InitBallPoints", 0);
+    ball_data_offset = this->ball_points_data_offset;
+    max_dot_product = 0;
+    point_index = 1;
+    point_array = reinterpret_cast<BallPoint*>(*(reinterpret_cast<uint32_t*>(ball_data_offset) + 8));
+    max_value = static_cast<double>(*(reinterpret_cast<int*>(*(reinterpret_cast<uint32_t*>(ball_data_offset) + 4))) * this->velocity_y + 
+                                     static_cast<double>(**(reinterpret_cast<int**>(ball_data_offset))) * this->velocity_x);
+    
+    do
     {
-      v3 = v4;
-      v7 = v8;
+        current_dot_product = static_cast<double>(point_array[1].y) * this->velocity_y + 
+                              static_cast<double>(point_array[0].x) * this->velocity_x;
+        if (current_dot_product > max_value)
+        {
+            max_dot_product = point_index;
+            max_value = current_dot_product;
+        }
+        ++point_index;
+        point_array += 2;
     }
-    ++v4;
-    v5 += 2;
-  }
-  while ( v4 < 32 );
-  *((_DWORD *)this + 31) = v3 - 8;
-  if ( v3 - 8 < 0 )
-    *((_DWORD *)this + 31) = v3 - 8 + 32;
-  *((_DWORD *)this + 32) = 0;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+    while (point_index < 32);
+    
+    this->best_point_index = max_dot_product - 8;
+    if (max_dot_product - 8 < 0)
+        this->best_point_index = max_dot_product - 8 + 32;
+    this->current_point_index = 0;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

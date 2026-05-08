@@ -1,25 +1,50 @@
-struct BallPoint *__thiscall CBall::GetNextPoint(CBall *this)
-{
-  int v2; // eax
-  int v3; // esi
-  int v5; // ecx
-  _BYTE v6[16]; // [esp+10h] [ebp-14h] BYREF
-  int v7; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CBall::GetNextPoint", 0);
-  v2 = *((_DWORD *)this + 32);
-  if ( v2 <= 16 )
-  {
-    v5 = **((_DWORD **)this + 30) + 8 * ((v2 + *((_DWORD *)this + 31)) % 32);
-    *((_DWORD *)this + 32) = v2 + 1;
-    v3 = v5;
-  }
-  else
-  {
-    *((_DWORD *)this + 32) = 0;
-    v3 = 0;
-  }
-  v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
-  return (struct BallPoint *)v3;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct BallPoint {
+    int x;
+    int y;
+};
+
+struct CBall {
+    uint32_t ball_points_base; // offset 0x78 (30 * 4)
+    int best_point_index; // offset 0x7C (31 * 4)
+    int current_point_index; // offset 0x80 (32 * 4)
+    // ... other members
+};
+
+BallPoint* __thiscall CBall::GetNextPoint(CBall *this)
+{
+    int current_index;
+    BallPoint* next_point;
+    uint32_t points_base;
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetNextPoint", 0);
+    current_index = this->current_point_index;
+    if (current_index <= 16)
+    {
+        points_base = *reinterpret_cast<uint32_t*>(reinterpret_cast<uint32_t*>(this) + 30);
+        next_point = reinterpret_cast<BallPoint*>(points_base + 8 * ((current_index + this->best_point_index) % 32));
+        this->current_point_index = current_index + 1;
+    }
+    else
+    {
+        this->current_point_index = 0;
+        next_point = nullptr;
+    }
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return next_point;
 }

@@ -1,10 +1,34 @@
-struct BallPoint *__thiscall CBall::GetPoint(CBall *this, int a2)
-{
-  int v3; // esi
-  _BYTE v5[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBall::GetPoint", 0);
-  v3 = **((_DWORD **)this + 30) + 8 * a2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
-  return (struct BallPoint *)v3;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct BallPoint {
+    int x;
+    int y;
+};
+
+struct CBall {
+    uint32_t ball_points_base; // offset 0x78 (30 * 4)
+    // ... other members
+};
+
+BallPoint* __thiscall CBall::GetPoint(CBall *this, int point_index)
+{
+    BallPoint* point;
+    uint8_t log_buffer[8];
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetPoint", 0);
+    uint32_t points_base = *reinterpret_cast<uint32_t*>(reinterpret_cast<uint32_t*>(this) + 30);
+    point = reinterpret_cast<BallPoint*>(points_base + 8 * point_index);
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return point;
 }

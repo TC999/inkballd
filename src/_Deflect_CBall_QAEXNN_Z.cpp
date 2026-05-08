@@ -1,11 +1,30 @@
-void __thiscall CBall::Deflect(CBall *this, double a2, double a3)
-{
-  double v4; // st5
-  _BYTE v5[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBall::Deflect", 0);
-  v4 = a2 * *((double *)this + 8) + a3 * *((double *)this + 9);
-  *((double *)this + 8) = *((double *)this + 8) - a2 * ((v4 + v4) / (a2 * a2 + a3 * a3));
-  *((double *)this + 9) = *((double *)this + 9) - (v4 + v4) / (a2 * a2 + a3 * a3) * a3;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    double velocity_x; // offset 0x20 (8 * 8)
+    double velocity_y; // offset 0x28 (9 * 8)
+    // ... other members
+};
+
+void __thiscall CBall::Deflect(CBall *this, double impulse_x, double impulse_y)
+{
+    double dot_product; // st5
+    uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::Deflect", 0);
+    dot_product = impulse_x * this->velocity_x + impulse_y * this->velocity_y;
+    this->velocity_x = this->velocity_x - impulse_x * ((dot_product + dot_product) / (impulse_x * impulse_x + impulse_y * impulse_y));
+    this->velocity_y = this->velocity_y - (dot_product + dot_product) / (impulse_x * impulse_x + impulse_y * impulse_y) * impulse_y;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

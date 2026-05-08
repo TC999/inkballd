@@ -1,10 +1,29 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    int best_point_index; // offset 0x7C (31 * 4)
+    int current_point_index; // offset 0x80 (32 * 4)
+    // ... other members
+};
+
 int __thiscall CBall::GetCurrBallPoint(CBall *this)
 {
-  int v2; // esi
-  _BYTE v4[8]; // [esp+4h] [ebp-8h] BYREF
+    int current_ball_point;
+    uint8_t log_buffer[8];
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBall::GetCurrBallPoint", 0);
-  v2 = (*((_DWORD *)this + 31) + *((_DWORD *)this + 32)) % 32;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
-  return v2;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetCurrBallPoint", 0);
+    current_ball_point = (this->best_point_index + this->current_point_index) % 32;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return current_ball_point;
 }
