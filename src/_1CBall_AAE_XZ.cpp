@@ -1,18 +1,39 @@
-void __thiscall CBall::~CBall(CBall *this)
-{
-  void **v2; // ecx
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  *(_DWORD *)this = &CBall::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBall::~CBall", 0);
-  v2 = (void **)*((_DWORD *)this + 30);
-  v4 = 0;
-  if ( v2 )
-  {
-    BallPoints::`scalar deleting destructor'(v2, 1);
-    *((_DWORD *)this + 30) = 0;
-  }
-  v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    void* vftable; // offset 0x0
+    void* ball_points_ptr; // offset 0x8C (30 * 4)
+    // ... other members
+};
+
+extern "C" void* CBall_vftable; // Forward declaration of virtual table
+
+CBall::~CBall(CBall *this)
+{
+    void** ball_points_data;
+    uint8_t log_buffer[16];
+    int flag;
+
+    this->vftable = &CBall_vftable;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::~CBall", 0);
+    ball_points_data = reinterpret_cast<void**>(this->ball_points_ptr);
+    flag = 0;
+    if (ball_points_data)
+    {
+        BallPoints::scalar_deleting_destructor(ball_points_data, 1);
+        this->ball_points_ptr = nullptr;
+    }
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

@@ -1,17 +1,33 @@
-void __thiscall BallPoints::~BallPoints(void **this)
-{
-  void *v2; // eax
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "BallPoints::~BallPoints", 0);
-  v2 = *this;
-  v4 = 0;
-  if ( v2 )
-  {
-    operator delete[](v2);
-    *this = 0;
-  }
-  v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+    extern void operator delete[](void* ptr);
 }
+
+struct BallPoints {
+    void* data_ptr; // Pointer to allocated data
+
+    ~BallPoints() {
+        void* data_to_free;
+        uint8_t log_buffer[16];
+        int flag;
+
+        Helpers::CLogBlock::CLogBlock(&log_buffer, "BallPoints::~BallPoints", 0);
+        data_to_free = this->data_ptr;
+        flag = 0;
+        if (data_to_free) {
+            operator delete[](data_to_free);
+            this->data_ptr = nullptr;
+        }
+        flag = -1;
+        Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    }
+};

@@ -1,47 +1,81 @@
-void __thiscall CBall::SetTallness(CBall *this, void *a2)
-{
-  bool v3; // zf
-  int v4; // eax
-  double v5; // st7
-  int v6; // eax
-  double v7; // st6
-  BallPoints *v8; // ecx
-  BallPoints *v9; // edi
-  void **v10; // ecx
-  _BYTE v11[20]; // [esp+10h] [ebp-18h] BYREF
-  int v12; // [esp+24h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CBall::SetTallness", 0);
-  v4 = (int)a2 - *((_DWORD *)this + 35);
-  v3 = a2 == *((void **)this + 35);
-  v12 = 0;
-  if ( !v3 )
-  {
-    v5 = (double)v4;
-    v6 = 2 * v4;
-    v7 = *((double *)this + 1);
-    *((_DWORD *)this + 6) += v6;
-    *((_DWORD *)this + 7) += v6;
-    *((double *)this + 1) = v7 - v5;
-    *((double *)this + 2) = *((double *)this + 2) - v5;
-    CBall::CheckBoardBounds(this);
-    *((_DWORD *)this + 35) = a2;
-    LOBYTE(v12) = 1;
-    v8 = (BallPoints *)operator new(4u);
-    LOBYTE(v12) = 2;
-    if ( v8 )
-      v9 = BallPoints::BallPoints(v8, *((_DWORD *)this + 6));
-    else
-      v9 = 0;
-    v10 = (void **)*((_DWORD *)this + 30);
-    LOBYTE(v12) = 1;
-    if ( v10 )
-    {
-      BallPoints::`scalar deleting destructor'(v10, 1);
-      *((_DWORD *)this + 30) = 0;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
     }
-    *((_DWORD *)this + 30) = v9;
-  }
-  v12 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+    extern void* operator new(size_t size);
+}
+
+struct BallPoints {
+    void* data_ptr;
+    // ... other members
+};
+
+struct CBall {
+    double position_x; // offset 0x10 (1 * 8)
+    double position_y; // offset 0x18 (2 * 8)
+    uint32_t width; // offset 0x40 (6 * 4)
+    uint32_t height; // offset 0x44 (7 * 4)
+    void* ball_points_data; // offset 0x88 (35 * 4)
+    void* ball_points_ptr; // offset 0x8C (30 * 4)
+    // ... other members
+};
+
+void __thiscall CBall::SetTallness(CBall *this, void* new_tallness)
+{
+    bool is_same_tallness;
+    int size_difference;
+    double offset_adjustment;
+    int double_size_difference;
+    double original_position_x;
+    double original_position_y;
+    BallPoints* new_ball_points;
+    BallPoints* created_points;
+    void** old_ball_points;
+    uint8_t log_buffer[20];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::SetTallness", 0);
+    size_difference = reinterpret_cast<int>(new_tallness) - reinterpret_cast<int>(this->ball_points_data);
+    is_same_tallness = new_tallness == this->ball_points_data;
+    flag = 0;
+    
+    if (!is_same_tallness)
+    {
+        offset_adjustment = static_cast<double>(size_difference);
+        double_size_difference = 2 * size_difference;
+        original_position_x = this->position_x;
+        this->width += double_size_difference;
+        this->height += double_size_difference;
+        this->position_x = original_position_x - offset_adjustment;
+        this->position_y = this->position_y - offset_adjustment;
+        CBall::CheckBoardBounds(this);
+        this->ball_points_data = new_tallness;
+        
+        flag = 1;
+        new_ball_points = reinterpret_cast<BallPoints*>(operator new(4));
+        flag = 2;
+        if (new_ball_points)
+            created_points = BallPoints::BallPoints(new_ball_points, this->width);
+        else
+            created_points = nullptr;
+            
+        old_ball_points = reinterpret_cast<void**>(this->ball_points_ptr);
+        flag = 1;
+        if (old_ball_points)
+        {
+            BallPoints::scalar_deleting_destructor(old_ball_points, 1);
+            this->ball_points_ptr = nullptr;
+        }
+        this->ball_points_ptr = created_points;
+    }
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

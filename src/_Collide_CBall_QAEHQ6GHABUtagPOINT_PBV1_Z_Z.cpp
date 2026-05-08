@@ -1,58 +1,86 @@
-int __thiscall CBall::Collide(CBall *this, int (__stdcall *const a2)(const struct tagPOINT *, const struct CBall *))
-{
-  int v3; // ebx
-  int v4; // edi
-  struct BallPoint *NextPoint; // eax
-  int PrevBallPoint; // eax
-  int v7; // eax
-  int *Point; // eax
-  int v9; // esi
-  _BYTE v11[8]; // [esp+28h] [ebp-28h] BYREF
-  _DWORD v12[2]; // [esp+30h] [ebp-20h] BYREF
-  struct tagPOINT v13; // [esp+38h] [ebp-18h] BYREF
-  int v14; // [esp+40h] [ebp-10h]
-  int v15; // [esp+4Ch] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CBall::Collide", 0);
-  v15 = 0;
-  CBall::InitBallPoints(this);
-  v14 = 0;
-  v3 = -1;
-  v4 = -1;
-  CBoardObject::GetCenterPoint(this, &v13);
-  NextPoint = CBall::GetNextPoint(this);
-  if ( !NextPoint )
-    goto LABEL_12;
-  do
-  {
-    v12[0] = v13.x + *(_DWORD *)NextPoint;
-    v12[1] = v13.y + *((_DWORD *)NextPoint + 1);
-    if ( a2((const struct tagPOINT *)v12, this) )
-    {
-      PrevBallPoint = CBall::GetPrevBallPoint(this);
-      if ( v4 == -1 )
-        v4 = PrevBallPoint;
-      v3 = PrevBallPoint;
-      v14 = 1;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
     }
-    NextPoint = CBall::GetNextPoint(this);
-  }
-  while ( NextPoint );
-  if ( v14 )
-  {
-    v7 = (v3 + v4) / 2;
-    if ( v3 < v4 )
-      v7 = (v7 + 16) % 32;
-    Point = (int *)CBall::GetPoint(this, v7);
-    CBall::Deflect(this, (double)*Point, (double)Point[1]);
-    v9 = 1;
-  }
-  else
-  {
+    typedef int (__stdcall *CollisionCheckFunc)(const POINT*, const CBall*);
+}
+
+struct BallPoint {
+    int x;
+    int y;
+};
+
+struct CBall {
+    double position_x; // offset 0x10 (1 * 8)
+    double position_y; // offset 0x18 (2 * 8)
+    // ... other members
+};
+
+int __thiscall CBall::Collide(CBall *this, CollisionCheckFunc collision_check)
+{
+    int last_collision_point = -1;
+    int first_collision_point = -1;
+    BallPoint* next_point;
+    int prev_ball_point;
+    int collision_index;
+    int* point_data;
+    int collision_occurred = 0;
+    POINT collision_point;
+    POINT center_point;
+    uint8_t log_buffer[8];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::Collide", 0);
+    flag = 0;
+    CBall::InitBallPoints(this);
+    collision_occurred = 0;
+    last_collision_point = -1;
+    first_collision_point = -1;
+    CBoardObject::GetCenterPoint(this, &center_point);
+    next_point = CBall::GetNextPoint(this);
+    if (!next_point)
+        goto LABEL_12;
+    
+    do
+    {
+        collision_point.x = center_point.x + next_point->x;
+        collision_point.y = center_point.y + next_point->y;
+        
+        if (collision_check(&collision_point, this))
+        {
+            prev_ball_point = CBall::GetPrevBallPoint(this);
+            if (first_collision_point == -1)
+                first_collision_point = prev_ball_point;
+            last_collision_point = prev_ball_point;
+            collision_occurred = 1;
+        }
+        next_point = CBall::GetNextPoint(this);
+    }
+    while (next_point);
+    
+    if (collision_occurred)
+    {
+        collision_index = (last_collision_point + first_collision_point) / 2;
+        if (last_collision_point < first_collision_point)
+            collision_index = (collision_index + 16) % 32;
+        point_data = reinterpret_cast<int*>(CBall::GetPoint(this, collision_index));
+        CBall::Deflect(this, static_cast<double>(point_data[0]), static_cast<double>(point_data[1]));
+        flag = 1;
+    }
+    else
+    {
 LABEL_12:
-    v9 = 0;
-  }
-  v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
-  return v9;
+        flag = 0;
+    }
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return flag;
 }
