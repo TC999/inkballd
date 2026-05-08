@@ -1,76 +1,114 @@
-void __thiscall CBoardTileRLGray::UpdateObject(CBoardTileRLGray *this, unsigned int a2)
-{
-  int v3; // eax
-  int v4; // ecx
-  unsigned int v5; // edx
-  unsigned int v6; // ebx
-  int v7; // ecx
-  int v8; // eax
-  _BYTE v9[8]; // [esp+10h] [ebp-18h] BYREF
-  int v10; // [esp+18h] [ebp-10h]
-  int v11; // [esp+24h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CBoardTileRLGray::UpdateObject", 0);
-  *((_DWORD *)this + 22) += a2;
-  *((_DWORD *)this + 23) += a2;
-  v3 = *((_DWORD *)this + 24);
-  v4 = *((_DWORD *)this + 18);
-  v5 = *((_DWORD *)this + 22);
-  v6 = *((_DWORD *)this + 23);
-  v11 = 0;
-  v10 = v4;
-  if ( !v3 )
-  {
-    if ( v5 < *((_DWORD *)this + 26) )
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTileRLGray {
+    uint32_t animation_timer; // offset 0x58 (22 * 4)
+    uint32_t state_timer; // offset 0x5C (23 * 4)
+    uint32_t animation_state; // offset 0x60 (24 * 4)
+    uint32_t color_index; // offset 0x48 (18 * 4)
+    uint32_t min_time; // offset 0x68 (26 * 4)
+    uint32_t max_time; // offset 0x6C (25 * 4)
+    void* bitmap_rect; // offset 0x20 (8 * 4)
+    // ... members
+};
+
+extern "C" bool BallOnTile(void* tile);
+extern "C" void* GetBitmapRect(int index);
+extern "C" void UpdateBoardTile(void* tile);
+extern "C" void ShadowizeTile(void* tile);
+
+void __thiscall CBoardTileRLGray::UpdateObject(CBoardTileRLGray *this, uint32_t delta_time)
+{
+    uint32_t animation_state;
+    uint32_t color_index;
+    uint32_t animation_timer;
+    uint32_t state_timer;
+    uint32_t current_color;
+    uint32_t new_color_index;
+    uint8_t log_buffer[8];
+    int flag;
+    uint32_t min_time;
+    uint32_t max_time;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLGray::UpdateObject", 0);
+    this->animation_timer += delta_time;
+    this->state_timer += delta_time;
+    animation_state = this->animation_state;
+    color_index = this->color_index;
+    animation_timer = this->animation_timer;
+    state_timer = this->state_timer;
+    flag = 0;
+    current_color = color_index;
+    min_time = this->min_time;
+    max_time = this->max_time;
+    
+    if (!animation_state)
     {
-      if ( v4 > 0 && v6 > 0x32 )
-      {
-        v7 = v4 - 1;
+        if (animation_timer < min_time)
+        {
+            if (color_index > 0 && state_timer > 50)
+            {
+                new_color_index = color_index - 1;
 LABEL_6:
-        *((_DWORD *)this + 18) = v7;
+                this->color_index = new_color_index;
 LABEL_20:
-        *((_DWORD *)this + 23) = 0;
-        goto LABEL_21;
-      }
-      goto LABEL_21;
-    }
-    *((_DWORD *)this + 24) = 1;
+                this->state_timer = 0;
+                goto LABEL_21;
+            }
+            goto LABEL_21;
+        }
+        this->animation_state = 1;
 LABEL_8:
-    *((_DWORD *)this + 22) = 0;
-    goto LABEL_21;
-  }
-  if ( v3 == 1 )
-  {
-    if ( v5 > *((_DWORD *)this + 25) )
-    {
-      *((_DWORD *)this + 24) = 0;
-      goto LABEL_8;
+        this->animation_timer = 0;
+        goto LABEL_21;
     }
-    if ( BallOnTile(this) )
-      goto LABEL_21;
-    *((_DWORD *)this + 24) = 2;
+    
+    if (animation_state == 1)
+    {
+        if (animation_timer > max_time)
+        {
+            this->animation_state = 0;
+            goto LABEL_8;
+        }
+        if (BallOnTile(this))
+            goto LABEL_21;
+        this->animation_state = 2;
 LABEL_19:
-    *((_DWORD *)this + 22) = 0;
-    goto LABEL_20;
-  }
-  if ( v5 >= *((_DWORD *)this + 25) )
-  {
-    *((_DWORD *)this + 24) = 0;
-    goto LABEL_19;
-  }
-  if ( v4 < 4 && v6 > 0x32 )
-  {
-    v7 = v4 + 1;
-    goto LABEL_6;
-  }
+        this->animation_timer = 0;
+        goto LABEL_20;
+    }
+    
+    if (animation_timer >= max_time)
+    {
+        this->animation_state = 0;
+        goto LABEL_19;
+    }
+    
+    if (color_index < 4 && state_timer > 50)
+    {
+        new_color_index = color_index + 1;
+        goto LABEL_6;
+    }
+    
 LABEL_21:
-  v8 = *((_DWORD *)this + 18);
-  if ( v8 != v10 )
-  {
-    *((_DWORD *)this + 8) = GetBitmapRect(5 * v8 + 77);
-    UpdateBoardTile(this);
-    ShadowizeTile(this);
-  }
-  v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+    uint32_t final_color = this->color_index;
+    if (final_color != current_color)
+    {
+        this->bitmap_rect = GetBitmapRect(5 * final_color + 77);
+        UpdateBoardTile(this);
+        ShadowizeTile(this);
+    }
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

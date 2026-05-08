@@ -1,11 +1,31 @@
-CBoardTile *__thiscall CBoardTile::CBoardTile(CBoardTile *this)
-{
-  _BYTE v3[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  CBoardObject::CBoardObject(this);
-  *(_DWORD *)this = &CBoardTile::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBoardTile::CBoardTile", 0);
-  *((_DWORD *)this + 18) = 0;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
-  return this;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTile : CBoardObject {
+    uint32_t tile_type; // offset 0x48 (18 * 4)
+    // ... additional members
+};
+
+extern "C" void* CBoardTile_vftable; // Forward declaration of virtual table
+
+CBoardTile* __thiscall CBoardTile::CBoardTile(CBoardTile *this)
+{
+    uint8_t log_buffer[8];
+
+    CBoardObject::CBoardObject(this);
+    this->vftable = &CBoardTile_vftable;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTile::CBoardTile", 0);
+    this->tile_type = 0;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return this;
 }
