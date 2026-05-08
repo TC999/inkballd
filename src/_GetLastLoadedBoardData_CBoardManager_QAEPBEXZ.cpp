@@ -1,8 +1,27 @@
-const unsigned __int8 *__thiscall CBoardManager::GetLastLoadedBoardData(CBoardManager *this)
-{
-  _BYTE v2[8]; // [esp+0h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "CBoardManager::GetLastLoadedBoardData", 0);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
-  return (const unsigned __int8 *)&g_pLastLoadedLevel;
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardManager {
+    // ... members
+};
+
+extern "C" void* g_pLastLoadedLevel; // Global last loaded level
+
+const uint8_t* __thiscall CBoardManager::GetLastLoadedBoardData(CBoardManager *this)
+{
+    uint8_t log_buffer[8];
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::GetLastLoadedBoardData", 0);
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return reinterpret_cast<const uint8_t*>(&g_pLastLoadedLevel);
 }
