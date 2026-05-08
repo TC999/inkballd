@@ -1,22 +1,44 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int*);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBallManager {
+    void* surface_data; // offset 0x0C (3 * 4)
+    uint32_t surface_size; // offset 0x10 (4 * 4)
+    // ... other members
+};
+
+extern "C" void* g_pDisplay; // Global display instance
+extern "C" void* g_pBallManagerSurface; // Global ball manager surface
+
 int __thiscall CBallManager::InitSurface(CBallManager *this)
 {
-  int Surface; // eax
-  int v3; // esi
-  void *v5; // [esp-8h] [ebp-30h]
-  unsigned int v6; // [esp-4h] [ebp-2Ch]
-  _BYTE v7[8]; // [esp+10h] [ebp-18h] BYREF
-  int v8[3]; // [esp+18h] [ebp-10h] BYREF
-  int v9; // [esp+24h] [ebp-4h]
+    int surface_result;
+    int return_value;
+    void* surface_data;
+    uint32_t surface_size;
+    uint8_t log_buffer[8];
+    int log_data[3];
+    int flag;
 
-  v8[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CBallManager::InitSurface", v8);
-  v6 = *((_DWORD *)this + 4);
-  v5 = (void *)*((_DWORD *)this + 3);
-  v9 = 0;
-  Surface = CDisplay::CreateSurface(g_pDisplay, &g_pBallManagerSurface, v5, v6);
-  v9 = -1;
-  v8[0] = Surface;
-  v3 = Surface;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
-  return v3;
+    log_data[0] = 0;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::InitSurface", log_data);
+    surface_size = this->surface_size;
+    surface_data = reinterpret_cast<void*>(this->surface_data);
+    flag = 0;
+    surface_result = CDisplay::CreateSurface(g_pDisplay, &g_pBallManagerSurface, surface_data, surface_size);
+    flag = -1;
+    log_data[0] = surface_result;
+    return_value = surface_result;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return return_value;
 }

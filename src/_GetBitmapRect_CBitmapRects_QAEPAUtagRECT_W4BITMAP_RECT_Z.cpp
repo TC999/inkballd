@@ -1,8 +1,26 @@
-char *__thiscall CBitmapRects::GetBitmapRect(char *this, int a2)
-{
-  _BYTE v4[8]; // [esp+4h] [ebp-8h] BYREF
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBitmapRects::GetBitmapRect", 0);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
-  return &this[16 * a2];
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBitmapRects {
+    // ... members
+};
+
+RECT* __thiscall CBitmapRects::GetBitmapRect(CBitmapRects *this, int index)
+{
+    RECT* rect;
+    uint8_t log_buffer[8];
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBitmapRects::GetBitmapRect", 0);
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return reinterpret_cast<RECT*>(reinterpret_cast<uint8_t*>(this) + 16 * index);
 }

@@ -1,7 +1,18 @@
-CBall *__thiscall CBall::`scalar deleting destructor'(CBall *this, char a2)
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    extern void operator delete(void* ptr);
+}
+
+struct CBall {
+    // ... members
+};
+
+CBall* __thiscall CBall::scalar_deleting_destructor(CBall *this, char should_delete)
 {
-  CBall::~CBall(this);
-  if ( (a2 & 1) != 0 )
-    operator delete(this);
-  return this;
+    CBall::~CBall(this);
+    if ((should_delete & 1) != 0)
+        operator delete(this);
+    return this;
 }

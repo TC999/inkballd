@@ -1,17 +1,35 @@
+#include <cstdint>
+#include <windows.h>
+
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBall {
+    uint32_t reference_count; // offset 0x88 (34 * 4)
+    // ... other members
+};
+
 int __thiscall CBall::Release(CBall *this)
 {
-  bool v2; // zf
-  int v3; // edi
-  _BYTE v5[16]; // [esp+10h] [ebp-14h] BYREF
-  int v6; // [esp+20h] [ebp-4h]
+    bool is_last_reference;
+    uint32_t new_reference_count;
+    uint8_t log_buffer[16];
+    int flag;
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBall::Release", 0);
-  v6 = 0;
-  v2 = (*((_DWORD *)this + 34))-- == 1;
-  v3 = *((_DWORD *)this + 34);
-  if ( v2 )
-    CBall::`scalar deleting destructor'(this, 1);
-  v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
-  return v3;
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::Release", 0);
+    flag = 0;
+    is_last_reference = (--this->reference_count) == 1;
+    new_reference_count = this->reference_count;
+    if (is_last_reference)
+        CBall::scalar_deleting_destructor(this, 1);
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    return new_reference_count;
 }
