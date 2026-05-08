@@ -1,79 +1,124 @@
-void __thiscall CBoardTileDrain::DeflectBall(CBoardTileDrain *this, struct CBall *a2)
-{
-  int v3; // eax
-  LONG right; // ecx
-  LONG bottom; // ebx
-  int v6; // eax
-  int v7; // eax
-  char *BitmapRect; // eax
-  double v9; // st7
-  long double v10; // st6
-  long double v11; // st7
-  int v12; // eax
-  int v13; // ecx
-  int v14; // edi
-  long double v15; // st6
-  void *v16; // eax
-  struct tagRECT v17; // [esp+18h] [ebp-40h] BYREF
-  _BYTE v18[8]; // [esp+28h] [ebp-30h] BYREF
-  long double v19; // [esp+30h] [ebp-28h]
-  struct tagPOINT v20; // [esp+38h] [ebp-20h] BYREF
-  LONG v21; // [esp+40h] [ebp-18h]
-  int v22; // [esp+44h] [ebp-14h]
-  int v23; // [esp+48h] [ebp-10h]
-  int v24; // [esp+54h] [ebp-4h]
+#include <cstdint>
+#include <cmath>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v18, "CBoardTileDrain::DeflectBall", 0);
-  v24 = 0;
-  CBoardObject::GetBoundingRect(this, &v17);
-  v3 = *((_DWORD *)this + 17);
-  if ( v3 == 2 || (right = v17.left, v3 == 4) )
-    right = v17.right;
-  v21 = right;
-  if ( v3 == 2 || (bottom = v17.top, v3 == 3) )
-    bottom = v17.bottom;
-  CBoardObject::GetCenterPoint(a2, &v20);
-  v22 = v20.y - bottom;
-  v23 = v20.x - v21;
-  v19 = sqrt((double)((v20.x - v21) * (v20.x - v21) + (v20.y - bottom) * (v20.y - bottom)));
-  v6 = *((_DWORD *)a2 + 11);
-  if ( v19 > 42.0 )
-    v7 = v6 + 2;
-  else
-    v7 = v6 + 7;
-  BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, v7);
-  v9 = (double)*((int *)a2 + 6);
-  *((_DWORD *)a2 + 8) = BitmapRect;
-  v10 = v9 * 0.5 + v19;
-  v11 = v19;
-  if ( v10 > 12.0 )
-  {
-    if ( v19 <= 32.0 )
-    {
-      v15 = 1.0 / (v19 * v19);
-      *((long double *)a2 + 8) = *((double *)a2 + 8) * 0.993 - (double)v23 * v15 * 25.0;
-      *((long double *)a2 + 9) = 0.993 * *((double *)a2 + 9) - 25.0 * (v15 * (double)v22);
-      v16 = (void *)Round(0.0 - 3.0 / v11 * 8.0);
-      CBall::SetTallness(a2, v16);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
     }
-  }
-  else
-  {
-    v12 = *((_DWORD *)this + 11);
-    v13 = *((_DWORD *)a2 + 11);
-    if ( v12 != v13 && v12 && v13 )
+}
+
+struct CBoardTileDrain {
+    uint32_t drain_direction; // offset 0x44 (17 * 4)
+    uint32_t tile_type; // offset 0x2C (11 * 4)
+    // ... members
+};
+
+struct CBall {
+    uint32_t radius; // offset 0x18 (6 * 4)
+    uint32_t tile_type; // offset 0x2C (11 * 4)
+    uint32_t update_flags; // offset 0x9C (39 * 4)
+    // ... members
+};
+
+extern "C" void* g_CBitmapRects; // Global bitmap rectangles
+extern "C" void CBitmapRects::GetBitmapRect(void* bitmap_rects, int index);
+extern "C" void CBoardObject::GetBoundingRect(void* board_object, RECT* bounding_rect);
+extern "C" void CBoardObject::GetCenterPoint(void* board_object, POINT* center_point);
+extern "C" void CBall::SetTallness(CBall* ball, void* tallness);
+extern "C" void KillPlayer(int reason);
+extern "C" void ScoreBall(CBall* ball, int score);
+extern "C" void ToggleRLWalls(int walls);
+
+void __thiscall CBoardTileDrain::DeflectBall(CBoardTileDrain *this, CBall* ball)
+{
+    uint32_t direction;
+    LONG right_edge;
+    LONG bottom_edge;
+    uint32_t ball_tile_type;
+    uint32_t new_bitmap_index;
+    void* bitmap_rect;
+    double ball_radius;
+    double new_distance;
+    double current_distance;
+    uint32_t drain_tile_type;
+    uint32_t ball_drain_type;
+    int collision_result;
+    void* tallness_value;
+    RECT bounding_rect;
+    POINT ball_center;
+    LONG drain_x;
+    LONG drain_y;
+    int distance_y;
+    int distance_x;
+    uint8_t log_buffer[8];
+    long double distance_squared;
+    long double force_multiplier;
+    long double new_velocity_x;
+    long double new_velocity_y;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileDrain::DeflectBall", 0);
+    
+    CBoardObject::GetBoundingRect(this, &bounding_rect);
+    direction = this->drain_direction;
+    
+    if (direction == 2 || (right_edge = bounding_rect.left, direction == 4))
+        right_edge = bounding_rect.right;
+    drain_x = right_edge;
+    
+    if (direction == 2 || (bottom_edge = bounding_rect.top, direction == 3))
+        bottom_edge = bounding_rect.bottom;
+    drain_y = bottom_edge;
+    
+    CBoardObject::GetCenterPoint(ball, &ball_center);
+    distance_y = ball_center.y - bottom_edge;
+    distance_x = ball_center.x - drain_x;
+    current_distance = sqrt(static_cast<double>((ball_center.x - drain_x) * (ball_center.x - drain_x) + 
+                                                 (ball_center.y - bottom_edge) * (ball_center.y - bottom_edge)));
+    
+    ball_tile_type = ball->tile_type;
+    if (current_distance > 42.0)
+        new_bitmap_index = ball_tile_type + 2;
+    else
+        new_bitmap_index = ball_tile_type + 7;
+    
+    bitmap_rect = CBitmapRects::GetBitmapRect(g_CBitmapRects, new_bitmap_index);
+    ball_radius = static_cast<double>(ball->radius);
+    reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(ball) + 32)[0] = reinterpret_cast<uint32_t>(bitmap_rect); // offset 0x20 (8 * 4)
+    new_distance = ball_radius * 0.5 + current_distance;
+    
+    if (new_distance > 12.0)
     {
-      KillPlayer(1);
+        if (current_distance <= 32.0)
+        {
+            distance_squared = 1.0 / (current_distance * current_distance);
+            new_velocity_x = ball->velocity_x * 0.993 - static_cast<double>(distance_x) * distance_squared * 25.0;
+            new_velocity_y = 0.993 * ball->velocity_y - 25.0 * (distance_squared * static_cast<double>(distance_y));
+            tallness_value = reinterpret_cast<void*>(static_cast<int>(0.0 - 3.0 / current_distance * 8.0));
+            CBall::SetTallness(ball, tallness_value);
+        }
     }
     else
     {
-      ScoreBall(a2, *((_DWORD *)this + 11));
-      *((_DWORD *)a2 + 39) = 0;
-      v14 = *((_DWORD *)this + 11);
-      if ( v14 && *((_DWORD *)a2 + 11) )
-        ToggleRLWalls(v14);
+        drain_tile_type = this->tile_type;
+        ball_drain_type = ball->tile_type;
+        if (drain_tile_type != ball_drain_type && drain_tile_type && ball_drain_type)
+        {
+            KillPlayer(1);
+        }
+        else
+        {
+            ScoreBall(ball, this->tile_type);
+            ball->update_flags = 0;
+            collision_result = this->tile_type;
+            if (collision_result && ball->tile_type)
+                ToggleRLWalls(collision_result);
+        }
     }
-  }
-  v24 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v18);
+    
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

@@ -1,18 +1,44 @@
-void __thiscall CBoardTileBreakWall::DeflectBall(CBoardTileBreakWall *this, struct CBall *a2)
-{
-  int v3; // eax
-  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
-  int v5; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBoardTileBreakWall::DeflectBall", 0);
-  v5 = 0;
-  PerformStandardWallDeflection(this, a2);
-  v3 = *((_DWORD *)this + 11);
-  if ( !v3 || v3 == *((_DWORD *)a2 + 11) )
-  {
-    ConvertTileToFloor(this);
-    ScoreBreak(a2);
-  }
-  v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTileBreakWall {
+    uint32_t tile_type; // offset 0x2C (11 * 4)
+    // ... members
+};
+
+struct CBall; // Forward declaration
+
+extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
+extern "C" void ConvertTileToFloor(void* tile);
+extern "C" void ScoreBreak(CBall* ball);
+
+void __thiscall CBoardTileBreakWall::DeflectBall(CBoardTileBreakWall *this, CBall* ball)
+{
+    uint32_t tile_type;
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileBreakWall::DeflectBall", 0);
+    flag = 0;
+    
+    PerformStandardWallDeflection(this, ball);
+    tile_type = this->tile_type;
+    if (!tile_type || tile_type == ball->tile_type)
+    {
+        ConvertTileToFloor(this);
+        ScoreBreak(ball);
+    }
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }

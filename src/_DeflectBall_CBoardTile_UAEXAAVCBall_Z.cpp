@@ -1,11 +1,32 @@
-void __thiscall CBoardTile::DeflectBall(CBoardTile *this, struct CBall *a2)
-{
-  _BYTE v2[16]; // [esp+10h] [ebp-14h] BYREF
-  int v3; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "CBoardTile::DeflectBall", 0);
-  v3 = 0;
-  CBall::SetTallness(a2, 0);
-  v3 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+extern "C" {
+    namespace Helpers {
+        class CLogBlock {
+        public:
+            CLogBlock(void* buffer, const char* message, int);
+            ~CLogBlock();
+        };
+    }
+}
+
+struct CBoardTile {
+    // ... members
+};
+
+struct CBall; // Forward declaration
+
+void __thiscall CBoardTile::DeflectBall(CBoardTile *this, CBall* ball)
+{
+    uint8_t log_buffer[16];
+    int flag;
+
+    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTile::DeflectBall", 0);
+    flag = 0;
+    
+    CBall::SetTallness(ball, nullptr);
+    
+    flag = -1;
+    Helpers::CLogBlock::~CLogBlock(&log_buffer);
 }
