@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -10,16 +11,10 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
   CBoardObject *v3; // esi
   long double v4; // st7
   CBoardTile *v5; // esi
-  struct tagPOINT v7[4]; // [esp+10h] [ebp-84h] BYREF
-  struct tagRECT v8; // [esp+30h] [ebp-64h] BYREF
   CBoardObject *v9[4]; // [esp+40h] [ebp-54h]
-  struct tagRECT v10; // [esp+50h] [ebp-44h] BYREF
   uint8_t v11[8]; // [esp+60h] [ebp-34h] BYREF
   long double v12; // [esp+68h] [ebp-2Ch]
-  struct tagPOINT v13; // [esp+70h] [ebp-24h] BYREF
-  struct tagPOINT v14; // [esp+78h] [ebp-1Ch] BYREF
   int v15; // [esp+80h] [ebp-14h]
-  struct tagPOINT *v16; // [esp+84h] [ebp-10h]
   int v17; // [esp+90h] [ebp-4h]
 
   v1 = 0;

@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -21,7 +22,6 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
   LONG pvParam; // [esp+8Ch] [ebp-3Ch] BYREF
   LONG v20; // [esp+90h] [ebp-38h]
   uint8_t v21[8]; // [esp+9Ch] [ebp-2Ch] BYREF
-  struct tagRECT rc; // [esp+A4h] [ebp-24h] BYREF
   int v23; // [esp+B4h] [ebp-14h] BYREF
   char v24[4]; // [esp+B8h] [ebp-10h] BYREF
   int v25; // [esp+C4h] [ebp-4h]

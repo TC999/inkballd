@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,16 +12,8 @@ extern "C" {
     }
 }
 
-struct BallPoint {
-    int x;
-    int y;
 };
 
-struct CBall {
-    uint32_t ball_points_base; // offset 0x78 (30 * 4)
-    int best_point_index; // offset 0x7C (31 * 4)
-    int current_point_index; // offset 0x80 (32 * 4)
-    // ... other members
 };
 
 BallPoint* __thiscall CBall::GetNextPoint(CBall *this)

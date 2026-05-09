@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,9 +13,6 @@ extern "C" {
     extern int DrainPoints[256]; // Global array
 }
 
-struct CBall {
-    uint32_t drain_point_index; // offset 0x2C (11 * 4)
-    // ... other members
 };
 
 int* __thiscall CBall::GetDrainPoints(CBall *this)

@@ -1,9 +1,9 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-struct CTabletContextInfo *__stdcall GetTabletContextInfo(uint32_t a1)
 {
   char*v1; // edi
   int v2; // eax

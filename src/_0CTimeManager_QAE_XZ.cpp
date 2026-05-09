@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <new>
 

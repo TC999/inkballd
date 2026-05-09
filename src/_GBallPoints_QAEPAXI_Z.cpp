@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,15 +13,4 @@ extern "C" {
     extern void operator delete(void* ptr);
 }
 
-struct BallPoints {
-    void* data_ptr; // Pointer to allocated data
-
-    // Scalar deleting destructor
-    void** __thiscall BallPoints::scalar_deleting_destructor(void **this, char should_delete)
-    {
-        BallPoints::~BallPoints(this);
-        if ((should_delete & 1) != 0)
-            operator delete(this);
-        return this;
-    }
 };

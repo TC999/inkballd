@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -8,7 +9,6 @@ int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
   int v2; // esi
   void*v3; // ecx
   CDisplay *v4; // eax
-  struct IDirectDrawSurface7 *InkBuffer; // eax
   int*v7; // [esp+0h] [ebp-2C0h]
   int*v8; // [esp+0h] [ebp-2C0h]
   uint8_t v9[8]; // [esp+10h] [ebp-2B0h] BYREF

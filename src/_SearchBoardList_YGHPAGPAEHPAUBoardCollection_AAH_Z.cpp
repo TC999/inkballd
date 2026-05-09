@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -15,10 +16,6 @@ extern "C" {
     }
 }
 
-struct BoardCollection {
-    uint32_t board_data_offset; // offset 0x0
-    wchar_t board_name[256]; // offset 0x2
-    // ... other members
 };
 
 extern "C" void* g_BoardData; // Global board data

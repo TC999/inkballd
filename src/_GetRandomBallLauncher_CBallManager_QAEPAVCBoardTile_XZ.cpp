@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardTile; // Forward declaration
-
-struct CBallManager {
-    uint32_t generator_count; // offset 0x50 (20 * 4)
-    CBoardTile* generators[16]; // offset 0x54 (21 * 4, 64 bytes total)
-    // ... other members
 };
 
 extern "C" int GetRandomNumber(int max_value);

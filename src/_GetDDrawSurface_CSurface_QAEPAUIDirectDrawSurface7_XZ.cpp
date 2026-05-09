@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,7 @@ extern "C" {
     }
 }
 
-struct CSurface {
-    void* ddraw_surface; // offset 0x0
-    // ... other members
 };
-
-struct IDirectDrawSurface7; // Forward declaration
 
 IDirectDrawSurface7* __thiscall CSurface::GetDDrawSurface(CSurface *this)
 {

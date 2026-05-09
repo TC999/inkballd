@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,19 +12,8 @@ extern "C" {
     }
 }
 
-struct CBall {
-    // ... members
-    uint32_t update_flags; // offset 0x9C (11 * 4)
-    uint32_t ball_index; // offset 0x9C (11 * 4)
 };
 
-struct CBallManager {
-    uint32_t active_ball_count; // offset 0x38 (14 * 4)
-    uint32_t first_ball_index; // offset 0x3C (15 * 4)
-    uint32_t ball_start_index; // offset 0x24 (9 * 4)
-    uint32_t ball_count; // offset 0x28 (10 * 4)
-    uint32_t ball_list[5]; // offset 0x38 (56 bytes from start)
-    // ... other members
 };
 
 CBall* __thiscall CBallManager::UpdateBallList(CBallManager *this)

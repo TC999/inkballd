@@ -1,35 +1,15 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
-  struct IDirectDrawSurface7Vtbl *lpVtbl; // edi
-  struct IDirectDrawSurface7 *v4; // eax
   int v5; // edi
   DWORD v6; // edi
-  struct IDirectDrawSurface7 *v7; // eax
-  struct IDirectDrawSurface7Vtbl *v8; // ebx
-  struct IDirectDrawSurface7 *v9; // eax
-  struct IDirectDrawSurface7 *v10; // eax
-  struct IDirectDrawSurface7Vtbl *v11; // ebx
-  struct IDirectDrawSurface7 *v12; // eax
   DWORD v13; // edi
-  struct IDirectDrawSurface7 *v14; // eax
-  struct IDirectDrawSurface7Vtbl *v15; // ebx
-  struct IDirectDrawSurface7 *v16; // eax
   DWORD v17; // edi
-  struct IDirectDrawSurface7 *v18; // eax
-  struct IDirectDrawSurface7Vtbl *v19; // ebx
-  struct IDirectDrawSurface7 *v20; // eax
-  struct IDirectDrawSurface7 *v21; // eax
-  struct IDirectDrawSurface7Vtbl *v22; // ebx
-  struct IDirectDrawSurface7 *v23; // eax
-  struct IDirectDrawSurface7 *v24; // eax
-  struct IDirectDrawSurface7Vtbl *v25; // ebx
-  struct IDirectDrawSurface7 *v26; // eax
   char*BitmapRect; // [esp-8h] [ebp-3Ch]
   char*v28; // [esp-8h] [ebp-3Ch]
   char*v29; // [esp-8h] [ebp-3Ch]
@@ -41,7 +21,6 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   uint32_t v35; // [esp+18h] [ebp-1Ch]
   uint32_t v36; // [esp+1Ch] [ebp-18h]
   CScoreManager *v37; // [esp+20h] [ebp-14h]
-  struct IDirectDrawSurface7 *v38; // [esp+24h] [ebp-10h]
   int v39; // [esp+30h] [ebp-4h]
 
   v37 = this;

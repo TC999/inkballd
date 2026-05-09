@@ -1,9 +1,9 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-struct IDirectDrawSurface7 *__thiscall CDisplay::GetBackBuffer(CDisplay *this)
 {
   int v2; // esi
   uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF

@@ -1,32 +1,14 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 void __thiscall CTimeManager::Restore(CTimeManager *this)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
-  struct IDirectDrawSurface7 *v3; // eax
-  struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
-  struct IDirectDrawSurface7 *v5; // eax
   uint32_t v6; // esi
-  struct IDirectDrawSurface7 *v7; // eax
-  struct IDirectDrawSurface7Vtbl *v8; // ebx
-  struct IDirectDrawSurface7 *v9; // eax
   uint32_t v10; // edx
   bool v11; // zf
-  struct IDirectDrawSurface7 *v12; // eax
-  struct IDirectDrawSurface7Vtbl *v13; // ebx
-  struct IDirectDrawSurface7 *v14; // eax
-  struct IDirectDrawSurface7Vtbl *v15; // ebx
-  struct IDirectDrawSurface7 *v16; // eax
-  struct IDirectDrawSurface7Vtbl *v17; // ebx
-  struct IDirectDrawSurface7 *v18; // eax
-  struct IDirectDrawSurface7 *v19; // eax
-  struct IDirectDrawSurface7Vtbl *v20; // ebx
-  struct IDirectDrawSurface7 *v21; // eax
-  struct IDirectDrawSurface7 *v22; // [esp-Ch] [ebp-48h]
-  struct IDirectDrawSurface7 *v23; // [esp-Ch] [ebp-48h]
   char*BitmapRect; // [esp-8h] [ebp-44h]
   char*v25; // [esp-8h] [ebp-44h]
   char*v26; // [esp-8h] [ebp-44h]
@@ -34,7 +16,6 @@ void __thiscall CTimeManager::Restore(CTimeManager *this)
   char*v28; // [esp-8h] [ebp-44h]
   char*v29; // [esp-8h] [ebp-44h]
   uint8_t v30[8]; // [esp+10h] [ebp-2Ch] BYREF
-  struct IDirectDrawSurface7 *v31; // [esp+18h] [ebp-24h]
   uint32_t v32; // [esp+1Ch] [ebp-20h]
   CTimeManager *v33; // [esp+20h] [ebp-1Ch]
   int v34; // [esp+24h] [ebp-18h]

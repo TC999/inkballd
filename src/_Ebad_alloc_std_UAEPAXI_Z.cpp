@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -5,13 +6,8 @@ extern "C" {
     extern void operator delete(void* ptr);
 }
 
-struct std::bad_alloc {
-    void* vftable; // offset 0x0
-    // ... other members
 };
 
-struct std::exception {
-    // ... exception members
 };
 
 extern "C" void* std_bad_alloc_vftable; // Forward declaration of virtual table

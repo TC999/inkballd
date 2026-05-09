@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall; // Forward declaration
-
-struct CBallManager {
-    void* vftable; // offset 0x0
-    CBall* ball_list[6]; // offset 0x38 (56 bytes from start)
-    // ... other members
 };
 
 extern "C" void* CBallManager_vftable; // Forward declaration of virtual table

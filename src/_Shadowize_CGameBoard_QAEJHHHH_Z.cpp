@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -9,13 +10,9 @@ int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, i
   int v7; // eax
   int v8; // esi
   int v9; // eax
-  struct IDirectDrawSurface7 *BoardBuffer; // ebx
   int (__stdcall **p_Blt)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t); // edi
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
   int v14; // [esp-Ch] [ebp-D0h]
   uint32_t v15[31]; // [esp+10h] [ebp-B4h] BYREF
-  struct tagRECT v16; // [esp+8Ch] [ebp-38h] BYREF
-  struct tagRECT v17; // [esp+9Ch] [ebp-28h] BYREF
   uint8_t v18[8]; // [esp+ACh] [ebp-18h] BYREF
   int v19[3]; // [esp+B4h] [ebp-10h] BYREF
   int v20; // [esp+C0h] [ebp-4h]

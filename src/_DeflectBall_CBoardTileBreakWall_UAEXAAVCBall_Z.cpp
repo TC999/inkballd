@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,7 @@ extern "C" {
     }
 }
 
-struct CBoardTileBreakWall {
-    uint32_t tile_type; // offset 0x2C (11 * 4)
-    // ... members
 };
-
-struct CBall; // Forward declaration
 
 extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
 extern "C" void ConvertTileToFloor(void* tile);

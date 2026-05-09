@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -20,7 +21,6 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
   LONG v17; // [esp-4h] [ebp-BA0h]
   int*v18; // [esp+0h] [ebp-B9Ch]
   int*v19; // [esp+0h] [ebp-B9Ch]
-  struct tagRECT Rect; // [esp+10h] [ebp-B8Ch] BYREF
   uint8_t v21[8]; // [esp+20h] [ebp-B7Ch] BYREF
   HMENU hMenu; // [esp+28h] [ebp-B74h] BYREF
   HWND v23; // [esp+2Ch] [ebp-B70h]

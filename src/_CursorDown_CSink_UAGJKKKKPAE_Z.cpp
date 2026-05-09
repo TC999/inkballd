@@ -1,22 +1,19 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 int __stdcall CSink::CursorDown(
         CSink *this,
-        struct IInkStroke *a2,
         uint32_t a3,
         uint32_t a4,
         uint32_t a5,
         unsigned __int8 *a6)
 {
-  struct IInkStroke *v6; // edi
-  struct CTabletContextInfo *TabletContextInfo; // eax
   uint32_t v8; // ecx
   int v9; // esi
   uint32_t v11; // esi
-  struct tagRECT *PlayingAreaRect; // eax
   uint32_t v13; // [esp-4h] [ebp-1Ch]
   char v14[8]; // [esp+Ch] [ebp-Ch] BYREF
   char v15[4]; // [esp+14h] [ebp-4h] BYREF

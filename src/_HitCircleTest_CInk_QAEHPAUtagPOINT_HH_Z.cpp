@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -6,7 +7,6 @@
 int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
 {
   int v5; // ecx
-  struct CTabletContextInfo *TabletContextInfo; // eax
   uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
   uint32_t v9[2]; // [esp+64h] [ebp-2Ch] BYREF
   uint32_t v10[2]; // [esp+6Ch] [ebp-24h] BYREF

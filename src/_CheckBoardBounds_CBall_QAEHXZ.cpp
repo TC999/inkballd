@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,14 +13,6 @@ extern "C" {
     extern void GetBoardRect(RECT* rect);
 }
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    uint32_t board_left; // offset 0x18 (6 * 4)
-    uint32_t board_top; // offset 0x1C (7 * 4)
-    // ... other members
 };
 
 int __thiscall CBall::CheckBoardBounds(CBall *this)

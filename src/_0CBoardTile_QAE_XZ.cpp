@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,9 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardTile : CBoardObject {
-    uint32_t tile_type; // offset 0x48 (18 * 4)
-    // ... additional members
 };
 
 extern "C" void* CBoardTile_vftable; // Forward declaration of virtual table

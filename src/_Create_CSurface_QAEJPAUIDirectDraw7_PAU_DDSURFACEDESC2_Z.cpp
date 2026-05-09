@@ -1,12 +1,11 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 int __thiscall CSurface::Create(LPDIRECTDRAWSURFACE7 *this, struct IDirectDraw7 *a2, struct _DDSURFACEDESC2 *a3)
 {
-  struct IDirectDraw7Vtbl *lpVtbl; // ecx
-  struct _DDSURFACEDESC2 *v5; // eax
   LPDIRECTDRAWSURFACE7 v6; // esi
   int v7; // esi
   char v9[8]; // [esp+10h] [ebp-18h] BYREF

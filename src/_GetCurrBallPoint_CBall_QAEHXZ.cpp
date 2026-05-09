@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,10 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    int best_point_index; // offset 0x7C (31 * 4)
-    int current_point_index; // offset 0x80 (32 * 4)
-    // ... other members
 };
 
 int __thiscall CBall::GetCurrBallPoint(CBall *this)

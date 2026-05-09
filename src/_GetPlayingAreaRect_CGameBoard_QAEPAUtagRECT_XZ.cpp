@@ -1,9 +1,9 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-struct tagRECT *__thiscall CGameBoard::GetPlayingAreaRect(CGameBoard *this)
 {
   uint8_t v3[8]; // [esp+4h] [ebp-8h] BYREF
 

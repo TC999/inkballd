@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -6,14 +7,9 @@
 int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
 {
   int v4; // edi
-  struct tagRECT *PlayingAreaRect; // eax
   int v6; // eax
   uint32_t *v8; // ebx
-  struct IDirectDrawSurface7 *BackBuffer; // eax
   bool v10; // zf
-  struct tagRECT *v11; // ebx
-  struct tagRECT v12; // [esp+10h] [ebp-40h] BYREF
-  struct tagRECT v13; // [esp+20h] [ebp-30h] BYREF
   uint8_t v14[8]; // [esp+30h] [ebp-20h] BYREF
   uint32_t *v15; // [esp+38h] [ebp-18h]
   char*v16; // [esp+3Ch] [ebp-14h]

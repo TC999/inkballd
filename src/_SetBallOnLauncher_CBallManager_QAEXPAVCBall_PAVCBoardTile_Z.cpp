@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -7,7 +8,6 @@ void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, CBall*a2, CB
 {
   int v4; // eax
   uint8_t v5[8]; // [esp+10h] [ebp-1Ch] BYREF
-  struct tagPOINT v6; // [esp+18h] [ebp-14h] BYREF
   int v7; // [esp+28h] [ebp-4h]
   CBoardObject *v8; // [esp+38h] [ebp+Ch]
 

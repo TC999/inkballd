@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <new>
 #include <cstddef>
@@ -33,27 +34,6 @@ extern "C" {
 extern "C" {
     int CBall_func(int this_ptr, int rect_x, int rect_y, int should_add, int ball_radius)
     {
-        struct CBallLayout {
-            uint32_t vftable_ptr;
-            // Other fields would be defined based on usage patterns
-            uint32_t field_24;
-            uint32_t field_28;
-            uint32_t field_32;
-            uint32_t field_44;
-            uint32_t field_56;
-            uint32_t field_112;
-            uint32_t field_116;
-            uint32_t field_120;
-            uint32_t field_124;
-            uint32_t field_128;
-            uint32_t field_132;
-            uint32_t field_136;
-            uint32_t field_140;
-            uint32_t field_144;
-            uint32_t field_152;
-            uint32_t field_156;
-            uint32_t field_160;
-            uint32_t ball_points_array[64];
         };
         
         void* ball_points_mem; // ecx

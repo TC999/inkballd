@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,8 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    // ... members
 };
 
 int __thiscall CBall::GetPrevBallPoint(CBall *this)

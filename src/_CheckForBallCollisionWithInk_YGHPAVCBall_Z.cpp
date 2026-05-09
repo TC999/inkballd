@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -7,9 +8,7 @@ int __stdcall CheckForBallCollisionWithInk(CBall*a1)
 {
   int v1; // ebx
   int v2; // esi
-  struct tagRECT *PlayingAreaRect; // eax
   uint8_t v5[8]; // [esp+10h] [ebp-1Ch] BYREF
-  struct tagPOINT v6; // [esp+18h] [ebp-14h] BYREF
   int v7; // [esp+28h] [ebp-4h]
 
   v1 = 0;

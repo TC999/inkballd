@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -7,7 +8,6 @@ int __thiscall CGameBoard::ShadowizeTile(CInk **this, CBoardTile*a2, int a3)
 {
   int v4; // edi
   int v5; // eax
-  struct tagRECT v7; // [esp+10h] [ebp-28h] BYREF
   uint8_t v8[8]; // [esp+20h] [ebp-18h] BYREF
   int v9[3]; // [esp+28h] [ebp-10h] BYREF
   int v10; // [esp+34h] [ebp-4h]

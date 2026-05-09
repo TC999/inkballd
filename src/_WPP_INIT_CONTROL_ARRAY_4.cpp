@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 
 extern "C" {
@@ -6,19 +7,6 @@ extern "C" {
       int result; // eax
 
       // Define a structure to make the code more readable
-      struct WppControl {
-          void* vtable;              // offset 0
-          uint32_t unknown1;        // offset 16
-          uint8_t flags1;            // offset 24
-          uint8_t flags2;            // offset 25
-          uint16_t reserved1;        // offset 26
-          uint32_t unknown2;        // offset 28
-          uint32_t padding1;        // offset 32
-          uint32_t unknown3;        // offset 48
-          uint8_t flags3;            // offset 56
-          uint8_t flags4;            // offset 57
-          uint16_t reserved2;        // offset 58
-          uint32_t unknown4;        // offset 60
       };
 
       WppControl* ctrl = reinterpret_cast<WppControl*>(control_array);

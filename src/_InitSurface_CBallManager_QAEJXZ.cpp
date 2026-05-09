@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,10 +12,6 @@ extern "C" {
     }
 }
 
-struct CBallManager {
-    void* surface_data; // offset 0x0C (3 * 4)
-    uint32_t surface_size; // offset 0x10 (4 * 4)
-    // ... other members
 };
 
 extern "C" void* g_pDisplay; // Global display instance

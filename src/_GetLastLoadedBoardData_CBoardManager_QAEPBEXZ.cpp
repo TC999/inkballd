@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,8 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardManager {
-    // ... members
 };
 
 extern "C" void* g_pLastLoadedLevel; // Global last loaded level

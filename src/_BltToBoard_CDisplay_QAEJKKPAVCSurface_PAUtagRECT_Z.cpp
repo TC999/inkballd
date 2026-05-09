@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -8,11 +9,9 @@ int __thiscall CDisplay::BltToBoard(
         uint32_t a2,
         uint32_t a3,
         CSurface*a4,
-        struct tagRECT *a5)
 {
   int IsColorKeyed; // eax
   int v7; // edi
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
   int v9; // eax
   int v10; // esi
   BOOL v12; // [esp-4h] [ebp-2Ch]

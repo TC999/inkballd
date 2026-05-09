@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
@@ -12,17 +13,8 @@ extern "C" {
     }
 }
 
-struct CBoardTileDrain {
-    uint32_t drain_direction; // offset 0x44 (17 * 4)
-    uint32_t tile_type; // offset 0x2C (11 * 4)
-    // ... members
 };
 
-struct CBall {
-    uint32_t radius; // offset 0x18 (6 * 4)
-    uint32_t tile_type; // offset 0x2C (11 * 4)
-    uint32_t update_flags; // offset 0x9C (39 * 4)
-    // ... members
 };
 
 extern "C" void* g_CBitmapRects; // Global bitmap rectangles

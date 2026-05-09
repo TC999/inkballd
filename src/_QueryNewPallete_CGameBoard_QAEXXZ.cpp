@@ -1,12 +1,11 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
 {
-  struct IDirectDrawSurface7 *FrontBuffer; // eax
-  struct IDirectDrawSurface7 *v2; // eax
   uint8_t v3[8]; // [esp+10h] [ebp-18h] BYREF
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF
   int v5; // [esp+24h] [ebp-4h]

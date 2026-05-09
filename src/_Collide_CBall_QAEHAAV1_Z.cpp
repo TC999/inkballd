@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
@@ -12,15 +13,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    double mass; // offset 0x38 (7 * 8)
-    uint32_t radius; // offset 0x18 (6 * 4)
-    uint32_t collision_flags; // offset 0xA4 (41 * 4)
-    // ... other members
 };
 
 int __thiscall CBall::Collide(CBall *this, CBall *other_ball)

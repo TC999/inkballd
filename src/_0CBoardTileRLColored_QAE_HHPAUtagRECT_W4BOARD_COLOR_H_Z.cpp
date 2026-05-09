@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,15 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardTileRLColored : CBoardTile {
-    uint32_t x_coord; // offset 0x4C (19 * 4)
-    uint32_t y_coord; // offset 0x50 (20 * 4)
-    uint32_t tile_type; // offset 0x2C (11 * 4)
-    uint32_t color_index; // offset 0x48 (18 * 4)
-    uint32_t animation_timer; // offset 0x58 (22 * 4)
-    uint32_t animation_state; // offset 0x5C (23 * 4)
-    uint32_t min_color; // offset 0x54 (17 * 4)
-    // ... additional members
 };
 
 extern "C" void* CBoardTileRLColored_vftable; // Forward declaration of virtual table

@@ -1,20 +1,15 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
 {
-  struct IDirectDraw7 *DirectDraw; // eax
   int v3; // esi
-  struct IDirectDrawSurface7 *BoardBuffer; // eax
-  struct IDirectDrawSurface7 *InkBuffer; // eax
-  struct IDirectDrawSurface7 *BackBuffer; // eax
-  struct IDirectDrawSurface7 *FrontBuffer; // eax
   int v9; // eax
   uint8_t v10[8]; // [esp+10h] [ebp-20h] BYREF
   CSurface *v11; // [esp+18h] [ebp-18h] BYREF
-  struct IDirectDrawPalette *v12; // [esp+1Ch] [ebp-14h] BYREF
   int v13[3]; // [esp+20h] [ebp-10h] BYREF
   int v14; // [esp+2Ch] [ebp-4h]
 

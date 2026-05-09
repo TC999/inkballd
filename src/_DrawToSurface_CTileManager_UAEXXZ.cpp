@@ -1,27 +1,19 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 void __thiscall CTileManager::DrawToSurface(CTileManager *this)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
-  struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
-  struct IDirectDrawSurface7 *v3; // eax
-  struct IDirectDrawSurface7 *v4; // eax
-  struct IDirectDrawSurface7Vtbl *v5; // esi
-  struct IDirectDrawSurface7 *v6; // eax
   uint32_t v7; // edx
-  struct IDirectDrawSurface7 *v8; // ebx
   void (__stdcall **p_BltFast)(struct IDirectDrawSurface7 *, int, int, struct IDirectDrawSurface7 *, char*, uint32_t); // esi
-  struct IDirectDrawSurface7 *v10; // eax
   char*BitmapRect; // [esp-8h] [ebp-3Ch]
   char*v12; // [esp-8h] [ebp-3Ch]
   char*v13; // [esp-8h] [ebp-3Ch]
   uint8_t v14[8]; // [esp+10h] [ebp-24h] BYREF
   uint32_t v15; // [esp+18h] [ebp-1Ch]
   CTileManager *v16; // [esp+1Ch] [ebp-18h]
-  struct IDirectDrawSurface7 *v17; // [esp+20h] [ebp-14h]
   int v18; // [esp+24h] [ebp-10h]
   int v19; // [esp+30h] [ebp-4h]
 

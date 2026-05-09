@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,11 +13,7 @@ extern "C" {
     }
 }
 
-struct CBoardManager {
-    // ... members
 };
-
-struct BOARDHIST; // Forward declaration
 
 extern "C" void* g_BoardData; // Global board data
 extern "C" void* g_pLastLoadedLevel; // Global last loaded level

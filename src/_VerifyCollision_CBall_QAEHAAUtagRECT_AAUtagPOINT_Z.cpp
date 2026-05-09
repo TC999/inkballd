@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,16 +13,8 @@ extern "C" {
     extern BOOL PointInRect(LONG x, LONG y, const RECT* rect);
 }
 
-struct BallPoint {
-    int x;
-    int y;
 };
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    uint32_t point_count; // offset 0x84 (33 * 4)
-    // ... other members
 };
 
 int __thiscall CBall::VerifyCollision(CBall *this, RECT* collision_rect, POINT* collision_point)

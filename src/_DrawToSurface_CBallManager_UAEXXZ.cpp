@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,21 +12,9 @@ extern "C" {
     }
 }
 
-struct CBoardObject {
-    uint32_t update_flags; // offset 0x9C (39 * 4)
-    uint32_t tile_type; // offset 0x2C (11 * 4)
-    // ... other members
 };
 
-struct CBallManager {
-    uint32_t ball_indices[6]; // offset 0x38 (56 bytes from start)
-    RECT* screen_rect; // offset 0x14 (20 bytes from start)
-    uint32_t hidden_flag; // offset 0x34 (13 * 4)
-    // ... other members
 };
-
-struct IDirectDrawSurface7; // Forward declaration
-struct IDirectDrawSurface7Vtbl; // Forward declaration
 
 extern "C" void* g_pBallManagerSurface; // Global ball manager surface
 extern "C" void* g_pGamePiecesSurface; // Global game pieces surface

@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -7,8 +8,6 @@ int __thiscall CDisplay::Blt(
         CDisplay *this,
         uint32_t a2,
         uint32_t a3,
-        struct IDirectDrawSurface7 *a4,
-        struct tagRECT *a5,
         uint32_t a6)
 {
   int v7; // eax

@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardObject {
-    uint32_t width; // offset 0x18 (6 * 4)
-    uint32_t height; // offset 0x1C (7 * 4)
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    // ... other members
 };
 
 void __thiscall CBoardObject::GetBoundingRect(CBoardObject *this, RECT* bounding_rect)

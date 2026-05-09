@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,9 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    uint32_t reference_count; // offset 0x88 (34 * 4)
-    // ... other members
 };
 
 uint32_t __thiscall CBall::AddRef(CBall *this)

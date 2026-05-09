@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -11,7 +12,6 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
   CMovingObject **v7; // edi
   uint32_t *v8; // edi
   uint32_t Score; // eax
-  struct IDirectDraw7 *DirectDraw; // eax
   int NewSurfaces; // eax
   uint8_t v13[8]; // [esp+10h] [ebp-20h] BYREF
   int v14; // [esp+18h] [ebp-18h]

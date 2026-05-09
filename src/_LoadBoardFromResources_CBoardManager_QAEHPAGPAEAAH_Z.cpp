@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,8 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardManager {
-    // ... members
 };
 
 extern "C" int SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection, int* result);

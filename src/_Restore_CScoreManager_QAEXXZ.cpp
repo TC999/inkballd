@@ -1,11 +1,11 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 void __thiscall CScoreManager::Restore(CScoreManager *this)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 

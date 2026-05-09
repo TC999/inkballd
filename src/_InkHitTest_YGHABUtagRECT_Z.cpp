@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -13,7 +14,6 @@ int __stdcall InkHitTest(const struct tagRECT *a1)
   int v6; // eax
   int v7; // esi
   uint8_t v9[8]; // [esp+10h] [ebp-1Ch] BYREF
-  struct tagPOINT v10; // [esp+18h] [ebp-14h] BYREF
   int v11; // [esp+28h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "InkHitTest", 0);

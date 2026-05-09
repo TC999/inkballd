@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
@@ -12,11 +13,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    uint32_t radius; // offset 0x18 (6 * 4)
-    // ... other members
 };
 
 bool __thiscall CBall::BallsIntersect(CBall *this, const CBall *other_ball)

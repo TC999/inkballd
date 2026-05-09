@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,11 +12,7 @@ extern "C" {
     }
 }
 
-struct CBoardTileRLGray {
-    // ... members
 };
-
-struct CBall; // Forward declaration
 
 extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
 

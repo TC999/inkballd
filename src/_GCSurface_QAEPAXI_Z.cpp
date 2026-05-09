@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -5,8 +6,6 @@ extern "C" {
     extern void operator delete(void* ptr);
 }
 
-struct CSurface {
-    // ... members
 };
 
 CSurface* __thiscall CSurface::scalar_deleting_destructor(CSurface *this, char should_delete)

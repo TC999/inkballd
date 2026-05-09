@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -13,26 +14,6 @@ public:
 class CGameBoard;
 class CBall;
 
-struct CBallLayout {
-    uint32_t vftable_ptr;
-    uint32_t field_4;
-    uint32_t field_8;
-    uint32_t field_C;
-    uint32_t field_10;
-    uint32_t field_14;
-    uint32_t field_18;
-    uint32_t field_1C;
-    uint32_t field_20;
-    uint32_t field_24;
-    uint32_t field_28;
-    uint32_t field_2C;
-    char* field_30;
-    uint32_t field_34;
-    uint32_t field_38;
-    uint32_t field_3C;
-    uint32_t field_40;
-    uint32_t field_44;
-    // ... more fields as needed
 };
 
 extern "C" {

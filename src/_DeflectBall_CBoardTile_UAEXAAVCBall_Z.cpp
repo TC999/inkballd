@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,11 +12,7 @@ extern "C" {
     }
 }
 
-struct CBoardTile {
-    // ... members
 };
-
-struct CBall; // Forward declaration
 
 void __thiscall CBoardTile::DeflectBall(CBoardTile *this, CBall* ball)
 {

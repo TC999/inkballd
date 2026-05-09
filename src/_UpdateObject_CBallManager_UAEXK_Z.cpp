@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,21 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall;
-struct CBoardTile;
-
-struct CBallManager {
-    uint32_t update_flags; // offset 0x140 (321 * 4)
-    uint32_t ball_count; // offset 0x28 (10 * 4)
-    uint32_t ball_start_index; // offset 0x24 (9 * 4)
-    uint32_t next_ball_timer; // offset 0x134 (322 * 4)
-    uint32_t spawn_timer; // offset 0x30 (12 * 4)
-    uint32_t spawn_delay; // offset 0x34 (13 * 4)
-    uint32_t generator_count; // offset 0x50 (20 * 4)
-    uint32_t active_ball_count; // offset 0x38 (14 * 4)
-    uint32_t timer_started; // offset 0x144 (323 * 4)
-    void* update_function; // offset 0x10 (4 * 4)
-    // ... other members
 };
 
 void __thiscall CBallManager::UpdateObject(CBallManager *this, uint32_t delta_time)

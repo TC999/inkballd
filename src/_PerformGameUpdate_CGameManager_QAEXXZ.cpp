@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -14,10 +15,6 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   int v7; // eax
   int GoldVersionOfTile; // eax
   int v9; // eax
-  struct tagRECT *v10; // [esp-8h] [ebp-18h]
-  struct tagRECT *v11; // [esp-8h] [ebp-18h]
-  struct tagRECT *BitmapRect; // [esp-8h] [ebp-18h]
-  struct tagRECT *v13; // [esp-8h] [ebp-18h]
   DWORD Time; // [esp+8h] [ebp-8h]
 
   v1 = this;

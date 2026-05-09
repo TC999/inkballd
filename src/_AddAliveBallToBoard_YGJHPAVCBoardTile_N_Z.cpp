@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <new>
 #include <windows.h>
@@ -22,95 +23,6 @@ extern "C" {
     void AddBall(void* game_board, void* ball);
 }
 
-struct CBallLayout {
-    uint32_t vftable_ptr;
-    uint32_t field_4;
-    uint32_t field_8;
-    double field_C;
-    double field_10;
-    uint32_t field_14;
-    uint32_t field_18;
-    uint32_t field_1C;
-    uint32_t field_20;
-    double field_24;
-    double field_28;
-    uint32_t field_2C;
-    uint32_t field_30;
-    uint32_t field_34;
-    uint32_t field_38;
-    uint32_t field_3C;
-    uint32_t field_40;
-    uint32_t field_44;
-    uint32_t field_48;
-    uint32_t field_4C;
-    uint32_t field_50;
-    uint32_t field_54;
-    uint32_t field_58;
-    uint32_t field_5C;
-    uint32_t field_60;
-    uint32_t field_64;
-    uint32_t field_68;
-    uint32_t field_6C;
-    uint32_t field_70;
-    uint32_t field_74;
-    uint32_t field_78;
-    uint32_t field_7C;
-    uint32_t field_80;
-    uint32_t field_84;
-    uint32_t field_88;
-    uint32_t field_8C;
-    uint32_t field_90;
-    uint32_t field_94;
-    uint32_t field_98;
-    uint32_t field_9C;
-    uint32_t field_A0;
-    uint32_t field_A4;
-    uint32_t field_A8;
-    uint32_t field_AC;
-    uint32_t field_B0;
-    uint32_t field_B4;
-    uint32_t field_B8;
-    uint32_t field_BC;
-    uint32_t field_C0;
-    uint32_t field_C4;
-    uint32_t field_C8;
-    uint32_t field_CC;
-    uint32_t field_D0;
-    uint32_t field_D4;
-    uint32_t field_D8;
-    uint32_t field_DC;
-    uint32_t field_E0;
-    uint32_t field_E4;
-    uint32_t field_E8;
-    uint32_t field_EC;
-    uint32_t field_F0;
-    uint32_t field_F4;
-    uint32_t field_F8;
-    uint32_t field_FC;
-    uint32_t field_100;
-    uint32_t field_104;
-    uint32_t field_108;
-    uint32_t field_10C;
-    uint32_t field_110;
-    uint32_t field_114;
-    uint32_t field_118;
-    uint32_t field_11C;
-    uint32_t field_120;
-    uint32_t field_124;
-    uint32_t field_128;
-    uint32_t field_12C;
-    uint32_t field_130;
-    uint32_t field_134;
-    uint32_t field_138;
-    uint32_t field_13C;
-    uint32_t field_140;
-    uint32_t field_144;
-    uint32_t field_148;
-    uint32_t field_14C;
-    uint32_t field_150;
-    uint32_t field_154;
-    uint32_t field_158;
-    uint32_t field_15C;
 };
 
 extern "C" {

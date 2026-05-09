@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,15 +12,8 @@ extern "C" {
     }
 }
 
-struct CBoardTileChevron {
-    uint32_t chevron_direction; // offset 0x58 (22 * 4)
-    // ... members
 };
 
-struct CBall {
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    // ... members
 };
 
 void __thiscall CBoardTileChevron::DeflectBall(CBoardTileChevron *this, CBall* ball)

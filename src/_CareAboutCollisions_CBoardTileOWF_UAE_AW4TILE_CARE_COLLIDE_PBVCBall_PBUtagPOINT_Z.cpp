@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -12,10 +13,7 @@ int __thiscall CBoardTileOWF::CareAboutCollisions(int*this, CBoardObject *a2, in
   bool v8; // c3
   int v9; // esi
   int v10; // esi
-  struct tagRECT v12; // [esp+10h] [ebp-34h] BYREF
-  struct tagPOINT v13; // [esp+20h] [ebp-24h] BYREF
   uint8_t v14[8]; // [esp+28h] [ebp-1Ch] BYREF
-  struct tagPOINT v15; // [esp+30h] [ebp-14h] BYREF
   int v16; // [esp+40h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CBoardTileOWF::CareAboutCollisions", 0);

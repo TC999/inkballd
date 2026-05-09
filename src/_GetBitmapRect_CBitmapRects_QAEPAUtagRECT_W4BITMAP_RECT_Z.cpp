@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,8 +12,6 @@ extern "C" {
     }
 }
 
-struct CBitmapRects {
-    // ... members
 };
 
 RECT* __thiscall CBitmapRects::GetBitmapRect(CBitmapRects *this, int index)

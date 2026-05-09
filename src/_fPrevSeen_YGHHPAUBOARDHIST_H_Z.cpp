@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,10 +12,6 @@ extern "C" {
     }
 }
 
-struct BOARDHIST {
-    uint32_t history[10]; // Array to store history
-    uint32_t count; // offset 0x28 (10 * 4)
-    // ... other members
 };
 
 int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)

@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,7 @@ extern "C" {
     }
 }
 
-struct CBoardManager {
-    uint32_t difficulty_level; // offset 0x82201 (33281 * 4)
-    // ... other members
 };
-
-struct CRegistryManager; // Forward declaration
 
 extern "C" CRegistryManager g_CRegistryManager; // Global registry manager
 

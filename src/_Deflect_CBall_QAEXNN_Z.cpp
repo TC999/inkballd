@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,10 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    // ... other members
 };
 
 void __thiscall CBall::Deflect(CBall *this, double impulse_x, double impulse_y)

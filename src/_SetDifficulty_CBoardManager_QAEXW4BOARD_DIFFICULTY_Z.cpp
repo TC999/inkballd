@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,12 +13,7 @@ extern "C" {
     }
 }
 
-struct CBoardManager {
-    uint32_t difficulty_level; // offset 0x82201 (33281 * 4)
-    // ... members
 };
-
-struct BoardCollection; // Forward declaration
 
 extern "C" void KillPlayer(int reason);
 extern "C" BOARDHIST g_bhPrevBoards; // Global board history

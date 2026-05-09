@@ -1,11 +1,11 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
 int __thiscall CDisplay::Blt(CDisplay *this, uint32_t a2, uint32_t a3, CSurface*a4, struct tagRECT *a5)
 {
-  struct IDirectDrawSurface7 *DDrawSurface; // eax
   int v7; // eax
   int v8; // esi
   uint32_t v10; // [esp-4h] [ebp-2Ch]

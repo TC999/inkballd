@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <new>
@@ -35,12 +36,8 @@ public:
     static int InitSurface(CBallManager* this_ptr);
 };
 
-struct IDirectDrawSurface7 {
-    const struct IDirectDrawSurface7Vtbl* lpVtbl;
 };
 
-struct IDirectDrawSurface7Vtbl {
-    int Blt(IDirectDrawSurface7* This, RECT* dst, IDirectDrawSurface7* src, RECT* src_rect, DWORD flags, DWORD reserved);
 };
 
 extern "C" {
@@ -52,29 +49,9 @@ extern "C" {
 extern "C" {
     CBallManager* CBallManager_func(CBallManager* this_ptr)
     {
-        struct CBallManagerLayout {
-            uint32_t vftable_ptr;
-            uint32_t field_4;
-            uint32_t field_8;
-            uint32_t field_12;
-            uint32_t field_16;
-            uint32_t field_20;
-            uint32_t field_24;
-            uint32_t field_28;
-            uint32_t field_32;
-            uint32_t field_36;
-            uint32_t field_40;
-            uint32_t field_44;
-            uint32_t ball_array[6];
-            uint32_t field_324;
-            uint32_t field_328;
-            uint32_t field_332;
-            // ... more fields would be defined based on usage
         };
         
-        struct IDirectDrawSurface7* ddraw_surface; // eax
         const struct IDirectDrawSurface7Vtbl* vtbl; // edi
-        struct IDirectDrawSurface7* surface; // eax
         void* ball_mem; // ecx
         CBall* ball; // ecx
         char* bitmap_rect; // [esp-Ch] [ebp-50h]

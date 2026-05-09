@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,15 +12,6 @@ extern "C" {
     }
 }
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    double old_position_x; // offset 0x30 (12 * 8)
-    double old_position_y; // offset 0x38 (13 * 8)
-    uint32_t update_flags; // offset 0x9C (39 * 4)
-    // ... other members
 };
 
 void __thiscall CBall::UpdateObject(CBall *this, uint32_t delta_time)

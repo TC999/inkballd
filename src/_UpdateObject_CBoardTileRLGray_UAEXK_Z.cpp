@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,15 +12,6 @@ extern "C" {
     }
 }
 
-struct CBoardTileRLGray {
-    uint32_t animation_timer; // offset 0x58 (22 * 4)
-    uint32_t state_timer; // offset 0x5C (23 * 4)
-    uint32_t animation_state; // offset 0x60 (24 * 4)
-    uint32_t color_index; // offset 0x48 (18 * 4)
-    uint32_t min_time; // offset 0x68 (26 * 4)
-    uint32_t max_time; // offset 0x6C (25 * 4)
-    void* bitmap_rect; // offset 0x20 (8 * 4)
-    // ... members
 };
 
 extern "C" bool BallOnTile(void* tile);

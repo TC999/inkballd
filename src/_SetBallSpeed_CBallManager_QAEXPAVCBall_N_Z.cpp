@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
@@ -15,16 +16,8 @@ extern "C" {
     extern int GetRandomNumber(int max_value);
 }
 
-struct CBall {
-    double velocity_x; // offset 0x20 (8 * 8)
-    double velocity_y; // offset 0x28 (9 * 8)
-    // ... other members
 };
 
-struct CBallManager {
-    uint32_t min_speed; // offset 0x144 (324 * 4)
-    uint32_t max_speed; // offset 0x148 (325 * 4)
-    // ... other members
 };
 
 void __thiscall CBallManager::SetBallSpeed(CBallManager *this, CBall* ball, double angle_degrees)

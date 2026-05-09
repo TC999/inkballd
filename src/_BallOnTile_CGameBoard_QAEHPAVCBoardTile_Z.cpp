@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -8,8 +9,6 @@ int __thiscall CGameBoard::BallOnTile(CGameBoard *this, CBoardTile*a2)
   int v3; // ebx
   CBoardObject **v4; // edi
   int v5; // esi
-  struct tagRECT v7; // [esp+10h] [ebp-34h] BYREF
-  struct tagRECT v8; // [esp+20h] [ebp-24h] BYREF
   uint8_t v9[16]; // [esp+30h] [ebp-14h] BYREF
   int v10; // [esp+40h] [ebp-4h]
 

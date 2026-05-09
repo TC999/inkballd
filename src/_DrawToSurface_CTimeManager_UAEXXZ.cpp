@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -7,9 +8,7 @@ void __thiscall CTimeManager::DrawToSurface(CTimeManager *this)
 {
   uint32_t v2; // eax
   uint32_t v3; // edi
-  struct IDirectDrawSurface7 *v4; // eax
   uint32_t v5; // edx
-  struct IDirectDrawSurface7 *v6; // eax
   char*v7; // eax
   char*v8; // eax
   LONG v9; // ecx
@@ -17,33 +16,25 @@ void __thiscall CTimeManager::DrawToSurface(CTimeManager *this)
   char*v11; // eax
   char*v12; // ecx
   bool v13; // zf
-  struct IDirectDrawSurface7 *v14; // eax
-  struct IDirectDrawSurface7 *v15; // eax
   char*v16; // eax
   char*v17; // eax
   LONG v18; // ecx
   LONG v19; // eax
-  struct IDirectDrawSurface7 *v20; // eax
   char*v21; // eax
   char*v22; // eax
   LONG v23; // ecx
   LONG v24; // eax
   char*v25; // eax
-  struct IDirectDrawSurface7 *v26; // ebx
   void (__stdcall **v27)(struct IDirectDrawSurface7 *, uint32_t, uint32_t, struct IDirectDrawSurface7 *, char*, uint32_t); // edi
-  struct IDirectDrawSurface7 *v28; // eax
   char*BitmapRect; // [esp-8h] [ebp-58h]
   char*v30; // [esp-8h] [ebp-58h]
   char*v31; // [esp-8h] [ebp-58h]
   char*v32; // [esp-8h] [ebp-58h]
   char*v33; // [esp-8h] [ebp-58h]
-  struct tagRECT v34; // [esp+10h] [ebp-40h] BYREF
   uint8_t v35[8]; // [esp+20h] [ebp-30h] BYREF
   char*v36; // [esp+28h] [ebp-28h]
   char*p_BltFast; // [esp+2Ch] [ebp-24h]
   uint32_t DDrawSurface; // [esp+30h] [ebp-20h]
-  struct IDirectDrawSurface7 *v39; // [esp+34h] [ebp-1Ch]
-  struct IDirectDrawSurface7 *v40; // [esp+38h] [ebp-18h]
   uint32_t v41; // [esp+3Ch] [ebp-14h]
   uint32_t v42; // [esp+40h] [ebp-10h]
   int v43; // [esp+4Ch] [ebp-4h]

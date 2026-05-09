@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,14 +12,9 @@ extern "C" {
     }
 }
 
-struct CBallManager {
-    void* restore_function; // offset 0x10 (4 * 4)
-    // ... other members
 };
 
 extern "C" void* g_pBallManagerSurface; // Global ball manager surface
-
-struct IDirectDrawSurface7; // Forward declaration
 
 void __thiscall CBallManager::Restore(CBallManager *this)
 {

@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <new>
 #include <cmath>
@@ -24,9 +25,6 @@ extern "C" {
 extern "C" {
     BallPoints* BallPoints_func(BallPoints* this_ptr, int radius)
     {
-        struct BallPointsLayout {
-            uint32_t* data_array;
-            // Rest of the structure would be defined based on usage patterns
         };
         
         uint8_t log_buffer[8]; // [esp+18h] [ebp-20h] BYREF

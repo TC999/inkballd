@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -11,9 +12,6 @@ int __thiscall CBoardTileBumper::CareAboutCollisions(CBoardObject *this, CBoardO
   int*v7; // ecx
   int v8; // esi
   int v9; // esi
-  struct tagRECT v11; // [esp+10h] [ebp-34h] BYREF
-  struct tagPOINT v12; // [esp+20h] [ebp-24h] BYREF
-  struct tagPOINT v13; // [esp+28h] [ebp-1Ch] BYREF
   uint8_t v14[16]; // [esp+30h] [ebp-14h] BYREF
   int v15; // [esp+40h] [ebp-4h]
 

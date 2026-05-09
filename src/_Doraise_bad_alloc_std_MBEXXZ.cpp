@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -5,8 +6,6 @@ extern "C" {
     extern void _CxxThrowException(void* exception_object, void* throw_info);
 }
 
-struct std::bad_alloc {
-    // ... exception members
 };
 
 extern "C" void* _TI2_AVbad_alloc_std__; // Forward declaration of throw info

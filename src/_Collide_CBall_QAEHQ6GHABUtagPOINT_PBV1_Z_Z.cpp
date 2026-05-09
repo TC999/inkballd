@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,15 +13,8 @@ extern "C" {
     typedef int (__stdcall *CollisionCheckFunc)(const POINT*, const CBall*);
 }
 
-struct BallPoint {
-    int x;
-    int y;
 };
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    // ... other members
 };
 
 int __thiscall CBall::Collide(CBall *this, CollisionCheckFunc collision_check)

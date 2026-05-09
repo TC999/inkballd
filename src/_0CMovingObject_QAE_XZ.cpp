@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -11,12 +12,6 @@ extern "C" {
     }
 }
 
-struct CMovingObject : CBoardObject {
-    double velocity_x; // offset 0x40 (8 * 8)
-    double velocity_y; // offset 0x48 (9 * 8)
-    double acceleration_x; // offset 0x50 (10 * 8)
-    double acceleration_y; // offset 0x58 (11 * 8)
-    // ... other members
 };
 
 extern "C" void* CInk_vftable; // Forward declaration of virtual table

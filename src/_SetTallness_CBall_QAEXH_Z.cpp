@@ -1,3 +1,4 @@
+#include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
@@ -12,19 +13,8 @@ extern "C" {
     extern void* operator new(size_t size);
 }
 
-struct BallPoints {
-    void* data_ptr;
-    // ... other members
 };
 
-struct CBall {
-    double position_x; // offset 0x10 (1 * 8)
-    double position_y; // offset 0x18 (2 * 8)
-    uint32_t width; // offset 0x40 (6 * 4)
-    uint32_t height; // offset 0x44 (7 * 4)
-    void* ball_points_data; // offset 0x88 (35 * 4)
-    void* ball_points_ptr; // offset 0x8C (30 * 4)
-    // ... other members
 };
 
 void __thiscall CBall::SetTallness(CBall *this, void* new_tallness)

@@ -1,4 +1,5 @@
-﻿#include <cstdint>
+#include "global_types.h"
+#include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
@@ -9,7 +10,6 @@ int __thiscall CDisplay::CreateSurface(CDisplay *this, CSurface**a2, void*a3, DW
   int v6; // esi
   CSurface *v8; // ecx
   CSurface*v9; // eax
-  struct _DDSURFACEDESC2 v10; // [esp+10h] [ebp-9Ch] BYREF
   uint8_t v11[8]; // [esp+8Ch] [ebp-20h] BYREF
   CDisplay *v12; // [esp+94h] [ebp-18h]
   int v13[4]; // [esp+98h] [ebp-14h] BYREF
