@@ -2,12 +2,13 @@
 #include <cstdint>
 #include <new>
 #include <cmath>
+#include "math_utils.h"
 
 
 
 extern "C" {
-    double cosd(double degrees);
-    double sind(double degrees);
+    long double cosd(double degrees);
+    long double sind(double degrees);
 }
 
 extern "C" {

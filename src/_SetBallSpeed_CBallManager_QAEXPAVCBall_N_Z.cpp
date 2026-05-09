@@ -2,17 +2,11 @@
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
+#include "math_utils.h"
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
-    extern double cosd(double angle);
-    extern double sind(double angle);
+    extern long double cosd(double angle);
+    extern long double sind(double angle);
     extern int GetRandomNumber(int max_value);
 }
 

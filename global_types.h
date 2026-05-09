@@ -58,3 +58,31 @@ class CGameBoard {
 public:
     // Contains game board management and state
 };
+
+// Additional forward declarations for completeness
+struct CGameManager;
+struct CDisplay;
+struct CScoreManager;
+struct CTileManager;
+struct CTimeManager;
+struct CInk;
+struct CSink;
+struct CGameObject;
+struct CUIBarObject;
+struct CBoardTileWall;
+struct CBoardTileBreakWall;
+struct CBoardTileBumper;
+struct CBoardTileChevron;
+struct CBoardTileDrain;
+struct CBoardTileOWF;
+struct CBoardTileRLColored;
+struct CBoardTileRLGray;
+struct CRegistryManager;
+struct CTabLicense;
+
+// COM interfaces
+struct IUnknown;
+struct IInkStroke;
+struct IDirectDrawSurface7;
+struct IDirectDraw7;
+struct IDirectDrawPalette;

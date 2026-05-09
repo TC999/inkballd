@@ -1,5 +1,6 @@
 #include "global_types.h"
 #include <cstdint>
+#include "common.h"
 
 extern "C" {
     void CDisplay::~CDisplay(CDisplay* this_ptr)
