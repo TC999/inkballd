@@ -1,10 +1,15 @@
-struct CBall *__thiscall CGameBoard::GetBall(CGameBoard *this, int a2)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+CBall*__thiscall CGameBoard::GetBall(CGameBoard *this, int a2)
 {
   int v3; // esi
-  _BYTE v5[8]; // [esp+4h] [ebp-8h] BYREF
+  uint8_t v5[8]; // [esp+4h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CGameBoard::GetBall", 0);
-  v3 = *((_DWORD *)this + a2 + 657);
+  v3 = *((uint32_t *)this + a2 + 657);
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
-  return (struct CBall *)v3;
+  return (CBall*)v3;
 }

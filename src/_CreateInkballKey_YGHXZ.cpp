@@ -1,9 +1,14 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall CreateInkballKey()
 {
   int v0; // edi
-  int *v2; // [esp+0h] [ebp-28h]
-  int *v3; // [esp+0h] [ebp-28h]
-  _BYTE v4[8]; // [esp+10h] [ebp-18h] BYREF
+  int*v2; // [esp+0h] [ebp-28h]
+  int*v3; // [esp+0h] [ebp-28h]
+  uint8_t v4[8]; // [esp+10h] [ebp-18h] BYREF
   HKEY hKey; // [esp+18h] [ebp-10h] BYREF
   int v6; // [esp+24h] [ebp-4h]
 

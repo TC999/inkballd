@@ -1,19 +1,24 @@
-int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, unsigned int a2, int a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
 {
   int v4; // ebx
-  _DWORD *v5; // edi
+  uint32_t *v5; // edi
   bool v6; // cc
   CMovingObject **v7; // edi
-  _DWORD *v8; // edi
-  unsigned int Score; // eax
+  uint32_t *v8; // edi
+  uint32_t Score; // eax
   struct IDirectDraw7 *DirectDraw; // eax
   int NewSurfaces; // eax
-  _BYTE v13[8]; // [esp+10h] [ebp-20h] BYREF
+  uint8_t v13[8]; // [esp+10h] [ebp-20h] BYREF
   int v14; // [esp+18h] [ebp-18h]
   int v15; // [esp+1Ch] [ebp-14h] BYREF
-  unsigned int v16; // [esp+20h] [ebp-10h]
+  uint32_t v16; // [esp+20h] [ebp-10h]
   int v17; // [esp+2Ch] [ebp-4h]
-  unsigned int v18; // [esp+38h] [ebp+8h]
+  uint32_t v18; // [esp+38h] [ebp+8h]
 
   v4 = 0;
   v15 = 0;
@@ -22,35 +27,35 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, unsigned int a2, int 
   v16 = a2;
   if ( dword_105C760 )
   {
-    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 2477) + 4))(*((_DWORD *)this + 2477));
-    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 2478) + 4))(*((_DWORD *)this + 2478));
-    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 2479) + 4))(*((_DWORD *)this + 2479));
+    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2477) + 4))(*((uint32_t *)this + 2477));
+    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2478) + 4))(*((uint32_t *)this + 2478));
+    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2479) + 4))(*((uint32_t *)this + 2479));
     dword_105C760 = 0;
   }
-  if ( *(int *)this > 0 )
+  if ( *(int*)this > 0 )
   {
-    v5 = (_DWORD *)((char *)this + 4);
+    v5 = (uint32_t *)(reinterpret_cast<char*>(this) + 4);
     do
     {
-      (**(void (__thiscall ***)(_DWORD, unsigned int))*v5)(*v5, a2);
+      (**(void (__thiscall ***)(uint32_t, uint32_t))*v5)(*v5, a2);
       ++v4;
       ++v5;
     }
-    while ( v4 < *(_DWORD *)this );
+    while ( v4 < *(uint32_t *)this );
     v4 = 0;
   }
-  v6 = *((_DWORD *)this + 301) <= 0;
+  v6 = *((uint32_t *)this + 301) <= 0;
   v14 = 0;
   if ( !v6 )
   {
-    v7 = (CMovingObject **)((char *)this + 1208);
+    v7 = (CMovingObject **)(reinterpret_cast<char*>(this) + 1208);
     do
     {
       CMovingObject::PrepareToMove(*v7);
       ++v14;
       ++v7;
     }
-    while ( v14 < *((_DWORD *)this + 301) );
+    while ( v14 < *((uint32_t *)this + 301) );
   }
   if ( a2 )
   {
@@ -59,16 +64,16 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, unsigned int a2, int 
       v18 = 4;
       if ( v16 <= 4 )
         v18 = v16;
-      if ( *((int *)this + 301) > 0 )
+      if ( *((int*)this + 301) > 0 )
       {
-        v8 = (_DWORD *)((char *)this + 1208);
+        v8 = (uint32_t *)(reinterpret_cast<char*>(this) + 1208);
         do
         {
-          (**(void (__thiscall ***)(_DWORD, unsigned int))*v8)(*v8, v18);
+          (**(void (__thiscall ***)(uint32_t, uint32_t))*v8)(*v8, v18);
           ++v4;
           ++v8;
         }
-        while ( v4 < *((_DWORD *)this + 301) );
+        while ( v4 < *((uint32_t *)this + 301) );
         v4 = 0;
       }
       if ( v16 <= 4 )
@@ -94,8 +99,8 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, unsigned int a2, int 
       CGameBoard::RestoreSurfaces((CScoreManager **)this);
       CGameBoard::DisplayFrame(this, 1, 1);
     }
-    *((_DWORD *)this + 1018) = 0;
-    *((_DWORD *)this + 2175) = 0;
+    *((uint32_t *)this + 1018) = 0;
+    *((uint32_t *)this + 2175) = 0;
     v15 = 0;
     goto LABEL_28;
   }

@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CGameBoard::BltBall(CGameBoard *this, struct tagRECT **a2, struct IDirectDrawSurface7 *a3)
 {
   struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
@@ -6,7 +11,7 @@ int __thiscall CGameBoard::BltBall(CGameBoard *this, struct tagRECT **a2, struct
   int v6; // esi
   struct tagRECT *v8; // [esp-Ch] [ebp-44h]
   struct tagRECT v9; // [esp+10h] [ebp-28h] BYREF
-  _BYTE v10[8]; // [esp+20h] [ebp-18h] BYREF
+  uint8_t v10[8]; // [esp+20h] [ebp-18h] BYREF
   int v11[3]; // [esp+28h] [ebp-10h] BYREF
   int v12; // [esp+34h] [ebp-4h]
 

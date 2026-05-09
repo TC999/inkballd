@@ -1,8 +1,13 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 BOOL __stdcall CTabLicense::CanRunInkball()
 {
   BOOL BOOLPermission; // eax
   BOOL v1; // esi
-  const char *v3[4]; // [esp+10h] [ebp-14h] BYREF
+  const char*v3[4]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CTabLicense::CanRunInkball", 0);

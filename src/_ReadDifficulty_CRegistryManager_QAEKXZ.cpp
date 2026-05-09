@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CRegistryManager::ReadDifficulty(CRegistryManager *this)
 {
   int v2; // esi
@@ -11,9 +16,9 @@ int __thiscall CRegistryManager::ReadDifficulty(CRegistryManager *this)
   {
     CreateInkballKey();
     CRegistryManager::WriteDifficulty(this, 0);
-    *(_DWORD *)Data = 0;
+    *(uint32_t *)Data = 0;
   }
-  v2 = *(_DWORD *)Data;
+  v2 = *(uint32_t *)Data;
   v6 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
   return v2;

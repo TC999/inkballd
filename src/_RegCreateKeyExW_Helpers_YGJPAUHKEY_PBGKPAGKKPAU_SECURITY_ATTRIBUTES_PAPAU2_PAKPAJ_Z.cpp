@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 LSTATUS __stdcall Helpers::RegCreateKeyExW(
         HKEY hKey,
         const WCHAR *lpSubKey,
@@ -8,13 +13,13 @@ LSTATUS __stdcall Helpers::RegCreateKeyExW(
         LPSECURITY_ATTRIBUTES lpSecurityAttributes,
         PHKEY phkResult,
         LPDWORD lpdwDisposition,
-        unsigned int *a10,
-        int *a11)
+        uint32_t *a10,
+        int*a11)
 {
   LSTATUS Key; // eax
   LSTATUS v12; // esi
-  unsigned int v13; // ecx
-  const char *v15[2]; // [esp+4h] [ebp-Ch] BYREF
+  uint32_t v13; // ecx
+  const char*v15[2]; // [esp+4h] [ebp-Ch] BYREF
   int v16; // [esp+Ch] [ebp-4h] BYREF
 
   v16 = 0;
@@ -34,11 +39,11 @@ LSTATUS __stdcall Helpers::RegCreateKeyExW(
     goto LABEL_7;
   v13 = Key;
   if ( Key > 0 )
-    v13 = (unsigned __int16)Key | 0x80070000;
+    v13 = (uint16_t)Key | 0x80070000;
   v16 = v13;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
   {
-    WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x3Bu, &stru_10036F8, v13);
+    WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x3Bu, &stru_10036F8, v13);
 LABEL_7:
     v13 = v16;
   }

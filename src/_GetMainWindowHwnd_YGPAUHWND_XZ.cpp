@@ -1,10 +1,15 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 HWND __stdcall GetMainWindowHwnd()
 {
   int v0; // esi
-  _BYTE v2[8]; // [esp+4h] [ebp-8h] BYREF
+  uint8_t v2[8]; // [esp+4h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "GetMainWindowHwnd", 0);
-  v0 = *((_DWORD *)g_pCGameBoard + 2480);
+  v0 = *((uint32_t *)g_pCGameBoard + 2480);
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
   return (HWND)v0;
 }

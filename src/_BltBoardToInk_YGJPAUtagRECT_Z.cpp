@@ -1,8 +1,13 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall BltBoardToInk(struct tagRECT *a1)
 {
   int v1; // eax
   int v2; // esi
-  _BYTE v4[8]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v4[8]; // [esp+10h] [ebp-18h] BYREF
   int v5[3]; // [esp+18h] [ebp-10h] BYREF
   int v6; // [esp+24h] [ebp-4h]
 

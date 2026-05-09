@@ -1,4 +1,9 @@
-LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lParam)
 {
   LRESULT v4; // edi
   HMENU Menu; // eax
@@ -13,10 +18,10 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam
   BOOL v15; // [esp-8h] [ebp-BA4h]
   LONG WindowLongW; // [esp-4h] [ebp-BA0h]
   LONG v17; // [esp-4h] [ebp-BA0h]
-  int *v18; // [esp+0h] [ebp-B9Ch]
-  int *v19; // [esp+0h] [ebp-B9Ch]
+  int*v18; // [esp+0h] [ebp-B9Ch]
+  int*v19; // [esp+0h] [ebp-B9Ch]
   struct tagRECT Rect; // [esp+10h] [ebp-B8Ch] BYREF
-  _BYTE v21[8]; // [esp+20h] [ebp-B7Ch] BYREF
+  uint8_t v21[8]; // [esp+20h] [ebp-B7Ch] BYREF
   HMENU hMenu; // [esp+28h] [ebp-B74h] BYREF
   HWND v23; // [esp+2Ch] [ebp-B70h]
   _OSVERSIONINFOW VersionInformation; // [esp+30h] [ebp-B6Ch] BYREF
@@ -52,8 +57,8 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam
     if ( Msg == 530 )
     {
       CGameManager::UpdateTime(g_pCGameManager);
-      if ( !*((_DWORD *)g_pCGameManager + 2) )
-        *((_DWORD *)g_pCGameManager + 1) = 1;
+      if ( !*((uint32_t *)g_pCGameManager + 2) )
+        *((uint32_t *)g_pCGameManager + 1) = 1;
       goto LABEL_80;
     }
     if ( Msg != 273 )
@@ -62,19 +67,19 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam
       {
         if ( Msg == 516 )
         {
-          CGameManager::DropWallTile(g_pCGameManager, (void *)(__int16)lParam, SHIWORD(lParam));
+          CGameManager::DropWallTile(g_pCGameManager, (void*)(__int16)lParam, SHIWORD(lParam));
         }
         else if ( Msg == 529 )
         {
-          *((_DWORD *)g_pCGameManager + 1) = 0;
+          *((uint32_t *)g_pCGameManager + 1) = 0;
         }
         goto LABEL_80;
       }
       goto LABEL_30;
     }
-    if ( (unsigned __int16)wParam > 0x9C45u )
+    if ( (uint16_t)wParam > 0x9C45u )
     {
-      switch ( (unsigned __int16)wParam )
+      switch ( (uint16_t)wParam )
       {
         case 0x9C46u:
           CheckMenuItem(Menu, iLastChecked, 0);
@@ -83,19 +88,19 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam
           CBoardManager::SetDifficulty(g_CBoardManager, 4);
           goto LABEL_50;
         case 0x9C4Au:
-          if ( *((_DWORD *)g_pCGameManager + 2) )
+          if ( *((uint32_t *)g_pCGameManager + 2) )
           {
-            *((_DWORD *)g_pCGameManager + 1) = 1;
-            *((_DWORD *)g_pCGameManager + 2) = 0;
-            *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2481) + 16) = 1;
+            *((uint32_t *)g_pCGameManager + 1) = 1;
+            *((uint32_t *)g_pCGameManager + 2) = 0;
+            *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2481) + 16) = 1;
             CheckMenuItem(Menu, 0x9C4Au, 0);
             g_fLastPauseFromMenu = 0;
           }
           else
           {
-            *((_DWORD *)g_pCGameManager + 1) = 0;
-            *((_DWORD *)g_pCGameManager + 2) = 1;
-            *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2481) + 16) = 0;
+            *((uint32_t *)g_pCGameManager + 1) = 0;
+            *((uint32_t *)g_pCGameManager + 2) = 1;
+            *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2481) + 16) = 0;
             CheckMenuItem(Menu, 0x9C4Au, 8u);
             g_fLastPauseFromMenu = 1;
           }
@@ -113,17 +118,17 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, _DWORD *lParam
           v13 = SysAllocString(L"mshelp://Windows/?id=c209fb0d-530b-43ce-954b-7c91aeca0013");
           if ( v13 )
           {
-            Instance = (*(int (__stdcall **)(HMENU, OLECHAR *))(*(_DWORD *)hMenu + 12))(hMenu, v13);
+            Instance = (*(int (__stdcall **)(HMENU, OLECHAR *))(*(uint32_t *)hMenu + 12))(hMenu, v13);
             SysFreeString(v13);
           }
-          (*(void (__stdcall **)(HMENU))(*(_DWORD *)hMenu + 8))(hMenu);
+          (*(void (__stdcall **)(HMENU))(*(uint32_t *)hMenu + 8))(hMenu);
           if ( Instance < 0 )
 LABEL_67:
             DispError(v23, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AA9);
           goto LABEL_53;
         case 0x9C69u:
           szOtherStuff[0] = 0;
-          Helpers::LoadStringW(g_hInst, (HINSTANCE)0x3A98, szApp, (unsigned __int16 *)0x104, 0, v18);
+          Helpers::LoadStringW(g_hInst, (HINSTANCE)0x3A98, szApp, (uint16_t *)0x104, 0, v18);
           memset(&VersionInformation, 0, sizeof(VersionInformation));
           VersionInformation.dwOSVersionInfoSize = 276;
           GetVersionExW(&VersionInformation);
@@ -143,14 +148,14 @@ LABEL_67:
           ShellAboutW(v23, szApp, szOtherStuff, IconW);
           goto LABEL_53;
       }
-      if ( (unsigned __int16)wParam != 40042 )
+      if ( (uint16_t)wParam != 40042 )
         goto LABEL_80;
       CInk::ClearInk(*((CInk **)g_pCGameBoard + 2481));
       BltBoardToInk(0);
     }
     else
     {
-      if ( (unsigned __int16)wParam == 40005 )
+      if ( (uint16_t)wParam == 40005 )
       {
         CheckMenuItem(Menu, iLastChecked, 0);
         iLastChecked = 40005;
@@ -158,14 +163,14 @@ LABEL_67:
         CBoardManager::SetDifficulty(g_CBoardManager, 3);
         goto LABEL_50;
       }
-      if ( (unsigned __int16)wParam == 40000 )
+      if ( (uint16_t)wParam == 40000 )
       {
         Helpers::PostMessageW(v23, (HWND)0x10, 0, 0, 0, v18);
         goto LABEL_53;
       }
-      if ( (unsigned __int16)wParam != 40001 )
+      if ( (uint16_t)wParam != 40001 )
       {
-        switch ( (unsigned __int16)wParam )
+        switch ( (uint16_t)wParam )
         {
           case 0x9C42u:
             CheckMenuItem(Menu, iLastChecked, 0);
@@ -203,7 +208,7 @@ LABEL_50:
   if ( Msg == 134 )
   {
     if ( g_pCGameManager && !g_fLastPauseFromMenu )
-      *((_DWORD *)g_pCGameManager + 1) = wParam != 0;
+      *((uint32_t *)g_pCGameManager + 1) = wParam != 0;
 LABEL_30:
     if ( !g_fMouseInside )
     {
@@ -227,8 +232,8 @@ LABEL_30:
         Rect.top = 0;
         if ( g_pCGameBoard )
         {
-          Rect.right = *((_DWORD *)g_pCGameBoard + 2465);
-          Rect.bottom = *((_DWORD *)g_pCGameBoard + 2466);
+          Rect.right = *((uint32_t *)g_pCGameBoard + 2465);
+          Rect.bottom = *((uint32_t *)g_pCGameBoard + 2466);
           WindowLongW = GetWindowLongW(v23, -20);
           v14 = GetMenu(v23) != 0;
           v7 = GetWindowLongW(v23, -16);
@@ -275,11 +280,11 @@ LABEL_19:
       {
         if ( wParam == 4 || wParam == 1 )
         {
-          *((_DWORD *)g_pCGameManager + 1) = 0;
+          *((uint32_t *)g_pCGameManager + 1) = 0;
         }
-        else if ( !*((_DWORD *)g_pCGameManager + 2) )
+        else if ( !*((uint32_t *)g_pCGameManager + 2) )
         {
-          *((_DWORD *)g_pCGameManager + 1) = 1;
+          *((uint32_t *)g_pCGameManager + 1) = 1;
         }
         CGameBoard::UpdateBounds(g_pCGameBoard);
       }

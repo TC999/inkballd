@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CRegistryManager::ReadHiScore(CRegistryManager *this)
 {
   int v2; // esi
@@ -11,9 +16,9 @@ int __thiscall CRegistryManager::ReadHiScore(CRegistryManager *this)
   {
     CreateInkballKey();
     CRegistryManager::WriteHiScore(this, 0x88u);
-    *(_DWORD *)Data = 5000;
+    *(uint32_t *)Data = 5000;
   }
-  v2 = *(_DWORD *)Data;
+  v2 = *(uint32_t *)Data;
   v6 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
   return v2;

@@ -1,7 +1,12 @@
-int __thiscall CBoardTileRLGray::CareAboutCollisions(int *this, int a2, int a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __thiscall CBoardTileRLGray::CareAboutCollisions(int*this, int a2, int a3)
 {
   int v4; // esi
-  _BYTE v6[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v6[16]; // [esp+10h] [ebp-14h] BYREF
   int v7; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CBoardTileRLGray::CareAboutCollisions", 0);

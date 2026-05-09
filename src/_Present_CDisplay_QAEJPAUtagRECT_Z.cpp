@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
 {
   bool v3; // zf
@@ -12,7 +17,7 @@ int __thiscall CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
   LONG v13; // [esp+34h] [ebp-24h]
   int v14; // [esp+38h] [ebp-20h]
   int v15; // [esp+3Ch] [ebp-1Ch]
-  _BYTE v16[8]; // [esp+40h] [ebp-18h] BYREF
+  uint8_t v16[8]; // [esp+40h] [ebp-18h] BYREF
   int v17[3]; // [esp+48h] [ebp-10h] BYREF
   int v18; // [esp+54h] [ebp-4h]
   RECT *lprcSrca; // [esp+60h] [ebp+8h]
@@ -40,12 +45,12 @@ LABEL_6:
     IntersectRect(&rcSrc, &rcDst, this + 2);
     CopyRect(&rcDst, &rcSrc);
     OffsetRect(&rcDst, -this[2].left, -this[2].top);
-    left = this[2].left + (unsigned __int64)((double)rcDst.left / dSizeFactor);
-    v13 = this[2].top + (unsigned __int64)((double)rcDst.top / dSizeFactor);
-    v14 = left + (unsigned __int64)((double)(rcSrc.right - rcSrc.left) / dSizeFactor);
+    left = this[2].left + (unsigned int64_t)((double)rcDst.left / dSizeFactor);
+    v13 = this[2].top + (unsigned int64_t)((double)rcDst.top / dSizeFactor);
+    v14 = left + (unsigned int64_t)((double)(rcSrc.right - rcSrc.left) / dSizeFactor);
     bottom = this->bottom;
-    v15 = v13 + (unsigned __int64)((double)(rcSrc.bottom - rcSrc.top) / dSizeFactor);
-    v6 = (*(int (__stdcall **)(LONG, LONG *, LONG, tagRECT *, int, _DWORD))(*(_DWORD *)this->right + 20))(
+    v15 = v13 + (unsigned int64_t)((double)(rcSrc.bottom - rcSrc.top) / dSizeFactor);
+    v6 = (*(int (__stdcall **)(LONG, long*, LONG, tagRECT *, int, uint32_t))(*(uint32_t *)this->right + 20))(
            this->right,
            &left,
            bottom,
@@ -66,10 +71,10 @@ LABEL_9:
         top = this[2].top;
         left = this[2].left;
         v13 = top;
-        v14 = this[2].left + (unsigned __int64)((double)(int)lprcSrca / dSizeFactor);
+        v14 = this[2].left + (unsigned int64_t)((double)(int)lprcSrca / dSizeFactor);
         v9 = this->bottom;
-        v15 = top + (unsigned __int64)((double)(this[2].bottom - top) / dSizeFactor);
-        v6 = (*(int (__stdcall **)(LONG, LONG *, LONG, _DWORD, int, _DWORD))(*(_DWORD *)this->right + 20))(
+        v15 = top + (unsigned int64_t)((double)(this[2].bottom - top) / dSizeFactor);
+        v6 = (*(int (__stdcall **)(LONG, long*, LONG, uint32_t, int, uint32_t))(*(uint32_t *)this->right + 20))(
                this->right,
                &left,
                v9,
@@ -79,7 +84,7 @@ LABEL_9:
       }
       else
       {
-        v6 = (*(int (__stdcall **)(LONG, _DWORD, _DWORD))(*(_DWORD *)this->right + 44))(this->right, 0, 0);
+        v6 = (*(int (__stdcall **)(LONG, uint32_t, uint32_t))(*(uint32_t *)this->right + 44))(this->right, 0, 0);
       }
       v17[0] = v6;
       if ( v6 == -2005532222 )

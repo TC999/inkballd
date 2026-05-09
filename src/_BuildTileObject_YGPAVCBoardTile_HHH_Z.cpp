@@ -1,41 +1,46 @@
-struct CBoardTile *__stdcall BuildTileObject(int a1, int a2, int a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
 {
-  unsigned int v4; // ebx
-  char *v5; // eax
+  uint32_t v4; // ebx
+  char*v5; // eax
   CBoardObject *v6; // esi
   int v7; // ecx
-  unsigned int v8; // edi
-  unsigned int v9; // esi
-  char *v10; // eax
+  uint32_t v8; // edi
+  uint32_t v9; // esi
+  char*v10; // eax
   CBoardTile *v11; // eax
   double v12; // st7
-  unsigned int v13; // esi
-  char *v14; // eax
-  unsigned int v15; // esi
-  char *v16; // eax
-  unsigned int v17; // edi
-  unsigned int v18; // esi
-  char *v19; // eax
-  unsigned int v20; // edi
+  uint32_t v13; // esi
+  char*v14; // eax
+  uint32_t v15; // esi
+  char*v16; // eax
+  uint32_t v17; // edi
+  uint32_t v18; // esi
+  char*v19; // eax
+  uint32_t v20; // edi
   int v21; // ebx
   int v22; // esi
-  void *v23; // ecx
-  unsigned int v24; // ebx
-  unsigned int v25; // esi
-  void *v26; // ecx
-  unsigned int v27; // esi
-  char *v28; // eax
-  unsigned int v29; // edi
-  unsigned int v30; // esi
-  char *v31; // eax
-  char *BitmapRect; // eax
+  void*v23; // ecx
+  uint32_t v24; // ebx
+  uint32_t v25; // esi
+  void*v26; // ecx
+  uint32_t v27; // esi
+  char*v28; // eax
+  uint32_t v29; // edi
+  uint32_t v30; // esi
+  char*v31; // eax
+  char*BitmapRect; // eax
   CBoardObject *v33; // edi
   int v34; // ecx
-  unsigned int v35; // ecx
+  uint32_t v35; // ecx
   double v36; // st7
   double v37; // st7
-  _BYTE v39[8]; // [esp+18h] [ebp-20h] BYREF
-  void *v40; // [esp+20h] [ebp-18h]
+  uint8_t v39[8]; // [esp+18h] [ebp-20h] BYREF
+  void*v40; // [esp+20h] [ebp-18h]
   int v41; // [esp+24h] [ebp-14h]
   int v42; // [esp+34h] [ebp-4h]
   CBoardObject *v43; // [esp+40h] [ebp+8h]
@@ -43,8 +48,8 @@ struct CBoardTile *__stdcall BuildTileObject(int a1, int a2, int a3)
   CBoardTile *v45; // [esp+40h] [ebp+8h]
   CBoardTile *v46; // [esp+40h] [ebp+8h]
   CBoardTile *v47; // [esp+40h] [ebp+8h]
-  char *v48; // [esp+40h] [ebp+8h]
-  char *v49; // [esp+40h] [ebp+8h]
+  char*v48; // [esp+40h] [ebp+8h]
+  char*v49; // [esp+40h] [ebp+8h]
   CBoardTile *v50; // [esp+40h] [ebp+8h]
   CBoardTile *v51; // [esp+40h] [ebp+8h]
   CBoardObject *v52; // [esp+40h] [ebp+8h]
@@ -68,13 +73,13 @@ struct CBoardTile *__stdcall BuildTileObject(int a1, int a2, int a3)
     {
       v33 = 0;
     }
-    *((_DWORD *)v33 + 9) = 0;
-    *((_DWORD *)v33 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-    *((_DWORD *)v33 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-    v34 = *((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472);
+    *((uint32_t *)v33 + 9) = 0;
+    *((uint32_t *)v33 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+    *((uint32_t *)v33 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+    v34 = *((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472);
     v42 = 0;
     *((double *)v33 + 1) = (double)v34;
-    *((double *)v33 + 2) = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+    *((double *)v33 + 2) = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
     if ( v4 == 9 )
     {
       v35 = a1 & 0xF;
@@ -119,11 +124,11 @@ struct CBoardTile *__stdcall BuildTileObject(int a1, int a2, int a3)
             {
               v11 = 0;
             }
-            *((_DWORD *)v11 + 9) = v9 + 4 * v8 + 17;
-            *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-            v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+            *((uint32_t *)v11 + 9) = v9 + 4 * v8 + 17;
+            *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+            v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
 LABEL_16:
             *((double *)v11 + 2) = v12;
             v6 = v11;
@@ -147,11 +152,11 @@ LABEL_16:
           {
             v11 = 0;
           }
-          *((_DWORD *)v11 + 9) = v13 + 37;
-          *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-          v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+          *((uint32_t *)v11 + 9) = v13 + 37;
+          *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+          v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
           goto LABEL_16;
         }
         break;
@@ -171,11 +176,11 @@ LABEL_16:
           {
             v11 = 0;
           }
-          *((_DWORD *)v11 + 9) = v15 + 42;
-          *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-          v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+          *((uint32_t *)v11 + 9) = v15 + 42;
+          *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+          v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
           goto LABEL_16;
         }
         break;
@@ -198,11 +203,11 @@ LABEL_16:
             {
               v11 = 0;
             }
-            *((_DWORD *)v11 + 9) = 5 * v18 + v17 + 47;
-            *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-            v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+            *((uint32_t *)v11 + 9) = 5 * v18 + v17 + 47;
+            *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+            v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
             goto LABEL_16;
           }
         }
@@ -231,11 +236,11 @@ LABEL_16:
                     1000 * (v22 + 1) / 2);
           else
             v11 = 0;
-          *((_DWORD *)v11 + 9) = v41;
-          *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-          v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+          *((uint32_t *)v11 + 9) = v41;
+          *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+          v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
           goto LABEL_16;
         }
         break;
@@ -255,11 +260,11 @@ LABEL_16:
               v11 = CBoardTileRLColored::CBoardTileRLColored((CBoardTile *)v26, a2, a3, (int)v49, v24, v25);
             else
               v11 = 0;
-            *((_DWORD *)v11 + 9) = 5 * v25 + v24 + 77;
-            *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-            v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+            *((uint32_t *)v11 + 9) = 5 * v25 + v24 + 77;
+            *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+            v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
             goto LABEL_16;
           }
         }
@@ -280,11 +285,11 @@ LABEL_16:
           {
             v11 = 0;
           }
-          *((_DWORD *)v11 + 9) = v27 + 102;
-          *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-          *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-          v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+          *((uint32_t *)v11 + 9) = v27 + 102;
+          *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+          *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+          v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
           goto LABEL_16;
         }
         break;
@@ -307,11 +312,11 @@ LABEL_16:
             {
               v11 = 0;
             }
-            *((_DWORD *)v11 + 9) = 5 * v30 + v29 + 67;
-            *((_DWORD *)v11 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((_DWORD *)v11 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-            *((double *)v11 + 1) = (double)(*((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472));
-            v12 = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+            *((uint32_t *)v11 + 9) = 5 * v30 + v29 + 67;
+            *((uint32_t *)v11 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((uint32_t *)v11 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+            *((double *)v11 + 1) = (double)(*((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472));
+            v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
             goto LABEL_16;
           }
         }
@@ -332,13 +337,13 @@ LABEL_17:
   {
     v6 = 0;
   }
-  *((_DWORD *)v6 + 9) = 1;
-  *((_DWORD *)v6 + 6) = *((_DWORD *)g_pCGameBoard + 2472);
-  *((_DWORD *)v6 + 7) = *((_DWORD *)g_pCGameBoard + 2472);
-  v7 = *((_DWORD *)g_pCGameBoard + 2467) + a2 * *((_DWORD *)g_pCGameBoard + 2472);
+  *((uint32_t *)v6 + 9) = 1;
+  *((uint32_t *)v6 + 6) = *((uint32_t *)g_pCGameBoard + 2472);
+  *((uint32_t *)v6 + 7) = *((uint32_t *)g_pCGameBoard + 2472);
+  v7 = *((uint32_t *)g_pCGameBoard + 2467) + a2 * *((uint32_t *)g_pCGameBoard + 2472);
   v42 = 0;
   *((double *)v6 + 1) = (double)v7;
-  *((double *)v6 + 2) = (double)(*((_DWORD *)g_pCGameBoard + 2468) + a3 * *((_DWORD *)g_pCGameBoard + 2472));
+  *((double *)v6 + 2) = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
   CBallManager::AddBallGenerator(*((CBallManager **)g_pCGameBoard + 2476), v6);
 LABEL_75:
   v42 = -1;

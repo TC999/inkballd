@@ -1,11 +1,16 @@
-int __thiscall CDisplay::CreateSurface(CDisplay *this, struct CSurface **a2, void *a3, DWORD a4)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __thiscall CDisplay::CreateSurface(CDisplay *this, CSurface**a2, void*a3, DWORD a4)
 {
   int v5; // eax
   int v6; // esi
   CSurface *v8; // ecx
-  struct CSurface *v9; // eax
+  CSurface*v9; // eax
   struct _DDSURFACEDESC2 v10; // [esp+10h] [ebp-9Ch] BYREF
-  _BYTE v11[8]; // [esp+8Ch] [ebp-20h] BYREF
+  uint8_t v11[8]; // [esp+8Ch] [ebp-20h] BYREF
   CDisplay *v12; // [esp+94h] [ebp-18h]
   int v13[4]; // [esp+98h] [ebp-14h] BYREF
   int v14; // [esp+A8h] [ebp-4h]
@@ -22,7 +27,7 @@ LABEL_3:
     v13[0] = v5;
     goto LABEL_4;
   }
-  if ( !*((_DWORD *)this + 1) )
+  if ( !*((uint32_t *)this + 1) )
   {
     v5 = -2147418113;
     goto LABEL_3;

@@ -1,7 +1,12 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CGameBoard::Paint(CGameBoard *this)
 {
   struct IDirectDraw7 *DirectDraw; // eax
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CGameBoard::Paint", 0);

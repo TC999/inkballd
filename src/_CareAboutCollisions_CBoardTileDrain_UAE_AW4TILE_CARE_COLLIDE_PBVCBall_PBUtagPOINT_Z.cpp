@@ -1,6 +1,11 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall CBoardTileDrain::CareAboutCollisions(int a1, int a2)
 {
-  _BYTE v3[8]; // [esp+0h] [ebp-8h] BYREF
+  uint8_t v3[8]; // [esp+0h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBoardTileDrain::CareAboutCollisions", 0);
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);

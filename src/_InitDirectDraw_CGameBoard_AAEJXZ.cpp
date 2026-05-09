@@ -1,14 +1,19 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
 {
   int v2; // esi
-  void *v3; // ecx
+  void*v3; // ecx
   CDisplay *v4; // eax
   struct IDirectDrawSurface7 *InkBuffer; // eax
-  int *v7; // [esp+0h] [ebp-2C0h]
-  int *v8; // [esp+0h] [ebp-2C0h]
-  _BYTE v9[8]; // [esp+10h] [ebp-2B0h] BYREF
-  void *v10; // [esp+18h] [ebp-2A8h]
-  _DWORD v11[3]; // [esp+1Ch] [ebp-2A4h] BYREF
+  int*v7; // [esp+0h] [ebp-2C0h]
+  int*v8; // [esp+0h] [ebp-2C0h]
+  uint8_t v9[8]; // [esp+10h] [ebp-2B0h] BYREF
+  void*v10; // [esp+18h] [ebp-2A8h]
+  uint32_t v11[3]; // [esp+1Ch] [ebp-2A4h] BYREF
   int WindowedDisplay; // [esp+28h] [ebp-298h] BYREF
   WCHAR Text[256]; // [esp+2Ch] [ebp-294h] BYREF
   WCHAR Caption[72]; // [esp+22Ch] [ebp-94h] BYREF
@@ -35,8 +40,8 @@ int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
   WindowedDisplay = CDisplay::CreateWindowedDisplay(
                       v4,
                       *((HWND *)this + 2480),
-                      *((_DWORD *)this + 2465),
-                      *((_DWORD *)this + 2466));
+                      *((uint32_t *)this + 2465),
+                      *((uint32_t *)this + 2466));
   if ( WindowedDisplay >= 0 )
     goto LABEL_16;
   if ( g_pDisplay )
@@ -58,11 +63,11 @@ LABEL_16:
 LABEL_11:
     memset(Caption, 0, 128);
     memset(Text, 0, sizeof(Text));
-    Helpers::LoadStringW(0, (HINSTANCE)0x3AA3, Caption, (unsigned __int16 *)0x40, 0, v7);
+    Helpers::LoadStringW(0, (HINSTANCE)0x3AA3, Caption, (uint16_t *)0x40, 0, v7);
     if ( CGameBoard::IsRemoteSession(this) == 1 )
-      Helpers::LoadStringW(0, (HINSTANCE)0x3AAB, Text, (unsigned __int16 *)0x100, 0, v8);
+      Helpers::LoadStringW(0, (HINSTANCE)0x3AAB, Text, (uint16_t *)0x100, 0, v8);
     else
-      Helpers::LoadStringW(0, (HINSTANCE)0x3AA5, Text, (unsigned __int16 *)0x100, 0, v8);
+      Helpers::LoadStringW(0, (HINSTANCE)0x3AA5, Text, (uint16_t *)0x100, 0, v8);
     MessageBoxW(*((HWND *)this + 2480), Text, Caption, 0x10u);
     v2 = WindowedDisplay;
   }

@@ -1,26 +1,31 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 BOOL __thiscall CGameBoard::PointIntersectsWithTile(
         CGameBoard *this,
         const struct tagPOINT *a2,
-        const struct CBall *a3,
+        const CBall*a3,
         int a4)
 {
-  struct CBoardTile *Tile; // esi
+  CBoardTile*Tile; // esi
   int v7; // eax
   BOOL v8; // esi
   LONG y; // [esp-4h] [ebp-28h]
-  _BYTE v10[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v10[16]; // [esp+10h] [ebp-14h] BYREF
   int v11; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::PointIntersectsWithTile", 0);
   y = a2->y;
   v11 = 0;
   Tile = CGameBoard::GetTile(this, a2->x, y);
-  if ( (*(int (__thiscall **)(struct CBoardTile *, const struct CBall *, const struct tagPOINT *))(*(_DWORD *)Tile + 8))(
+  if ( (*(int (__thiscall **)(CBoardTile*, const CBall*, const struct tagPOINT *))(*(uint32_t *)Tile + 8))(
          Tile,
          a3,
          a2) )
   {
-    v7 = (*(int (__thiscall **)(struct CBoardTile *, const struct CBall *, const struct tagPOINT *))(*(_DWORD *)Tile + 8))(
+    v7 = (*(int (__thiscall **)(CBoardTile*, const CBall*, const struct tagPOINT *))(*(uint32_t *)Tile + 8))(
            Tile,
            a3,
            a2);

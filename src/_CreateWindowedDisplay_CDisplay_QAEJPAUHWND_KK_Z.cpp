@@ -1,45 +1,50 @@
-int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned int xRight, int yBottom)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t xRight, int yBottom)
 {
   void (__thiscall **v5)(LPVOID *); // eax
-  _DWORD *v6; // edi
+  uint32_t *v6; // edi
   LONG v7; // eax
   int v8; // eax
   int v9; // esi
   BOOL v11; // [esp-8h] [ebp-D0h]
   LONG WindowLongW; // [esp-4h] [ebp-CCh]
-  int *v13; // [esp+0h] [ebp-C8h]
-  int *v14; // [esp+0h] [ebp-C8h]
-  int *v15; // [esp+0h] [ebp-C8h]
-  int *v16; // [esp+0h] [ebp-C8h]
-  int *v17; // [esp+0h] [ebp-C8h]
-  _DWORD v18[31]; // [esp+10h] [ebp-B8h] BYREF
+  int*v13; // [esp+0h] [ebp-C8h]
+  int*v14; // [esp+0h] [ebp-C8h]
+  int*v15; // [esp+0h] [ebp-C8h]
+  int*v16; // [esp+0h] [ebp-C8h]
+  int*v17; // [esp+0h] [ebp-C8h]
+  uint32_t v18[31]; // [esp+10h] [ebp-B8h] BYREF
   LONG pvParam; // [esp+8Ch] [ebp-3Ch] BYREF
   LONG v20; // [esp+90h] [ebp-38h]
-  _BYTE v21[8]; // [esp+9Ch] [ebp-2Ch] BYREF
+  uint8_t v21[8]; // [esp+9Ch] [ebp-2Ch] BYREF
   struct tagRECT rc; // [esp+A4h] [ebp-24h] BYREF
   int v23; // [esp+B4h] [ebp-14h] BYREF
   char v24[4]; // [esp+B8h] [ebp-10h] BYREF
   int v25; // [esp+C4h] [ebp-4h]
 
-  *(_DWORD *)v24 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int *)v24);
+  *(uint32_t *)v24 = 0;
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int*)v24);
   v5 = (void (__thiscall **)(LPVOID *))*this;
   v25 = 0;
   (*v5)(this);
   v6 = this + 1;
-  *(_DWORD *)v24 = DirectDrawCreateEx(0, this + 1, &IID_IDirectDraw7, 0);
-  if ( *(int *)v24 < 0 )
+  *(uint32_t *)v24 = DirectDrawCreateEx(0, this + 1, &IID_IDirectDraw7, 0);
+  if ( *(int*)v24 < 0 )
   {
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
+    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
   }
   else
   {
-    *(_DWORD *)v24 = (*(int (__stdcall **)(_DWORD, HWND, int))(*(_DWORD *)*v6 + 80))(*v6, hWnd, 8);
-    if ( *(int *)v24 < 0 )
+    *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, HWND, int))(*(uint32_t *)*v6 + 80))(*v6, hWnd, 8);
+    if ( *(int*)v24 < 0 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
+      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
     }
     else
     {
@@ -62,15 +67,15 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
       v18[0] = 124;
       v18[1] = 1;
       v18[26] = 512;
-      *(_DWORD *)v24 = (*(int (__stdcall **)(int, _DWORD *, char *, _DWORD))(*(_DWORD *)v8 + 24))(
+      *(uint32_t *)v24 = (*(int (__stdcall **)(int, uint32_t *, char*, uint32_t))(*(uint32_t *)v8 + 24))(
                          v8,
                          v18,
-                         (char *)this + 8,
+                         reinterpret_cast<char*>(this) + 8,
                          0);
-      if ( *(int *)v24 < 0 )
+      if ( *(int*)v24 < 0 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-          WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
+        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
       }
       else
       {
@@ -80,67 +85,67 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
         v18[2] = yBottom;
         if ( fPortraitMode() )
           v18[26] |= 0x800u;
-        *(_DWORD *)v24 = (*(int (__stdcall **)(_DWORD, _DWORD *, char *, _DWORD))(*(_DWORD *)*v6 + 24))(
+        *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                            *v6,
                            v18,
-                           (char *)this + 12,
+                           reinterpret_cast<char*>(this) + 12,
                            0);
-        if ( *(int *)v24 < 0 )
+        if ( *(int*)v24 < 0 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-            WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
+          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+            WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
         }
         else
         {
-          *(_DWORD *)v24 = (*(int (__stdcall **)(_DWORD, _DWORD *, char *, _DWORD))(*(_DWORD *)*v6 + 24))(
+          *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                              *v6,
                              v18,
-                             (char *)this + 20,
+                             reinterpret_cast<char*>(this) + 20,
                              0);
-          if ( *(int *)v24 < 0 )
+          if ( *(int*)v24 < 0 )
           {
-            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-              WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
+            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+              WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
           }
           else
           {
-            *(_DWORD *)v24 = (*(int (__stdcall **)(_DWORD, _DWORD *, char *, _DWORD))(*(_DWORD *)*v6 + 24))(
+            *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                                *v6,
                                v18,
-                               (char *)this + 24,
+                               reinterpret_cast<char*>(this) + 24,
                                0);
-            if ( *(int *)v24 < 0 )
+            if ( *(int*)v24 < 0 )
             {
-              if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
+              if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
             }
             else
             {
-              *(_DWORD *)v24 = (*(int (__stdcall **)(_DWORD, _DWORD, int *, _DWORD))(*(_DWORD *)*v6 + 16))(
+              *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t, int*, uint32_t))(*(uint32_t *)*v6 + 16))(
                                  *v6,
                                  0,
                                  &v23,
                                  0);
-              if ( *(int *)v24 < 0 )
+              if ( *(int*)v24 < 0 )
               {
-                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                  WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
+                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                  WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
               }
               else
               {
-                *(_DWORD *)v24 = (*(int (__stdcall **)(int, _DWORD, HWND))(*(_DWORD *)v23 + 32))(v23, 0, hWnd);
-                if ( *(int *)v24 < 0 )
+                *(uint32_t *)v24 = (*(int (__stdcall **)(int, uint32_t, HWND))(*(uint32_t *)v23 + 32))(v23, 0, hWnd);
+                if ( *(int*)v24 < 0 )
                 {
-                  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                    WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
+                  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                    WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
                 }
                 else
                 {
-                  *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(_DWORD *)this[2] + 112))(this[2], v23);
-                  if ( *(int *)v24 < 0 )
+                  *(uint32_t *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(uint32_t *)this[2] + 112))(this[2], v23);
+                  if ( *(int*)v24 < 0 )
                   {
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
+                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
                   }
                   else
                   {
@@ -149,7 +154,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
                     CDisplay::UpdateBounds((CDisplay *)this);
                   }
                 }
-                (*(void (__stdcall **)(int))(*(_DWORD *)v23 + 8))(v23);
+                (*(void (__stdcall **)(int))(*(uint32_t *)v23 + 8))(v23);
               }
             }
           }
@@ -157,7 +162,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
       }
     }
   }
-  v9 = *(_DWORD *)v24;
+  v9 = *(uint32_t *)v24;
   v25 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v21);
   return v9;

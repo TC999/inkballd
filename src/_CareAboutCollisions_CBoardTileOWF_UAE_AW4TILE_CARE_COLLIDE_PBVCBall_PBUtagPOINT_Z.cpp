@@ -1,4 +1,9 @@
-int __thiscall CBoardTileOWF::CareAboutCollisions(int *this, CBoardObject *a2, int *a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __thiscall CBoardTileOWF::CareAboutCollisions(int*this, CBoardObject *a2, int*a3)
 {
   int v4; // eax
   int v5; // ecx
@@ -9,7 +14,7 @@ int __thiscall CBoardTileOWF::CareAboutCollisions(int *this, CBoardObject *a2, i
   int v10; // esi
   struct tagRECT v12; // [esp+10h] [ebp-34h] BYREF
   struct tagPOINT v13; // [esp+20h] [ebp-24h] BYREF
-  _BYTE v14[8]; // [esp+28h] [ebp-1Ch] BYREF
+  uint8_t v14[8]; // [esp+28h] [ebp-1Ch] BYREF
   struct tagPOINT v15; // [esp+30h] [ebp-14h] BYREF
   int v16; // [esp+40h] [ebp-4h]
 
@@ -30,7 +35,7 @@ int __thiscall CBoardTileOWF::CareAboutCollisions(int *this, CBoardObject *a2, i
     }
 LABEL_16:
     v9 = this[11];
-    if ( v9 && v9 != *((_DWORD *)a2 + 11) && (!a3 || PointInRect(*a3, a3[1], &v12)) )
+    if ( v9 && v9 != *((uint32_t *)a2 + 11) && (!a3 || PointInRect(*a3, a3[1], &v12)) )
       goto LABEL_20;
 LABEL_22:
     v10 = 0;

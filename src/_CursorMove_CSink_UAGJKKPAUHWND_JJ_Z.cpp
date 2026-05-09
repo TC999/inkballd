@@ -1,7 +1,12 @@
-int __stdcall CSink::CursorMove(CSink *this, unsigned int a2, unsigned int a3, HWND a4, int a5, int a6)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __stdcall CSink::CursorMove(CSink *this, uint32_t a2, uint32_t a3, HWND a4, int a5, int a6)
 {
   int v6; // esi
-  _BYTE v8[8]; // [esp+4h] [ebp-Ch] BYREF
+  uint8_t v8[8]; // [esp+4h] [ebp-Ch] BYREF
   int v9; // [esp+Ch] [ebp-4h] BYREF
 
   v9 = 0;

@@ -1,42 +1,47 @@
-unsigned int __thiscall CDisplay::CreateSurfaceFromBitmap(
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
         CDisplay *this,
-        struct CSurface **a2,
+        CSurface**a2,
         HINSTANCE name,
-        unsigned int a4,
+        uint32_t a4,
         int cy)
 {
-  unsigned int v6; // esi
+  uint32_t v6; // esi
   HMODULE ModuleHandleW; // eax
   CSurface *v8; // ecx
-  struct CSurface *v9; // eax
-  int *v11; // [esp+0h] [ebp-C8h]
-  int *v12; // [esp+0h] [ebp-C8h]
-  int *v13; // [esp+0h] [ebp-C8h]
+  CSurface*v9; // eax
+  int*v11; // [esp+0h] [ebp-C8h]
+  int*v12; // [esp+0h] [ebp-C8h]
+  int*v13; // [esp+0h] [ebp-C8h]
   _DDSURFACEDESC2 v14; // [esp+10h] [ebp-B8h] BYREF
-  _BYTE pv[4]; // [esp+8Ch] [ebp-3Ch] BYREF
+  uint8_t pv[4]; // [esp+8Ch] [ebp-3Ch] BYREF
   DWORD v16; // [esp+90h] [ebp-38h]
   DWORD v17; // [esp+94h] [ebp-34h]
-  _BYTE v18[8]; // [esp+A4h] [ebp-24h] BYREF
+  uint8_t v18[8]; // [esp+A4h] [ebp-24h] BYREF
   CDisplay *v19; // [esp+ACh] [ebp-1Ch]
   HGDIOBJ ho; // [esp+B0h] [ebp-18h]
-  unsigned int v21[4]; // [esp+B4h] [ebp-14h] BYREF
+  uint32_t v21[4]; // [esp+B4h] [ebp-14h] BYREF
   int v22; // [esp+C4h] [ebp-4h]
 
   v19 = this;
   v21[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v18, "CDisplay::CreateSurfaceFromBitmap", (int *)v21);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v18, "CDisplay::CreateSurfaceFromBitmap", (int*)v21);
   v22 = 0;
   if ( name && a2 )
   {
-    if ( *((_DWORD *)this + 1) )
+    if ( *((uint32_t *)this + 1) )
     {
       *a2 = 0;
       ModuleHandleW = GetModuleHandleW(0);
       ho = Helpers::LoadImageW(ModuleHandleW, name, 0, a4, cy, 0x2000u, 0, v11);
       if ( ho
-        || (ho = Helpers::LoadImageW(0, name, 0, a4, cy, 0x2010u, (unsigned int)v21, v12), (v21[0] & 0x80000000) == 0) )
+        || (ho = Helpers::LoadImageW(0, name, 0, a4, cy, 0x2010u, (uint32_t)v21, v12), (v21[0] & 0x80000000) == 0) )
       {
-        Helpers::GetObjectW(ho, (void *)0x18, pv, 0, v12);
+        Helpers::GetObjectW(ho, (void*)0x18, pv, 0, v12);
         memset(&v14, 0, sizeof(v14));
         v14.dwWidth = v16;
         v14.dwSize = 124;

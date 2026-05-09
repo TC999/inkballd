@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int dynamic_initializer_for__iBoardCounts__()
 {
   int result; // eax

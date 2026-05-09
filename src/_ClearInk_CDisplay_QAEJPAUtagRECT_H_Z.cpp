@@ -1,20 +1,25 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
 {
   int v4; // eax
   int v5; // esi
-  _BYTE v7[8]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v7[8]; // [esp+10h] [ebp-18h] BYREF
   int v8[3]; // [esp+18h] [ebp-10h] BYREF
   int v9; // [esp+24h] [ebp-4h]
 
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CDisplay::ClearInk", v8);
   v9 = 0;
-  if ( *((_DWORD *)this + 5) )
-    v4 = (*(int (__stdcall **)(_DWORD, struct tagRECT *, _DWORD, struct tagRECT *, int, _DWORD))(**((_DWORD **)this + 5)
+  if ( *((uint32_t *)this + 5) )
+    v4 = (*(int (__stdcall **)(uint32_t, struct tagRECT *, uint32_t, struct tagRECT *, int, uint32_t))(**((uint32_t **)this + 5)
                                                                                                + 20))(
-           *((_DWORD *)this + 5),
+           *((uint32_t *)this + 5),
            a2,
-           *((_DWORD *)this + 6),
+           *((uint32_t *)this + 6),
            a2,
            0x1000000,
            0);

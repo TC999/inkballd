@@ -1,9 +1,14 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __stdcall NormalizeRect(struct tagRECT *a1)
 {
   LONG left; // ecx
   LONG right; // edx
   LONG bottom; // ecx
-  _BYTE v4[8]; // [esp+0h] [ebp-8h] BYREF
+  uint8_t v4[8]; // [esp+0h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "NormalizeRect", 0);
   left = a1->left;

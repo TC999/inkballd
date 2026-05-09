@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, int a5)
 {
   int v6; // ebx
@@ -5,13 +10,13 @@ int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, i
   int v8; // esi
   int v9; // eax
   struct IDirectDrawSurface7 *BoardBuffer; // ebx
-  int (__stdcall **p_Blt)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD); // edi
+  int (__stdcall **p_Blt)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t); // edi
   struct IDirectDrawSurface7 *DDrawSurface; // eax
   int v14; // [esp-Ch] [ebp-D0h]
-  _DWORD v15[31]; // [esp+10h] [ebp-B4h] BYREF
+  uint32_t v15[31]; // [esp+10h] [ebp-B4h] BYREF
   struct tagRECT v16; // [esp+8Ch] [ebp-38h] BYREF
   struct tagRECT v17; // [esp+9Ch] [ebp-28h] BYREF
-  _BYTE v18[8]; // [esp+ACh] [ebp-18h] BYREF
+  uint8_t v18[8]; // [esp+ACh] [ebp-18h] BYREF
   int v19[3]; // [esp+B4h] [ebp-10h] BYREF
   int v20; // [esp+C0h] [ebp-4h]
 
@@ -29,14 +34,14 @@ int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, i
     if ( ++v7 >= a5 )
       goto LABEL_11;
   }
-  v8 = *((_DWORD *)this + a2 + v7 * *((_DWORD *)this + 2469) + 721);
+  v8 = *((uint32_t *)this + a2 + v7 * *((uint32_t *)this + 2469) + 721);
   CBoardObject::GetBoundingRect((CBoardObject *)v8, &v16);
-  if ( *((_DWORD *)this + 2475) != 1 )
+  if ( *((uint32_t *)this + 2475) != 1 )
   {
     CBoardObject::GetBoundingRect((CBoardObject *)v8, &v17);
     BoardBuffer = CDisplay::GetBoardBuffer(g_pDisplay);
-    v14 = *(_DWORD *)(v8 + 32);
-    p_Blt = (int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD))&BoardBuffer->lpVtbl->Blt;
+    v14 = *(uint32_t *)(v8 + 32);
+    p_Blt = (int (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))&BoardBuffer->lpVtbl->Blt;
     DDrawSurface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
     v9 = (*p_Blt)(BoardBuffer, &v17, DDrawSurface, v14, 0, 0);
     v19[0] = v9;
@@ -49,8 +54,8 @@ LABEL_11:
   }
   v9 = CDisplay::BltToBoard(
          g_pDisplay,
-         (unsigned __int64)*(double *)(v8 + 8),
-         (unsigned __int64)*(double *)(v8 + 16),
+         (unsigned int64_t)*(double *)(v8 + 8),
+         (unsigned int64_t)*(double *)(v8 + 16),
          g_pGamePiecesSurface,
          *(struct tagRECT **)(v8 + 32));
   v19[0] = v9;

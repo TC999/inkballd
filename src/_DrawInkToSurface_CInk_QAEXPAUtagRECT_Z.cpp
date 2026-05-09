@@ -1,9 +1,14 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
 {
   int v2; // ecx
   int v3; // eax
-  _DWORD v4[4]; // [esp+10h] [ebp-2Ch] BYREF
-  _BYTE v5[8]; // [esp+20h] [ebp-1Ch] BYREF
+  uint32_t v4[4]; // [esp+10h] [ebp-2Ch] BYREF
+  uint8_t v5[8]; // [esp+20h] [ebp-1Ch] BYREF
   HDC v6; // [esp+28h] [ebp-14h] BYREF
   int v7[3]; // [esp+2Ch] [ebp-10h] BYREF
   int v8; // [esp+38h] [ebp-4h]
@@ -19,16 +24,16 @@ void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
     v4[3] = 10 * a2->bottom;
   }
   GetInkBufferHDC(&v6);
-  v2 = *(_DWORD *)g_pIRenderInk;
+  v2 = *(uint32_t *)g_pIRenderInk;
   if ( a2 )
-    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, _DWORD *, struct tagRECT *, _DWORD))(v2 + 16))(
+    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, uint32_t *, struct tagRECT *, uint32_t))(v2 + 16))(
            g_pIRenderInk,
            v6,
            v4,
            a2,
            0);
   else
-    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, void *, struct HWND__ *, _DWORD))(v2 + 16))(
+    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, void*, struct HWND__ *, uint32_t))(v2 + 16))(
            g_pIRenderInk,
            v6,
            &g_rcInkSpace,

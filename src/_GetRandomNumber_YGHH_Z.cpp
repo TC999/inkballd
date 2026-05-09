@@ -1,8 +1,13 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall GetRandomNumber(int a1)
 {
   int RandomNumber; // eax
   int v2; // esi
-  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v4[16]; // [esp+10h] [ebp-14h] BYREF
   int v5; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "GetRandomNumber", 0);

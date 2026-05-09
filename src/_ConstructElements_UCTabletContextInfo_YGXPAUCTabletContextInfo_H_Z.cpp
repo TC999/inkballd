@@ -1,15 +1,20 @@
-unsigned int __stdcall ConstructElements<CTabletContextInfo>(_DWORD *a1, unsigned int a2)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+uint32_t __stdcall ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t a2)
 {
-  unsigned int v2; // ebx
-  unsigned int result; // eax
-  _DWORD *v4; // esi
+  uint32_t v2; // ebx
+  uint32_t result; // eax
+  uint32_t *v4; // esi
 
   v2 = a2;
   result = 24 * a2;
   if ( is_mul_ok(0x18u, a2) && result != -1 )
   {
     v4 = a1;
-    result = (unsigned int)memset(a1, 0, 24 * a2);
+    result = (uint32_t)memset(a1, 0, 24 * a2);
     while ( v2 )
     {
       --v2;

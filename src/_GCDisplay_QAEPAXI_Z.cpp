@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 CDisplay *__thiscall CDisplay::`scalar deleting destructor'(CDisplay *this, char a2)
 {
   CDisplay::~CDisplay(this);

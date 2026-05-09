@@ -1,9 +1,14 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
 {
   int v3; // ebx
   bool v4; // cc
   CBoardTileRLColored **v5; // edi
-  _BYTE v6[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v6[16]; // [esp+10h] [ebp-14h] BYREF
   int v7; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::ToggleRLWalls", 0);
@@ -15,7 +20,7 @@ void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
     v5 = this + 367;
     do
     {
-      if ( *((_DWORD *)*v5 + 11) == a2 )
+      if ( *((uint32_t *)*v5 + 11) == a2 )
         CBoardTileRLColored::ToggleState(*v5);
       ++v3;
       ++v5;

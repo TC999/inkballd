@@ -1,9 +1,14 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CInk::OnDisplayChange(CInk *this)
 {
   int v1; // esi
   int v2; // edi
-  _BYTE v3[16]; // [esp+10h] [ebp-28h] BYREF
-  _BYTE v4[8]; // [esp+20h] [ebp-18h] BYREF
+  uint8_t v3[16]; // [esp+10h] [ebp-28h] BYREF
+  uint8_t v4[8]; // [esp+20h] [ebp-18h] BYREF
   int v5[3]; // [esp+28h] [ebp-10h] BYREF
   int v6; // [esp+34h] [ebp-4h]
 
@@ -16,13 +21,13 @@ void __thiscall CInk::OnDisplayChange(CInk *this)
     v2 = dword_10B068C;
     do
     {
-      v5[0] = (*(int (__stdcall **)(_DWORD, _BYTE *))(**(_DWORD **)((char *)g_arrTCI + v1 + 4) + 56))(
-                *(_DWORD *)((char *)g_arrTCI + v1 + 4),
+      v5[0] = (*(int (__stdcall **)(uint32_t, uint8_t *))(**(uint32_t **)((char*)g_arrTCI + v1 + 4) + 56))(
+                *(uint32_t *)((char*)g_arrTCI + v1 + 4),
                 v3);
       if ( v5[0] >= 0 )
-        v5[0] = (*(int (__stdcall **)(struct IInkObject *, _DWORD, _BYTE *, void *))(*(_DWORD *)g_pIInkObject + 132))(
+        v5[0] = (*(int (__stdcall **)(struct IInkObject *, uint32_t, uint8_t *, void*))(*(uint32_t *)g_pIInkObject + 132))(
                   g_pIInkObject,
-                  *(_DWORD *)((char *)g_arrTCI + v1 + 8),
+                  *(uint32_t *)((char*)g_arrTCI + v1 + 8),
                   v3,
                   &g_rcTabletInInk);
       v1 += 24;

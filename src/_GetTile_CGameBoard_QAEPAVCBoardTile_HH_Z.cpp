@@ -1,13 +1,18 @@
-struct CBoardTile *__thiscall CGameBoard::GetTile(CGameBoard *this, int a2, int a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+CBoardTile*__thiscall CGameBoard::GetTile(CGameBoard *this, int a2, int a3)
 {
   int v4; // esi
-  _BYTE v6[8]; // [esp+8h] [ebp-8h] BYREF
+  uint8_t v6[8]; // [esp+8h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::GetTile", 0);
-  v4 = *((_DWORD *)this
-       + (a2 - *((_DWORD *)this + 2467)) / *((_DWORD *)this + 2472)
-       + *((_DWORD *)this + 2469) * ((a3 - *((_DWORD *)this + 2468)) / *((_DWORD *)this + 2472))
+  v4 = *((uint32_t *)this
+       + (a2 - *((uint32_t *)this + 2467)) / *((uint32_t *)this + 2472)
+       + *((uint32_t *)this + 2469) * ((a3 - *((uint32_t *)this + 2468)) / *((uint32_t *)this + 2472))
        + 721);
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
-  return (struct CBoardTile *)v4;
+  return (CBoardTile*)v4;
 }

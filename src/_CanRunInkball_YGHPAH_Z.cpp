@@ -1,8 +1,13 @@
-int __stdcall CanRunInkball(int *a1)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+int __stdcall CanRunInkball(int*a1)
 {
   int v1; // edi
-  int *v3; // [esp+0h] [ebp-28h]
-  _BYTE v4[8]; // [esp+10h] [ebp-18h] BYREF
+  int*v3; // [esp+0h] [ebp-28h]
+  uint8_t v4[8]; // [esp+10h] [ebp-18h] BYREF
   int v5[3]; // [esp+18h] [ebp-10h] BYREF
   int v6; // [esp+24h] [ebp-4h]
 

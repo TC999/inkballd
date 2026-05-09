@@ -1,10 +1,15 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 BOOL __stdcall fPortraitMode()
 {
   BOOL v0; // esi
   int SystemMetrics; // edi
-  int *v3; // [esp+0h] [ebp-104h]
-  int *v4; // [esp+0h] [ebp-104h]
-  _BYTE v5[8]; // [esp+10h] [ebp-F4h] BYREF
+  int*v3; // [esp+0h] [ebp-104h]
+  int*v4; // [esp+0h] [ebp-104h]
+  uint8_t v5[8]; // [esp+10h] [ebp-F4h] BYREF
   DEVMODEW DevMode; // [esp+18h] [ebp-ECh] BYREF
   int v7; // [esp+100h] [ebp-4h]
 

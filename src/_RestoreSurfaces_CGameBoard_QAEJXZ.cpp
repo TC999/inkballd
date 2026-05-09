@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
 {
   struct IDirectDraw7 *DirectDraw; // eax
@@ -7,7 +12,7 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
   struct IDirectDrawSurface7 *BackBuffer; // eax
   struct IDirectDrawSurface7 *FrontBuffer; // eax
   int v9; // eax
-  _BYTE v10[8]; // [esp+10h] [ebp-20h] BYREF
+  uint8_t v10[8]; // [esp+10h] [ebp-20h] BYREF
   CSurface *v11; // [esp+18h] [ebp-18h] BYREF
   struct IDirectDrawPalette *v12; // [esp+1Ch] [ebp-14h] BYREF
   int v13[3]; // [esp+20h] [ebp-10h] BYREF
@@ -30,14 +35,14 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
     BackBuffer->lpVtbl->Restore(BackBuffer);
     FrontBuffer = CDisplay::GetFrontBuffer(g_pDisplay);
     FrontBuffer->lpVtbl->Restore(FrontBuffer);
-    v9 = CDisplay::CreatePaletteFromBitmap(g_pDisplay, &v12, (const unsigned __int16 *)0x1F5);
+    v9 = CDisplay::CreatePaletteFromBitmap(g_pDisplay, &v12, (const uint16_t *)0x1F5);
     v13[0] = v9;
     if ( v9 >= 0 )
     {
       CDisplay::SetPalette(g_pDisplay, v12);
       if ( v12 )
       {
-        (*(void (__stdcall **)(struct IDirectDrawPalette *))(*(_DWORD *)v12 + 8))(v12);
+        (*(void (__stdcall **)(struct IDirectDrawPalette *))(*(uint32_t *)v12 + 8))(v12);
         v12 = 0;
       }
       v3 = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &v11, (HINSTANCE)0x1F5, 0x17Du, 0x190u);

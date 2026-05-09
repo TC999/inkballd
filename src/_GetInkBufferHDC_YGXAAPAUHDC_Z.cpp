@@ -1,7 +1,12 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __stdcall GetInkBufferHDC(HDC *a1)
 {
   struct IDirectDrawSurface7 *InkBuffer; // eax
-  _BYTE v2[8]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v2[8]; // [esp+10h] [ebp-18h] BYREF
   int v3[3]; // [esp+18h] [ebp-10h] BYREF
   int v4; // [esp+24h] [ebp-4h]
 

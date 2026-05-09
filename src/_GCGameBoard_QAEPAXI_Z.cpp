@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 CGameBoard *__thiscall CGameBoard::`scalar deleting destructor'(CGameBoard *this, char a2)
 {
   CGameBoard::~CGameBoard(this);

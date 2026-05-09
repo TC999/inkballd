@@ -1,7 +1,12 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CBall::SetXVel(CBall *this, long double a2)
 {
   long double v3; // st7
-  _BYTE v4[8]; // [esp+4h] [ebp-8h] BYREF
+  uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBall::SetXVel", 0);
   if ( fabs(a2) > 400.0 )

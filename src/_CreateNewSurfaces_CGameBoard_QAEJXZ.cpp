@@ -1,14 +1,19 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
 {
-  void *v2; // ecx
+  void*v2; // ecx
   CDisplay *v3; // edi
   CSurface *v4; // edi
   CSurface *v5; // edi
   CSurface *v6; // edi
   CSurface *v7; // edi
   int v8; // esi
-  _BYTE v10[8]; // [esp+10h] [ebp-24h] BYREF
-  void *v11; // [esp+18h] [ebp-1Ch]
+  uint8_t v10[8]; // [esp+10h] [ebp-24h] BYREF
+  void*v11; // [esp+18h] [ebp-1Ch]
   CGameBoard *v12; // [esp+1Ch] [ebp-18h]
   int v13[4]; // [esp+20h] [ebp-14h] BYREF
   int v14; // [esp+30h] [ebp-4h]
@@ -30,8 +35,8 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
     v13[0] = CDisplay::CreateWindowedDisplay(
                v3,
                *((HWND *)this + 2480),
-               *((_DWORD *)this + 2465),
-               *((_DWORD *)this + 2466));
+               *((uint32_t *)this + 2465),
+               *((uint32_t *)this + 2466));
     if ( v13[0] < 0 )
     {
       CDisplay::`scalar deleting destructor'(v3, 1);

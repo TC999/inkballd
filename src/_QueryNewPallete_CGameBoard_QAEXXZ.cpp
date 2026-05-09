@@ -1,8 +1,13 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
 {
   struct IDirectDrawSurface7 *FrontBuffer; // eax
   struct IDirectDrawSurface7 *v2; // eax
-  _BYTE v3[8]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v3[8]; // [esp+10h] [ebp-18h] BYREF
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF
   int v5; // [esp+24h] [ebp-4h]
 
@@ -15,7 +20,7 @@ void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
   v2->lpVtbl->SetPalette(v2, v4[0]);
   if ( v4[0] )
   {
-    (*(void (__stdcall **)(LPDIRECTDRAWPALETTE))(*(_DWORD *)v4[0] + 8))(v4[0]);
+    (*(void (__stdcall **)(LPDIRECTDRAWPALETTE))(*(uint32_t *)v4[0] + 8))(v4[0]);
     v4[0] = 0;
   }
   v5 = -1;

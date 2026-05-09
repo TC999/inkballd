@@ -1,18 +1,23 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall RtlpImageNtHeader(int a1)
 {
   int result; // eax
-  unsigned int v2; // edx
+  uint32_t v2; // edx
 
   result = 0;
   if ( a1 )
   {
-    if ( a1 != -1 && *(_WORD *)a1 == 23117 )
+    if ( a1 != -1 && *(uint16_t *)a1 == 23117 )
     {
-      v2 = *(_DWORD *)(a1 + 60);
+      v2 = *(uint32_t *)(a1 + 60);
       if ( v2 < 0x10000000 )
       {
         result = v2 + a1;
-        if ( *(_DWORD *)(v2 + a1) != 17744 )
+        if ( *(uint32_t *)(v2 + a1) != 17744 )
           return 0;
       }
     }

@@ -1,15 +1,20 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall CSink::Packets(
         CSink *this,
         HDC a2,
-        unsigned int a3,
-        unsigned int a4,
+        uint32_t a3,
+        uint32_t a4,
         unsigned __int8 *a5,
-        unsigned int *a6,
-        unsigned int a7)
+        uint32_t *a6,
+        uint32_t a7)
 {
-  unsigned int v7; // esi
+  uint32_t v7; // esi
   int v8; // esi
-  _BYTE v10[8]; // [esp+4h] [ebp-Ch] BYREF
+  uint8_t v10[8]; // [esp+4h] [ebp-Ch] BYREF
   int v11; // [esp+Ch] [ebp-4h] BYREF
 
   v11 = 0;
@@ -19,10 +24,10 @@ int __stdcall CSink::Packets(
   if ( (HDC)g_tcid != a2 )
     goto LABEL_9;
   v7 = a7;
-  if ( g_cid != a7 || !*((_DWORD *)this + 2) )
+  if ( g_cid != a7 || !*((uint32_t *)this + 2) )
     goto LABEL_9;
   CInk::SetInkModifiedFlag(*((CInk **)g_pCGameBoard + 2481));
-  v11 = (*(int (__stdcall **)(struct IInkCollect *, unsigned int, unsigned int, unsigned __int8 *))(*(_DWORD *)g_pIInkCollect
+  v11 = (*(int (__stdcall **)(struct IInkCollect *, uint32_t, uint32_t, unsigned __int8 *))(*(uint32_t *)g_pIInkCollect
                                                                                                   + 16))(
           g_pIInkCollect,
           v7,
@@ -31,7 +36,7 @@ int __stdcall CSink::Packets(
   if ( v11 >= 0 )
   {
     GetInkBufferHDC(&a2);
-    v11 = (*(int (__stdcall **)(struct IRenderingContext *, unsigned int, HDC))(*(_DWORD *)g_pIRenderingContext + 36))(
+    v11 = (*(int (__stdcall **)(struct IRenderingContext *, uint32_t, HDC))(*(uint32_t *)g_pIRenderingContext + 36))(
             g_pIRenderingContext,
             v7,
             a2);

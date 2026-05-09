@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __cdecl _get_image_app_type(int a1)
 {
   HMODULE ModuleHandleA; // eax
@@ -10,7 +15,7 @@ int __cdecl _get_image_app_type(int a1)
   v2 = RtlpImageNtHeader((int)ModuleHandleA);
   if ( !v2 )
     return a1;
-  v3 = *(_WORD *)(v2 + 92);
+  v3 = *(uint16_t *)(v2 + 92);
   if ( v3 == 2 )
     return 2;
   if ( v3 == 3 )

@@ -1,10 +1,15 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPBYTE lpData)
 {
   BOOL v4; // edi
-  int *v6; // [esp+0h] [ebp-30h]
-  int *v7; // [esp+0h] [ebp-30h]
-  int *v8; // [esp+0h] [ebp-30h]
-  _BYTE v9[8]; // [esp+10h] [ebp-20h] BYREF
+  int*v6; // [esp+0h] [ebp-30h]
+  int*v7; // [esp+0h] [ebp-30h]
+  int*v8; // [esp+0h] [ebp-30h]
+  uint8_t v9[8]; // [esp+10h] [ebp-20h] BYREF
   DWORD Type; // [esp+18h] [ebp-18h] BYREF
   DWORD cbData; // [esp+1Ch] [ebp-14h] BYREF
   HKEY phkResult; // [esp+20h] [ebp-10h] BYREF

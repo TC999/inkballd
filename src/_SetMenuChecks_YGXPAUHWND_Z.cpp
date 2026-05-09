@@ -1,8 +1,13 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __stdcall SetMenuChecks(HWND hWnd)
 {
   HMENU Menu; // eax
   UINT v2; // esi
-  _BYTE v3[8]; // [esp+4h] [ebp-8h] BYREF
+  uint8_t v3[8]; // [esp+4h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "SetMenuChecks", 0);
   Menu = GetMenu(hWnd);

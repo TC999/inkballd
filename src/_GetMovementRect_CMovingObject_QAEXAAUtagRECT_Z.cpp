@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRECT *a2)
 {
   int v3; // eax
@@ -8,17 +13,17 @@ void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRE
   bool v8; // c3
   double v9; // st7
   double v10; // st7
-  _BYTE v11[8]; // [esp+8h] [ebp-Ch] BYREF
+  uint8_t v11[8]; // [esp+8h] [ebp-Ch] BYREF
   int v12; // [esp+10h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CMovingObject::GetMovementRect", 0);
-  v3 = *((_DWORD *)this + 6);
-  if ( v3 <= *((_DWORD *)this + 28) )
-    v3 = *((_DWORD *)this + 28);
+  v3 = *((uint32_t *)this + 6);
+  if ( v3 <= *((uint32_t *)this + 28) )
+    v3 = *((uint32_t *)this + 28);
   v4 = v3 + 2;
-  v5 = *((_DWORD *)this + 7);
-  if ( v5 <= *((_DWORD *)this + 29) )
-    v5 = *((_DWORD *)this + 29);
+  v5 = *((uint32_t *)this + 7);
+  if ( v5 <= *((uint32_t *)this + 29) )
+    v5 = *((uint32_t *)this + 29);
   v6 = *((double *)this + 10);
   v7 = v6 < *((double *)this + 1);
   v8 = v6 == *((double *)this + 1);

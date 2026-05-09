@@ -1,4 +1,9 @@
-struct CBoardTile *__stdcall CheckForBallCollisionWithNonDeflectingTile(struct CBall *a1)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
 {
   int v1; // ebx
   int v2; // edi
@@ -9,7 +14,7 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithNonDeflectingTile(struct C
   struct tagRECT v8; // [esp+30h] [ebp-64h] BYREF
   CBoardObject *v9[4]; // [esp+40h] [ebp-54h]
   struct tagRECT v10; // [esp+50h] [ebp-44h] BYREF
-  _BYTE v11[8]; // [esp+60h] [ebp-34h] BYREF
+  uint8_t v11[8]; // [esp+60h] [ebp-34h] BYREF
   long double v12; // [esp+68h] [ebp-2Ch]
   struct tagPOINT v13; // [esp+70h] [ebp-24h] BYREF
   struct tagPOINT v14; // [esp+78h] [ebp-1Ch] BYREF
@@ -32,7 +37,7 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithNonDeflectingTile(struct C
   do
   {
     v3 = v9[v1];
-    if ( (*(int (__thiscall **)(CBoardObject *, struct CBall *, _DWORD))(*(_DWORD *)v3 + 8))(v3, a1, 0) == 1 )
+    if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t))(*(uint32_t *)v3 + 8))(v3, a1, 0) == 1 )
     {
       CBoardObject::GetBoundingRect(v3, &v8);
       if ( CBall::VerifyCollision(a1, &v8, v16) )
@@ -59,7 +64,7 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithNonDeflectingTile(struct C
   {
     v5 = v9[v2];
     CBoardTile::SetClosestSide(v5, &v7[v2]);
-    (*(void (__thiscall **)(CBoardTile *, struct CBall *))(*(_DWORD *)v5 + 4))(v5, a1);
+    (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);

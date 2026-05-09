@@ -1,7 +1,12 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __cdecl __noreturn new_oom_handler()
 {
-  _BYTE pExceptionObject[12]; // [esp+10h] [ebp-20h] BYREF
-  _BYTE v1[16]; // [esp+1Ch] [ebp-14h] BYREF
+  uint8_t pExceptionObject[12]; // [esp+10h] [ebp-20h] BYREF
+  uint8_t v1[16]; // [esp+1Ch] [ebp-14h] BYREF
   int v2; // [esp+2Ch] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v1, "new_oom_handler", 0);

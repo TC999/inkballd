@@ -1,7 +1,12 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 BOOL __stdcall CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
 {
   BOOL v2; // esi
-  const char *v4[2]; // [esp+0h] [ebp-10h] BYREF
+  const char*v4[2]; // [esp+0h] [ebp-10h] BYREF
   int v5; // [esp+8h] [ebp-8h] BYREF
   DWORD pdwValue; // [esp+Ch] [ebp-4h] BYREF
 
@@ -12,8 +17,8 @@ BOOL __stdcall CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
   if ( v5 < 0 )
     pdwValue = a2;
   v2 = pdwValue == 1;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 0x10) != 0 )
-    WPP_SF_Sd(*((_QWORD *)WPP_GLOBAL_Control + 2), 0xAu, &stru_10039F4, pwszValueName, pdwValue == 1);
+  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 0x10) != 0 )
+    WPP_SF_Sd(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xAu, &stru_10039F4, pwszValueName, pdwValue == 1);
   Helpers::CLogBlock::~CLogBlock(v4);
   return v2;
 }

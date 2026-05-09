@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __stdcall InkHitTest(const struct tagRECT *a1)
 {
   LONG left; // esi
@@ -7,7 +12,7 @@ int __stdcall InkHitTest(const struct tagRECT *a1)
   LONG top; // esi
   int v6; // eax
   int v7; // esi
-  _BYTE v9[8]; // [esp+10h] [ebp-1Ch] BYREF
+  uint8_t v9[8]; // [esp+10h] [ebp-1Ch] BYREF
   struct tagPOINT v10; // [esp+18h] [ebp-14h] BYREF
   int v11; // [esp+28h] [ebp-4h]
 

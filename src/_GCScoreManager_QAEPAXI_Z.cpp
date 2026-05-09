@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 CScoreManager *__thiscall CScoreManager::`scalar deleting destructor'(CScoreManager *this, char a2)
 {
   CScoreManager::~CScoreManager(this);

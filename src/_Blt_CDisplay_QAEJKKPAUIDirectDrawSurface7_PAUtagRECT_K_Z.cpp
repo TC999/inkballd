@@ -1,23 +1,28 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CDisplay::Blt(
         CDisplay *this,
-        unsigned int a2,
-        unsigned int a3,
+        uint32_t a2,
+        uint32_t a3,
         struct IDirectDrawSurface7 *a4,
         struct tagRECT *a5,
-        unsigned int a6)
+        uint32_t a6)
 {
   int v7; // eax
   int v8; // esi
-  _BYTE v10[8]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v10[8]; // [esp+10h] [ebp-18h] BYREF
   int v11[3]; // [esp+18h] [ebp-10h] BYREF
   int v12; // [esp+24h] [ebp-4h]
 
   v11[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CDisplay::Blt", v11);
   v12 = 0;
-  if ( *((_DWORD *)this + 3) )
-    v7 = (*(int (__stdcall **)(_DWORD, unsigned int, unsigned int, struct IDirectDrawSurface7 *, struct tagRECT *, unsigned int))(**((_DWORD **)this + 3) + 28))(
-           *((_DWORD *)this + 3),
+  if ( *((uint32_t *)this + 3) )
+    v7 = (*(int (__stdcall **)(uint32_t, uint32_t, uint32_t, struct IDirectDrawSurface7 *, struct tagRECT *, uint32_t))(**((uint32_t **)this + 3) + 28))(
+           *((uint32_t *)this + 3),
            a2,
            a3,
            a4,

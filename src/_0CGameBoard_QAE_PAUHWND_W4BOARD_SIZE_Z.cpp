@@ -1,9 +1,14 @@
-_DWORD *__thiscall CGameBoard::CGameBoard(_DWORD *this, HWND a2, void *a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+uint32_t *__thiscall CGameBoard::CGameBoard(uint32_t *this, HWND a2, void*a3)
 {
   CTimeManager *v4; // edi
   double v5; // st7
   __time32_t v6; // eax
-  _BYTE *v7; // eax
+  uint8_t *v7; // eax
   CInk *v8; // ecx
   CInk *v9; // eax
   CBallManager *v10; // ecx
@@ -13,10 +18,10 @@ _DWORD *__thiscall CGameBoard::CGameBoard(_DWORD *this, HWND a2, void *a3)
   CTileManager *v14; // ecx
   CTileManager *v15; // eax
   CTimeManager *v16; // ecx
-  _BYTE v18[12]; // [esp+10h] [ebp-38h] BYREF
-  _BYTE pExceptionObject[12]; // [esp+1Ch] [ebp-2Ch] BYREF
-  _BYTE v20[8]; // [esp+28h] [ebp-20h] BYREF
-  _DWORD *v21; // [esp+30h] [ebp-18h]
+  uint8_t v18[12]; // [esp+10h] [ebp-38h] BYREF
+  uint8_t pExceptionObject[12]; // [esp+1Ch] [ebp-2Ch] BYREF
+  uint8_t v20[8]; // [esp+28h] [ebp-20h] BYREF
+  uint32_t *v21; // [esp+30h] [ebp-18h]
   int v22[4]; // [esp+34h] [ebp-14h] BYREF
   int v23; // [esp+44h] [ebp-4h]
 
@@ -27,7 +32,7 @@ _DWORD *__thiscall CGameBoard::CGameBoard(_DWORD *this, HWND a2, void *a3)
   this[2480] = a2;
   v23 = 0;
   this[2475] = a3;
-  if ( a3 == (void *)1 )
+  if ( a3 == (void*)1 )
     v5 = 1.0;
   else
     v5 = 2.0;

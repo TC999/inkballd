@@ -1,3 +1,8 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 type_info *__thiscall type_info::`scalar deleting destructor'(type_info *this, char a2)
 {
   type_info::~type_info(this);

@@ -1,26 +1,31 @@
-void __thiscall CGameManager::DropWallTile(CGameManager *this, void *a2, unsigned int a3)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+void __thiscall CGameManager::DropWallTile(CGameManager *this, void*a2, uint32_t a3)
 {
   bool v3; // cc
-  struct CBoardTile *Tile; // eax
-  struct CBoardTile *v5; // esi
-  char *BitmapRect; // eax
+  CBoardTile*Tile; // eax
+  CBoardTile*v5; // esi
+  char*BitmapRect; // eax
   CBoardTile *v7; // edi
   double v8; // st7
-  _BYTE v9[20]; // [esp+10h] [ebp-18h] BYREF
+  uint8_t v9[20]; // [esp+10h] [ebp-18h] BYREF
   int v10; // [esp+24h] [ebp-4h]
   CBoardTile *v11; // [esp+30h] [ebp+8h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameManager::DropWallTile", 0);
-  v3 = (unsigned int)a2 <= *((_DWORD *)g_pCGameBoard + 2467);
+  v3 = (uint32_t)a2 <= *((uint32_t *)g_pCGameBoard + 2467);
   v10 = 0;
   if ( !v3
-    && (unsigned int)a2 < *((_DWORD *)g_pCGameBoard + 2465)
-    && a3 > *((_DWORD *)g_pCGameBoard + 2468)
-    && a3 < *((_DWORD *)g_pCGameBoard + 2466) )
+    && (uint32_t)a2 < *((uint32_t *)g_pCGameBoard + 2465)
+    && a3 > *((uint32_t *)g_pCGameBoard + 2468)
+    && a3 < *((uint32_t *)g_pCGameBoard + 2466) )
   {
     Tile = CGameBoard::GetTile(g_pCGameBoard, (int)a2, a3);
     v5 = Tile;
-    if ( !*((_DWORD *)Tile + 17)
+    if ( !*((uint32_t *)Tile + 17)
       && !CGameBoard::BallOnTile(g_pCGameBoard, Tile)
       && CTileManager::GetTileCount(*((CTileManager **)g_pCGameBoard + 2478)) )
     {
@@ -30,14 +35,14 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void *a2, unsigne
       if ( v11 )
       {
         BitmapRect = CGameBoard::GetBitmapRect(37);
-        v7 = CBoardTileWall::CBoardTileWall(v11, *((_DWORD *)v5 + 19), *((_DWORD *)v5 + 20), (int)BitmapRect, 0);
+        v7 = CBoardTileWall::CBoardTileWall(v11, *((uint32_t *)v5 + 19), *((uint32_t *)v5 + 20), (int)BitmapRect, 0);
       }
       else
       {
         v7 = 0;
       }
-      *((_DWORD *)v7 + 6) = *((_DWORD *)v5 + 6);
-      *((_DWORD *)v7 + 7) = *((_DWORD *)v5 + 7);
+      *((uint32_t *)v7 + 6) = *((uint32_t *)v5 + 6);
+      *((uint32_t *)v7 + 7) = *((uint32_t *)v5 + 7);
       *((double *)v7 + 1) = *((double *)v5 + 1);
       v8 = *((double *)v5 + 2);
       v10 = 0;

@@ -1,10 +1,15 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __stdcall CleanupTabletContexts()
 {
   int v0; // ebx
   int v1; // esi
   int v2; // eax
   int v3; // eax
-  _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v4[16]; // [esp+10h] [ebp-14h] BYREF
   int v5; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CleanupTabletContexts", 0);
@@ -15,17 +20,17 @@ void __stdcall CleanupTabletContexts()
     v1 = 0;
     do
     {
-      v2 = *(_DWORD *)((char *)g_arrTCI + v1 + 4);
+      v2 = *(uint32_t *)((char*)g_arrTCI + v1 + 4);
       if ( v2 )
       {
-        (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v2 + 8))(*(_DWORD *)((char *)g_arrTCI + v1 + 4));
-        *(_DWORD *)((char *)g_arrTCI + v1 + 4) = 0;
+        (*(void (__stdcall **)(uint32_t))(*(uint32_t *)v2 + 8))(*(uint32_t *)((char*)g_arrTCI + v1 + 4));
+        *(uint32_t *)((char*)g_arrTCI + v1 + 4) = 0;
       }
-      v3 = *(_DWORD *)((char *)g_arrTCI + v1);
+      v3 = *(uint32_t *)((char*)g_arrTCI + v1);
       if ( v3 )
       {
-        (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v3 + 8))(*(_DWORD *)((char *)g_arrTCI + v1));
-        *(_DWORD *)((char *)g_arrTCI + v1) = 0;
+        (*(void (__stdcall **)(uint32_t))(*(uint32_t *)v3 + 8))(*(uint32_t *)((char*)g_arrTCI + v1));
+        *(uint32_t *)((char*)g_arrTCI + v1) = 0;
       }
       ++v0;
       v1 += 24;

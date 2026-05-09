@@ -1,4 +1,9 @@
-struct CBoardTile *__stdcall CheckForBallCollisionWithTile(struct CBall *a1)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+CBoardTile*__stdcall CheckForBallCollisionWithTile(CBall*a1)
 {
   int v1; // edi
   int v2; // ebx
@@ -7,8 +12,8 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithTile(struct CBall *a1)
   CBoardTile *v5; // esi
   struct tagPOINT v7[4]; // [esp+10h] [ebp-A0h] BYREF
   struct tagRECT v8; // [esp+30h] [ebp-80h] BYREF
-  _BYTE v9[8]; // [esp+40h] [ebp-70h] BYREF
-  _DWORD v10[8]; // [esp+48h] [ebp-68h] BYREF
+  uint8_t v9[8]; // [esp+40h] [ebp-70h] BYREF
+  uint32_t v10[8]; // [esp+48h] [ebp-68h] BYREF
   CBoardObject *v11[4]; // [esp+68h] [ebp-48h]
   struct tagPOINT v12; // [esp+78h] [ebp-38h] BYREF
   struct tagPOINT v13; // [esp+80h] [ebp-30h] BYREF
@@ -39,7 +44,7 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithTile(struct CBall *a1)
   do
   {
     v3 = v11[v1];
-    if ( (*(int (__thiscall **)(CBoardObject *, struct CBall *, _DWORD *))(*(_DWORD *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
+    if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t *))(*(uint32_t *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
     {
       CBoardObject::GetBoundingRect(v3, &v8);
       if ( CBall::VerifyCollision(a1, &v8, &v7[v1]) )
@@ -65,7 +70,7 @@ struct CBoardTile *__stdcall CheckForBallCollisionWithTile(struct CBall *a1)
   {
     v5 = v11[v2];
     CBoardTile::SetClosestSide(v5, &v7[v2]);
-    (*(void (__thiscall **)(CBoardTile *, struct CBall *))(*(_DWORD *)v5 + 4))(v5, a1);
+    (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);

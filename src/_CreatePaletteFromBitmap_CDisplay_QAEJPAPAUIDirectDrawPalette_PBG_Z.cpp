@@ -1,40 +1,45 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectDrawPalette **a2, WCHAR *lpFileName)
 {
   bool v4; // zf
   HINSTANCE ResourceW; // eax
-  void *Resource; // eax
-  _DWORD *v7; // eax
+  void*Resource; // eax
+  uint32_t *v7; // eax
   int v8; // esi
   bool v9; // cf
-  char *v10; // edi
-  unsigned __int16 v11; // cx
+  char*v10; // edi
+  uint16_t v11; // cx
   int v12; // eax
-  unsigned int v13; // edx
-  _BYTE *v14; // eax
-  _BYTE *v15; // ecx
-  _BYTE *v16; // esi
-  char *v17; // edi
+  uint32_t v13; // edx
+  uint8_t *v14; // eax
+  uint8_t *v15; // ecx
+  uint8_t *v16; // esi
+  char*v17; // edi
   HANDLE FileW; // edi
   char LastError; // al
-  unsigned int v20; // edi
-  unsigned int i; // esi
-  char *v22; // ecx
-  char *v23; // eax
+  uint32_t v20; // edi
+  uint32_t i; // esi
+  char*v22; // ecx
+  char*v23; // eax
   char v24; // dl
   char v25; // al
   char v26; // al
   char v27; // al
-  int *v29; // [esp+0h] [ebp-46Ch]
-  int *v30; // [esp+0h] [ebp-46Ch]
+  int*v29; // [esp+0h] [ebp-46Ch]
+  int*v30; // [esp+0h] [ebp-46Ch]
   char v31; // [esp+10h] [ebp-45Ch] BYREF
   char v32; // [esp+11h] [ebp-45Bh] BYREF
-  _DWORD v33[255]; // [esp+12h] [ebp-45Ah] BYREF
+  uint32_t v33[255]; // [esp+12h] [ebp-45Ah] BYREF
   char Buffer[16]; // [esp+410h] [ebp-5Ch] BYREF
   int v35[3]; // [esp+420h] [ebp-4Ch] BYREF
   int v36; // [esp+42Eh] [ebp-3Eh]
-  unsigned int v37; // [esp+440h] [ebp-2Ch]
-  _BYTE v38[8]; // [esp+448h] [ebp-24h] BYREF
-  char *v39; // [esp+450h] [ebp-1Ch]
+  uint32_t v37; // [esp+440h] [ebp-2Ch]
+  uint8_t v38[8]; // [esp+448h] [ebp-24h] BYREF
+  char*v39; // [esp+450h] [ebp-1Ch]
   CDisplay *v40; // [esp+454h] [ebp-18h]
   DWORD NumberOfBytesRead; // [esp+458h] [ebp-14h] BYREF
   char v42[4]; // [esp+45Ch] [ebp-10h] BYREF
@@ -42,14 +47,14 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
   LPCWSTR lpFileNamea; // [esp+478h] [ebp+Ch]
 
   v40 = this;
-  *(_DWORD *)v42 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v38, "CDisplay::CreatePaletteFromBitmap", (int *)v42);
-  v4 = *((_DWORD *)this + 1) == 0;
+  *(uint32_t *)v42 = 0;
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v38, "CDisplay::CreatePaletteFromBitmap", (int*)v42);
+  v4 = *((uint32_t *)this + 1) == 0;
   v43 = 0;
   if ( v4 || !lpFileName || !a2 )
   {
     v8 = -2147024809;
-    *(_DWORD *)v42 = -2147024809;
+    *(uint32_t *)v42 = -2147024809;
     goto LABEL_56;
   }
   *a2 = 0;
@@ -59,10 +64,10 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
     FileW = CreateFileW(lpFileName, 0x80000000, 0, 0, 3u, 0, 0);
     if ( FileW == (HANDLE)-1 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         LastError = GetLastError();
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Du, &stru_1002FB8, LastError);
+        WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x1Du, &stru_1002FB8, LastError);
       }
       goto LABEL_6;
     }
@@ -72,16 +77,16 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
       {
         if ( !ReadFile(FileW, &v31, 0x400u, &NumberOfBytesRead, 0) || NumberOfBytesRead != 1024 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           {
             v25 = GetLastError();
-            WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x20u, &stru_1002FB8, v25);
+            WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x20u, &stru_1002FB8, v25);
           }
           Helpers::CloseHandle(FileW, 0, v30);
           goto LABEL_6;
         }
         Helpers::CloseHandle(FileW, 0, v30);
-        if ( v35[0] == 40 && (unsigned __int16)v36 <= 8u )
+        if ( v35[0] == 40 && (uint16_t)v36 <= 8u )
         {
           v20 = v37;
           if ( !v37 )
@@ -95,38 +100,38 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
         {
           if ( i >= 0x100 )
             break;
-          v22 = (char *)&v33[i];
+          v22 = (char*)&v33[i];
           v23 = &v31 + 4 * i;
           v24 = *v23;
           *v23 = *v22;
           ++i;
         }
-        *(_DWORD *)v42 = (*(int (__stdcall **)(_DWORD, int, char *, struct IDirectDrawPalette **, _DWORD))(**((_DWORD **)v40 + 1) + 20))(
-                           *((_DWORD *)v40 + 1),
+        *(uint32_t *)v42 = (*(int (__stdcall **)(uint32_t, int, char*, struct IDirectDrawPalette **, uint32_t))(**((uint32_t **)v40 + 1) + 20))(
+                           *((uint32_t *)v40 + 1),
                            4,
                            &v31,
                            a2,
                            0);
-        if ( *(int *)v42 < 0
+        if ( *(int*)v42 < 0
           && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
-          && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
         {
-          WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x21u, &stru_1002FB8, v42[0]);
+          WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x21u, &stru_1002FB8, v42[0]);
         }
 LABEL_21:
-        v8 = *(_DWORD *)v42;
+        v8 = *(uint32_t *)v42;
         goto LABEL_56;
       }
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         v26 = GetLastError();
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Fu, &stru_1002FB8, v26);
+        WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x1Fu, &stru_1002FB8, v26);
       }
     }
-    else if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+    else if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
     {
       v27 = GetLastError();
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Eu, &stru_1002FB8, v27);
+      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x1Eu, &stru_1002FB8, v27);
     }
     Helpers::CloseHandle(FileW, 0, v30);
     goto LABEL_6;
@@ -136,9 +141,9 @@ LABEL_21:
   if ( v7 )
   {
     v9 = *v7 < 0x28u;
-    v10 = (char *)v7 + *v7;
+    v10 = (char*)v7 + *v7;
     v39 = v10;
-    if ( v9 || (v11 = *((_WORD *)v7 + 7), v11 > 8u) )
+    if ( v9 || (v11 = *((uint16_t *)v7 + 7), v11 > 8u) )
     {
       lpFileNamea = 0;
     }
@@ -153,35 +158,35 @@ LABEL_21:
     if ( lpFileNamea )
     {
       v14 = v10 + 1;
-      v15 = (_BYTE *)(&v31 - v10);
-      v16 = (_BYTE *)(&v32 - v10);
-      v17 = (char *)((char *)v33 - v39);
+      v15 = (uint8_t *)(&v31 - v10);
+      v16 = (uint8_t *)(&v32 - v10);
+      v17 = (char*)((char*)v33 - v39);
       do
       {
         if ( v13 >= 0x100 )
           break;
         *(&v31 + 4 * v13) = v14[1];
-        v14[(_DWORD)v15] = *v14;
-        v14[(_DWORD)v16] = *(v14 - 1);
-        v14[(_DWORD)v17] = 0;
+        v14[(uint32_t)v15] = *v14;
+        v14[(uint32_t)v16] = *(v14 - 1);
+        v14[(uint32_t)v17] = 0;
         ++v13;
         v14 += 4;
       }
-      while ( v13 < (unsigned int)lpFileNamea );
+      while ( v13 < (uint32_t)lpFileNamea );
     }
-    *(_DWORD *)v42 = (*(int (__stdcall **)(_DWORD, int, char *, struct IDirectDrawPalette **, _DWORD))(**((_DWORD **)v40 + 1) + 20))(
-                       *((_DWORD *)v40 + 1),
+    *(uint32_t *)v42 = (*(int (__stdcall **)(uint32_t, int, char*, struct IDirectDrawPalette **, uint32_t))(**((uint32_t **)v40 + 1) + 20))(
+                       *((uint32_t *)v40 + 1),
                        4,
                        &v31,
                        a2,
                        0);
-    if ( *(int *)v42 < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Cu, &stru_1002FB8, v42[0]);
+    if ( *(int*)v42 < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x1Cu, &stru_1002FB8, v42[0]);
     goto LABEL_21;
   }
 LABEL_6:
   v8 = -2147467259;
-  *(_DWORD *)v42 = -2147467259;
+  *(uint32_t *)v42 = -2147467259;
 LABEL_56:
   v43 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v38);

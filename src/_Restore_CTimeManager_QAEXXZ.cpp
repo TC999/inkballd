@@ -1,14 +1,19 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CTimeManager::Restore(CTimeManager *this)
 {
   struct IDirectDrawSurface7 *DDrawSurface; // eax
   struct IDirectDrawSurface7 *v3; // eax
   struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
   struct IDirectDrawSurface7 *v5; // eax
-  unsigned int v6; // esi
+  uint32_t v6; // esi
   struct IDirectDrawSurface7 *v7; // eax
   struct IDirectDrawSurface7Vtbl *v8; // ebx
   struct IDirectDrawSurface7 *v9; // eax
-  unsigned int v10; // edx
+  uint32_t v10; // edx
   bool v11; // zf
   struct IDirectDrawSurface7 *v12; // eax
   struct IDirectDrawSurface7Vtbl *v13; // ebx
@@ -22,19 +27,19 @@ void __thiscall CTimeManager::Restore(CTimeManager *this)
   struct IDirectDrawSurface7 *v21; // eax
   struct IDirectDrawSurface7 *v22; // [esp-Ch] [ebp-48h]
   struct IDirectDrawSurface7 *v23; // [esp-Ch] [ebp-48h]
-  char *BitmapRect; // [esp-8h] [ebp-44h]
-  char *v25; // [esp-8h] [ebp-44h]
-  char *v26; // [esp-8h] [ebp-44h]
-  char *v27; // [esp-8h] [ebp-44h]
-  char *v28; // [esp-8h] [ebp-44h]
-  char *v29; // [esp-8h] [ebp-44h]
-  _BYTE v30[8]; // [esp+10h] [ebp-2Ch] BYREF
+  char*BitmapRect; // [esp-8h] [ebp-44h]
+  char*v25; // [esp-8h] [ebp-44h]
+  char*v26; // [esp-8h] [ebp-44h]
+  char*v27; // [esp-8h] [ebp-44h]
+  char*v28; // [esp-8h] [ebp-44h]
+  char*v29; // [esp-8h] [ebp-44h]
+  uint8_t v30[8]; // [esp+10h] [ebp-2Ch] BYREF
   struct IDirectDrawSurface7 *v31; // [esp+18h] [ebp-24h]
-  unsigned int v32; // [esp+1Ch] [ebp-20h]
+  uint32_t v32; // [esp+1Ch] [ebp-20h]
   CTimeManager *v33; // [esp+20h] [ebp-1Ch]
   int v34; // [esp+24h] [ebp-18h]
-  unsigned int v35; // [esp+28h] [ebp-14h]
-  unsigned int v36; // [esp+2Ch] [ebp-10h]
+  uint32_t v35; // [esp+28h] [ebp-14h]
+  uint32_t v36; // [esp+2Ch] [ebp-10h]
   int v37; // [esp+38h] [ebp-4h]
 
   v33 = this;
@@ -48,8 +53,8 @@ void __thiscall CTimeManager::Restore(CTimeManager *this)
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 109);
   v5 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   lpVtbl->BltFast((IDirectDrawSurface7 *)v34, 0, 0, v5, (LPRECT)BitmapRect, 0);
-  v6 = *((_DWORD *)this + 3) - dwLeftDrawDif - 9;
-  v35 = *((_DWORD *)this + 9) / 0x3E8u;
+  v6 = *((uint32_t *)this + 3) - dwLeftDrawDif - 9;
+  v35 = *((uint32_t *)this + 9) / 0x3E8u;
   v36 = dwTopDrawLoc;
   v7 = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
   v8 = v7->lpVtbl;
@@ -81,13 +86,13 @@ void __thiscall CTimeManager::Restore(CTimeManager *this)
       v10 = v35 % 0xA;
       v6 -= dwTimeDigitWidth;
       v35 /= 0xAu;
-      v11 = *((_DWORD *)v33 + 12) == 0;
+      v11 = *((uint32_t *)v33 + 12) == 0;
       v32 = v10;
       if ( v11 )
       {
         v12 = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
         v13 = v12->lpVtbl;
-        v32 = (unsigned int)v12;
+        v32 = (uint32_t)v12;
         v26 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 157);
         v22 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
         v13->BltFast((IDirectDrawSurface7 *)v32, v6, v36, v22, (LPRECT)v26, 0);

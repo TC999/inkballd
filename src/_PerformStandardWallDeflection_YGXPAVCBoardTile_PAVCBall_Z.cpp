@@ -1,6 +1,11 @@
-void __stdcall PerformStandardWallDeflection(struct CBoardTile *a1, struct CBall *a2)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+void __stdcall PerformStandardWallDeflection(CBoardTile*a1, CBall*a2)
 {
-  _BYTE v2[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v2[16]; // [esp+10h] [ebp-14h] BYREF
   int v3; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "PerformStandardWallDeflection", 0);

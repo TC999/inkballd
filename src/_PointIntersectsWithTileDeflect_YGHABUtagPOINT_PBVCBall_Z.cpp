@@ -1,8 +1,13 @@
-BOOL __stdcall PointIntersectsWithTileDeflect(const struct tagPOINT *a1, const struct CBall *a2)
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
+BOOL __stdcall PointIntersectsWithTileDeflect(const struct tagPOINT *a1, const CBall*a2)
 {
   BOOL v2; // eax
   BOOL v3; // esi
-  _BYTE v5[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v5[16]; // [esp+10h] [ebp-14h] BYREF
   int v6; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "PointIntersectsWithTileDeflect", 0);

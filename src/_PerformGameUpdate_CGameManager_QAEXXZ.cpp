@@ -1,10 +1,15 @@
+﻿#include <cstdint>
+#include <cstring>
+#include <cstdlib>
+#include <windows.h>
+#include "common.h"
 void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
 {
   CGameManager *v1; // esi
-  unsigned int v2; // edx
+  uint32_t v2; // edx
   int v3; // eax
-  unsigned int v4; // eax
-  unsigned int Score; // eax
+  uint32_t v4; // eax
+  uint32_t Score; // eax
   int v6; // eax
   int v7; // eax
   int GoldVersionOfTile; // eax
@@ -16,24 +21,24 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   DWORD Time; // [esp+8h] [ebp-8h]
 
   v1 = this;
-  if ( *((_DWORD *)this + 1) )
+  if ( *((uint32_t *)this + 1) )
   {
     Time = timeGetTime();
-    v2 = (Time - *(_DWORD *)v1) % 0x42;
+    v2 = (Time - *(uint32_t *)v1) % 0x42;
     if ( v2 )
     {
-      v3 = *((_DWORD *)v1 + 4);
+      v3 = *((uint32_t *)v1 + 4);
       if ( v3 )
       {
         if ( v3 == 2 )
         {
           dword_10B0640 += v2;
-          if ( (unsigned int)dword_10B0640 > 0x14 )
+          if ( (uint32_t)dword_10B0640 > 0x14 )
           {
             v4 = CTimeManager::GetTime(*((CTimeManager **)g_pCGameBoard + 2479));
             if ( !v4 || v4 == -1 )
             {
-              ++*((_DWORD *)v1 + 3);
+              ++*((uint32_t *)v1 + 3);
               dword_10B062C = 0;
               dword_10B0618 = 0;
               dword_10B0600 = 0;
@@ -41,7 +46,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
               Sleep(0x5DCu);
               CGameManager::UpdateTime(v1);
               LoadNextLevel();
-              *((_DWORD *)v1 + 4) = 0;
+              *((uint32_t *)v1 + 4) = 0;
             }
             else
             {
@@ -51,8 +56,8 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 CTimeManager::SetTime(*((CTimeManager **)g_pCGameBoard + 2479), v4 - 1000);
               CDisplay::Blt(
                 g_pDisplay,
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2479) + 4),
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2479) + 8),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2479) + 4),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2479) + 8),
                 g_pTimeManagerSurface,
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2479), &stru_10B0630);
@@ -61,8 +66,8 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
               CScoreManager::IncrementScore(*((CScoreManager **)g_pCGameBoard + 2477), 1);
               CDisplay::Blt(
                 g_pDisplay,
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2477) + 4),
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2477) + 8),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2477) + 4),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2477) + 8),
                 g_pScoreManagerSurface,
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2477), &stru_10B0630);
@@ -72,8 +77,8 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
               CTileManager::SetTiles(*((CTileManager **)g_pCGameBoard + 2478), Score);
               CDisplay::Blt(
                 g_pDisplay,
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2478) + 4),
-                *(_DWORD *)(*((_DWORD *)g_pCGameBoard + 2478) + 8),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2478) + 4),
+                *(uint32_t *)(*((uint32_t *)g_pCGameBoard + 2478) + 8),
                 g_pTileManagerSurface,
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2478), &stru_10B0630);
@@ -97,37 +102,37 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 {
                   dword_10B062C = CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
-                                    *((_DWORD *)g_pCGameBoard + 2469) - 1,
+                                    *((uint32_t *)g_pCGameBoard + 2469) - 1,
                                     dword_10B0600);
                   dword_10B0618 = CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
                                     0,
-                                    *((_DWORD *)g_pCGameBoard + 2470) - dword_10B0600 - 1);
+                                    *((uint32_t *)g_pCGameBoard + 2470) - dword_10B0600 - 1);
                   CBoardObject::GetBoundingRect(dword_10B062C, &stru_10B061C);
                   CBoardObject::GetBoundingRect(dword_10B0618, &stru_10B0608);
-                  GoldVersionOfTile = GetGoldVersionOfTile(*((_DWORD *)dword_10B062C + 9));
+                  GoldVersionOfTile = GetGoldVersionOfTile(*((uint32_t *)dword_10B062C + 9));
                   BitmapRect = (struct tagRECT *)GetBitmapRect(GoldVersionOfTile);
                   CDisplay::Blt(
                     g_pDisplay,
-                    (unsigned __int64)*((double *)dword_10B062C + 1),
-                    (unsigned __int64)*((double *)dword_10B062C + 2),
+                    (unsigned int64_t)*((double *)dword_10B062C + 1),
+                    (unsigned int64_t)*((double *)dword_10B062C + 2),
                     g_pGamePiecesSurface,
                     BitmapRect);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
                     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
-                  v9 = GetGoldVersionOfTile(*((_DWORD *)dword_10B0618 + 9));
+                  v9 = GetGoldVersionOfTile(*((uint32_t *)dword_10B0618 + 9));
                   v13 = (struct tagRECT *)GetBitmapRect(v9);
                   CDisplay::Blt(
                     g_pDisplay,
-                    (unsigned __int64)*((double *)dword_10B0618 + 1),
-                    (unsigned __int64)*((double *)dword_10B0618 + 2),
+                    (unsigned int64_t)*((double *)dword_10B0618 + 1),
+                    (unsigned int64_t)*((double *)dword_10B0618 + 2),
                     g_pGamePiecesSurface,
                     v13);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
                     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
                   ++dword_10B0600;
                   v1 = this;
-                  if ( dword_10B0600 >= *((_DWORD *)g_pCGameBoard + 2470) )
+                  if ( dword_10B0600 >= *((uint32_t *)g_pCGameBoard + 2470) )
                   {
                     dword_10B0600 = 0;
                     dword_10B0604 = 0;
@@ -143,33 +148,33 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 dword_10B062C = CGameBoard::GetTileByIndices(g_pCGameBoard, dword_10B0600, 0);
                 dword_10B0618 = CGameBoard::GetTileByIndices(
                                   g_pCGameBoard,
-                                  *((_DWORD *)g_pCGameBoard + 2469) - dword_10B0600 - 1,
-                                  *((_DWORD *)g_pCGameBoard + 2470) - 1);
+                                  *((uint32_t *)g_pCGameBoard + 2469) - dword_10B0600 - 1,
+                                  *((uint32_t *)g_pCGameBoard + 2470) - 1);
                 CBoardObject::GetBoundingRect(dword_10B062C, &stru_10B061C);
                 CBoardObject::GetBoundingRect(dword_10B0618, &stru_10B0608);
-                v6 = GetGoldVersionOfTile(*((_DWORD *)dword_10B062C + 9));
+                v6 = GetGoldVersionOfTile(*((uint32_t *)dword_10B062C + 9));
                 v10 = (struct tagRECT *)GetBitmapRect(v6);
                 CDisplay::Blt(
                   g_pDisplay,
-                  (unsigned __int64)*((double *)dword_10B062C + 1),
-                  (unsigned __int64)*((double *)dword_10B062C + 2),
+                  (unsigned int64_t)*((double *)dword_10B062C + 1),
+                  (unsigned int64_t)*((double *)dword_10B062C + 2),
                   g_pGamePiecesSurface,
                   v10);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
                   CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
-                v7 = GetGoldVersionOfTile(*((_DWORD *)dword_10B0618 + 9));
+                v7 = GetGoldVersionOfTile(*((uint32_t *)dword_10B0618 + 9));
                 v11 = (struct tagRECT *)GetBitmapRect(v7);
                 CDisplay::Blt(
                   g_pDisplay,
-                  (unsigned __int64)*((double *)dword_10B0618 + 1),
-                  (unsigned __int64)*((double *)dword_10B0618 + 2),
+                  (unsigned int64_t)*((double *)dword_10B0618 + 1),
+                  (unsigned int64_t)*((double *)dword_10B0618 + 2),
                   g_pGamePiecesSurface,
                   v11);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
                   CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
                 ++dword_10B0600;
                 v1 = this;
-                if ( dword_10B0600 >= *((_DWORD *)g_pCGameBoard + 2469) )
+                if ( dword_10B0600 >= *((uint32_t *)g_pCGameBoard + 2469) )
                 {
                   dword_10B0600 = 0;
                   dword_10B0604 = 1;
@@ -184,7 +189,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
       {
         CGameBoard::PerformUpdate(g_pCGameBoard, v2, 0);
       }
-      *(_DWORD *)v1 = Time;
+      *(uint32_t *)v1 = Time;
     }
   }
   else
