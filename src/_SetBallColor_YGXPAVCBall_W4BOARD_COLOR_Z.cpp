@@ -1,14 +1,55 @@
-void __stdcall SetBallColor(int a1, int a2)
-{
-  char *BitmapRect; // eax
-  _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
+#include <cstdint>
+#include <windows.h>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "SetBallColor", 0);
-  v4 = 0;
-  *(_DWORD *)(a1 + 44) = a2;
-  BitmapRect = CGameBoard::GetBitmapRect(a2 + 2);
-  v4 = -1;
-  *(_DWORD *)(a1 + 32) = BitmapRect;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+class Helpers {
+public:
+    class CLogBlock {
+    public:
+        CLogBlock(void* buffer, const char* message, int* error_code);
+        ~CLogBlock();
+    };
+};
+
+class CGameBoard;
+class CBall;
+
+struct CBallLayout {
+    uint32_t vftable_ptr;
+    uint32_t field_4;
+    uint32_t field_8;
+    uint32_t field_C;
+    uint32_t field_10;
+    uint32_t field_14;
+    uint32_t field_18;
+    uint32_t field_1C;
+    uint32_t field_20;
+    uint32_t field_24;
+    uint32_t field_28;
+    uint32_t field_2C;
+    char* field_30;
+    uint32_t field_34;
+    uint32_t field_38;
+    uint32_t field_3C;
+    uint32_t field_40;
+    uint32_t field_44;
+    // ... more fields as needed
+};
+
+extern "C" {
+    void __stdcall SetBallColor(CBall* ball, int color)
+    {
+        char* BitmapRect;
+        uint8_t log_buffer[16];
+        int log_state = 0;
+
+        Helpers::CLogBlock log_block(log_buffer, "SetBallColor", nullptr);
+        
+        auto ball_layout = reinterpret_cast<CBallLayout*>(ball);
+        ball_layout->field_44 = color;
+        
+        BitmapRect = CGameBoard::GetBitmapRect(color + 2);
+        log_state = -1;
+        
+        ball_layout->field_30 = BitmapRect;
+    }
 }
