@@ -3,29 +3,7 @@
 #include <new>
 #include <cstddef>
 
-class Helpers {
-public:
-    class CLogBlock {
-    public:
-        CLogBlock(void* buffer, const char* function, int flags);
-        ~CLogBlock();
-    };
-};
 
-class CMovingObject {
-public:
-    CMovingObject(CMovingObject* this_ptr);
-};
-
-class BallPoints {
-public:
-    BallPoints* BallPoints_func(BallPoints* this_ptr, int radius);
-};
-
-class CBall : public CMovingObject {
-public:
-    CBall(CBall* this_ptr, int rect_x, int rect_y, int should_add, int ball_radius);
-};
 
 extern "C" {
     void AddBallToUpdateList(CBall* ball);

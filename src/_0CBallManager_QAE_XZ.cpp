@@ -6,39 +6,7 @@
 #include <windows.h>
 #include <cstddef>
 
-class Helpers {
-public:
-    class CLogBlock {
-    public:
-        CLogBlock(void* buffer, const char* function, int* error_code);
-        ~CLogBlock();
-    };
-};
 
-class CSurface {
-public:
-    static struct IDirectDrawSurface7* GetDDrawSurface(void* surface);
-};
-
-class CBitmapRects {
-public:
-    static char* GetBitmapRect(void* bitmap_rects, int rect_id);
-};
-
-class CBall {
-public:
-    static int CBall_func(int this_ptr, int rect_x, int rect_y, int should_add, int ball_radius);
-    static void AddRef(CBall* ball);
-};
-
-class CBallManager {
-public:
-    static int InitSurface(CBallManager* this_ptr);
-};
-
-};
-
-};
 
 extern "C" {
     void* g_pBallManagerSurface;

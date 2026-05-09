@@ -3,19 +3,7 @@
 #include <new>
 #include <cmath>
 
-class Helpers {
-public:
-    class CLogBlock {
-    public:
-        CLogBlock(void* buffer, const char* function, int flags);
-        ~CLogBlock();
-    };
-};
 
-class BallPoints {
-public:
-    uint32_t* data_array;
-};
 
 extern "C" {
     double cosd(double degrees);
