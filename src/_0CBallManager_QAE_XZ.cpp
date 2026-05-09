@@ -44,10 +44,6 @@ struct IDirectDrawSurface7Vtbl {
 };
 
 extern "C" {
-    void _CxxThrowException(void* exception_object, void* throw_info);
-}
-
-extern "C" {
     void* g_pBallManagerSurface;
     void* g_pGamePiecesSurface;
     void* g_CBitmapRects;
