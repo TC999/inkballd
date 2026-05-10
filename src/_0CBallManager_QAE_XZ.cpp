@@ -16,10 +16,7 @@ extern "C" {
 
 extern "C" {
     CBallManager* CBallManager_func(CBallManager* this_ptr)
-    {
-        };
-        
-        const struct IDirectDrawSurface7Vtbl* vtbl; // edi
+    {\r\n        const struct IDirectDrawSurface7Vtbl* vtbl; // edi
         void* ball_mem; // ecx
         CBall* ball; // ecx
         char* bitmap_rect; // [esp-Ch] [ebp-50h]

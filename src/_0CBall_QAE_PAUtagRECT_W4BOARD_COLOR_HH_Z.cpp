@@ -11,10 +11,7 @@ extern "C" {
 
 extern "C" {
     int CBall_func(int this_ptr, int rect_x, int rect_y, int should_add, int ball_radius)
-    {
-        };
-        
-        void* ball_points_mem; // ecx
+    {\r\n        void* ball_points_mem; // ecx
         BallPoints* ball_points; // eax
         int i; // eax
         uint8_t log_buffer[8]; // [esp+10h] [ebp-1Ch] BYREF

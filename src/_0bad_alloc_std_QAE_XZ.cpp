@@ -6,8 +6,6 @@
 extern "C" {
     std::bad_alloc* bad_alloc_func(std::bad_alloc* this_ptr)
     {
-        };
-        
         bool is_empty; // zf
 
         new (this_ptr) std::bad_alloc();

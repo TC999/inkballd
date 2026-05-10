@@ -14,8 +14,6 @@ extern "C" {
 extern "C" {
     BallPoints* BallPoints_func(BallPoints* this_ptr, int radius)
     {
-        };
-        
         uint8_t log_buffer[8]; // [esp+18h] [ebp-20h] BYREF
         double radius_half; // [esp+20h] [ebp-18h]
         int log_state; // [esp+34h] [ebp-4h]
