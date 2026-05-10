@@ -42,7 +42,7 @@ Decompilation of Windows Vista Inkball game(x86)
 
 ### Phase 3: 创建工程入口点
 由于原程序是被剥离的，我们需要一个入口点来骗过链接器。
-创建一个 `main_entry.cpp`，根据原程序类型（控制台或Windows窗体）写入一个空的 main 或 WinMain：
+创建一个 `main.cpp`，根据原程序类型（控制台或Windows窗体）写入一个空的 main 或 WinMain：
 ```cpp
 #include "global_types.h"
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
 3. 生成对应的 `.sln` 文件包裹该 vcxproj。
 
 ### Phase 5: MSBuild 编译与循环修复
-1. 在终端中寻找 MSBuild 路径（通常可以通过 `where msbuild` 或使用 `"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"`）。
+1. 在终端中寻找 MSBuild 路径（通常可以通过 `where msbuild` 或使用 `"D:\Software\Visual Studio\MSBuild\Current\Bin\MSBuild.exe"`）。
 2. 执行编译命令：
    `msbuild RestoreProject.sln /p:Configuration=Release /p:Platform=x64 /m`
    *(如果是 32 位程序请用 x86)*
