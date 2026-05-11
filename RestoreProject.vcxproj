@@ -485,7 +485,7 @@
     <ClCompile Include="src\_WriteDifficulty_CRegistryManager_QAEXK_Z.cpp" />
     <ClCompile Include="src\_WriteHiScore_CRegistryManager_QAEXK_Z.cpp" />
     <ClCompile Include="src\_WriteRegValueDWORD_YGHPAUHKEY_PBG1K_Z.cpp" />
-    <ClCompile Include="src\_wWinMain_16.cpp" />
+    <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pre_c_init.cpp" />
     <ClCompile Include="src\pre_cpp_init.cpp" />
