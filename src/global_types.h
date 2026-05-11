@@ -12,6 +12,8 @@ namespace Helpers {
         CLogBlock(void* p, const char* name, int line);
         ~CLogBlock();
     };
+    void UpdateWindow(HWND hWnd, int unused, int* param);
+    void CloseHandle(HANDLE h, int unused, int* param);
 }
 
 // ============================================================================
@@ -133,9 +135,15 @@ extern "C" {
     extern void* g_CBitmapRects;
     extern void* g_BoardData;
     extern void* g_pIRenderingContext;
+    extern void* g_pCGameManager;
+    extern void* g_CRegistryManager;
+    extern void* g_CBoardManager;
+    extern void* BoardData;
+    extern int iBoardSizeBytes;
     extern void* g_pIInkObject;
     extern HWND g_hWnd;
     extern RECT g_rcClient;
+    extern HINSTANCE g_hInst;
     extern HINSTANCE g_hInstance;
     extern double dSizeFactor;
     extern uint32_t dword_10B0664;
@@ -217,13 +225,26 @@ struct CRegistryManager {
     void* vftable;
     const wchar_t* SubKey;
     const wchar_t* ValueName;
+    static uint32_t ReadDifficulty(CRegistryManager* self);
 };
+
+struct CBoardManager {
+    void* vftable;
+    static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
+    static int LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
+    static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
+};
+
+extern "C" { extern void* SQM_INCREMENT_DWORD; }
 
 // ============================================================================
 // External data references
 // ============================================================================
 extern "C" {
     extern uint64_t WPP_GLOBAL_Control;
+    extern struct WppControl WPP_MAIN_CB;
+    extern const GUID* WPP_ThisDir_CTLGUID_ControlGuid;
+    extern const GUID* WPP_ThisDir_CTLGUID_MobTabPerfTraceProvider;
     extern const GUID* WPP_REGISTRATION_GUIDS;
     extern uint32_t unk_10B26E0;
     extern const wchar_t* stru_1002CD8;
@@ -246,6 +267,7 @@ extern "C" {
     ULONG __stdcall RegisterTraceGuidsW(WMIDPREQUEST, void*, const GUID*, ULONG, TRACE_GUID_REGISTRATION*, ...);
     ULONG __stdcall UnregisterTraceGuids(TRACEHANDLE);
     uint32_t __stdcall WPP_SF_d(TRACEHANDLE, uint16_t, const GUID*, char);
+    uint32_t __stdcall WPP_SF_(TRACEHANDLE, uint16_t, const GUID*);
 }
 
 // ============================================================================
@@ -261,6 +283,17 @@ extern "C" {
 // ============================================================================
 extern "C" {
     int __cdecl ___wgetmainargs(int*, int*, int*, int, int*);
+}
+
+// ============================================================================
+// CGameManager standalone function declarations (replacing invalid static ctor/dtor)
+// ============================================================================
+extern "C" {
+    void* CGameManager_ctor(void* self, HWND hWnd);
+    void CGameManager_dtor(void* self);
+    int CGameManager_Init(void* self);
+    void CGameManager_LoadBoard(void* self, void* boardData, int boardSize);
+    void CGameManager_PerformGameUpdate(void* self);
 }
 
 // ============================================================================
