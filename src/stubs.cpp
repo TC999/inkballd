@@ -236,7 +236,7 @@ extern "C" {
     int __stdcall CanRunInkball(int* a1) { (void)a1; return 1; }
     void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3) { (void)hWnd; (void)uID; (void)a3; }
     int __stdcall WinSqmIsOptedIn() { return 0; }
-    int __stdcall EnableClassicWispWithPtr(LPVOID* ppv) { (void)ppv; return 0; }
+    int __stdcall EnableClassicWispWithPtr(LPVOID* ppv) { (void)ppv; return 1; }
     void* __cdecl new_oom_handler(unsigned int size) { (void)size; return 0; }
     void __stdcall ExitBadCommandLine(HWND hWnd) { (void)hWnd; }
     void __stdcall SetMenuChecks(HWND hWnd) { (void)hWnd; }
