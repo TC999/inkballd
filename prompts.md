@@ -134,3 +134,36 @@ int main(int argc, char* argv[]) {
 
 ## 启动指令
 现在，立刻执行 `dir /b *.sln` 找到解决方案文件，然后直接运行第一次 MSBuild 编译。开始！
+
+## 阶段 3：代码链接修复
+
+你现在是一个资深的 C++ 逆向工程专家。我正在使用 VS2022 重新编译一个反编译出来的 Windows C++ 游戏。
+
+【当前状况】
+1. 我有一个 AI 之前为我编写的 `main.cpp`，它的作用是作为程序的最外层入口，主要用于分配控制台窗口以便于我输出调试信息。
+2. 我还有一个反编译出来的 `WinMain.cpp`，里面包含了游戏真正的逻辑入口函数：
+   `int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd);`
+3. 目前这两个文件没有正确链接，程序无法从 `main` 跑到 `WinMain`。
+
+【你的任务】
+请帮我完成“入口桥接”和“VS2022项目配置”，具体要求如下：
+
+**第一步：重写 `main.cpp`**
+请提供完整的 `main.cpp` 代码，要求：
+1. 保留 `AllocConsole()` 和 `freopen` 等控制台调试代码。
+2. 在 `main` 函数中，获取当前模块的 `HINSTANCE`（通过 `GetModuleHandle(NULL)`）。
+3. 获取命令行参数（通过 `GetCommandLineA()`）。
+4. 使用正确的函数签名声明外部的 `WinMain`（注意处理 `extern "C"` 或者名称修饰问题，如果有必要的话）。
+5. 在 `main` 函数末尾 return 调用 `WinMain` 的结果。
+
+**第二步：提供 VS2022 的具体配置步骤**
+为了避免链接器报错（如 LNK2019 或找不到 _main/_WinMain），请告诉我如何在 VS2022 的“项目属性”中进行精确配置：
+（注：VS 2022 的 MSBuild 安装位置：D:\Software\Visual Studio\MSBuild\Current\Bin）
+1. 链接器 -> 系统 -> 子系统 应该选择什么？（Console 还是 Windows？为什么？）
+2. 链接器 -> 高级 -> 入口点 应该留空还是填写特定值？
+3. C/C++ -> 预处理器定义中，是否需要添加或删除 `_WINDOWS` 或 `_CONSOLE`？
+
+**第三步：处理反编译代码的潜在冲突**
+如果 `WinMain.cpp` 中原本自带了一些初始化代码（比如全局变量的构造函数、或者 CRT 初始化），在从 `main` 跳转到 `WinMain` 时可能会出现什么问题？如果有的话，给出预防措施。
+
+请直接给出代码和操作步骤，不需要过多的废话。
