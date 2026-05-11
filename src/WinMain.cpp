@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <windows.h>
 #include <cstdint>
@@ -204,4 +203,3 @@ LABEL_61:
   reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
   return wParam;
 }
-#endif
