@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,3 +12,5 @@ CDisplay *__thiscall CDisplay::`scalar deleting destructor'(CDisplay *this, char
     operator delete(this);
   return this;
 }
+
+#endif

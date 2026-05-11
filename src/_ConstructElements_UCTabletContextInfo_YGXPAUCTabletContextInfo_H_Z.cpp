@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -33,3 +34,5 @@ uint32_t __stdcall ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t 
   }
   return result;
 }
+
+#endif

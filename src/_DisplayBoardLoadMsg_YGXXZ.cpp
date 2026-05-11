@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -20,3 +21,5 @@ void __stdcall __noreturn DisplayBoardLoadMsg()
   MessageBoxW(0, Text, Caption, 0x30u);
   _exit(0);
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -194,3 +195,5 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
     CGameManager::UpdateTime(this);
   }
 }
+
+#endif

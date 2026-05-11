@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -53,5 +54,7 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void*a2, uint32_t
     }
   }
   v10 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
 }
+
+#endif

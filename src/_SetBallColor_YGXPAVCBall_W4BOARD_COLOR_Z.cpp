@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -34,3 +35,5 @@ extern "C" {
         ball_layout->field_30 = BitmapRect;
     }
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -75,7 +76,7 @@ LABEL_18:
         dword_105C81C = *reinterpret_cast<uint32_t*>(this_ptr + 9);
       }
       cleanup_flag = -1;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     }
 }
     else
@@ -129,5 +130,7 @@ LABEL_18:
     dword_105C81C = *((_DWORD *)this + 9);
   }
   v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
+
+#endif

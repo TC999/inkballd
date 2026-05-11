@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -14,3 +15,5 @@ void __stdcall __noreturn ExitBadCommandLine(HWND hWnd)
   DispError(hWnd, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AA7);
   _exit(0);
 }
+
+#endif

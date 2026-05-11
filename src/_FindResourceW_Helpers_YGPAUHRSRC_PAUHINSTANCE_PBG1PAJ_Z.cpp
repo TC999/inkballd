@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -30,6 +31,8 @@ HRSRC __stdcall Helpers::FindResourceW(
   }
   if ( a4 )
     *(uint32_t *)a4 = *(uint32_t *)v9;
-  Helpers::CLogBlock::~CLogBlock(v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return ResourceW;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,6 +14,8 @@ LONG __stdcall CSink::Release(volatile long*this)
   v1 = InterlockedDecrement(this + 1);
   if ( !v1 )
     operator delete((void*)this);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return v1;
 }
+
+#endif

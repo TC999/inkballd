@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,5 +12,7 @@ void __thiscall CGameBoard::AddGameObjectToUpdateList(CGameBoard *this, CGameObj
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CGameBoard::AddGameObjectToUpdateList", 0);
   if ( *(int*)this < 300 )
     *((uint32_t *)this + ++*(uint32_t *)this) = a2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

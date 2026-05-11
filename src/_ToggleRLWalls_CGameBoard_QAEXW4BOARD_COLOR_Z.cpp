@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -29,5 +30,7 @@ void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
     while ( v3 < (int)this[366] );
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
 }
+
+#endif

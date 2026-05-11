@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,6 +16,8 @@ int __stdcall SetCursorStroke(uint32_t a1, struct IInkStroke *a2)
     (*(void (__stdcall **)(struct IInkStroke *))(*(uint32_t *)g_pIStroke + 8))(g_pIStroke);
   v4 = -1;
   g_pIStroke = a2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return 0;
 }
+
+#endif

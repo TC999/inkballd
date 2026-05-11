@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -33,5 +34,7 @@ LABEL_11:
       v2 = 40006;
       goto LABEL_11;
   }
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

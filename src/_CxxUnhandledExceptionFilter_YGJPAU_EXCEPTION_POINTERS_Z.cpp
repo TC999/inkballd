@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -18,3 +19,5 @@ LONG __stdcall __CxxUnhandledExceptionFilter(struct _EXCEPTION_POINTERS *Excepti
   }
   return 0;
 }
+
+#endif

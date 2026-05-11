@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,3 +16,5 @@ void __cdecl __noreturn new_oom_handler()
   std::bad_alloc::bad_alloc((std::bad_alloc *)pExceptionObject);
   _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVbad_alloc_std__);
 }
+
+#endif

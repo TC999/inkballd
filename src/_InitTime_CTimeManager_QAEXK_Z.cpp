@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,5 +17,7 @@ void __thiscall CTimeManager::InitTime(CTimeManager *this, uint32_t a2)
   *((uint32_t *)this + 10) = 0;
   *((uint32_t *)this + 14) = 0;
   *((uint32_t *)this + 12) = 1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

@@ -23,5 +23,5 @@ void __stdcall ConvertInkRectToDisplayRect(struct tagRECT *a1, struct tagXFORM *
   bottom = (double)a1->bottom;
   a1->top = v5;
   a1->bottom = (int)(bottom * a2->eM22);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
 }

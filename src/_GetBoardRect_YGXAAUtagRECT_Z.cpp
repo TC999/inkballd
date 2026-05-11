@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,5 +14,7 @@ void __stdcall GetBoardRect(struct tagRECT *a1)
   a1->top = *((uint32_t *)g_pCGameBoard + 2468);
   a1->right = *((uint32_t *)g_pCGameBoard + 2465);
   a1->bottom = *((uint32_t *)g_pCGameBoard + 2466);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

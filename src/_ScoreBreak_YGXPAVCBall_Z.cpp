@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,5 +16,7 @@ void __stdcall ScoreBreak(CBall*a1)
   BreakWallPoints = CBall::GetBreakWallPoints(a1);
   CScoreManager::IncrementScore(*((CScoreManager **)g_pCGameBoard + 2477), (int)BreakWallPoints);
   v3 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }
+
+#endif

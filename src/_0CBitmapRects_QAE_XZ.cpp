@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -637,6 +638,8 @@ CBitmapRects *__thiscall CBitmapRects::CBitmapRects(CBitmapRects *this)
   *((uint32_t *)this + 634) = 381;
   *((uint32_t *)this + 633) = 216;
   *((uint32_t *)this + 635) = 235;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return this;
 }
+
+#endif

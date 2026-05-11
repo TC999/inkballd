@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -32,6 +33,8 @@ int __thiscall CDisplay::Blt(
   v12 = -1;
   v8 = v7;
   v11[0] = v7;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
   return v8;
 }
+
+#endif

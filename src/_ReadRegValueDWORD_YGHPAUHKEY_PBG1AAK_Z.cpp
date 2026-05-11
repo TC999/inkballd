@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -26,6 +27,8 @@ BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPB
     Helpers::RegCloseKey(phkResult, 0, v8);
   }
   v13 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v4;
 }
+
+#endif

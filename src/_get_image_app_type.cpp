@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -24,3 +25,5 @@ int __cdecl _get_image_app_type(int a1)
   else
     return a1;
 }
+
+#endif

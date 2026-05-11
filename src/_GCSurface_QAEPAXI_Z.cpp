@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -15,3 +16,5 @@ CSurface* __thiscall CSurface::scalar_deleting_destructor(CSurface *this, char s
         operator delete(this);
     return this;
 }
+
+#endif

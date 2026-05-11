@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -164,6 +165,8 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
   }
   v9 = *(uint32_t *)v24;
   v25 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v21);
+  reinterpret_cast<Helpers::CLogBlock*>(v21)->~CLogBlock();
   return v9;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -348,6 +349,8 @@ LABEL_17:
   CBallManager::AddBallGenerator(*((CBallManager **)g_pCGameBoard + 2476), v6);
 LABEL_75:
   v42 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v39);
+  reinterpret_cast<Helpers::CLogBlock*>(v39)->~CLogBlock();
   return v6;
 }
+
+#endif

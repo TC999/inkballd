@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -20,6 +21,8 @@ BOOL __stdcall CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
   v2 = pdwValue == 1;
   if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 0x10) != 0 )
     WPP_SF_Sd(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xAu, &stru_10039F4, pwszValueName, pdwValue == 1);
-  Helpers::CLogBlock::~CLogBlock(v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
+
+#endif

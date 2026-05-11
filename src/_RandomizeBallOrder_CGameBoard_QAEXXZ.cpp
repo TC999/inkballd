@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -49,5 +50,7 @@ void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
     while ( v8 < *((uint32_t *)this + 656) );
   }
   v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
 }
+
+#endif

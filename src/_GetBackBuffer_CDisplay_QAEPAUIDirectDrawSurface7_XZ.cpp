@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -10,6 +11,8 @@
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CDisplay::GetBackBuffer", 0);
   v2 = *((uint32_t *)this + 3);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return (struct IDirectDrawSurface7 *)v2;
 }
+
+#endif

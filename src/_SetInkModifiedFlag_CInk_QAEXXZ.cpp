@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -10,5 +11,7 @@ void __thiscall CInk::SetInkModifiedFlag(CInk *this)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "CInk::SetInkModifiedFlag", 0);
   *((uint32_t *)this + 2) = 1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }
+
+#endif

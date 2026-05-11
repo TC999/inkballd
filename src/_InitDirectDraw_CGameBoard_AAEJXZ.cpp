@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -72,6 +73,8 @@ LABEL_11:
     v2 = WindowedDisplay;
   }
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v2;
 }
+
+#endif

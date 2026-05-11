@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -22,5 +23,7 @@ void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, CBall*a2, CB
     *((double *)a2 + 2) = (double)(int)v8;
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

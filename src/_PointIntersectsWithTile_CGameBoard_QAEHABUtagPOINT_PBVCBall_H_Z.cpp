@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -34,13 +35,15 @@ BOOL __thiscall CGameBoard::PointIntersectsWithTile(
     if ( v7 == 1 )
       v8 = a4 == 0;
     v11 = -1;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+    reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
     return v8;
   }
   else
   {
     v11 = -1;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+    reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
     return 0;
   }
 }
+
+#endif

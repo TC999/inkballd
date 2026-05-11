@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -59,6 +60,8 @@ LABEL_12:
   v9 = 2;
 LABEL_13:
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v14);
+  reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
   return v9;
 }
+
+#endif

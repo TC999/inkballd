@@ -1,15 +1,9 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 };
@@ -28,6 +22,8 @@ int __thiscall CBall::Release(CBall *this)
     if (is_last_reference)
         CBall::scalar_deleting_destructor(this, 1);
     flag = -1;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return new_reference_count;
 }
+
+#endif

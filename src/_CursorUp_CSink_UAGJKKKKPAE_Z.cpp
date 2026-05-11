@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -79,6 +80,8 @@ int __userpurge CSink::CursorUp@<eax>(
     }
   }
   *(uint32_t *)v13 = 0;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v12);
+  reinterpret_cast<Helpers::CLogBlock*>(v12)->~CLogBlock();
   return 0;
 }
+
+#endif

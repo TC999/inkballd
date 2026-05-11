@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,3 +12,5 @@ CGameManager *__thiscall CGameManager::`scalar deleting destructor'(CGameManager
     operator delete(this);
   return this;
 }
+
+#endif

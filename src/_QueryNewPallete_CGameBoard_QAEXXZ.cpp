@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -23,5 +24,7 @@ void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
     v4[0] = 0;
   }
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -48,5 +49,7 @@ LABEL_8:
     CGameBoard::ShadowizeTile((CInk **)g_pCGameBoard, v5, 0);
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
 }
+
+#endif

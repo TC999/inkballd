@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -26,6 +27,8 @@
     v1 = (char*)g_arrTCI + 24 * v2;
   }
 LABEL_7:
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return (struct CTabletContextInfo *)v1;
 }
+
+#endif

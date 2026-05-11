@@ -1,15 +1,9 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 };
@@ -24,6 +18,8 @@ BallPoint* __thiscall CBall::GetPoint(CBall *this, int point_index)
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetPoint", 0);
     uint32_t points_base = *reinterpret_cast<uint32_t*>(reinterpret_cast<uint32_t*>(this) + 30);
     point = reinterpret_cast<BallPoint*>(points_base + 8 * point_index);
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return point;
 }
+
+#endif

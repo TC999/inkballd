@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,6 +17,8 @@ char*__stdcall GetBitmapRect(int a1)
   BitmapRect = CGameBoard::GetBitmapRect(a1);
   v5 = -1;
   v2 = BitmapRect;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
+
+#endif

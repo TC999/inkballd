@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
@@ -98,7 +99,7 @@ void __thiscall CBallManager::SetBallSpeed(CBallManager *this, CBall* ball, doub
     
 LABEL_21:
     flag = -1;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return;
 
 LABEL_18:
@@ -109,3 +110,5 @@ LABEL_20:
     target_ball->velocity_y = final_velocity_y;
     goto LABEL_21;
 }
+
+#endif

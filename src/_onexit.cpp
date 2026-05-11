@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,3 +26,5 @@ _onexit_t __cdecl _onexit(_onexit_t Func)
   ((void (__cdecl *)(int))_unlock)(8);
   return v2;
 }
+
+#endif

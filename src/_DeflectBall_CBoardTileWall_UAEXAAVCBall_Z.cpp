@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,5 +18,7 @@ void __thiscall CBoardTileWall::DeflectBall(CBoardTileWall *this, CBall*a2)
     SetBallColor(a2, v3);
   PerformStandardWallDeflection(this, a2);
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

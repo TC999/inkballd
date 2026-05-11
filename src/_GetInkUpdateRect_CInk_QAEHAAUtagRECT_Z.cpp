@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -47,6 +48,8 @@ int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
     }
   }
   v9 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v3;
 }
+
+#endif

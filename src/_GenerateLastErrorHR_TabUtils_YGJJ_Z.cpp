@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -20,3 +21,5 @@ TabUtils *__stdcall TabUtils::GenerateLastErrorHR(TabUtils *this, int a2)
     return this;
   return result;
 }
+
+#endif

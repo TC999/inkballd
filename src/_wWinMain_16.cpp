@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <windows.h>
 #include <cstdint>
@@ -67,7 +68,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
       DispError(0, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AA8);
     WppCleanupUm();
     init_step = -1;
-    Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return -1;
   }
   if (WinSqmIsOptedIn())
@@ -200,6 +201,7 @@ LABEL_61:
     CoUninitialize();
   WppCleanupUm();
   init_step = -1;
-  Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
   return wParam;
 }
+#endif

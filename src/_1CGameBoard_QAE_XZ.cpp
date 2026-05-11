@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -49,5 +50,7 @@ void __thiscall CGameBoard::~CGameBoard(CGameBoard *this)
     *v4 = 0;
   }
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

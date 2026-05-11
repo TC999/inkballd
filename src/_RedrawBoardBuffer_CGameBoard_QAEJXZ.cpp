@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -51,6 +52,8 @@ int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
     v11[0] = 0;
   }
   v12 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v2;
 }
+
+#endif

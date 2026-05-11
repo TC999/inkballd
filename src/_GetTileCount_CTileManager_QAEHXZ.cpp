@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ int __thiscall CTileManager::GetTileCount(CTileManager *this)
     v3 = 0;
   }
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
+
+#endif

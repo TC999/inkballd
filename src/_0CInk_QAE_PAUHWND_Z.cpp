@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -18,7 +19,9 @@ extern "C" {
       g_hWnd = window_handle;
       dword_10B0668 = 10 * (dword_10B0678 - dword_10B0670);
       *reinterpret_cast<uint32_t*>(this_ptr + 4) = 0;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
+
+#endif

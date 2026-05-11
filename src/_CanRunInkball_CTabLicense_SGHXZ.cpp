@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,6 +17,8 @@ BOOL __stdcall CTabLicense::CanRunInkball()
   BOOLPermission = CTabLicense::GetBOOLPermission(L"TabletPCInkBall-EnableGame", 0);
   v4 = -1;
   v1 = BOOLPermission;
-  Helpers::CLogBlock::~CLogBlock(v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return v1;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -35,3 +36,5 @@ void __cdecl __security_init_cookie()
     __security_cookie_complement = ~__security_cookie;
   }
 }
+
+#endif

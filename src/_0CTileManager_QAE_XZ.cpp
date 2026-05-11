@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
@@ -29,7 +30,7 @@ extern "C" {
       *reinterpret_cast<uint32_t*>(this_ptr + 9) = 0;
       *reinterpret_cast<uint32_t*>(this_ptr + 10) = 0;
       *reinterpret_cast<uint32_t*>(this_ptr + 11) = 1600;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
@@ -37,6 +38,8 @@ extern "C" {
   *((_DWORD *)this + 9) = 0;
   *((_DWORD *)this + 10) = 0;
   *((_DWORD *)this + 11) = 1600;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return this;
 }
+
+#endif

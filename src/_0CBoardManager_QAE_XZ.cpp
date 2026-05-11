@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -59,6 +60,8 @@ CBoardManager* __thiscall CBoardManager::CBoardManager(CBoardManager *this)
     }
     
     flag = -1;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return instance;
 }
+
+#endif

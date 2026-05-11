@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -47,5 +48,7 @@ LABEL_7:
   if ( !v5 )
     *((uint32_t *)g_pCGameManager + 1) = 1;
   v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

@@ -53,6 +53,6 @@ int __stdcall GetGoldVersionOfTile(int a1)
       break;
   }
   v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return v2;
 }

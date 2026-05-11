@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
@@ -17,3 +18,4 @@ extern "C" {
         return this_ptr;
     }
 }
+#endif

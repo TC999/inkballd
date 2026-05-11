@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -21,6 +22,8 @@ int __thiscall CRegistryManager::ReadDifficulty(CRegistryManager *this)
   }
   v2 = *(uint32_t *)Data;
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
+
+#endif

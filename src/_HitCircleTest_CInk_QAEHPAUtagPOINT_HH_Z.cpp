@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -98,6 +99,8 @@ int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int 
     }
   }
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v12;
 }
+
+#endif

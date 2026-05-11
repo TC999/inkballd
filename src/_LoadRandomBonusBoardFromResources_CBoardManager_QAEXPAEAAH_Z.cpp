@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -62,5 +63,7 @@ void __thiscall CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *
     SetWindowTextW(main_window_hwnd, window_title);
     
     flag = -1;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
+
+#endif

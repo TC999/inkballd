@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -10,7 +11,9 @@ extern "C" {
 
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CSink::AddRef", 0);
       result = InterlockedIncrement(reinterpret_cast<volatile long*>(this_ptr + 1));
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return result;
     }
 }
+
+#endif

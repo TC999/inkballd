@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -21,6 +22,8 @@ int __stdcall Helpers::GetSystemMetrics(Helpers *this, int*a2, int*a3)
   }
   if ( a2 )
     *a2 = v6;
-  Helpers::CLogBlock::~CLogBlock(v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return SystemMetrics;
 }
+
+#endif

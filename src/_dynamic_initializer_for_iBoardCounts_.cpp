@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -21,3 +22,5 @@ int dynamic_initializer_for__iBoardCounts__()
   dword_10AF5B4 = iExpertBonusBoardsCount;
   return result;
 }
+
+#endif

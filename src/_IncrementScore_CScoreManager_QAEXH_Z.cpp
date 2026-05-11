@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -18,5 +19,7 @@ void __thiscall CScoreManager::IncrementScore(CScoreManager *this, int a2)
     *((uint32_t *)this + 9) = v3;
   (*(void (__thiscall **)(CScoreManager *))(*(uint32_t *)this + 4))(this);
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

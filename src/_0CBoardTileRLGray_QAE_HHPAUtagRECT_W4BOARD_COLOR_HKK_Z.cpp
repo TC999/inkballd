@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -35,6 +36,8 @@ CBoardTile *__thiscall CBoardTileRLGray::CBoardTileRLGray(
   *((uint32_t *)this + 23) = 0;
   AddGameObjectToUpdateList(this);
   v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
   return this;
 }
+
+#endif

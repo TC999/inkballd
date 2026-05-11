@@ -13,5 +13,5 @@ void __stdcall ExpandRect(struct tagRECT *a1, int a2)
   a1->bottom += a2;
   a1->left -= a2;
   a1->right += a2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }

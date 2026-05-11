@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ BOOL __stdcall Helpers::PostMessageW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM 
   }
   if ( a5 )
     *a5 = *(uint32_t *)v10;
-  Helpers::CLogBlock::~CLogBlock(v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v6;
 }
+
+#endif

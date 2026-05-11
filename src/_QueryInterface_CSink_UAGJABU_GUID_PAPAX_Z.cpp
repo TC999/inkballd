@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,13 +18,15 @@ int __stdcall CSink::QueryInterface(CSink *this, const struct _GUID *a2, void**a
     *a3 = this;
     (*(void (__stdcall **)(CSink *))(*(uint32_t *)this + 4))(this);
     v3 = v6;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+    reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
     return v3;
   }
   else
   {
     *a3 = 0;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+    reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
     return -2147467262;
   }
 }
+
+#endif

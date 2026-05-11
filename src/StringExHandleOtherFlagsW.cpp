@@ -4,10 +4,10 @@
 
 extern "C" {
     HRESULT __stdcall StringExHandleOtherFlagsW(
-            STRSAFE_LPWSTR destination,
+            LPWSTR destination,
             size_t dest_size,
             size_t flags,
-            STRSAFE_LPWSTR* dest_end,
+            LPWSTR* dest_end,
             size_t* remaining,
             DWORD unused_flags)
     {

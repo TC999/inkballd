@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -9,7 +10,9 @@ extern "C" {
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CSurface::CSurface", 0);
       *reinterpret_cast<uint32_t*>(this_ptr) = 0;
       *reinterpret_cast<uint32_t*>(this_ptr + 32) = 0;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
+
+#endif

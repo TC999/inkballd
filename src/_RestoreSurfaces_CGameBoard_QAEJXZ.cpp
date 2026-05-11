@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -67,6 +68,8 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
     }
   }
   v14 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
   return v3;
 }
+
+#endif

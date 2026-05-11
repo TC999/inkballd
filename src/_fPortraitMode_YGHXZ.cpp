@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -30,6 +31,8 @@ BOOL __stdcall fPortraitMode()
     v0 = Helpers::GetSystemMetrics(0, 0, v4) < SystemMetrics;
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v0;
 }
+
+#endif

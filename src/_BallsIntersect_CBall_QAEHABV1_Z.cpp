@@ -1,16 +1,10 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 };
@@ -29,6 +23,8 @@ bool __thiscall CBall::BallsIntersect(CBall *this, const CBall *other_ball)
     distance_x = this->position_x - other_ball->position_x;
     intersect_result = static_cast<double>(other_ball->radius) * 0.5 + 0.5 * static_cast<double>(this->radius) > 
                        sqrt(distance_x * distance_x + distance_x_squared);
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return intersect_result;
 }
+
+#endif

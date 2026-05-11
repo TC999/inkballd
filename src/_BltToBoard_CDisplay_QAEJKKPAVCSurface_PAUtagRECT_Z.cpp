@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -38,6 +39,8 @@ int __thiscall CDisplay::BltToBoard(
   v15 = -1;
   v14[0] = v9;
   v10 = v9;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v13);
+  reinterpret_cast<Helpers::CLogBlock*>(v13)->~CLogBlock();
   return v10;
 }
+
+#endif

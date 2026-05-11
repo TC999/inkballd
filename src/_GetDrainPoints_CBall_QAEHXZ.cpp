@@ -1,16 +1,10 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
-    extern int DrainPoints[256]; // Global array
+extern int DrainPoints[256]; // Global array
 }
 
 };
@@ -22,6 +16,8 @@ int* __thiscall CBall::GetDrainPoints(CBall *this)
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetDrainPoints", 0);
     drain_point_array = &DrainPoints[this->drain_point_index];
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return drain_point_array;
 }
+
+#endif

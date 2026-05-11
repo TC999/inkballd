@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ int __stdcall CheckForBallCollisionWithInk(CBall*a1)
     v1 = 1;
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v1;
 }
+
+#endif

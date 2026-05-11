@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -15,3 +16,5 @@ CBall* __thiscall CBall::scalar_deleting_destructor(CBall *this, char should_del
         operator delete(this);
     return this;
 }
+
+#endif

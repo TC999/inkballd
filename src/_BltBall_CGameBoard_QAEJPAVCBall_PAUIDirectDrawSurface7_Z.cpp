@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -23,6 +24,8 @@ int __thiscall CGameBoard::BltBall(CGameBoard *this, struct tagRECT **a2, struct
   v12 = -1;
   v11[0] = v5;
   v6 = v5;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
   return v6;
 }
+
+#endif

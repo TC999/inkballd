@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstdarg>
@@ -100,3 +101,5 @@ LABEL_15:
       return result;
     }
 }
+
+#endif

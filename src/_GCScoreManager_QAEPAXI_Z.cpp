@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,3 +12,5 @@ CScoreManager *__thiscall CScoreManager::`scalar deleting destructor'(CScoreMana
     operator delete(this);
   return this;
 }
+
+#endif

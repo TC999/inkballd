@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,5 +14,7 @@ void __stdcall AddRLColoredWallToList(CBoardTileRLColored*a1)
   v2 = 0;
   CGameBoard::AddRLColoredWallToList(g_pCGameBoard, a1);
   v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

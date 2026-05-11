@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,6 +12,8 @@ CBall*__thiscall CGameBoard::GetBall(CGameBoard *this, int a2)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CGameBoard::GetBall", 0);
   v3 = *((uint32_t *)this + a2 + 657);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return (CBall*)v3;
 }
+
+#endif

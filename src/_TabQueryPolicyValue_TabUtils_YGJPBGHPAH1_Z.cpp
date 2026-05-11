@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -87,6 +88,8 @@ extern "C" {
       WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xAu, &stru_1003974, 3);
   }
   return_code = error_code;
-  Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
   return return_code;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -43,5 +44,7 @@ void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
   v7[0] = v3;
   ReleaseInkBufferHDC(v6);
   v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

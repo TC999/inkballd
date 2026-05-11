@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -55,5 +56,7 @@ void __thiscall CTileManager::DrawToSurface(CTileManager *this)
   }
   AddDisplayUpdateRect((struct tagRECT *)((char*)v16 + 20));
   v19 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v14);
+  reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
 }
+
+#endif

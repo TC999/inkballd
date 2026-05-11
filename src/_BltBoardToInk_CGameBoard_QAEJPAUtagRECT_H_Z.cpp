@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,6 +18,8 @@ int __thiscall CGameBoard::BltBoardToInk(CGameBoard *this, struct tagRECT *a2, i
   CDisplay::ClearInk(g_pDisplay, a2, a3);
   v3 = v6[0];
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
+
+#endif

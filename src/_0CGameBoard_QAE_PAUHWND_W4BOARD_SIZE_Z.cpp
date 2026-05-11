@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -129,6 +130,8 @@ LABEL_6:
     v4 = CTimeManager::CTimeManager(v16);
   v23 = -1;
   this[2479] = v4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v20);
+  reinterpret_cast<Helpers::CLogBlock*>(v20)->~CLogBlock();
   return this;
 }
+
+#endif

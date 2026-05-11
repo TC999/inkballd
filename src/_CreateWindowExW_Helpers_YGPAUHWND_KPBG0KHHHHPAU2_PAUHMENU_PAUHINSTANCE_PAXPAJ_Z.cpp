@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -50,6 +51,8 @@ HWND __stdcall Helpers::CreateWindowExW(
   }
   if ( a13 )
     *a13 = *(uint32_t *)v18;
-  Helpers::CLogBlock::~CLogBlock(v17);
+  reinterpret_cast<Helpers::CLogBlock*>(v17)->~CLogBlock();
   return Window;
 }
+
+#endif

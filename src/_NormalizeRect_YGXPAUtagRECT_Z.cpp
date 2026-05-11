@@ -22,5 +22,5 @@ void __stdcall NormalizeRect(struct tagRECT *a1)
   bottom = a1->bottom;
   if ( a1->top > bottom )
     a1->top = bottom;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }

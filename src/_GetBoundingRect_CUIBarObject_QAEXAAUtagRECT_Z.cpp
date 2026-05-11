@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -10,5 +11,7 @@ void __thiscall CUIBarObject::GetBoundingRect(CUIBarObject *this, struct tagRECT
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CUIBarObject::GetBoundingRect", 0);
   *a2 = *(struct tagRECT *)(reinterpret_cast<char*>(this) + 20);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

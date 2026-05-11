@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -31,6 +32,8 @@ int __stdcall Helpers::LoadStringW(
   }
   if ( a5 )
     *a5 = *(uint32_t *)v10;
-  Helpers::CLogBlock::~CLogBlock(v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return StringW;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -18,5 +19,7 @@ void __thiscall CGameBoard::AddDisplayUpdateRect(CGameBoard *this, struct tagREC
     *((uint32_t *)this + 4 * *((uint32_t *)this + 1018) + 1020) = a2->top;
     *((uint32_t *)this + 4 * (*((uint32_t *)this + 1018))++ + 1022) = a2->bottom;
   }
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

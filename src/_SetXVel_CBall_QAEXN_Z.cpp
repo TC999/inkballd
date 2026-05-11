@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,5 +16,7 @@ void __thiscall CBall::SetXVel(CBall *this, long double a2)
   else
     v3 = a2;
   *((long double *)this + 8) = v3;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

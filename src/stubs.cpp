@@ -118,7 +118,7 @@ extern "C" {
     int __cdecl AddRLColoredWallToList(void* wall_tile) { return 0; }
     
     // System function stubs
-    int __cdecl _CxxThrowException(void* pExceptionObject, void* pThrowInfo) { return 0; }
+    // _CxxThrowException is provided by the compiler - cannot be redefined with extern "C"
     int __cdecl _time(int* timer) { return 0; }
     void __cdecl _srand(unsigned int seed) { }
     
@@ -237,4 +237,50 @@ namespace Helpers {
     CLogBlock::~CLogBlock() {
         // Stub implementation
     }
+}
+
+// ============================================================================
+// Linker symbol stubs - extern variables and functions that need definitions
+// ============================================================================
+
+// WPP / ETW externs
+uint64_t WPP_GLOBAL_Control = 0;
+const GUID* WPP_REGISTRATION_GUIDS = nullptr;
+const GUID stru_10036F8 = {};
+const GUID stru_1003520 = {};
+uint32_t unk_10B26E0 = 0;
+const wchar_t* stru_1002CD8 = L"";
+const wchar_t* SubKey = L"";
+const wchar_t* ValueName = L"";
+
+// Win32 globals
+wchar_t g_szAppName[256] = L"InkBall";
+LRESULT __stdcall MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    return DefWindowProcW(hWnd, msg, wParam, lParam);
+}
+
+// CRT externs
+extern "C" {
+    int _newmode = 0;
+    int _dowildcard = 0;
+    int unk_10D2F20 = 0;
+    int unk_10D2F28 = 0;
+    int unk_10D2F24 = 0;
+}
+
+// ETW stubs
+ULONG __stdcall RegisterTraceGuidsW(WMIDPREQUEST callback, void* context, const GUID* guid, ULONG count, TRACE_GUID_REGISTRATION* reg, ...) {
+    return 0;
+}
+
+// Registry helper stubs
+int __cdecl CreateInkballKey() { return 0; }
+
+// CRT helper stubs
+extern "C" int __cdecl ___wgetmainargs(int* argc, int* argv, int* envp, int dowildcard, int* newmode) {
+    *argc = 1;
+    *argv = 0;
+    *envp = 0;
+    *newmode = 0;
+    return 0;
 }

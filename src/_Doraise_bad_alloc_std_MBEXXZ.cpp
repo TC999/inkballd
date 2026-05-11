@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -17,3 +18,5 @@ extern "C" void* _TI2_AVbad_alloc_std__; // Forward declaration of throw info
     std::bad_alloc::bad_alloc(reinterpret_cast<std::bad_alloc*>(exception_object), this);
     _CxxThrowException(exception_object, &_TI2_AVbad_alloc_std__);
 }
+
+#endif

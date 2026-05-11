@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -174,5 +175,7 @@ LABEL_15:
   v28 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   (*v27)(v26, v42, v41, v28, v33, 0);
   v43 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v35);
+  reinterpret_cast<Helpers::CLogBlock*>(v35)->~CLogBlock();
 }
+
+#endif

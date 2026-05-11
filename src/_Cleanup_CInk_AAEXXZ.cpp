@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -32,5 +33,7 @@ void __thiscall CInk::Cleanup(CInk *this)
   g_pIInkManager = 0;
   FreeCursorStroke();
   v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,5 +18,7 @@ void __thiscall CGameManager::~CGameManager(CGameManager *this)
     g_pCGameBoard = 0;
   }
   v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

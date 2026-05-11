@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,6 +14,8 @@ BOOL __stdcall CBoardTile::CareAboutCollisions(int a1, int a2)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CBoardTile::CareAboutCollisions", 0);
   v2 = *(uint32_t *)(a1 + 140) != 0;
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
+
+#endif

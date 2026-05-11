@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -29,6 +30,8 @@ int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
   v9 = -1;
   v5 = v4;
   v8[0] = v4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v5;
 }
+
+#endif

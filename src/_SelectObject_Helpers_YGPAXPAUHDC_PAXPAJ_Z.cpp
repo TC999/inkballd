@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ HGDIOBJ __stdcall Helpers::SelectObject(HDC hdc, HGDIOBJ h, uint32_t *a3, int*a4
   }
   if ( a3 )
     *a3 = *(uint32_t *)v8;
-  Helpers::CLogBlock::~CLogBlock(v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v4;
 }
+
+#endif

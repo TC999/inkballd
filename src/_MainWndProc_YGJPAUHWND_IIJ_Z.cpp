@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -270,7 +271,7 @@ LABEL_30:
       PostQuitMessage(0);
 LABEL_19:
       v28 = -1;
-      Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v21);
+      reinterpret_cast<Helpers::CLogBlock*>(v21)->~CLogBlock();
       return v4;
     case 3u:
       CGameBoard::UpdateBounds(g_pCGameBoard);
@@ -301,6 +302,8 @@ LABEL_80:
   EndPaint(v23, &Paint);
 LABEL_53:
   v28 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v21);
+  reinterpret_cast<Helpers::CLogBlock*>(v21)->~CLogBlock();
   return 0;
 }
+
+#endif

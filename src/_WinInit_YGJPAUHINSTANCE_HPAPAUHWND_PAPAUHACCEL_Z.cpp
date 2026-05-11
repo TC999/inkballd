@@ -28,16 +28,16 @@ extern "C" {
       accel_ptr = hAccel;
       return_code = 0;
       log_error_code = 0;
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "WinInit", &log_error_code);
+      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "WinInit", 0);
       cleanup_code = 0;
       wc.cbSize = sizeof(WNDCLASSEXW);
       wc.lpszClassName = g_szAppName;
-      wc.lpfnWndProc = (WNDPROC)MainWndProc;
+      wc.lpfnWndProc = MainWndProc;
       wc.style = CS_HREDRAW | CS_VREDRAW;
       wc.hInstance = hInstance;
-      wc.hIcon = Helpers::LoadIconW(hInstance, IDI_APPLICATION, 0, unused1);
-      wc.hIconSm = Helpers::LoadIconW(hInstance, IDI_APPLICATION, 0, unused2);
-      wc.hCursor = Helpers::LoadCursorW(0, IDC_ARROW, 0, unused3);
+      wc.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_APPLICATION));
+      wc.hIconSm = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_APPLICATION));
+      wc.hCursor = LoadCursorW(nullptr, IDC_ARROW);
       wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       wc.lpszMenuName = (LPCWSTR)102;
       wc.cbClsExtra = 0;
@@ -45,18 +45,18 @@ extern "C" {
       if (RegisterClassExW(&wc))
       {
         accel_handle = LoadAcceleratorsW(hInstance, (LPCWSTR)0x67);
-        if (!accel_handle && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+        if (!accel_handle && WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
         {
           last_error = GetLastError();
-          WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xBu, &stru_1003520, last_error);
+          WPP_SF_d(WPP_GLOBAL_Control + 2, 0xBu, &stru_1003520, last_error);
         }
-        Helpers::LoadStringW(0, (HINSTANCE)0x3A98, title_buffer, reinterpret_cast<uint16_t*>(0x100), 0, unused4);
+        LoadStringW(hInstance, 0x3A98, title_buffer, 262);
         window_rect.left = 0;
         window_rect.top = 0;
         window_rect.right = 544;
         window_rect.bottom = 586;
         AdjustWindowRectEx(&window_rect, WS_OVERLAPPEDWINDOW, 1, 0);
-        window_handle = Helpers::CreateWindowExW(
+        window_handle = CreateWindowExW(
                           0,
                           g_szAppName,
                           title_buffer,
@@ -67,10 +67,8 @@ extern "C" {
                           window_rect.bottom - window_rect.top,
                           0,
                           0,
-                          (HMENU)hInstance,
-                          0,
-                          0,
-                          unused5);
+                          hInstance,
+                          nullptr);
         if (window_handle)
         {
           *window_ptr = window_handle;
@@ -78,16 +76,16 @@ extern "C" {
           goto LABEL_6;
         }
       }
-      else if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+      else if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
       {
         error_char = GetLastError();
-        WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xAu, &stru_1003520, error_char);
+        WPP_SF_d(WPP_GLOBAL_Control + 2, 0xAu, &stru_1003520, error_char);
       }
       return_code = -2147467259;
 LABEL_6:
       cleanup_code = -1;
       log_error_code = return_code;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return return_code;
     }
 }

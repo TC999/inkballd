@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -198,5 +199,7 @@ LABEL_8:
   (*(void (__thiscall **)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v37);
+  reinterpret_cast<Helpers::CLogBlock*>(v37)->~CLogBlock();
 }
+
+#endif

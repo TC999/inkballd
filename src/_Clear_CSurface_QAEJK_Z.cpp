@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -32,6 +33,8 @@ int __thiscall CSurface::Clear(CSurface *this, uint32_t a2)
   v10 = -1;
   v5 = v4;
   v9[0] = v4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v5;
 }
+
+#endif

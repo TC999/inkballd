@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ HGLOBAL __stdcall Helpers::LoadResource(HMODULE hModule, HRSRC hResInfo, HRSRC a
   }
   if ( a3 )
     *(uint32_t *)a3 = *(uint32_t *)(HRSRC)v8;
-  Helpers::CLogBlock::~CLogBlock(v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return Resource;
 }
+
+#endif

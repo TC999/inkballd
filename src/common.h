@@ -4,13 +4,8 @@
 #include <windows.h>
 #include <d3d9types.h>
 
+// CLogBlock now defined in global_types.h
 // Forward declarations for helper classes
-namespace Helpers {
-    struct CLogBlock {
-        CLogBlock(void* p, const char* name, int line);
-        ~CLogBlock();
-    };
-}
 
 // Game class forward declarations
 struct CBitmapRects;
@@ -1950,8 +1945,10 @@ extern "C" {
     int __cdecl sub_45A0F0(int a1);
 }
 
-// Helper function implementations
+// Helper function implementations (CLogBlock now in global_types.h)
+#if 0
 namespace Helpers {
     inline CLogBlock::CLogBlock(void* p, const char* name, int line) {}
     inline CLogBlock::~CLogBlock() {}
 }
+#endif

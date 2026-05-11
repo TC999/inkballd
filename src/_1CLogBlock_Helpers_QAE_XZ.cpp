@@ -1,8 +1,9 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
 extern "C" {
-    void Helpers::CLogBlock::~CLogBlock(const char** this_ptr)
+    void reinterpret_cast<Helpers::CLogBlock*>(const char** this_ptr)->~CLogBlock()
     {
       const char* log_info; // eax
       int error_code; // ecx
@@ -27,3 +28,5 @@ LABEL_6:
         WPP_SF_s(*reinterpret_cast<uint64_t*>(control_ptr) + 2, 0xCu, &stru_10036F8, this_ptr[1]);
     }
 }
+
+#endif

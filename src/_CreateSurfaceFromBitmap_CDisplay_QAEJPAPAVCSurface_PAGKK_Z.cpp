@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -85,6 +86,8 @@ uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
     v21[0] = -2147024809;
   }
   v22 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v18);
+  reinterpret_cast<Helpers::CLogBlock*>(v18)->~CLogBlock();
   return v6;
 }
+
+#endif

@@ -181,6 +181,89 @@ struct BadAllocLayout {
 };
 
 // ============================================================================
+// WPP / ETW tracing types
+// ============================================================================
+typedef uint64_t TRACEHANDLE;
+typedef ULONG WMIDPREQUESTCODE;
+typedef ULONG(__stdcall* WMIDPREQUEST)(WMIDPREQUESTCODE, void*, void*, void*);
+
+struct TRACE_GUID_REGISTRATION {
+    uint64_t RegHandle;
+    const GUID* Guid;
+};
+
+struct WppControl {
+    uint32_t unknown1;
+    uint32_t vtable;
+    uint32_t flags1;
+    uint32_t flags2;
+    uint32_t reserved1;
+    uint32_t unknown2;
+    uint32_t padding1;
+    uint32_t unknown3;
+    uint32_t flags3;
+    uint32_t flags4;
+    uint32_t reserved2;
+    uint32_t unknown4;
+};
+
+#define WMI_ENABLE_EVENTS   1
+#define WMI_DISABLE_EVENTS  0
+
+// ============================================================================
+// CRegistryManager struct definition
+// ============================================================================
+struct CRegistryManager {
+    void* vftable;
+    const wchar_t* SubKey;
+    const wchar_t* ValueName;
+};
+
+// ============================================================================
+// External data references
+// ============================================================================
+extern "C" {
+    extern uint64_t WPP_GLOBAL_Control;
+    extern const GUID* WPP_REGISTRATION_GUIDS;
+    extern uint32_t unk_10B26E0;
+    extern const wchar_t* stru_1002CD8;
+    extern const wchar_t* SubKey;
+    extern const wchar_t* ValueName;
+    extern const GUID stru_10036F8;
+    extern const GUID stru_1003520;
+    extern wchar_t g_szAppName[];
+    extern LRESULT __stdcall MainWndProc(HWND, UINT, WPARAM, LPARAM);
+}
+
+// ============================================================================
+// WPP / ETW function declarations
+// ============================================================================
+extern "C" {
+    ULONG __stdcall TraceMessage(TRACEHANDLE, ULONG, const GUID*, USHORT, ...);
+    TRACEHANDLE __stdcall GetTraceLoggerHandle(void* buffer);
+    uint8_t __stdcall GetTraceEnableLevel(TRACEHANDLE handle);
+    ULONG __stdcall GetTraceEnableFlags(TRACEHANDLE handle);
+    ULONG __stdcall RegisterTraceGuidsW(WMIDPREQUEST, void*, const GUID*, ULONG, TRACE_GUID_REGISTRATION*, ...);
+    ULONG __stdcall UnregisterTraceGuids(TRACEHANDLE);
+    uint32_t __stdcall WPP_SF_d(TRACEHANDLE, uint16_t, const GUID*, char);
+}
+
+// ============================================================================
+// Registry helper function declarations
+// ============================================================================
+extern "C" {
+    BOOL __stdcall WriteRegValueDWORD(HKEY key, const wchar_t* sub_key, const wchar_t* value_name, uint8_t data);
+    int __cdecl CreateInkballKey();
+}
+
+// ============================================================================
+// CRT helper function declarations
+// ============================================================================
+extern "C" {
+    int __cdecl ___wgetmainargs(int*, int*, int*, int, int*);
+}
+
+// ============================================================================
 // Sub function declarations (extern "C" for C linkage)
 // ============================================================================
 extern "C" {

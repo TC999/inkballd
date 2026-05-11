@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,6 +16,8 @@ BOOL __stdcall PointInRect(LONG a1, LONG a2, struct tagRECT *a3)
   NormalizeRect(a3);
   v3 = a1 >= a3->left && a1 < a3->right && a2 >= a3->top && a2 < a3->bottom;
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
+
+#endif

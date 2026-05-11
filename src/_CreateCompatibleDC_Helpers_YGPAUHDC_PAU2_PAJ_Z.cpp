@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ HDC __stdcall Helpers::CreateCompatibleDC(HDC hdc, HDC a2, int*a3)
   }
   if ( a2 )
     *(uint32_t *)a2 = *(uint32_t *)(HDC)v7;
-  Helpers::CLogBlock::~CLogBlock(v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return CompatibleDC;
 }
+
+#endif

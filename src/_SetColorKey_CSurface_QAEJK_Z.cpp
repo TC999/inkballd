@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -34,6 +35,8 @@ int __thiscall CSurface::SetColorKey(CSurface *this, COLORREF a2)
   v11 = -1;
   v4 = v3;
   v10[0] = v3;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v4;
 }
+
+#endif

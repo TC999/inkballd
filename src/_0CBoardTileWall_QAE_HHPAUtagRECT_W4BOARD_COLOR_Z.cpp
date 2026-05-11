@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -16,7 +17,9 @@ extern "C" {
       *reinterpret_cast<uint32_t*>(this_ptr + 17) = 6;
       *reinterpret_cast<uint32_t*>(this_ptr + 18) = 4;
       *reinterpret_cast<uint32_t*>(this_ptr + 11) = color;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
+
+#endif

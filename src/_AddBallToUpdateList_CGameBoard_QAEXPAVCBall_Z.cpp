@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,5 +17,7 @@ void __thiscall CGameBoard::AddBallToUpdateList(CGameBoard *this, CBall*a2)
     *((uint32_t *)this + v3 + 302) = a2;
     ++*((uint32_t *)this + 301);
   }
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

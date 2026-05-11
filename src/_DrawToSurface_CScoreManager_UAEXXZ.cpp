@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -90,5 +91,7 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   v25->BltFast((IDirectDrawSurface7 *)v35, v17 - 9, 13, v26, (LPRECT)v33, 0);
   AddDisplayUpdateRect((struct tagRECT *)((char*)v37 + 20));
   v39 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v34);
+  reinterpret_cast<Helpers::CLogBlock*>(v34)->~CLogBlock();
 }
+
+#endif

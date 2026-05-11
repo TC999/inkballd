@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -29,5 +30,7 @@ void __thiscall CTileManager::SetTiles(CTileManager *this, uint32_t a2)
     *((uint32_t *)this + 10) = 0;
   }
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

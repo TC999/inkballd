@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -36,6 +37,8 @@ int __stdcall CheckForBallCollisionWithBall(CBall*a1)
     while ( v2 < *((uint32_t *)g_pCGameBoard + 656) );
   }
   v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v7;
 }
+
+#endif

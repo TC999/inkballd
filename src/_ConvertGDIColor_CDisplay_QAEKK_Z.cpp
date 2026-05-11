@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -67,6 +68,8 @@ int __thiscall CDisplay::ConvertGDIColor(CDisplay *this, COLORREF color)
     v3 = v13;
   }
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+  reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return v3;
 }
+
+#endif

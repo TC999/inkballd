@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,6 +14,8 @@ int __stdcall CSink::CursorMove(CSink *this, uint32_t a2, uint32_t a3, HWND a4, 
   v9 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CSink::CursorMove", &v9);
   v6 = v9;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v6;
 }
+
+#endif

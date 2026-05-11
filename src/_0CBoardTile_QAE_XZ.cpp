@@ -1,15 +1,9 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 };
@@ -24,6 +18,8 @@ CBoardTile* __thiscall CBoardTile::CBoardTile(CBoardTile *this)
     this->vftable = &CBoardTile_vftable;
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTile::CBoardTile", 0);
     this->tile_type = 0;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return this;
 }
+
+#endif

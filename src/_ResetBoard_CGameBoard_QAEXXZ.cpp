@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -52,5 +53,7 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
   CDisplay::ClearInk(g_pDisplay, 0, 0);
   CDisplay::Clear(g_pDisplay, 0);
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

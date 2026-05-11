@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -30,6 +31,8 @@ int __thiscall CGameBoard::ShadowizeTile(CInk **this, CBoardTile*a2, int a3)
     v4 = v5;
   }
   v10 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v4;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -62,6 +63,8 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
     (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+  reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return v5;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -15,7 +16,9 @@ extern "C" {
       *reinterpret_cast<uint32_t*>(this_ptr + 19) = x;
       *reinterpret_cast<uint32_t*>(this_ptr + 20) = y;
       *reinterpret_cast<uint32_t*>(this_ptr + 8) = rect_param;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
+
+#endif

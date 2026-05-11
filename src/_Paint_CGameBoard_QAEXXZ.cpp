@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -23,5 +24,7 @@ void __thiscall CGameBoard::Paint(CGameBoard *this)
     CGameBoard::DisplayFrame(this, 1, 1);
   }
   v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

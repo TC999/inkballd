@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -33,6 +34,8 @@ int __thiscall CSurface::Create(LPDIRECTDRAWSURFACE7 *this, struct IDirectDraw7 
   }
   v7 = *(uint32_t *)v10;
   v11 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v7;
 }
+
+#endif

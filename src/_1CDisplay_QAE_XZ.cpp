@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include "common.h"
@@ -17,6 +18,8 @@ extern "C" {
       destroy_result = CDisplay::DestroyObjects(this_ptr);
       cleanup_flag = -1;
       error_code[0] = destroy_result;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     }
 }
+
+#endif

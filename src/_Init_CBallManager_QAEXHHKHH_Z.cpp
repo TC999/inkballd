@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -19,5 +20,7 @@ void __thiscall CBallManager::Init(CBallManager *this, int a2, int a3, uint32_t 
   *((uint32_t *)this + 323) = 0;
   *((uint32_t *)this + 321) = 1;
   *((uint32_t *)this + 322) = 4000;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
 }
+
+#endif

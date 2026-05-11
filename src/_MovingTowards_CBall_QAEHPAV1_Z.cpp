@@ -1,15 +1,9 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 };
@@ -22,6 +16,8 @@ bool __thiscall CBall::MovingTowards(CBall *this, CBall *other_ball)
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::MovingTowards", 0);
     result = ((other_ball->position_y - this->position_y) * this->velocity_y +
               (other_ball->position_x - this->position_x) * this->velocity_x) > 0.0;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return result;
 }
+
+#endif

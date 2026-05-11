@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,6 +17,8 @@ BOOL __stdcall PointIntersectsWithTileDeflect(const struct tagPOINT *a1, const C
   v2 = CGameBoard::PointIntersectsWithTile(g_pCGameBoard, a1, a2, 1);
   v6 = -1;
   v3 = v2;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
+
+#endif

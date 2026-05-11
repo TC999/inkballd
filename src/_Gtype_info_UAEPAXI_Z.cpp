@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,3 +12,5 @@ type_info *__thiscall type_info::`scalar deleting destructor'(type_info *this, c
     operator delete(this);
   return this;
 }
+
+#endif

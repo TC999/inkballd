@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -23,6 +24,8 @@ int __thiscall CTileManager::InitSurface(CTileManager *this)
   v9 = -1;
   v8[0] = Surface;
   v3 = Surface;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v3;
 }
+
+#endif

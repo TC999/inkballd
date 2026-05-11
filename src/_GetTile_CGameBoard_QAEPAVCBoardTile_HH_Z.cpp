@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -14,6 +15,8 @@ CBoardTile*__thiscall CGameBoard::GetTile(CGameBoard *this, int a2, int a3)
        + (a2 - *((uint32_t *)this + 2467)) / *((uint32_t *)this + 2472)
        + *((uint32_t *)this + 2469) * ((a3 - *((uint32_t *)this + 2468)) / *((uint32_t *)this + 2472))
        + 721);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return (CBoardTile*)v4;
 }
+
+#endif

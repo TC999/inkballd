@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -14,7 +15,9 @@ extern "C" {
       *reinterpret_cast<uint32_t*>(this_ptr + 4) = 0;
       *reinterpret_cast<uint32_t*>(this_ptr + 5) = 0;
       *reinterpret_cast<uint32_t*>(this_ptr + 6) = 0;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
+
+#endif

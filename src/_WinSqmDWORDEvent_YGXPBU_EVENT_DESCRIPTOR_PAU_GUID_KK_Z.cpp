@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <windows.h>
 
+#if 0
 extern "C" {
     void __stdcall _WinSqmDWORDEvent(const EVENT_DESCRIPTOR* event_desc, GUID* guid, char param1, char param2)
     {
@@ -23,4 +24,9 @@ extern "C" {
         WinSqmEventWrite(event_desc, 3, data_buffer);
       }
     }
+}
+#endif
+
+extern "C" {
+    void __stdcall _WinSqmDWORDEvent(void*, void*, char, char) { }
 }

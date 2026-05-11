@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -120,6 +121,8 @@ LABEL_27:
   v4 = NewSurfaces;
 LABEL_28:
   v17 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v13);
+  reinterpret_cast<Helpers::CLogBlock*>(v13)->~CLogBlock();
   return v4;
 }
+
+#endif

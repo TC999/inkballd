@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -10,5 +11,7 @@ void __stdcall SetBoardActiveState(int a1)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v1, "SetBoardActiveState", 0);
   *((uint32_t *)g_pCGameManager + 1) = a1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

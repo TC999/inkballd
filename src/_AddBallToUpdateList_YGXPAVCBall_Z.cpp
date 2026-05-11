@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -11,6 +12,8 @@ extern "C" {
       cleanup_flag = 0;
       CGameBoard::AddBallToUpdateList(g_pCGameBoard, ball);
       cleanup_flag = -1;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     }
 }
+
+#endif

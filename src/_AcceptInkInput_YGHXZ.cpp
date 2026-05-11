@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 
@@ -9,7 +10,9 @@ extern "C" {
 
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "AcceptInkInput", 0);
       result = *reinterpret_cast<uint32_t*>(*reinterpret_cast<uint32_t*>(g_pCGameBoard + 2481) + 16);
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return result;
     }
 }
+
+#endif

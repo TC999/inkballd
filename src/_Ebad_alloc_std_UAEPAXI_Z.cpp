@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -21,3 +22,5 @@ std::bad_alloc* __thiscall std::bad_alloc::vector_deleting_destructor(std::bad_a
         operator delete(this);
     return this;
 }
+
+#endif

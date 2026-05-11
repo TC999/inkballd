@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -34,6 +35,8 @@ int __thiscall CDisplay::Clear(CDisplay *this, uint32_t a2)
   v11 = -1;
   v5 = v4;
   v10[0] = v4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v5;
 }
+
+#endif

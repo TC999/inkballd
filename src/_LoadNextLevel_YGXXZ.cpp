@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -20,5 +21,7 @@ void __stdcall LoadNextLevel()
     CBoardManager::LoadRandomBonusBoardFromResources((CBoardManager *)&g_CBoardManager, &Src, v2);
   CGameManager::LoadBoard(g_pCGameManager, &Src, v2[0]);
   v3 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
+
+#endif

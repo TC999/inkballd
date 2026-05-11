@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -100,5 +101,7 @@ LABEL_11:
 LABEL_12:
     flag = -1;
     iBonusBoardListCount = bonus_board_count;
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
+
+#endif

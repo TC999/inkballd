@@ -14,12 +14,12 @@ extern "C" {
       uint32_t buffer_size; // eax
       int default_size; // [esp-4h] [ebp-4h]
 
-      display_message = message;
+      display_message = reinterpret_cast<const wchar_t*>(message);
       if (message)
       {
         if (*message)
         {
-          buffer_size = 2 * wcslen(message) + 2;
+          buffer_size = 2 * wcslen(reinterpret_cast<const wchar_t*>(message)) + 2;
           goto LABEL_7;
         }
         default_size = 14;

@@ -6,14 +6,11 @@ extern "C" {
     {
       int result; // eax
 
-      // Define a structure to make the code more readable
-      };
-
       WppControl* ctrl = reinterpret_cast<WppControl*>(control_array);
       
       // Initialize the control structure
       ctrl->unknown1 = 0;
-      ctrl->vtable = &unk_10B26E0;
+      ctrl->vtable = reinterpret_cast<uint32_t>(&unk_10B26E0);
       ctrl->flags1 = 1;
       ctrl->flags2 = 2;
       ctrl->reserved1 = 0;

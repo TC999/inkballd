@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,3 +12,5 @@ CInk *__thiscall CInk::`scalar deleting destructor'(CInk *this, char a2)
     operator delete(this);
   return this;
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ BOOL __stdcall Helpers::CloseHandle(HANDLE hObject, uint32_t *a2, int*a3)
   }
   if ( a2 )
     *a2 = *(uint32_t *)v7;
-  Helpers::CLogBlock::~CLogBlock(v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v3;
 }
+
+#endif

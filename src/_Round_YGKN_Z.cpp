@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,6 +18,8 @@ uint32_t __stdcall Round(double X)
   else
     v1 = _ceil(X);
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return (unsigned int64_t)v1;
 }
+
+#endif

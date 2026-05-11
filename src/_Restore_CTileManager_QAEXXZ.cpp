@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,5 +16,7 @@ void __thiscall CTileManager::Restore(CTileManager *this)
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
   (*(void (__thiscall **)(CTileManager *))(*(uint32_t *)this + 4))(this);
   v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

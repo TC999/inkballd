@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -16,6 +17,8 @@ int __thiscall CBoardTileRLColored::CareAboutCollisions(int*this, int a2, int a3
   else
     v4 = 2;
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v4;
 }
+
+#endif

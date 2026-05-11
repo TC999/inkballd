@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -25,6 +26,8 @@ BOOL __stdcall Helpers::GetWindowRect(HWND hWnd, struct tagRECT *lpRect, struct 
   }
   if ( a3 )
     a3->left = *(uint32_t *)v8;
-  Helpers::CLogBlock::~CLogBlock(v7);
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return WindowRect;
 }
+
+#endif

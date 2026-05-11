@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -85,3 +86,5 @@ LABEL_16:
   *(uint32_t *)(this + 4) = a2;
   return v12;
 }
+
+#endif

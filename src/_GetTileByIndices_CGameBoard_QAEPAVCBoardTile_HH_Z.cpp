@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -11,6 +12,8 @@ CBoardTile*__thiscall CGameBoard::GetTileByIndices(CGameBoard *this, int a2, int
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::GetTileByIndices", 0);
   v4 = *((uint32_t *)this + a2 + a3 * *((uint32_t *)this + 2469) + 721);
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return (CBoardTile*)v4;
 }
+
+#endif

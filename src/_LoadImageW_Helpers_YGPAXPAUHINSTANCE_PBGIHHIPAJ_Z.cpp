@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -33,6 +34,8 @@ HANDLE __stdcall Helpers::LoadImageW(
   }
   if ( a7 )
     *a7 = *(uint32_t *)v12;
-  Helpers::CLogBlock::~CLogBlock(v11);
+  reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return ImageW;
 }
+
+#endif

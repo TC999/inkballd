@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
@@ -31,7 +32,7 @@ extern "C" {
       hi_score = CRegistryManager::ReadHiScore(reinterpret_cast<CRegistryManager*>(&g_CRegistryManager));
       cleanup_flag = -1;
       *reinterpret_cast<uint32_t*>(this_ptr + 9) = hi_score;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return this_ptr;
     }
 }
@@ -40,6 +41,8 @@ extern "C" {
   HiScore = CRegistryManager::ReadHiScore((CRegistryManager *)&g_CRegistryManager);
   v6 = -1;
   *((_DWORD *)this + 9) = HiScore;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return this;
 }
+
+#endif

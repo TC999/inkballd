@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -98,5 +99,7 @@ void __thiscall CTimeManager::Restore(CTimeManager *this)
   v21 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   v20->BltFast(v31, v6 - 9, v36, v21, (LPRECT)v29, 0);
   v37 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v30);
+  reinterpret_cast<Helpers::CLogBlock*>(v30)->~CLogBlock();
 }
+
+#endif

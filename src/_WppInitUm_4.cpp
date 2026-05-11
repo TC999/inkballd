@@ -3,6 +3,8 @@
 #include <windows.h>
 
 extern "C" {
+    uint32_t __stdcall WppControlCallback(WMIDPREQUESTCODE, uint16_t*, uint32_t*, void*);
+
     uint32_t __stdcall WppInitUm(int unused_param)
     {
       uint64_t* control_ptr; // esi
@@ -11,8 +13,8 @@ extern "C" {
       uint32_t result; // eax
       TRACE_GUID_REGISTRATION trace_guid_reg; // [esp+8h] [ebp-8h] BYREF
 
-      control_ptr = reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control);
-      guid_ptr = reinterpret_cast<const GUID**>(&WPP_REGISTRATION_GUIDS);
+      control_ptr = &WPP_GLOBAL_Control;
+      guid_ptr = const_cast<const GUID**>(reinterpret_cast<const GUID* const*>(&WPP_REGISTRATION_GUIDS));
       while (control_ptr)
       {
         current_guid = *guid_ptr;

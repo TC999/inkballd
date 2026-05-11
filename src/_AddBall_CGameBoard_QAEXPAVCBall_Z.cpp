@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -19,5 +20,7 @@ void __thiscall CGameBoard::AddBall(CGameBoard *this, CBall*a2)
     *((uint32_t *)this + (*v3)++ + 657) = a2;
     ++*((uint32_t *)this + 2473);
   }
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

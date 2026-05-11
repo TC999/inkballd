@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -13,5 +14,7 @@ void __stdcall PerformStandardWallDeflection(CBoardTile*a1, CBall*a2)
   v3 = 0;
   CBall::Collide(a2, PointIntersectsWithTileDeflect);
   v3 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }
+
+#endif

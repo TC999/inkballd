@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -19,5 +20,7 @@ void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3)
   Helpers::LoadStringW(0, a3, Text, (uint16_t *)0x1000, 0, v4);
   MessageBoxW(hWnd, Text, Caption, 0x10u);
   v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
+
+#endif

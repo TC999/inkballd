@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -40,5 +41,7 @@ void __stdcall CleanupTabletContexts()
   }
   CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetSize((int)&g_arrTCI, 0, -1);
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
@@ -37,14 +38,14 @@ extern "C" {
         CGameBoard::AddBall(g_pCGameBoard, ball);
         init_step = -1;
         error_code[0] = 0;
-        Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+        reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
         return 0;
       }
       else
       {
         init_step = -1;
         error_code[0] = -2147024882; // E_OUTOFMEMORY
-        Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+        reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
         return -2147024882;
       }
     }
@@ -64,14 +65,16 @@ extern "C" {
     CGameBoard::AddBall(g_pCGameBoard, v2);
     v7 = -1;
     v6[0] = 0;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
     return 0;
   }
   else
   {
     v7 = -1;
     v6[0] = -2147024882;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
     return -2147024882;
   }
 }
+
+#endif

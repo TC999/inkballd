@@ -3,7 +3,7 @@
 #include <windows.h>
 
 extern "C" {
-    BOOL __stdcall WriteRegValueDWORD(HKEY key, HKEY sub_key, HKEY value_name, uint8_t data)
+    BOOL __stdcall WriteRegValueDWORD(HKEY key, const wchar_t* sub_key, const wchar_t* value_name, uint8_t data)
     {
       BOOL result; // edi
       int* unused1; // [esp+0h] [ebp-28h]
@@ -16,13 +16,14 @@ extern "C" {
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "WriteRegValueDWORD", 0);
       cleanup_flag = 0;
       result = 0;
-      if (!Helpers::RegOpenKeyExW(key, sub_key, 0, 0x2001Fu, &result_key, 0, unused1))
+      if (!RegOpenKeyExW(key, sub_key, 0, 0x2001Fu, &result_key))
       {
-        result = Helpers::RegSetValueExW(result_key, value_name, 0, 4u, &data, 4u, 0, unused2) == 0;
-        Helpers::RegCloseKey(result_key, 0, unused3);
+        DWORD dwData = data;
+        result = RegSetValueExW(result_key, value_name, 0, 4u, reinterpret_cast<const BYTE*>(&dwData), 4u) == ERROR_SUCCESS;
+        RegCloseKey(result_key);
       }
       cleanup_flag = -1;
-      Helpers::CLogBlock::~CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer));
+      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return result;
     }
 }

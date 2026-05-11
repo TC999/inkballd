@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
@@ -95,3 +96,5 @@ extern "C" {
         }
     }
 }
+
+#endif

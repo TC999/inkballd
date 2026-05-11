@@ -1,16 +1,10 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
-    extern int BreakPoints[256]; // Global array
+extern int BreakPoints[256]; // Global array
 }
 
 };
@@ -22,6 +16,8 @@ int* __thiscall CBall::GetBreakWallPoints(CBall *this)
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetBreakWallPoints", 0);
     break_point_array = &BreakPoints[this->break_point_index];
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return break_point_array;
 }
+
+#endif

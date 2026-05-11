@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -86,3 +87,5 @@ extern "C" {
         return this_ptr;
     }
 }
+
+#endif

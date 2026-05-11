@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -51,5 +52,7 @@ void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRE
     v10 = *((double *)this + 11);
   }
   a2->bottom = v12 + (int)v10;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+  reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
 }
+
+#endif

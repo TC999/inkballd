@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -24,3 +25,5 @@ int __stdcall EnableClassicWispWithPtr(LPVOID *ppv)
   }
   return v1;
 }
+
+#endif

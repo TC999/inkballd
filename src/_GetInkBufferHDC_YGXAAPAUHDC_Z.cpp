@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -18,5 +19,7 @@ void __stdcall GetInkBufferHDC(HDC *a1)
   if ( InkBuffer )
     v3[0] = InkBuffer->lpVtbl->GetDC(InkBuffer, a1);
   v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }
+
+#endif

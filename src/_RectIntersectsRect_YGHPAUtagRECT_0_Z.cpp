@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -19,14 +20,16 @@ BOOL __stdcall RectIntersectsRect(struct tagRECT *a1, struct tagRECT *a2)
     || PointInRect(a1->left, a1->bottom, a2) )
   {
     v5 = -1;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
     return 1;
   }
   else
   {
     v3 = PointInRect(a1->right, a1->bottom, a2);
     v5 = -1;
-    Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
     return v3;
   }
 }
+
+#endif

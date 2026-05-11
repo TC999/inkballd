@@ -3,13 +3,6 @@
 #include <windows.h>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-    }
 }
 
 int __stdcall CalcUnsqrtDistance(POINT* point1, POINT* point2)
@@ -22,6 +15,6 @@ int __stdcall CalcUnsqrtDistance(POINT* point1, POINT* point2)
     distance_y_squared = point1->y - point2->y;
     distance_squared = distance_y_squared * distance_y_squared + 
                       (point1->x - point2->x) * (point1->x - point2->x);
-    Helpers::CLogBlock::~CLogBlock(&log_buffer);
+    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return distance_squared;
 }
