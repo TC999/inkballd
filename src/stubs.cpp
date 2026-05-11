@@ -28,12 +28,16 @@ extern "C" {
     void* g_pTabletManager = nullptr;
     void* g_pIRenderInk = nullptr;
     void* g_BoardData = nullptr;
+    void* BoardData = nullptr;
+    void* SQM_INCREMENT_DWORD = nullptr;
+    int iBoardSizeBytes = 0;
     void* g_pLastLoadedLevel = nullptr;
     void* g_CRegistryManager = nullptr;
     void* g_ptr = nullptr;
     
     // Global handles
     HWND g_hWnd = nullptr;
+    HINSTANCE g_hInst = nullptr;
     HINSTANCE g_hInstance = nullptr;
     RECT g_rcClient = {0};
     
@@ -226,6 +230,65 @@ extern "C" {
 }
 
 // ============================================================================
+// Missing function stubs (from ifdef'd-out _*.cpp files)
+// ============================================================================
+extern "C" {
+    int __stdcall CanRunInkball(int* a1) { (void)a1; return 1; }
+    void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3) { (void)hWnd; (void)uID; (void)a3; }
+    int __stdcall WinSqmIsOptedIn() { return 0; }
+    int __stdcall EnableClassicWispWithPtr(LPVOID* ppv) { (void)ppv; return 0; }
+    void* __cdecl new_oom_handler(unsigned int size) { (void)size; return 0; }
+    void __stdcall ExitBadCommandLine(HWND hWnd) { (void)hWnd; }
+    void __stdcall SetMenuChecks(HWND hWnd) { (void)hWnd; }
+}
+
+// ============================================================================
+// CBoardManager static method stubs
+// ============================================================================
+int CBoardManager::LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize) {
+    (void)manager; (void)name; (void)boardData; (void)boardSize;
+    return 0;
+}
+int CBoardManager::LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize) {
+    (void)manager; (void)boardData; (void)boardSize;
+    return 0;
+}
+void CBoardManager::SetDifficulty(CBoardManager* manager, uint32_t difficulty) {
+    (void)manager; (void)difficulty;
+}
+
+// ============================================================================
+// CGameManager standalone functions (replacing invalid static ctor/dtor)
+// ============================================================================
+extern "C" {
+    void* CGameManager_ctor(void* self, HWND hWnd) {
+        (void)self; (void)hWnd;
+        return self;
+    }
+    void CGameManager_dtor(void* self) {
+        (void)self;
+    }
+    int CGameManager_Init(void* self) {
+        (void)self;
+        return 0;
+    }
+    void CGameManager_LoadBoard(void* self, void* boardData, int boardSize) {
+        (void)self; (void)boardData; (void)boardSize;
+    }
+    void CGameManager_PerformGameUpdate(void* self) {
+        (void)self;
+    }
+}
+
+// ============================================================================
+// CRegistryManager member stubs
+// ============================================================================
+uint32_t CRegistryManager::ReadDifficulty(CRegistryManager* self) {
+    (void)self;
+    return 0;
+}
+
+// ============================================================================
 // Helper implementations
 // ============================================================================
 namespace Helpers {
@@ -237,6 +300,16 @@ namespace Helpers {
     CLogBlock::~CLogBlock() {
         // Stub implementation
     }
+
+    void UpdateWindow(HWND hWnd, int unused, int* param) {
+        (void)unused; (void)param;
+        ::UpdateWindow(hWnd);
+    }
+
+    void CloseHandle(HANDLE h, int unused, int* param) {
+        (void)unused; (void)param;
+        ::CloseHandle(h);
+    }
 }
 
 // ============================================================================
@@ -246,6 +319,9 @@ namespace Helpers {
 // WPP / ETW externs
 uint64_t WPP_GLOBAL_Control = 0;
 const GUID* WPP_REGISTRATION_GUIDS = nullptr;
+WppControl WPP_MAIN_CB = {};
+const GUID* WPP_ThisDir_CTLGUID_ControlGuid = nullptr;
+const GUID* WPP_ThisDir_CTLGUID_MobTabPerfTraceProvider = nullptr;
 const GUID stru_10036F8 = {};
 const GUID stru_1003520 = {};
 uint32_t unk_10B26E0 = 0;

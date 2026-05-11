@@ -6,6 +6,7 @@
 #include <ctime>
 #include <CommCtrl.h>
 #include <float.h>
+#include <new.h>
 #pragma comment(lib, "Comctl32.lib")
 
 extern "C" {
@@ -13,19 +14,20 @@ extern "C" {
     long wtol(const wchar_t* str);
     
     // External function declarations
-    extern int CanRunInkball(int* result);
-    extern void DispError(HWND hWnd, HINSTANCE hInstance, HINSTANCE hPrevInstance);
-    extern int WinSqmIsOptedIn();
-    extern void _WinSqmDWORDEvent(void* param1, int param2, int param3, int param4);
-    extern int InkBallRecovery(void* param1, int param2);
-    extern int EnableClassicWispWithPtr(LPVOID* ptr);
-    extern int WinInit(HINSTANCE hInstance, int nCmdShow, HWND* hWnd, HACCEL* hAccel);
-    extern void* new_oom_handler(unsigned int size);
-    extern void ExitBadCommandLine(HWND hWnd);
-    extern int CBoardManager::LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
-    extern int CBoardManager::LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
-    extern void SetMenuChecks(HWND hWnd);
-    extern void Helpers::UpdateWindow(HWND hWnd, int unused, int* param);
+    extern int __stdcall CanRunInkball(int* result);
+    extern void __stdcall DispError(HWND hWnd, HINSTANCE hInstance, HINSTANCE hPrevInstance);
+    extern int __stdcall WinSqmIsOptedIn();
+    extern void __stdcall _WinSqmDWORDEvent(void* param1, int param2, int param3, int param4);
+    extern DWORD __stdcall InkBallRecovery(void* param1);
+    extern int __stdcall EnableClassicWispWithPtr(LPVOID* ptr);
+    extern int __stdcall WinInit(HINSTANCE hInstance, int nCmdShow, HWND* hWnd, HACCEL* hAccel);
+    extern void* __cdecl new_oom_handler(unsigned int size);
+    extern void __stdcall ExitBadCommandLine(HWND hWnd);
+    extern void __stdcall SetMenuChecks(HWND hWnd);
+    extern uint32_t dword_10B2704;
+    void __stdcall WPP_INIT_CONTROL_ARRAY(void* control_array);
+    uint32_t __stdcall WppInitUm(int unused_param);
+    void __stdcall WppCleanupUm();
 }
 
 int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
@@ -53,10 +55,10 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
   int init_step; // [esp+68h] [ebp-4h]
 
   WPP_INIT_CONTROL_ARRAY(&WPP_MAIN_CB);
-  WPP_REGISTRATION_GUIDS = (int)WPP_ThisDir_CTLGUID_ControlGuid;
+  WPP_REGISTRATION_GUIDS = WPP_ThisDir_CTLGUID_ControlGuid;
   dword_10B2704 = (int)WPP_ThisDir_CTLGUID_MobTabPerfTraceProvider;
-  WPP_GLOBAL_Control = &WPP_MAIN_CB;
-  WppInitUm(L"TabletPC\\InkBall");
+  WPP_GLOBAL_Control = reinterpret_cast<uint64_t>(&WPP_MAIN_CB);
+  WppInitUm((int)L"TabletPC\\InkBall");
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "wWinMain", 0);
   init_step = 0;
   HeapSetInformation(0, HeapEnableTerminationOnCorruption, 0, 0);
@@ -74,10 +76,10 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     _WinSqmDWORDEvent(&SQM_INCREMENT_DWORD, 0, 157, 1);
   SetProcessDPIAware();
   result = RegisterApplicationRestart(L" ", 0);
-  if (result < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+  if (result < 0 && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
     WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xCu, &stru_1003520, result);
   coinit_result = RegisterApplicationRecoveryCallback(InkBallRecovery, 0, 0, 0);
-  if (coinit_result < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+  if (coinit_result < 0 && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
     WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xDu, &stru_1003520, coinit_result);
   wParam = -1;
   wisp_ptr = 0;
@@ -86,7 +88,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
   com_initialized = create_result >= 0;
   if (create_result < 0)
   {
-    if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+    if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
       WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xEu, &stru_1003520, create_result);
     goto LABEL_61;
   }
@@ -101,15 +103,15 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     com_ptr = game_manager_ptr;
     init_step = 2;
     if (game_manager_ptr)
-      game_manager = CGameManager::CGameManager(reinterpret_cast<CGameManager*>(game_manager_ptr), (HWND)hInstance);
+      game_manager = (CGameManager*)CGameManager_ctor(game_manager_ptr, (HWND)hInstance);
     else
       game_manager = 0;
     g_pCGameManager = game_manager;
     init_step = 0;
-    if (CGameManager::Init(game_manager) >= 0)
+    if (CGameManager_Init(game_manager) >= 0)
     {
-      difficulty = CRegistryManager::ReadDifficulty(reinterpret_cast<CRegistryManager*>(&g_CRegistryManager));
-      CBoardManager::SetDifficulty(&g_CBoardManager, difficulty);
+      difficulty = CRegistryManager::ReadDifficulty((CRegistryManager*)&g_CRegistryManager);
+      CBoardManager::SetDifficulty((CBoardManager*)&g_CBoardManager, difficulty);
       if (!*lpCmdLine)
         goto LABEL_43;
       if (*lpCmdLine == 47)
@@ -119,29 +121,29 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
         {
           if (lpCmdLine[2] != 58)
             ExitBadCommandLine((HWND)hInstance);
-          file_path = lpCmdLine + 3;
+          file_path = reinterpret_cast<uint16_t*>(lpCmdLine + 3);
           if (lpCmdLine[3] == 34)
-            file_path = lpCmdLine + 4;
-          file_path_end = &file_path[wcslen(file_path) - 1];
+            file_path = reinterpret_cast<uint16_t*>(lpCmdLine + 4);
+          file_path_end = &file_path[wcslen(reinterpret_cast<const wchar_t*>(file_path)) - 1];
           if (*file_path_end == 34)
             *file_path_end = 0;
           if (!CBoardManager::LoadBoardFromResources(
-                  reinterpret_cast<CBoardManager*>(&g_CBoardManager),
-                  file_path,
+                  (CBoardManager*)&g_CBoardManager,
+                  (const wchar_t*)file_path,
                   &BoardData,
                   &iBoardSizeBytes))
 LABEL_43:
-            CBoardManager::LoadRandomBoardFromResources(reinterpret_cast<CBoardManager*>(&g_CBoardManager), &BoardData, &iBoardSizeBytes);
+            CBoardManager::LoadRandomBoardFromResources((CBoardManager*)&g_CBoardManager, &BoardData, &iBoardSizeBytes);
         }
       }
       if (g_pCGameManager)
       {
-        CGameManager::LoadBoard(g_pCGameManager, &BoardData, iBoardSizeBytes);
+        CGameManager_LoadBoard(g_pCGameManager, &BoardData, iBoardSizeBytes);
         *reinterpret_cast<uint32_t*>(g_pCGameManager) = 1;
       }
       SetMenuChecks((HWND)hInstance);
       timer_handle = CreateWaitableTimerW(0, 0, 0);
-      if (!timer_handle && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+      if (!timer_handle && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
       {
         last_error = GetLastError();
         WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0x12u, &stru_1003520, last_error);
@@ -155,7 +157,7 @@ LABEL_52:
       {
         SetWaitableTimer(timer_handle, &due_time, 0, 0, 0, 0);
         if (g_pCGameManager)
-          CGameManager::PerformGameUpdate(g_pCGameManager);
+          CGameManager_PerformGameUpdate(g_pCGameManager);
       }
       while (1)
       {
@@ -172,10 +174,10 @@ LABEL_52:
       wParam = msg.wParam;
       goto LABEL_61;
     }
-    if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+    if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
       WPP_SF_(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0x11u, &stru_1003520);
   }
-  else if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+  else if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
   {
     WPP_SF_(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xFu, &stru_1003520);
   }
@@ -188,7 +190,7 @@ LABEL_61:
   }
   if (g_pCGameManager)
   {
-    CGameManager::~CGameManager(g_pCGameManager);
+    CGameManager_dtor(g_pCGameManager);
     g_pCGameManager = 0;
   }
   if (wisp_ptr)

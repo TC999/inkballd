@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-DWORD __stdcall InkBallRecovery(PVOID pvParameter)
+extern "C" DWORD __stdcall InkBallRecovery(PVOID pvParameter)
 {
   uint8_t v2[8]; // [esp+0h] [ebp-8h] BYREF
 
