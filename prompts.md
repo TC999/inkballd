@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
 请立即开始以下循环：
 
 ### Step 1: 发起编译
-1. 在终端执行 `where msbuild` 找到 MSBuild 路径（通常在 `C:\Program Files\Microsoft Visual Studio\2022\...\MSBuild\Current\Bin\MSBuild.exe`）。
+1. 在终端执行 `where msbuild` 找到 MSBuild 路径（通常在 `D:\Software\Visual Studio\MSBuild\Current\Bin\MSBuild.exe`）。
 2. 执行编译命令（根据原程序架构选择 x64 或 x86，如果不确定先试 x64）：
    `"你的MSBuild路径\MSBuild.exe" 你的工程名.sln /p:Configuration=Release /p:Platform=x64 /m /v:minimal`
 
