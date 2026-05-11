@@ -63,15 +63,15 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
   init_step = 0;
   HeapSetInformation(0, HeapEnableTerminationOnCorruption, 0, 0);
   com_initialized = 0;
-  if (!CanRunInkball(&com_initialized))
-  {
-    if (!com_initialized)
-      DispError(0, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AA8);
-    WppCleanupUm();
-    init_step = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
-    return -1;
-  }
+  //if (!CanRunInkball(&com_initialized))
+  //{
+  //  if (!com_initialized)
+  //    DispError(0, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AA8);
+  //  WppCleanupUm();
+  //  init_step = -1;
+  //  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+  //  return -1;
+  //}
   if (WinSqmIsOptedIn())
     _WinSqmDWORDEvent(&SQM_INCREMENT_DWORD, 0, 157, 1);
   SetProcessDPIAware();
