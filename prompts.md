@@ -100,8 +100,8 @@ int main(int argc, char* argv[]) {
 
 ### Step 1: 发起编译
 1. 在终端执行 `where msbuild` 找到 MSBuild 路径（通常在 `D:\Software\Visual Studio\MSBuild\Current\Bin\MSBuild.exe`）。
-2. 执行编译命令（根据原程序架构选择 x64 或 x86，如果不确定先试 x64）：
-   `"你的MSBuild路径\MSBuild.exe" 你的工程名.sln /p:Configuration=Debug /p:Platform=Win32 /m /v:minimal`
+2. 执行编译命令：
+   `"MSBuild 路径" RestoreProject.sln /p:Configuration=Debug /p:Platform=Win32 /m /v:minimal`
 
 ### Step 2: 诊断与精准打击 (根据 Error 类型自动应对)
 读取终端输出的报错信息，按以下规则自动修复：
