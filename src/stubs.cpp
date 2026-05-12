@@ -82,6 +82,10 @@ CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) {
     return self;
 }
 
+void CGameBoard_Dtor(CGameBoard* self, int flags) {
+    (void)self; (void)flags;
+}
+
 void CGameManager::UpdateTime(CGameManager* self) {
     (void)self;
 }
