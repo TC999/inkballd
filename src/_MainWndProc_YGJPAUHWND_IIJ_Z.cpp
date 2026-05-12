@@ -134,20 +134,17 @@ LABEL_67:
           memset(&VersionInformation, 0, sizeof(VersionInformation));
           VersionInformation.dwOSVersionInfoSize = 276;
           GetVersionExW(&VersionInformation);
-#if 0
           StringCchPrintfExW(
-            (STRSAFE_LPWSTR)0x9C46,
             szOtherStuff,
             0x400u,
             0,
             0,
             0x100u,
-            (wchar_t *)L"%s %lu.%lu.%lu",
+            L"%s %lu.%lu.%lu",
             szApp,
             VersionInformation.dwMajorVersion,
             VersionInformation.dwMinorVersion,
             VersionInformation.dwBuildNumber);
-#endif
           IconW = Helpers::LoadIconW(g_hInst, (HINSTANCE)0x65, 0, v19);
           ShellAboutW(v23, szApp, szOtherStuff, IconW);
           goto LABEL_53;

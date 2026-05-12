@@ -6,7 +6,6 @@
 #include "common.h"
 void CGameManager_PerformGameUpdate(CGameManager *self)
 {
-#if 0
   CGameManager *v1; // esi
   uint32_t v2; // edx
   int v3; // eax
@@ -16,6 +15,10 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
   int v7; // eax
   int GoldVersionOfTile; // eax
   int v9; // eax
+  struct tagRECT *BitmapRect; // eax
+  struct tagRECT *v10; // eax
+  struct tagRECT *v11; // eax
+  struct tagRECT *v13; // eax
   DWORD Time; // [esp+8h] [ebp-8h]
 
   v1 = self;
@@ -112,8 +115,8 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                   BitmapRect = (struct tagRECT *)GetBitmapRect(GoldVersionOfTile);
                   CDisplay::Blt(
                     g_pDisplay,
-                    (unsigned int64_t)*((double *)dword_10B062C + 1),
-                    (unsigned int64_t)*((double *)dword_10B062C + 2),
+                    (uint64_t)*((double *)dword_10B062C + 1),
+                    (uint64_t)*((double *)dword_10B062C + 2),
                     g_pGamePiecesSurface,
                     BitmapRect);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
@@ -122,8 +125,8 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                   v13 = (struct tagRECT *)GetBitmapRect(v9);
                   CDisplay::Blt(
                     g_pDisplay,
-                    (unsigned int64_t)*((double *)dword_10B0618 + 1),
-                    (unsigned int64_t)*((double *)dword_10B0618 + 2),
+                    (uint64_t)*((double *)dword_10B0618 + 1),
+                    (uint64_t)*((double *)dword_10B0618 + 2),
                     g_pGamePiecesSurface,
                     v13);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
@@ -154,8 +157,8 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                 v10 = (struct tagRECT *)GetBitmapRect(v6);
                 CDisplay::Blt(
                   g_pDisplay,
-                  (unsigned int64_t)*((double *)dword_10B062C + 1),
-                  (unsigned int64_t)*((double *)dword_10B062C + 2),
+                  (uint64_t)*((double *)dword_10B062C + 1),
+                  (uint64_t)*((double *)dword_10B062C + 2),
                   g_pGamePiecesSurface,
                   v10);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
@@ -164,8 +167,8 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                 v11 = (struct tagRECT *)GetBitmapRect(v7);
                 CDisplay::Blt(
                   g_pDisplay,
-                  (unsigned int64_t)*((double *)dword_10B0618 + 1),
-                  (unsigned int64_t)*((double *)dword_10B0618 + 2),
+                  (uint64_t)*((double *)dword_10B0618 + 1),
+                  (uint64_t)*((double *)dword_10B0618 + 2),
                   g_pGamePiecesSurface,
                   v11);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
@@ -194,5 +197,4 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
   {
     CGameManager::UpdateTime(self);
   }
-#endif
 }

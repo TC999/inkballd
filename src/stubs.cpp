@@ -17,6 +17,8 @@ extern "C" {
     void* SQM_INCREMENT_DWORD = nullptr;
     void* BoardData = nullptr;
     int iBoardSizeBytes = 0;
+    void* g_pDisplay = nullptr;
+    void* g_pGamePiecesSurface = nullptr;
 
     // Global handles
     HINSTANCE g_hInst = nullptr;
@@ -25,6 +27,21 @@ extern "C" {
     uint32_t dword_10B2704 = 0;
     uint32_t dword_10D2F34 = 0;
     uint32_t dword_10D2F30 = 0;
+    uint32_t dword_10B0640 = 0;
+    uint32_t dword_10B062C = 0;
+    uint32_t dword_10B0618 = 0;
+    uint32_t dword_10B0600 = 0;
+    uint32_t dword_10B0604 = 0;
+
+    // Global RECT variables
+    RECT stru_10B0630 = {};
+    RECT stru_10B061C = {};
+    RECT stru_10B0608 = {};
+
+    // Global surface pointers
+    void* g_pTimeManagerSurface = nullptr;
+    void* g_pScoreManagerSurface = nullptr;
+    void* g_pTileManagerSurface = nullptr;
 
     // Menu / UI state globals
     int g_fMouseInside = 0;
@@ -49,6 +66,9 @@ extern "C" {
     void __stdcall SetMenuChecks(HWND hWnd) { (void)hWnd; }
     int __stdcall BltBoardToInk(struct tagRECT *a1) { (void)a1; return 0; }
     void __stdcall KillPlayer(int a1) { (void)a1; }
+    void __stdcall LoadNextLevel() { }
+    char* __stdcall GetBitmapRect(int a1) { (void)a1; return nullptr; }
+    DWORD __stdcall timeGetTime() { return 0; }
 }
 
 // ============================================================================
@@ -125,6 +145,63 @@ extern "C" {
     void CGameManager_PerformGameUpdate(void* self) {
         (void)self;
     }
+}
+
+// ============================================================================
+// CTimeManager static method stubs
+// ============================================================================
+uint32_t CTimeManager::GetTime(void* self) {
+    (void)self;
+    return 0;
+}
+void CTimeManager::SetTime(void* self, uint32_t time) {
+    (void)self; (void)time;
+}
+
+// ============================================================================
+// CScoreManager static method stubs
+// ============================================================================
+void CScoreManager::IncrementScore(void* self, uint32_t count) {
+    (void)self; (void)count;
+}
+uint32_t CScoreManager::GetScore(void* self) {
+    (void)self;
+    return 0;
+}
+
+// ============================================================================
+// CTileManager static method stubs
+// ============================================================================
+void CTileManager::SetTiles(void* self, uint32_t score) {
+    (void)self; (void)score;
+}
+
+// ============================================================================
+// CUIBarObject static method stubs
+// ============================================================================
+void CUIBarObject::GetBoundingRect(void* self, RECT* out) {
+    (void)self; (void)out;
+}
+
+// ============================================================================
+// CBoardObject static method stubs
+// ============================================================================
+void CBoardObject::GetBoundingRect(uint32_t self, RECT* out) {
+    (void)self; (void)out;
+}
+
+// ============================================================================
+// CDisplay static method stubs
+// ============================================================================
+void CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src) {
+    (void)self; (void)x; (void)y; (void)surface; (void)src;
+}
+int CDisplay::Present(void* self, RECT* rect) {
+    (void)self; (void)rect;
+    return 0;
+}
+void CDisplay::BltInk(void* self, RECT* rect) {
+    (void)self; (void)rect;
 }
 
 CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) {
@@ -227,6 +304,32 @@ ULONG __stdcall RegisterTraceGuidsW(WMIDPREQUEST callback, void* context, const 
 // Registry helper stubs
 // ============================================================================
 int __cdecl CreateInkballKey() { return 0; }
+
+// ============================================================================
+// WinSQM stubs (never called - WinSqmIsOptedIn returns 0)
+// ============================================================================
+// [TODO] Minimal EVENT_DESCRIPTOR - verify layout
+struct EVENT_DESCRIPTOR {
+    unsigned short Id;
+    unsigned char  Version;
+    unsigned char  Channel;
+    unsigned char  Level;
+    unsigned char  Opcode;
+    unsigned short Task;
+    unsigned long long Keyword;
+};
+
+extern "C" {
+    BOOL __stdcall WinSqmEventEnabled(const EVENT_DESCRIPTOR* event_desc, const GUID* guid) {
+        (void)event_desc; (void)guid;
+        return FALSE;
+    }
+    HRESULT __stdcall WinSqmEventWrite(const EVENT_DESCRIPTOR* event_desc, unsigned short dataCount, uint64_t* data) {
+        (void)event_desc; (void)dataCount; (void)data;
+        return E_NOTIMPL;
+    }
+    GUID unk_105C840 = {};
+}
 
 // ============================================================================
 // CRT helper stubs

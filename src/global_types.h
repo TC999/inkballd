@@ -85,6 +85,44 @@ struct CRegistryManager;
 struct CTabLicense;
 struct CBallManager;
 struct BallPoints;
+struct CBoardObject;
+
+// ============================================================================
+// Game struct definitions with static method declarations
+// ============================================================================
+struct CTimeManager {
+    void* vftable;
+    static uint32_t GetTime(void* self);
+    static void SetTime(void* self, uint32_t time);
+};
+
+struct CScoreManager {
+    void* vftable;
+    static void IncrementScore(void* self, uint32_t count);
+    static uint32_t GetScore(void* self);
+};
+
+struct CTileManager {
+    void* vftable;
+    static void SetTiles(void* self, uint32_t score);
+};
+
+struct CUIBarObject {
+    void* vftable;
+    static void GetBoundingRect(void* self, RECT* out);
+};
+
+struct CBoardObject {
+    void* vftable;
+    static void GetBoundingRect(uint32_t self, RECT* out);
+};
+
+struct CDisplay {
+    void* vftable;
+    static void Blt(void* self, int x, int y, void* surface, RECT* src);
+    static int Present(void* self, RECT* rect);
+    static void BltInk(void* self, RECT* rect);
+};
 
 // ============================================================================
 // COM interfaces and external types
@@ -188,6 +226,17 @@ extern "C" {
     extern double dSizeFactor;
     extern uint32_t dword_10B0664;
     extern uint32_t dword_10B0668;
+    extern uint32_t dword_10B0640;
+    extern uint32_t dword_10B062C;
+    extern uint32_t dword_10B0618;
+    extern uint32_t dword_10B0600;
+    extern uint32_t dword_10B0604;
+    extern RECT stru_10B0630;
+    extern RECT stru_10B061C;
+    extern RECT stru_10B0608;
+    extern void* g_pTimeManagerSurface;
+    extern void* g_pScoreManagerSurface;
+    extern void* g_pTileManagerSurface;
     extern int g_fMouseInside;
     extern int iLastChecked;
     extern int g_fLastPauseFromMenu;
@@ -351,6 +400,10 @@ extern "C" {
     void __stdcall DispError(HWND hWnd, HINSTANCE h1, HINSTANCE h2);
     int __stdcall BltBoardToInk(struct tagRECT *a1);
     void __stdcall KillPlayer(int a1);
+    void __stdcall LoadNextLevel();
+    char* __stdcall GetBitmapRect(int a1);
+    int __stdcall GetGoldVersionOfTile(int a1);
+    DWORD __stdcall timeGetTime();
 }
 
 // ============================================================================
