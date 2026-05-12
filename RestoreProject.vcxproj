@@ -495,7 +495,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\common.h" />
+
     <ClInclude Include="src\defs.h" />
     <ClInclude Include="src\global_types.h" />
     <ClInclude Include="src\math_utils.h" />
