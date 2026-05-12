@@ -1,15 +1,16 @@
-#if 0
-#include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+#include "global_types.h"
+
+extern void __stdcall NormalizeRect(struct tagRECT* rect);
+
 BOOL __stdcall PointInRect(LONG a1, LONG a2, struct tagRECT *a3)
 {
-  BOOL v3; // esi
-  uint8_t v5[16]; // [esp+10h] [ebp-14h] BYREF
-  int v6; // [esp+20h] [ebp-4h]
+  BOOL v3;
+  uint8_t v5[16];
+  int v6;
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "PointInRect", 0);
   v6 = 0;
@@ -19,5 +20,3 @@ BOOL __stdcall PointInRect(LONG a1, LONG a2, struct tagRECT *a3)
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
-
-#endif

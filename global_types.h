@@ -57,6 +57,7 @@ public:
 class CGameBoard {
 public:
     // Contains game board management and state
+    int GetRandomNumber(int max_value);
 };
 
 // Additional forward declarations for completeness

@@ -39,6 +39,7 @@ struct CGameBoard {
     static int PerformUpdate(CGameBoard* self, uint32_t a2, int a3);
     static int GetTileByIndices(CGameBoard* self, int a2, int a3);
     static void RestoreSurfaces(CScoreManager** self);
+    static int GetRandomNumber(CGameBoard* self, int max_value);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);

@@ -1,16 +1,17 @@
-#if 0
-#include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+#include "global_types.h"
+
+extern CGameBoard* g_pCGameBoard;
+
 int __stdcall GetRandomNumber(int a1)
 {
-  int RandomNumber; // eax
-  int v2; // esi
-  uint8_t v4[16]; // [esp+10h] [ebp-14h] BYREF
-  int v5; // [esp+20h] [ebp-4h]
+  int RandomNumber;
+  int v2;
+  uint8_t v4[16];
+  int v5;
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "GetRandomNumber", 0);
   v5 = 0;
@@ -20,5 +21,3 @@ int __stdcall GetRandomNumber(int a1)
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
-
-#endif
