@@ -290,6 +290,8 @@ extern "C" {
     ULONG __stdcall RegisterTraceGuidsW(WMIDPREQUEST, void*, const GUID*, ULONG, TRACE_GUID_REGISTRATION*, ...);
     ULONG __stdcall UnregisterTraceGuids(TRACEHANDLE);
     uint32_t __stdcall WPP_SF_d(TRACEHANDLE, uint16_t, const GUID*, char);
+    uint32_t __stdcall WPP_SF_s(TRACEHANDLE, uint16_t, const GUID*, const char*);
+    uint32_t __stdcall WPP_SF_sL(TRACEHANDLE, uint16_t, const GUID*, const char*, char);
     uint32_t __stdcall WPP_SF_(TRACEHANDLE, uint16_t, const GUID*);
 }
 

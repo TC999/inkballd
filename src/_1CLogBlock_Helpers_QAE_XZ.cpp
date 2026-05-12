@@ -1,32 +1,33 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 
-extern "C" {
-    void reinterpret_cast<Helpers::CLogBlock*>(const char** this_ptr)->~CLogBlock()
-    {
-      const char* log_info; // eax
-      int error_code; // ecx
-      void** control_ptr; // eax
+namespace Helpers {
 
-      log_info = *this_ptr;
-      if (!*this_ptr)
-        goto LABEL_6;
-      error_code = *reinterpret_cast<uint32_t*>(log_info);
-      if (*reinterpret_cast<int*>(log_info) >= 0)
-        goto LABEL_6;
-      control_ptr = reinterpret_cast<void**>(WPP_GLOBAL_Control);
-      if (WPP_GLOBAL_Control == &WPP_GLOBAL_Control)
+CLogBlock::~CLogBlock()
+{
+    uint8_t* base = reinterpret_cast<uint8_t*>(this);
+    const char* func_name = *reinterpret_cast<const char**>(base + 4);
+    int error = *reinterpret_cast<int*>(base);
+
+    if (!func_name)
         return;
-      if ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4)
-      {
-        WPP_SF_sL(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xBu, &stru_10036F8, this_ptr[1], error_code);
-LABEL_6:
-        control_ptr = reinterpret_cast<void**>(WPP_GLOBAL_Control);
-      }
-      if (control_ptr != &WPP_GLOBAL_Control && (*reinterpret_cast<uint16_t*>(control_ptr + 7) & 0x400) != 0)
-        WPP_SF_s(*reinterpret_cast<uint64_t*>(control_ptr) + 2, 0xCu, &stru_10036F8, this_ptr[1]);
+    if (error >= 0)
+        return;
+
+    if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control))
+    {
+        uint8_t* ctrl = reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control));
+        if ((ctrl[28] & 4) != 0)
+        {
+            WPP_SF_sL(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2,
+                      0xBu, &stru_10036F8, func_name, static_cast<char>(error));
+        }
+        if ((ctrl[14] & 0x400) != 0)
+        {
+            WPP_SF_s(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2,
+                     0xCu, &stru_10036F8, func_name);
+        }
     }
 }
 
-#endif
+}

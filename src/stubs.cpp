@@ -107,13 +107,6 @@ uint32_t CRegistryManager::ReadDifficulty(CRegistryManager* self) {
 // Helper implementations
 // ============================================================================
 namespace Helpers {
-    CLogBlock::CLogBlock(void* p, const char* name, int line) {
-        (void)p; (void)name; (void)line;
-    }
-
-    CLogBlock::~CLogBlock() {
-    }
-
     void UpdateWindow(HWND hWnd, int unused, int* param) {
         (void)unused; (void)param;
         ::UpdateWindow(hWnd);
