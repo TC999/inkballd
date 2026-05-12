@@ -1,9 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+#include <strsafe.h>
 #include "common.h"
 LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lParam)
 {
@@ -30,6 +30,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
   WCHAR szOtherStuff[1024]; // [esp+184h] [ebp-A18h] BYREF
   WCHAR szApp[266]; // [esp+984h] [ebp-218h] BYREF
   int v28; // [esp+B98h] [ebp-4h]
+  RECT Rect; // [esp+XXh] [ebp-XXh]
 
   v4 = 0;
   v23 = hWnd;
@@ -44,7 +45,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
       switch ( Msg )
       {
         case 0x232u:
-          CGameManager::UpdateTime(g_pCGameManager);
+          CGameManager::UpdateTime((CGameManager*)g_pCGameManager);
           break;
         case 0x2A3u:
           g_fMouseInside = 0;
@@ -57,7 +58,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
     }
     if ( Msg == 530 )
     {
-      CGameManager::UpdateTime(g_pCGameManager);
+      CGameManager::UpdateTime((CGameManager*)g_pCGameManager);
       if ( !*((uint32_t *)g_pCGameManager + 2) )
         *((uint32_t *)g_pCGameManager + 1) = 1;
       goto LABEL_80;
@@ -68,7 +69,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
       {
         if ( Msg == 516 )
         {
-          CGameManager::DropWallTile(g_pCGameManager, (void*)(__int16)lParam, SHIWORD(lParam));
+          CGameManager::DropWallTile((CGameManager*)g_pCGameManager, (void*)(__int16)lParam, (void*)(intptr_t)SHIWORD(lParam));
         }
         else if ( Msg == 529 )
         {
@@ -86,7 +87,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
           CheckMenuItem(Menu, iLastChecked, 0);
           iLastChecked = 40006;
           CheckMenuItem(hMenu, 0x9C46u, 8u);
-          CBoardManager::SetDifficulty(g_CBoardManager, 4);
+          CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 4);
           goto LABEL_50;
         case 0x9C4Au:
           if ( *((uint32_t *)g_pCGameManager + 2) )
@@ -109,10 +110,10 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
         case 0x9C68u:
           hMenu = 0;
           Instance = CoCreateInstance(
-                       &_GUID_8cec58e7_07a1_11d9_b15e_000d56bfe6ee,
+                       _GUID_8cec58e7_07a1_11d9_b15e_000d56bfe6ee,
                        0,
                        0x17u,
-                       &_GUID_8cec5884_07a1_11d9_b15e_000d56bfe6ee,
+                       _GUID_8cec5884_07a1_11d9_b15e_000d56bfe6ee,
                        (LPVOID *)&hMenu);
           if ( Instance < 0 )
             goto LABEL_67;
@@ -133,8 +134,9 @@ LABEL_67:
           memset(&VersionInformation, 0, sizeof(VersionInformation));
           VersionInformation.dwOSVersionInfoSize = 276;
           GetVersionExW(&VersionInformation);
+#if 0
           StringCchPrintfExW(
-            (STRSAFE_LPWSTR *)0x9C46,
+            (STRSAFE_LPWSTR)0x9C46,
             szOtherStuff,
             0x400u,
             0,
@@ -145,6 +147,7 @@ LABEL_67:
             VersionInformation.dwMajorVersion,
             VersionInformation.dwMinorVersion,
             VersionInformation.dwBuildNumber);
+#endif
           IconW = Helpers::LoadIconW(g_hInst, (HINSTANCE)0x65, 0, v19);
           ShellAboutW(v23, szApp, szOtherStuff, IconW);
           goto LABEL_53;
@@ -161,7 +164,7 @@ LABEL_67:
         CheckMenuItem(Menu, iLastChecked, 0);
         iLastChecked = 40005;
         CheckMenuItem(hMenu, 0x9C45u, 8u);
-        CBoardManager::SetDifficulty(g_CBoardManager, 3);
+        CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 3);
         goto LABEL_50;
       }
       if ( (uint16_t)wParam == 40000 )
@@ -177,31 +180,31 @@ LABEL_67:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40002;
             CheckMenuItem(hMenu, 0x9C42u, 8u);
-            CBoardManager::SetDifficulty(g_CBoardManager, 0);
+            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 0);
             break;
           case 0x9C43u:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40003;
             CheckMenuItem(hMenu, 0x9C43u, 8u);
-            CBoardManager::SetDifficulty(g_CBoardManager, 1);
+            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 1);
             break;
           case 0x9C44u:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40004;
             CheckMenuItem(hMenu, 0x9C44u, 8u);
-            CBoardManager::SetDifficulty(g_CBoardManager, 2);
+            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 2);
             break;
           default:
             goto LABEL_80;
         }
 LABEL_50:
         CBoardManager::LoadRandomBoardFromResources((CBoardManager *)g_CBoardManager, &BoardData, &iBoardSizeBytes);
-        CGameManager::LoadBoard(g_pCGameManager, &BoardData, iBoardSizeBytes);
+        CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
         goto LABEL_53;
       }
       KillPlayer(2);
       CBoardManager::LoadRandomBoardFromResources((CBoardManager *)g_CBoardManager, &BoardData, &iBoardSizeBytes);
-      CGameManager::LoadBoard(g_pCGameManager, &BoardData, iBoardSizeBytes);
+      CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
     }
     InvalidateRect(v23, 0, 0);
     goto LABEL_53;
@@ -305,5 +308,3 @@ LABEL_53:
   reinterpret_cast<Helpers::CLogBlock*>(v21)->~CLogBlock();
   return 0;
 }
-
-#endif

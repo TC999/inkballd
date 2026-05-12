@@ -14,12 +14,16 @@ namespace Helpers {
     };
     void UpdateWindow(HWND hWnd, int unused, int* param);
     void CloseHandle(HANDLE h, int unused, int* param);
+    void LoadStringW(HINSTANCE h1, HINSTANCE h2, WCHAR* buf, uint16_t* p, int unused, int* out);
+    HICON LoadIconW(HINSTANCE h1, HINSTANCE h2, int unused, int* out);
+    void PostMessageW(HWND h1, HWND h2, int msg, int p1, int p2, int* out);
 }
 
 // ============================================================================
 // Game object structures - Forward declarations
 // ============================================================================
 struct CBitmapRects;
+struct CScoreManager;
 struct CGameBoard {
     void* vftable;
     uint32_t field_4;
@@ -29,6 +33,12 @@ struct CGameBoard {
     uint32_t field_14;
     uint32_t field_18;
     uint32_t field_1C;
+    static void QueryNewPallete(CGameBoard* self);
+    static void UpdateBounds(CGameBoard* self);
+    static int Paint(CGameBoard* self);
+    static int PerformUpdate(CGameBoard* self, uint32_t a2, int a3);
+    static int GetTileByIndices(CGameBoard* self, int a2, int a3);
+    static void RestoreSurfaces(CScoreManager** self);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
@@ -44,13 +54,20 @@ struct CGameManager {
     uint32_t field_18;
     uint32_t field_1C;
     static void UpdateTime(CGameManager* self);
+    static void DropWallTile(CGameManager* self, void* p1, void* p2);
+    static void LoadBoard(CGameManager* self, void* data, int size);
 };
 struct CDisplay;
 struct CSurface;
 struct CScoreManager;
 struct CTileManager;
 struct CTimeManager;
-struct CInk;
+struct CInk {
+    void* vftable;
+    uint32_t field_4;
+    static void ClearInk(CInk* self);
+    static void OnDisplayChange(CInk* self);
+};
 struct CSink;
 struct CGameObject;
 struct CMovingObject;
@@ -171,6 +188,10 @@ extern "C" {
     extern double dSizeFactor;
     extern uint32_t dword_10B0664;
     extern uint32_t dword_10B0668;
+    extern int g_fMouseInside;
+    extern int iLastChecked;
+    extern int g_fLastPauseFromMenu;
+    extern RECT Rect;
     extern uint32_t dword_10B0674;
     extern uint32_t dword_10B0678;
     extern uint32_t dword_10B0670;
@@ -275,6 +296,8 @@ extern "C" {
     extern const wchar_t* ValueName;
     extern const GUID stru_10036F8;
     extern const GUID stru_1003520;
+    extern const GUID _GUID_8cec58e7_07a1_11d9_b15e_000d56bfe6ee;
+    extern const GUID _GUID_8cec5884_07a1_11d9_b15e_000d56bfe6ee;
     extern wchar_t g_szAppName[];
     extern LRESULT __stdcall MainWndProc(HWND, UINT, WPARAM, LPARAM);
 }
@@ -319,6 +342,15 @@ extern "C" {
     int CGameManager_Init(void* self);
     void CGameManager_LoadBoard(void* self, void* boardData, int boardSize);
     void CGameManager_PerformGameUpdate(void* self);
+}
+
+// ============================================================================
+// Additional standalone function declarations
+// ============================================================================
+extern "C" {
+    void __stdcall DispError(HWND hWnd, HINSTANCE h1, HINSTANCE h2);
+    int __stdcall BltBoardToInk(struct tagRECT *a1);
+    void __stdcall KillPlayer(int a1);
 }
 
 // ============================================================================
