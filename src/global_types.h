@@ -410,6 +410,7 @@ extern "C" {
 // ============================================================================
 // Sub function declarations (extern "C" for C linkage)
 // ============================================================================
+/*
 extern "C" {
     int __cdecl sub_4098B0(int a1);
     int __cdecl sub_40B520(int a1);
@@ -512,3 +513,4 @@ extern "C" {
     int __cdecl sub_42AF50(int a1);
     int __cdecl sub_42AFE0(int a1);
 }
+*/
