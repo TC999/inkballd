@@ -97,7 +97,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     g_hInst = hInstance;
     if (WinInit(hInstance, nShowCmd, reinterpret_cast<HWND*>(&hInstance), &accel_table) < 0)
       goto LABEL_61;
-    _set_new_handler(reinterpret_cast<int(__cdecl*)(unsigned int)>(new_oom_handler));
+    _set_new_handler(reinterpret_cast<_PNH>(new_oom_handler));
     init_step = 1;
     game_manager_ptr = operator new(0x14u);
     com_ptr = game_manager_ptr;

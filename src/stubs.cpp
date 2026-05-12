@@ -231,6 +231,16 @@ uint32_t CRegistryManager::ReadDifficulty(CRegistryManager* self) {
 }
 
 // ============================================================================
+// TabUtils stubs
+// ============================================================================
+namespace TabUtils {
+    uint32_t __stdcall GenerateLastErrorHR(uint32_t fallback, int unused) {
+        (void)unused;
+        return fallback;
+    }
+}
+
+// ============================================================================
 // Helper implementations
 // ============================================================================
 namespace Helpers {

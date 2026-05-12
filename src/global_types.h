@@ -12,11 +12,48 @@ namespace Helpers {
         CLogBlock(void* p, const char* name, int line);
         ~CLogBlock();
     };
+
+    // ============================================================
+    // [OLD STUBS] — used by existing active callers (WinMain, MainWndProc)
+    // These will be replaced by the WPP-wrapped versions below
+    // ============================================================
     void UpdateWindow(HWND hWnd, int unused, int* param);
     void CloseHandle(HANDLE h, int unused, int* param);
     void LoadStringW(HINSTANCE h1, HINSTANCE h2, WCHAR* buf, uint16_t* p, int unused, int* out);
     HICON LoadIconW(HINSTANCE h1, HINSTANCE h2, int unused, int* out);
     void PostMessageW(HWND h1, HWND h2, int msg, int p1, int p2, int* out);
+
+    // ============================================================
+    // [WPP-WRAPPED] — full decompiled implementations with WPP logging
+    // ============================================================
+    BOOL __stdcall CloseHandle_wpp(HANDLE hObject, uint32_t* a2, int* a3);
+    BOOL __stdcall DeleteDC(HDC hdc, HDC a2, int* a3);
+    BOOL __stdcall DeleteObject(HGDIOBJ ho, uint32_t* a2, int* a3);
+    int __stdcall GetSystemMetrics(void* self, int* a2, int* a3);
+    BOOL __stdcall GetClientRect(HWND hWnd, RECT* lpRect, RECT* a3, int* a4);
+    BOOL __stdcall GetWindowRect(HWND hWnd, RECT* lpRect, RECT* a3, int* a4);
+    HDC __stdcall CreateCompatibleDC(HDC hdc, HDC a2, int* a3);
+    HGDIOBJ __stdcall SelectObject(HDC hdc, HGDIOBJ h, uint32_t* a3, int* a4);
+    HRSRC __stdcall FindResourceW(HMODULE hModule, const WCHAR* lpName, LPCWSTR lpType, uint16_t* a4, int* a5);
+    HGLOBAL __stdcall LoadResource(HMODULE hModule, HRSRC hResInfo, HRSRC a3, int* a4);
+    int __stdcall LoadStringW_wpp(HINSTANCE hInstance, UINT uID, LPWSTR lpBuffer, uint16_t* cchBufferMax, uint32_t* a5, int* a6);
+    BOOL __stdcall PostMessageW_wpp(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam, uint32_t* a5, int* a6);
+    HICON __stdcall LoadCursorW(HINSTANCE hInstance, const WCHAR* lpCursorName, uint16_t* a3, int* a4);
+    HICON __stdcall LoadIconW_wpp(HINSTANCE hInstance, const WCHAR* lpIconName, uint16_t* a3, int* a4);
+    HANDLE __stdcall LoadImageW(HINSTANCE hInst, const WCHAR* name, UINT type, uint32_t a4, int cy, UINT fuLoad, uint32_t* a7, int* a8);
+    BOOL __stdcall SetWindowPos(HWND hWnd, HWND hWndInsertAfter, int x, int y, int width, int height, UINT flags, uint32_t* error_result, int* unused);
+    BOOL __stdcall SystemParametersInfoW(UINT action, UINT param, void* value, UINT flags, uint32_t* error_result, int* unused);
+    HWND __stdcall CreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, uint32_t X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, HINSTANCE lpParam, uint32_t* a13, int* a14);
+    LSTATUS __stdcall RegCloseKey(HKEY hKey, HKEY a2, int* a3);
+    LSTATUS __stdcall RegCreateKeyExW(HKEY hKey, const WCHAR* lpSubKey, DWORD Reserved, LPWSTR lpClass, DWORD dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition, uint32_t* a10, int* a11);
+    LSTATUS __stdcall RegOpenKeyExW(HKEY hKey, const WCHAR* lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult, HKEY* a6, int* a7);
+    LSTATUS __stdcall RegQueryValueExW(HKEY hKey, const WCHAR* lpValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData, uint32_t* a7, int* a8);
+    LSTATUS __stdcall RegSetValueExW(HKEY hKey, const WCHAR* lpValueName, DWORD Reserved, DWORD dwType, BYTE* lpData, DWORD cbData, int* a7, int* a8);
+}
+
+// [TODO] TabUtils namespace — verify full definition
+namespace TabUtils {
+    uint32_t __stdcall GenerateLastErrorHR(uint32_t fallback, int unused);
 }
 
 // ============================================================================

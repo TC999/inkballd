@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 LSTATUS __stdcall Helpers::RegOpenKeyExW(
         HKEY hKey,
         const WCHAR *lpSubKey,
@@ -21,25 +19,21 @@ LSTATUS __stdcall Helpers::RegOpenKeyExW(
   int v12; // [esp+Ch] [ebp-4h] BYREF
 
   v12 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "Helpers::RegOpenKeyExW", &v12);
-  v7 = RegOpenKeyExW(hKey, lpSubKey, ulOptions, samDesired, phkResult);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v11), "Helpers::RegOpenKeyExW", 0);
+  v7 = ::RegOpenKeyExW(hKey, lpSubKey, ulOptions, samDesired, phkResult);
   v8 = v7;
-  if ( !v7 )
-    goto LABEL_7;
-  v9 = (HKEY)v7;
-  if ( v7 > 0 )
-    v9 = (HKEY)((uint16_t)v7 | 0x80070000);
-  v12 = (int)v9;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+  if ( v7 )
   {
-    WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x39u, &stru_10036F8, (char)v9);
-LABEL_7:
-    v9 = (HKEY)v12;
+    v9 = (HKEY)v7;
+    if ( v7 > 0 )
+      v9 = (HKEY)((uint16_t)v7 | 0x80070000);
+    v12 = (int)v9;
+    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
+      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x39u, &stru_10036F8, (char)v9);
   }
+  v9 = (HKEY)v12;
   if ( a6 )
     *a6 = v9;
   reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return v8;
 }
-
-#endif

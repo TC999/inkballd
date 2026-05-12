@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 HRSRC __stdcall Helpers::FindResourceW(
         HMODULE hModule,
         const WCHAR *lpName,
@@ -18,21 +16,19 @@ HRSRC __stdcall Helpers::FindResourceW(
   char v9[4]; // [esp+Ch] [ebp-4h] BYREF
 
   *(uint32_t *)v9 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "Helpers::FindResourceW", (int*)v9);
-  ResourceW = FindResourceW(hModule, lpName, lpType);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v8), "Helpers::FindResourceW", 0);
+  ResourceW = ::FindResourceW(hModule, lpName, lpType);
   if ( !ResourceW )
   {
     LastError = GetLastError();
     if ( LastError > 0 )
       LastError = (uint16_t)LastError | 0x80070000;
     *(uint32_t *)v9 = LastError;
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x67u, &stru_10036F8, v9[0]);
+    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
+      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x67u, &stru_10036F8, v9[0]);
   }
   if ( a4 )
     *(uint32_t *)a4 = *(uint32_t *)v9;
   reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return ResourceW;
 }
-
-#endif

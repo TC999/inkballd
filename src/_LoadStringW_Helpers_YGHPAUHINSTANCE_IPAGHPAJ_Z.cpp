@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __stdcall Helpers::LoadStringW(
+int __stdcall Helpers::LoadStringW_wpp(
         HINSTANCE hInstance,
         UINT uID,
         LPWSTR lpBuffer,
@@ -19,21 +17,19 @@ int __stdcall Helpers::LoadStringW(
   char v10[4]; // [esp+Ch] [ebp-4h] BYREF
 
   *(uint32_t *)v10 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "Helpers::LoadStringW", (int*)v10);
-  StringW = LoadStringW(hInstance, uID, lpBuffer, (int)cchBufferMax);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "Helpers::LoadStringW", 0);
+  StringW = ::LoadStringW(hInstance, uID, lpBuffer, *cchBufferMax);
   if ( !StringW )
   {
     LastError = GetLastError();
     if ( LastError > 0 )
       LastError = (uint16_t)LastError | 0x80070000;
     *(uint32_t *)v10 = LastError;
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x2Eu, &stru_10036F8, v10[0]);
+    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
+      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x2Eu, &stru_10036F8, v10[0]);
   }
   if ( a5 )
     *a5 = *(uint32_t *)v10;
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return StringW;
 }
-
-#endif

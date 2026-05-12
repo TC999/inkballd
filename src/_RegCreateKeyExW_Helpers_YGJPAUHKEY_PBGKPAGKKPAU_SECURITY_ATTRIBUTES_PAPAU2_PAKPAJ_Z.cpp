@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 LSTATUS __stdcall Helpers::RegCreateKeyExW(
         HKEY hKey,
         const WCHAR *lpSubKey,
@@ -25,8 +23,8 @@ LSTATUS __stdcall Helpers::RegCreateKeyExW(
   int v16; // [esp+Ch] [ebp-4h] BYREF
 
   v16 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v15, "Helpers::RegCreateKeyExW", &v16);
-  Key = RegCreateKeyExW(
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v15), "Helpers::RegCreateKeyExW", 0);
+  Key = ::RegCreateKeyExW(
           hKey,
           lpSubKey,
           Reserved,
@@ -37,22 +35,18 @@ LSTATUS __stdcall Helpers::RegCreateKeyExW(
           phkResult,
           lpdwDisposition);
   v12 = Key;
-  if ( !Key )
-    goto LABEL_7;
-  v13 = Key;
-  if ( Key > 0 )
-    v13 = (uint16_t)Key | 0x80070000;
-  v16 = v13;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+  if ( Key )
   {
-    WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x3Bu, &stru_10036F8, v13);
-LABEL_7:
-    v13 = v16;
+    v13 = Key;
+    if ( Key > 0 )
+      v13 = (uint16_t)Key | 0x80070000;
+    v16 = v13;
+    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
+      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x3Bu, &stru_10036F8, v13);
   }
+  v13 = v16;
   if ( a10 )
     *a10 = v13;
   reinterpret_cast<Helpers::CLogBlock*>(v15)->~CLogBlock();
   return v12;
 }
-
-#endif
