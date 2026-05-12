@@ -20,9 +20,29 @@ namespace Helpers {
 // Game object structures - Forward declarations
 // ============================================================================
 struct CBitmapRects;
-struct CGameBoard;
+struct CGameBoard {
+    void* vftable;
+    uint32_t field_4;
+    uint32_t field_8;
+    uint32_t field_C;
+    uint32_t field_10;
+    uint32_t field_14;
+    uint32_t field_18;
+    uint32_t field_1C;
+};
+CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 struct CBall;
-struct CGameManager;
+struct CGameManager {
+    void* vftable;
+    uint32_t field_4;
+    uint32_t field_8;
+    uint32_t field_C;
+    uint32_t field_10;
+    uint32_t field_14;
+    uint32_t field_18;
+    uint32_t field_1C;
+    static void UpdateTime(CGameManager* self);
+};
 struct CDisplay;
 struct CSurface;
 struct CScoreManager;
@@ -136,6 +156,7 @@ extern "C" {
     extern void* g_BoardData;
     extern void* g_pIRenderingContext;
     extern void* g_pCGameManager;
+    extern CGameBoard* g_pCGameBoard;
     extern void* g_CRegistryManager;
     extern void* g_CBoardManager;
     extern void* BoardData;

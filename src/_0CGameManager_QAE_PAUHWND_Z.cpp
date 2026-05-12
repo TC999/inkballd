@@ -1,9 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 
 extern "C" {
-    CGameManager* CGameManager::CGameManager(CGameManager* this_ptr, HWND window_handle)
+    CGameManager* CGameManager_Ctor_impl(CGameManager* this_ptr, HWND window_handle)
     {
       uint32_t* board_memory; // ecx
       CGameBoard* game_board; // eax
@@ -14,11 +13,11 @@ extern "C" {
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CGameManager::CGameManager", 0);
       init_step = 1;
       g_pCGameBoard = 0;
-      board_memory = operator new(0x26C8u);
+      board_memory = (uint32_t*)operator new(0x26C8u);
       board_ptr = board_memory;
       init_step = 2;
       if (board_memory)
-        game_board = reinterpret_cast<CGameBoard*>(CGameBoard::CGameBoard(board_memory, window_handle, reinterpret_cast<void*>(1)));
+        game_board = reinterpret_cast<CGameBoard*>(CGameBoard_Ctor((CGameBoard*)board_memory, window_handle, reinterpret_cast<void*>(1)));
       else
         game_board = 0;
       g_pCGameBoard = game_board;
@@ -32,5 +31,3 @@ extern "C" {
       return this_ptr;
     }
 }
-
-#endif

@@ -13,6 +13,7 @@ extern "C" {
     void* g_pCGameManager = nullptr;
     void* g_CBoardManager = nullptr;
     void* g_CRegistryManager = nullptr;
+    CGameBoard* g_pCGameBoard = nullptr;
     void* SQM_INCREMENT_DWORD = nullptr;
     void* BoardData = nullptr;
     int iBoardSizeBytes = 0;
@@ -74,6 +75,15 @@ extern "C" {
     void CGameManager_PerformGameUpdate(void* self) {
         (void)self;
     }
+}
+
+CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) {
+    (void)self; (void)hWnd; (void)param;
+    return self;
+}
+
+void CGameManager::UpdateTime(CGameManager* self) {
+    (void)self;
 }
 
 // ============================================================================
