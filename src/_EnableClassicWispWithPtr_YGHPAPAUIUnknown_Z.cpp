@@ -1,10 +1,13 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
+
+static const GUID CLSID_ClassicW = { 0 };
+static const GUID CLSID_EnablingKey = { 0 };
+
 int __stdcall EnableClassicWispWithPtr(LPVOID *ppv)
 {
   int v1; // ebx
@@ -13,8 +16,8 @@ int __stdcall EnableClassicWispWithPtr(LPVOID *ppv)
   v1 = 1;
   v3[0] = 0;
   v3[1] = 0;
-  if ( CoCreateInstance(&CLSID_ClassicW, 0, 0x17u, &IID_IUnknown, ppv) < 0
-    || (*(int (__stdcall **)(uint32_t, uint32_t *))(*(uint32_t *)*ppv + 12))(*ppv, v3) < 0
+  if ( CoCreateInstance(CLSID_ClassicW, 0, 0x17u, IID_IUnknown, ppv) < 0
+    || (*(int (__stdcall **)(uint32_t, uint32_t *))(*(uint32_t *)*ppv + 12))((uint32_t)*ppv, v3) < 0
     || ((int (__stdcall *)(uint32_t, uint32_t, uint32_t, uint32_t))v3[0])(
          CLSID_EnablingKey.Data1,
          *(uint32_t *)&CLSID_EnablingKey.Data2,
@@ -25,5 +28,3 @@ int __stdcall EnableClassicWispWithPtr(LPVOID *ppv)
   }
   return v1;
 }
-
-#endif
