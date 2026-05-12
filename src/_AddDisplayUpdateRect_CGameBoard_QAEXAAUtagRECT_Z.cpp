@@ -1,16 +1,15 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::AddDisplayUpdateRect(CGameBoard *this, struct tagRECT *a2)
+
+void CGameBoard::AddDisplayUpdateRect(struct tagRECT *a2)
 {
   uint32_t v3; // ecx
   uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CGameBoard::AddDisplayUpdateRect", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CGameBoard::AddDisplayUpdateRect", 0);
   v3 = *((uint32_t *)this + 1018);
   if ( v3 < 0x121 )
   {
@@ -21,5 +20,3 @@ void __thiscall CGameBoard::AddDisplayUpdateRect(CGameBoard *this, struct tagREC
   }
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
-
-#endif

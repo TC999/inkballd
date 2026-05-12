@@ -8,8 +8,14 @@
 // Forward declarations for helper classes
 // ============================================================================
 namespace Helpers {
+    // CLogBlock is 8 bytes: offset 0=line(int), offset 4=name(const char*)
+    // Constructor called via explicit static dispatch (placement-new pattern):
+    //   CLogBlock::CLogBlock((CLogBlock*)buffer, "func_name", 0)
+    // The first void* parameter is the 'this' pointer (decompiler artifact)
     struct CLogBlock {
-        CLogBlock(void* p, const char* name, int line);
+        int line;
+        const char* name;
+        CLogBlock(void* self, const char* name, int line);
         ~CLogBlock();
     };
 
@@ -77,6 +83,8 @@ struct CGameBoard {
     static int GetTileByIndices(CGameBoard* self, int a2, int a3);
     static void RestoreSurfaces(CScoreManager** self);
     static int GetRandomNumber(CGameBoard* self, int max_value);
+    void AddDisplayUpdateRect(struct tagRECT* a2);
+    // [TODO] ToggleRLWalls(BOARD_COLOR), SetTile(CBoardTile*) — types not yet defined
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
@@ -289,12 +297,30 @@ extern "C" {
 // ============================================================================
 
 // CBall memory layout
+// CBall class definition (decompiled layout, validated against CBallLayout)
+struct CBall {
+    void* vftable;
+    // [TODO] Full member layout — see CBallLayout for byte offsets
+    static int* GetDrainPoints(CBall* self);
+    static int* GetBreakWallPoints(CBall* self);
+    static int GetCurrBallPoint(CBall* self);
+    static int GetPrevBallPoint(CBall* self);
+    static int AddRef(CBall* self);
+    static int Release(CBall* self);
+    static void SetXVel(CBall* self, long double vel);
+    static void SetYVel(CBall* self, long double vel);
+    static void Deflect(CBall* self, double x, double y);
+    static void SetTallness(CBall* self, int tallness);
+};
+
+// Low-level memory layout for CBall — used for raw byte-offset access
 struct CBallLayout {
     uint32_t vftable_ptr;
     uint32_t field_24;
     uint32_t field_28;
     uint32_t field_32;
     uint32_t field_44;
+    uint32_t field_30;   // offset 0x30 (DWORD 12) — bitmap rect pointer [TODO] verify type
     uint32_t field_56;
     uint32_t field_112;
     uint32_t field_116;

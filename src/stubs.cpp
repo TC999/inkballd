@@ -72,8 +72,44 @@ extern "C" {
 }
 
 // ============================================================================
-// CGameBoard static method stubs
+// CBall static method stubs
 // ============================================================================
+int* CBall::GetDrainPoints(CBall* self) {
+    (void)self;
+    return nullptr;
+}
+int* CBall::GetBreakWallPoints(CBall* self) {
+    (void)self;
+    return nullptr;
+}
+int CBall::GetCurrBallPoint(CBall* self) {
+    (void)self;
+    return 0;
+}
+int CBall::GetPrevBallPoint(CBall* self) {
+    (void)self;
+    return 0;
+}
+int CBall::AddRef(CBall* self) {
+    (void)self;
+    return 0;
+}
+int CBall::Release(CBall* self) {
+    (void)self;
+    return 0;
+}
+void CBall::SetXVel(CBall* self, long double vel) {
+    (void)self; (void)vel;
+}
+void CBall::SetYVel(CBall* self, long double vel) {
+    (void)self; (void)vel;
+}
+void CBall::Deflect(CBall* self, double x, double y) {
+    (void)self; (void)x; (void)y;
+}
+void CBall::SetTallness(CBall* self, int tallness) {
+    (void)self; (void)tallness;
+}
 int CGameBoard::PerformUpdate(CGameBoard* self, uint32_t a2, int a3) {
     (void)self; (void)a2; (void)a3; return 0;
 }
