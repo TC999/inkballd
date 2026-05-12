@@ -1,12 +1,12 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
+void CGameManager_PerformGameUpdate(CGameManager *self)
 {
+#if 0
   CGameManager *v1; // esi
   uint32_t v2; // edx
   int v3; // eax
@@ -18,8 +18,8 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   int v9; // eax
   DWORD Time; // [esp+8h] [ebp-8h]
 
-  v1 = this;
-  if ( *((uint32_t *)this + 1) )
+  v1 = self;
+  if ( *((uint32_t *)self + 1) )
   {
     Time = timeGetTime();
     v2 = (Time - *(uint32_t *)v1) % 0x42;
@@ -129,7 +129,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                   if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
                     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
                   ++dword_10B0600;
-                  v1 = this;
+                  v1 = self;
                   if ( dword_10B0600 >= *((uint32_t *)g_pCGameBoard + 2470) )
                   {
                     dword_10B0600 = 0;
@@ -138,7 +138,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 }
                 else
                 {
-                  v1 = this;
+                  v1 = self;
                 }
               }
               else
@@ -171,7 +171,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
                   CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
                 ++dword_10B0600;
-                v1 = this;
+                v1 = self;
                 if ( dword_10B0600 >= *((uint32_t *)g_pCGameBoard + 2469) )
                 {
                   dword_10B0600 = 0;
@@ -192,8 +192,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   }
   else
   {
-    CGameManager::UpdateTime(this);
+    CGameManager::UpdateTime(self);
   }
-}
-
 #endif
+}
