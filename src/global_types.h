@@ -32,6 +32,7 @@ struct CGameBoard {
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
+int CGameBoard_Init(CGameBoard* self);
 struct CBall;
 struct CGameManager {
     void* vftable;

@@ -86,6 +86,11 @@ void CGameBoard_Dtor(CGameBoard* self, int flags) {
     (void)self; (void)flags;
 }
 
+int CGameBoard_Init(CGameBoard* self) {
+    (void)self;
+    return 0;
+}
+
 void CGameManager::UpdateTime(CGameManager* self) {
     (void)self;
 }
