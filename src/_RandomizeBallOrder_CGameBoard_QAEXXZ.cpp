@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
+void CGameBoard::RandomizeBallOrder(CGameBoard *this)
 {
   int v2; // ebx
   int v3; // eax
@@ -19,7 +17,7 @@ void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
   int v11; // [esp+20h] [ebp-4h]
 
   v2 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::RandomizeBallOrder", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v10), "CGameBoard::RandomizeBallOrder", 0);
   v3 = *((uint32_t *)this + 656);
   v11 = 0;
   if ( v3 > 0 )
@@ -52,5 +50,3 @@ void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
   v11 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
 }
-
-#endif

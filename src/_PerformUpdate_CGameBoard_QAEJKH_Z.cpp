@@ -4,8 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
+int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
 {
   int v4; // ebx
   uint32_t *v5; // edi
@@ -23,14 +22,14 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
 
   v4 = 0;
   v15 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v13, "CGameBoard::PerformUpdate", &v15);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v13), "CGameBoard::PerformUpdate", &v15);
   v17 = 0;
   v16 = a2;
   if ( dword_105C760 )
   {
-    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2477) + 4))(*((uint32_t *)this + 2477));
-    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2478) + 4))(*((uint32_t *)this + 2478));
-    (*(void (__thiscall **)(uint32_t))(**((uint32_t **)this + 2479) + 4))(*((uint32_t *)this + 2479));
+    (*(void (**)(uint32_t))(**((uint32_t **)this + 2477) + 4))(*((uint32_t *)this + 2477));
+    (*(void (**)(uint32_t))(**((uint32_t **)this + 2478) + 4))(*((uint32_t *)this + 2478));
+    (*(void (**)(uint32_t))(**((uint32_t **)this + 2479) + 4))(*((uint32_t *)this + 2479));
     dword_105C760 = 0;
   }
   if ( *(int*)this > 0 )
@@ -38,7 +37,7 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
     v5 = (uint32_t *)(reinterpret_cast<char*>(this) + 4);
     do
     {
-      (**(void (__thiscall ***)(uint32_t, uint32_t))*v5)(*v5, a2);
+      (**(void (***)(uint32_t, uint32_t))*v5)(*v5, a2);
       ++v4;
       ++v5;
     }
@@ -70,7 +69,7 @@ int __thiscall CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
         v8 = (uint32_t *)(reinterpret_cast<char*>(this) + 1208);
         do
         {
-          (**(void (__thiscall ***)(uint32_t, uint32_t))*v8)(*v8, v18);
+          (**(void (***)(uint32_t, uint32_t))*v8)(*v8, v18);
           ++v4;
           ++v8;
         }

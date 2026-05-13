@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 _onexit_t __cdecl _onexit(_onexit_t Func)
 {
   int (__cdecl *v2)(); // [esp+10h] [ebp-24h]

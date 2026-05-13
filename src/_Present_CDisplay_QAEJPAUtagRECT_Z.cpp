@@ -4,8 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
+int CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
 {
   bool v3; // zf
   int v4; // esi
@@ -25,7 +24,7 @@ int __thiscall CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
   RECT *lprcSrca; // [esp+60h] [ebp+8h]
 
   v17[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v16, "CDisplay::Present", v17);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v16), "CDisplay::Present", v17);
   v3 = this->right == 0;
   v18 = 0;
   if ( v3 || !this->bottom )

@@ -4,14 +4,13 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
+void CGameBoard::QueryNewPallete(CGameBoard *this)
 {
   uint8_t v3[8]; // [esp+10h] [ebp-18h] BYREF
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF
   int v5; // [esp+24h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CGameBoard::QueryNewPallete", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "CGameBoard::QueryNewPallete", 0);
   v5 = 0;
   v4[0] = 0;
   FrontBuffer = CDisplay::GetFrontBuffer(g_pDisplay);

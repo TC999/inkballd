@@ -4,8 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameManager::LoadBoard(CGameManager *this, const unsigned __int8 *a2, int a3)
+void CGameManager::LoadBoard(CGameManager *this, const unsigned __int8 *a2, int a3)
 {
   int v4; // eax
   const unsigned __int8 *v5; // esi
@@ -49,7 +48,7 @@ void __thiscall CGameManager::LoadBoard(CGameManager *this, const unsigned __int
   int v43; // [esp+34h] [ebp-4h]
   int v44; // [esp+40h] [ebp+8h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v37, "CGameManager::LoadBoard", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v37), "CGameManager::LoadBoard", 0);
   v43 = 0;
   v44 = 0;
   v40 = &a2[a3];
@@ -196,7 +195,7 @@ LABEL_8:
     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
   if ( CDisplay::BltInk(g_pDisplay, 0) == -2005532222 )
     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
-  (*(void (__thiscall **)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
+  (*(void (**)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v37)->~CLogBlock();

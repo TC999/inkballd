@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -14,8 +13,6 @@ extern "C" {
     }
 }
 
-};
-
 extern "C" void* g_BoardData; // Global board data
 extern "C" void* g_pLastLoadedLevel; // Global last loaded level
 extern "C" BOARDHIST g_bhPrevBonusBoards; // Global bonus board history
@@ -26,7 +23,7 @@ extern "C" int fPrevSeen(int value, BOARDHIST* history, int max_size);
 extern "C" HWND GetMainWindowHwnd();
 extern "C" void* memcpy(void* dest, const void* src, size_t count);
 
-void __thiscall CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *this, uint8_t* output_buffer, int* result)
+void CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *this, uint8_t* output_buffer, int* result)
 {
     int random_number;
     uint8_t* board_data_ptr;
@@ -38,7 +35,7 @@ void __thiscall CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *
     WCHAR window_title[518];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::LoadRandomBonusBoardFromResources", 0);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(&log_buffer), "CBoardManager::LoadRandomBonusBoardFromResources", 0);
     flag = 0;
     
     do
@@ -65,5 +62,3 @@ void __thiscall CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

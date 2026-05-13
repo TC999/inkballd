@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPBYTE lpData)
 {
   BOOL v4; // edi
@@ -17,7 +15,7 @@ BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPB
   HKEY phkResult; // [esp+20h] [ebp-10h] BYREF
   int v13; // [esp+2Ch] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "ReadRegValueDWORD", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "ReadRegValueDWORD", 0);
   v13 = 0;
   v4 = 0;
   cbData = 4;
@@ -30,5 +28,3 @@ BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPB
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v4;
 }
-
-#endif

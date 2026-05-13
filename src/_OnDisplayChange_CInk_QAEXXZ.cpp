@@ -4,8 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CInk::OnDisplayChange(CInk *this)
+void CInk::OnDisplayChange(CInk *this)
 {
   int v1; // esi
   int v2; // edi
@@ -16,7 +15,7 @@ void __thiscall CInk::OnDisplayChange(CInk *this)
 
   v1 = 0;
   v5[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CInk::OnDisplayChange", v5);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CInk::OnDisplayChange", v5);
   v6 = 0;
   if ( dword_10B068C > 0 )
   {

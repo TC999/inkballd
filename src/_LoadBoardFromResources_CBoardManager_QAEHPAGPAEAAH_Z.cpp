@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -6,14 +5,12 @@
 extern "C" {
 }
 
-};
-
 extern "C" int SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection, int* result);
 extern "C" int iBoardCollectionsCount; // Global board collections count
 extern "C" int* iBoardCounts; // Global board counts array
 extern "C" void** pBoardCollections; // Global board collections array
 
-int __thiscall CBoardManager::LoadBoardFromResources(
+int CBoardManager::LoadBoardFromResources(
     CBoardManager *this,
     wchar_t* board_name,
     uint8_t* output_buffer,
@@ -24,7 +21,7 @@ int __thiscall CBoardManager::LoadBoardFromResources(
     uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::LoadBoardFromResources", 0);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(&log_buffer), "CBoardManager::LoadBoardFromResources", 0);
     flag = 0;
     collection_index = 0;
     search_result = 0;
@@ -45,5 +42,3 @@ int __thiscall CBoardManager::LoadBoardFromResources(
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return search_result;
 }
-
-#endif

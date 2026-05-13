@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
+int CGameBoard::RedrawBoardBuffer(CGameBoard *this)
 {
   int v2; // edi
   bool v3; // cc
@@ -20,7 +18,7 @@ int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
 
   v2 = 0;
   v11[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::RedrawBoardBuffer", v11);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "CGameBoard::RedrawBoardBuffer", v11);
   v3 = *((uint32_t *)this + 2470) <= 0;
   v12 = 0;
   v10 = 0;
@@ -55,5 +53,3 @@ int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v2;
 }
-
-#endif

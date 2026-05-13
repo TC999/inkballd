@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
+void CGameBoard::ResetBoard(CGameBoard *this)
 {
   CBall **v2; // ebx
   void**v3; // ebx
@@ -13,7 +11,7 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
   int v5; // [esp+18h] [ebp-10h]
   int v6; // [esp+24h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CGameBoard::ResetBoard", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CGameBoard::ResetBoard", 0);
   v6 = 0;
   *(uint32_t *)this = 0;
   memset(reinterpret_cast<char*>(this) + 4, 0, 0x4B0u);
@@ -55,5 +53,3 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
   v6 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
-
-#endif

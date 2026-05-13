@@ -1,18 +1,16 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CMovingObject::PrepareToMove(CMovingObject *this)
+void CMovingObject::PrepareToMove(CMovingObject *this)
 {
   int v2; // eax
   double v3; // st7
   int v4; // eax
   uint8_t v5[8]; // [esp+4h] [ebp-8h] BYREF
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CMovingObject::PrepareToMove", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "CMovingObject::PrepareToMove", 0);
   v2 = *((uint32_t *)this + 6);
   *((double *)this + 10) = *((double *)this + 1);
   v3 = *((double *)this + 2);
@@ -24,5 +22,3 @@ void __thiscall CMovingObject::PrepareToMove(CMovingObject *this)
   *((double *)this + 13) = *((double *)this + 2);
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
-
-#endif

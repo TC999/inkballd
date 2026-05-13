@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __stdcall CSink::Packets(
         CSink *this,
         HDC a2,
@@ -20,7 +19,7 @@ int __stdcall CSink::Packets(
   int v11; // [esp+Ch] [ebp-4h] BYREF
 
   v11 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CSink::Packets", &v11);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v10), "CSink::Packets", &v11);
   if ( !AcceptInkInput() )
     goto LABEL_9;
   if ( (HDC)g_tcid != a2 )
