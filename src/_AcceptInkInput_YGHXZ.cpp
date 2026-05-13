@@ -4,11 +4,11 @@
 extern "C" {
     int __stdcall AcceptInkInput()
     {
-      int result; // esi
-      uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
+      int result;
+      uint8_t log_buffer[8];
 
       Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "AcceptInkInput", 0);
-      result = *reinterpret_cast<uint32_t*>(*reinterpret_cast<uint32_t*>(g_pCGameBoard + 2481) + 16);
+      result = *reinterpret_cast<uint32_t*>(*reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(g_pCGameBoard) + 2481) + 16);
       reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
       return result;
     }

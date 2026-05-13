@@ -1,22 +1,17 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
-#include <windows.h>
-void __thiscall CGameBoard::AddRLColoredWallToList(CGameBoard *this, CBoardTileRLColored*a2)
-{
-  int v3; // ecx
-  uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CGameBoard::AddRLColoredWallToList", 0);
-  v3 = *((uint32_t *)this + 366);
+static void CGameBoard_AddRLColoredWallToList(CGameBoard* self, CBoardTileRLColored* a2)
+{
+  int v3;
+  uint8_t v4[8];
+
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CGameBoard::AddRLColoredWallToList", 0);
+  v3 = *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 366 * sizeof(uint32_t));
   if ( v3 < 289 )
   {
-    *((uint32_t *)this + v3 + 367) = a2;
-    ++*((uint32_t *)this + 366);
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + (v3 + 367) * sizeof(uint32_t)) = reinterpret_cast<uint32_t>(a2);
+    ++*reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 366 * sizeof(uint32_t));
   }
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
-
-#endif

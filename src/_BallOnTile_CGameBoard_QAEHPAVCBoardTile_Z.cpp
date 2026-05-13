@@ -1,29 +1,27 @@
+// [COMPLEX] Undeclared variables (v7, v8, RectIntersectsRect), goto — left wrapped
 #if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
-#include <windows.h>
-int __thiscall CGameBoard::BallOnTile(CGameBoard *this, CBoardTile*a2)
+int CGameBoard_BallOnTile(CGameBoard* self, CBoardTile* a2)
 {
-  int v3; // ebx
-  CBoardObject **v4; // edi
-  int v5; // esi
-  uint8_t v9[16]; // [esp+30h] [ebp-14h] BYREF
-  int v10; // [esp+40h] [ebp-4h]
+  int v3;
+  CBoardObject **v4;
+  int v5;
+  uint8_t v9[16];
+  int v10;
 
   v3 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::BallOnTile", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "CGameBoard::BallOnTile", 0);
   v10 = 0;
   CBoardObject::GetBoundingRect(a2, &v8);
-  if ( *((int*)this + 656) <= 0 )
+  if ( *((int*)self + 656) <= 0 )
   {
 LABEL_6:
     v5 = 0;
   }
   else
   {
-    v4 = (CBoardObject **)(reinterpret_cast<char*>(this) + 2628);
+    v4 = (CBoardObject **)(reinterpret_cast<char*>(self) + 2628);
     while ( 1 )
     {
       if ( *((uint32_t *)*v4 + 39) )
@@ -34,7 +32,7 @@ LABEL_6:
       }
       ++v3;
       ++v4;
-      if ( v3 >= *((uint32_t *)this + 656) )
+      if ( v3 >= *((uint32_t *)self + 656) )
         goto LABEL_6;
     }
     v5 = 1;

@@ -1,20 +1,19 @@
+// [COMPLEX] Undeclared TabUtils::TabQueryPolicyValue — left wrapped
 #if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
 #include <windows.h>
-int __stdcall CanRunInkball(int*a1)
+int __stdcall CanRunInkball(int* a1)
 {
-  int v1; // edi
-  int*v3; // [esp+0h] [ebp-28h]
-  uint8_t v4[8]; // [esp+10h] [ebp-18h] BYREF
-  int v5[3]; // [esp+18h] [ebp-10h] BYREF
-  int v6; // [esp+24h] [ebp-4h]
+  int v1;
+  int* v3;
+  uint8_t v4[8];
+  int v5[3];
+  int v6;
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CanRunInkball", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CanRunInkball", 0);
   v6 = 0;
-  v1 = CTabLicense::CanRunInkball();
+  v1 = CTabLicense_CanRunInkball();
   if ( v1 )
   {
     v5[0] = 0;

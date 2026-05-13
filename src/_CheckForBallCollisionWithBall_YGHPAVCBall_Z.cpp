@@ -1,21 +1,19 @@
+// [COMPLEX] Undeclared CBall members, CBall::Collide — left wrapped
 #if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __stdcall CheckForBallCollisionWithBall(CBall*a1)
+int __stdcall CheckForBallCollisionWithBall(CBall* a1)
 {
-  CGameBoard *v1; // ecx
-  int v2; // esi
-  bool v3; // cc
-  CBall*Ball; // eax
-  uint8_t v6[8]; // [esp+10h] [ebp-18h] BYREF
-  int v7; // [esp+18h] [ebp-10h]
-  int v8; // [esp+24h] [ebp-4h]
+  CGameBoard *v1;
+  int v2;
+  bool v3;
+  CBall* Ball;
+  uint8_t v6[8];
+  int v7;
+  int v8;
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CheckForBallCollisionWithBall", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v6), "CheckForBallCollisionWithBall", 0);
   v1 = g_pCGameBoard;
   v2 = 0;
   v3 = *((uint32_t *)g_pCGameBoard + 656) <= 0;

@@ -1,16 +1,10 @@
 #if 0
+// [COMPLEX] Duplicate class definitions, undeclared globals, WPP patterns — left wrapped
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <new>
 #include <windows.h>
-
-class Helpers {
-public:
-    class CLogBlock {
-    public:
-        CLogBlock(void* buffer, const char* message, int* error_code);
-        ~CLogBlock();
-};
 
 extern "C" {
     int NumBallsOnBoard(void* game_board);
@@ -35,7 +29,7 @@ extern "C" {
         int init_step = 0;
         void* ball_object = nullptr;
 
-        new (log_buffer) Helpers::CLogBlock(log_buffer, "AddAliveBallToBoard", error_code);
+        Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "AddAliveBallToBoard", 0);
         
         if (NumBallsOnBoard(g_pCGameBoard) >= 64) {
             DisplayBoardLoadMsg();
@@ -92,5 +86,7 @@ extern "C" {
         }
     }
 }
+
+#endif
 
 #endif

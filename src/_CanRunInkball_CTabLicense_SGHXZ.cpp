@@ -1,24 +1,20 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
-#include <windows.h>
-#include "common.h"
-BOOL __stdcall CTabLicense::CanRunInkball()
-{
-  BOOL BOOLPermission; // eax
-  BOOL v1; // esi
-  const char*v3[4]; // [esp+10h] [ebp-14h] BYREF
-  int v4; // [esp+20h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CTabLicense::CanRunInkball", 0);
+extern BOOL CTabLicense_GetBOOLPermission(const wchar_t* name, int param);
+
+static BOOL CTabLicense_CanRunInkball()
+{
+  BOOL BOOLPermission;
+  BOOL v1;
+  uint8_t v3[16];
+  int v4;
+
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "CTabLicense::CanRunInkball", 0);
   v4 = 0;
-  BOOLPermission = CTabLicense::GetBOOLPermission(L"TabletPCInkBall-EnableGame", 0);
+  BOOLPermission = CTabLicense_GetBOOLPermission(L"TabletPCInkBall-EnableGame", 0);
   v4 = -1;
   v1 = BOOLPermission;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return v1;
 }
-
-#endif

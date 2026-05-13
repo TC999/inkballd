@@ -1,8 +1,7 @@
+// [COMPLEX] Many undeclared constructors, duplicate code blocks — left wrapped
 #if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
 #include <windows.h>
 CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
 {
@@ -55,7 +54,7 @@ CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
   CBoardTile *v51; // [esp+40h] [ebp+8h]
   CBoardObject *v52; // [esp+40h] [ebp+8h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v39, "BuildTileObject", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v39), "BuildTileObject", 0);
   v4 = (a1 >> 12) & 0xF;
   v42 = 0;
   if ( v4 > 0xA )

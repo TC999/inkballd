@@ -1,17 +1,11 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
-#include <windows.h>
-#include "common.h"
-int __stdcall CBoardTileWall::CareAboutCollisions(int a1, int a2)
-{
-  uint8_t v3[8]; // [esp+0h] [ebp-8h] BYREF
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v3, "CBoardTileWall::CareAboutCollisions", 0);
+static int CBoardTileWall_CareAboutCollisions(int a1, int a2)
+{
+  uint8_t v3[8];
+
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "CBoardTileWall::CareAboutCollisions", 0);
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
   return 2;
 }
-
-#endif

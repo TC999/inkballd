@@ -1,29 +1,27 @@
+// [COMPLEX] Undeclared CBoardObject methods, undeclared v12/v13/v15 — left wrapped
 #if 0
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CBoardTileOWF::CareAboutCollisions(int*this, CBoardObject *a2, int*a3)
+int CBoardTileOWF_CareAboutCollisions(int* self, CBoardObject* a2, int* a3)
 {
-  int v4; // eax
-  int v5; // ecx
-  bool v6; // c0
-  bool v7; // c0
-  bool v8; // c3
-  int v9; // esi
-  int v10; // esi
-  uint8_t v14[8]; // [esp+28h] [ebp-1Ch] BYREF
-  int v16; // [esp+40h] [ebp-4h]
+  int v4;
+  int v5;
+  bool v6;
+  bool v7;
+  bool v8;
+  int v9;
+  int v10;
+  uint8_t v14[8];
+  int v16;
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CBoardTileOWF::CareAboutCollisions", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CBoardTileOWF::CareAboutCollisions", 0);
   v16 = 0;
-  CBoardObject::GetCenterPoint((CBoardObject *)this, &v13);
+  CBoardObject::GetCenterPoint((CBoardObject *)self, &v13);
   CBoardObject::GetCenterPoint(a2, &v15);
-  CBoardObject::GetBoundingRect((CBoardObject *)this, &v12);
-  v4 = (int)((double)this[6] / 1.6);
-  v5 = this[22];
+  CBoardObject::GetBoundingRect((CBoardObject *)self, &v12);
+  v4 = (int)((double)self[6] / 1.6);
+  v5 = self[22];
   if ( !v5 )
   {
     v12.bottom -= v4;
@@ -33,7 +31,7 @@ int __thiscall CBoardTileOWF::CareAboutCollisions(int*this, CBoardObject *a2, in
       goto LABEL_4;
     }
 LABEL_16:
-    v9 = this[11];
+    v9 = self[11];
     if ( v9 && v9 != *((uint32_t *)a2 + 11) && (!a3 || PointInRect(*a3, a3[1], &v12)) )
       goto LABEL_20;
 LABEL_22:
