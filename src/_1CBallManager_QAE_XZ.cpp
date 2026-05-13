@@ -1,24 +1,18 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-};
-
 extern "C" void* CBallManager_vftable; // Forward declaration of virtual table
 
-CBallManager::~CBallManager(CBallManager *this)
+CBallManager::~CBallManager()
 {
     CBall** ball_ptr;
     int ball_count;
     uint8_t log_buffer[16];
     int flag;
 
-    this->vftable = &CBallManager_vftable;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::~CBallManager", 0);
+    *((uint32_t*)this + 0) = reinterpret_cast<uint32_t>(&CBallManager_vftable);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::~CBallManager", 0);
     flag = 0;
     
     ball_ptr = reinterpret_cast<CBall**>(reinterpret_cast<uint8_t*>(this) + 56);
@@ -37,7 +31,5 @@ CBallManager::~CBallManager(CBallManager *this)
     while (ball_count);
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
-
-#endif

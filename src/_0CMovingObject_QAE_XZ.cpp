@@ -1,28 +1,19 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-};
-
 extern "C" void* CInk_vftable; // Forward declaration of virtual table
 
-CMovingObject* __thiscall CMovingObject::CMovingObject(CMovingObject *this)
+CMovingObject::CMovingObject()
 {
     uint8_t log_buffer[8];
 
-    CBoardObject::CBoardObject(this);
-    this->vftable = &CInk_vftable;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CMovingObject::CMovingObject", 0);
-    this->velocity_x = 0.0;
-    this->velocity_y = 0.0;
-    this->acceleration_x = 0.0;
-    this->acceleration_y = 0.0;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
-    return this;
+    CBoardObject::CBoardObject();
+    *((uint32_t*)this + 0) = reinterpret_cast<uint32_t>(&CInk_vftable);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CMovingObject::CMovingObject", 0);
+    *((float*)this + 2) = 0.0;
+    *((float*)this + 3) = 0.0;
+    *((float*)this + 4) = 0.0;
+    *((float*)this + 5) = 0.0;
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
-
-#endif

@@ -11,9 +11,10 @@ extern "C" {
         auto ball_layout = reinterpret_cast<CBallLayout*>(ball);
         ball_layout->field_44 = color;
         
-        BitmapRect = GetBitmapRect(color + 2);
+        BitmapRect = CGameBoard::GetBitmapRect(g_pCGameBoard, color + 2);
         log_state = -1;
         
         ball_layout->field_30 = reinterpret_cast<uintptr_t>(BitmapRect);
     }
 }
+

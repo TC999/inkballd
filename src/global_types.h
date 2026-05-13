@@ -145,6 +145,7 @@ struct CInk {
     void* vftable;
     uint32_t field_4;
     CInk();
+    CInk(HWND hWnd);
     ~CInk();
     static void ClearInk(CInk* self);
     static void OnDisplayChange(CInk* self);
@@ -174,6 +175,7 @@ struct CBoardObject;
 // ============================================================================
 struct CTimeManager {
     void* vftable;
+    CTimeManager();
     static uint32_t GetTime(void* self);
     static void SetTime(void* self, uint32_t time);
     static void InitTime(void* self, uint32_t time);
@@ -187,13 +189,16 @@ struct CScoreManager {
     static void IncrementScore(void* self, uint32_t count);
     static uint32_t GetScore(void* self);
     static void ResetScore(void* self);
+    static int InitSurface(CScoreManager* self);
 };
 
 struct CTileManager {
     void* vftable;
+    CTileManager();
     static void SetTiles(void* self, uint32_t score);
     static void ResetTileCount(void* self);
     static int GetTileCount(void* self);
+    static int InitSurface(CTileManager* self);
 };
 
 struct CBoardTile {
@@ -209,6 +214,7 @@ struct CSurface {
     ~CSurface();
     static int IsColorKeyed(CSurface* self);
     static void* GetDDrawSurface(CSurface* self);
+    static void Clear(CSurface* self, uint32_t color);
 };
 
 struct CBoardTileRLColored {
@@ -445,9 +451,9 @@ struct CRegistryManager {
     const wchar_t* SubKey;
     const wchar_t* ValueName;
     static uint32_t ReadDifficulty(CRegistryManager* self);
-    static void WriteDifficulty(CRegistryManager*, uint32_t);
-    static uint32_t ReadHiScore(CRegistryManager*);
-    static void WriteHiScore(CRegistryManager*, int);
+    static void WriteDifficulty(CRegistryManager* self, uint32_t difficulty);
+    static uint32_t ReadHiScore(CRegistryManager* self);
+    static void WriteHiScore(CRegistryManager* self, int score);
 };
 
 struct CBoardManager {
@@ -457,8 +463,8 @@ struct CBoardManager {
     static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
     static int LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
     static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
-    static void* GetLastLoadedBoardData(CBoardManager*);
-    static int LoadRandomBonusBoardFromResources(CBoardManager*, void*, int*);
+    static void* GetLastLoadedBoardData(CBoardManager* manager);
+    static int LoadRandomBonusBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
 };
 
 struct CBitmapRects {

@@ -1,22 +1,12 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
-
-IDirectDrawSurface7* __thiscall CSurface::GetDDrawSurface(CSurface *this)
+void* CSurface::GetDDrawSurface(CSurface* self)
 {
-    IDirectDrawSurface7* surface;
-    uint8_t log_buffer[8];
+  uint8_t log_buffer[8];
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CSurface::GetDDrawSurface", 0);
-    surface = reinterpret_cast<IDirectDrawSurface7*>(this->ddraw_surface);
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
-    return surface;
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CSurface::GetDDrawSurface", 0);
+  void* surface = reinterpret_cast<void*>(*((uint32_t*)self + 1));
+  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+  return surface;
 }
-
-#endif

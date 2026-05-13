@@ -1,23 +1,19 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 
-extern "C" {
-    CDisplay* CDisplay::CDisplay(CDisplay* this_ptr)
-    {
-      uint8_t log_buffer[8]; // [esp+8h] [ebp-8h] BYREF
+extern "C" void* CDisplay_vftable;
 
-      *reinterpret_cast<uint32_t*>(this_ptr) = reinterpret_cast<uint32_t>(&CDisplay::`vftable`);
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CDisplay::CDisplay", 0);
-      *reinterpret_cast<uint32_t*>(this_ptr + 1) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 2) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 3) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 4) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 5) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 6) = 0;
-      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
-      return this_ptr;
-    }
+CDisplay::CDisplay()
+{
+    uint8_t log_buffer[8];
+
+    *((uint32_t*)this + 0) = reinterpret_cast<uint32_t>(&CDisplay_vftable);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CDisplay::CDisplay", 0);
+    *((uint32_t*)this + 1) = 0;
+    *((uint32_t*)this + 2) = 0;
+    *((uint32_t*)this + 3) = 0;
+    *((uint32_t*)this + 4) = 0;
+    *((uint32_t*)this + 5) = 0;
+    *((uint32_t*)this + 6) = 0;
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
-
-#endif

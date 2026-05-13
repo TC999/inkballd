@@ -1,62 +1,46 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __stdcall SetCursorAttributes(uint32_t a1)
+
+void __stdcall SetCursorAttributes(uint32_t a1)
 {
-  int v1; // esi
-  int v2; // ecx
-  uint8_t v4[8]; // [esp+10h] [ebp-28h] BYREF
-  int v5; // [esp+18h] [ebp-20h] BYREF
-  int v6; // [esp+1Ch] [ebp-1Ch] BYREF
-  float v7; // [esp+20h] [ebp-18h] BYREF
-  int v8; // [esp+24h] [ebp-14h] BYREF
-  int v9[3]; // [esp+28h] [ebp-10h] BYREF
-  int v10; // [esp+34h] [ebp-4h]
+  int v2; // edi
+  int v3; // eax
+  int v4; // eax
+  float v5; // [esp+14h] [ebp-20h]
+  uint8_t v6[16]; // [esp+1Ch] [ebp-18h] BYREF
+  int v7; // [esp+2Ch] [ebp-8h]
+  int v8; // [esp+30h] [ebp-4h]
 
-  v1 = 0;
-  v9[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "SetCursorAttributes", v9);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v6), "SetCursorAttributes", 0);
+  v2 = 0;
   v8 = 0;
-  v2 = *(uint32_t *)g_pIInkObject;
-  v10 = 0;
-  v9[0] = (*(int (__stdcall **)(struct IInkObject *, uint32_t, int*))(v2 + 44))(g_pIInkObject, a1, &v8);
-  if ( v9[0] >= 0 )
+  if ( a1 == 1 )
   {
-    v7 = 100.0;
-    v9[0] = (*(int (__stdcall **)(int, uint32_t, int, float *))(*(uint32_t *)v8 + 12))(
-              v8,
-              *(uint32_t *)GUID_PEN_STYLE.Data4,
-              4,
-              &v7);
-    v6 = 20;
-    v9[0] = (*(int (__stdcall **)(int, uint32_t, int, int*))(*(uint32_t *)v8 + 12))(
-              v8,
-              GUID_DRAWING_FLAGS.Data1,
-              4,
-              &v6);
-    v5 = 0;
-    v9[0] = (*(int (__stdcall **)(int, uint32_t, int, int*))(*(uint32_t *)v8 + 12))(
-              v8,
-              *(uint32_t *)&GUID_PEN_STYLE.Data2,
-              4,
-              &v5);
-    v9[0] = (*(int (__stdcall **)(struct IInkObject *, uint32_t, int))(*(uint32_t *)g_pIInkObject + 40))(
-              g_pIInkObject,
-              a1,
-              v8);
-    (*(void (__stdcall **)(int))(*(uint32_t *)v8 + 8))(v8);
+    v3 = (*(int (__stdcall **)(void*, uint32_t))(**((uint32_t **)g_pIInkObject) + 32))((void*)*((uint32_t *)g_pIInkObject), 0);
+    if ( v3 >= 0 )
+    {
+      v5 = 6.0f;
+      ((int (__stdcall *)(int, uint32_t, int, float*))((*((uint32_t **)v3)))[3])(v3, 19, 2, &v5);
+      v2 = 1;
+    }
   }
-  else
+  if ( a1 >= 2 )
   {
-    v1 = -1;
+    v4 = (*(int (__stdcall **)(void*, uint32_t))(**((uint32_t **)g_pIInkObject) + 32))((void*)*((uint32_t *)g_pIInkObject), 0);
+    if ( v4 >= 0 )
+    {
+      ((int (__stdcall *)(int, uint32_t, int, int*))((*((uint32_t **)v4)))[3])(v4, 21, 0, &v7);
+      v2 = 1;
+    }
   }
-  v10 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
-  return v1;
+  if ( v2 )
+  {
+    (*(int (__stdcall **)(void*, uint32_t))(**((uint32_t **)g_pIInkObject) + 36))((void*)*((uint32_t *)g_pIInkObject), 0);
+    (*(int (__stdcall **)(void*, uint32_t))(**((uint32_t **)g_pIInkObject) + 20))((void*)*((uint32_t *)g_pIInkObject), 2);
+  }
+  v8 = -1;
+  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
 }
-
-#endif
