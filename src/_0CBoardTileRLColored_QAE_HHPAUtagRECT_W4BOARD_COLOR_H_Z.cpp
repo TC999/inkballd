@@ -1,19 +1,13 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
+extern void* CBoardTileRLColored_vftable;
+extern void AddGameObjectToUpdateList(void* game_object);
+extern void AddRLColoredWallToList(void* wall_tile);
 
-};
-
-extern "C" void* CBoardTileRLColored_vftable; // Forward declaration of virtual table
-extern "C" void AddGameObjectToUpdateList(void* game_object);
-extern "C" void AddRLColoredWallToList(void* wall_tile);
-
-CBoardTile* __thiscall CBoardTileRLColored::CBoardTileRLColored(
-    CBoardTile *this,
+CBoardTile* CBoardTileRLColored::CBoardTileRLColored(
+    CBoardTile* self,
     int x,
     int y,
     int bitmap_rect,
@@ -21,28 +15,23 @@ CBoardTile* __thiscall CBoardTileRLColored::CBoardTileRLColored(
     int initial_color)
 {
     uint8_t log_buffer[16];
-    int flag;
 
-    CBoardTile::CBoardTile(this);
-    this->vftable = &CBoardTileRLColored_vftable;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLColored::CBoardTileRLColored", 0);
-    flag = 0;
-    
-    this->x_coord = x;
-    this->y_coord = y;
-    this->bitmap_rect = reinterpret_cast<void*>(bitmap_rect);
-    this->tile_type = tile_type;
-    this->color_index = initial_color;
-    this->min_color = 0;
-    this->animation_timer = 0;
-    this->animation_state = initial_color != 0 ? 2 : 0;
-    
-    AddGameObjectToUpdateList(this);
-    AddRLColoredWallToList(this);
-    
-    flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
-    return this;
+    CBoardTile::CBoardTile(self);
+    self->vftable = &CBoardTileRLColored_vftable;
+    new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTileRLColored::CBoardTileRLColored", 0);
+
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 76) = x;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 80) = y;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 32) = bitmap_rect;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 68) = tile_type;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 44) = initial_color;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 96) = 0;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 92) = 0;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 88) = (initial_color != 0) ? 2 : 0;
+
+    AddGameObjectToUpdateList(self);
+    AddRLColoredWallToList(self);
+
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+    return self;
 }
-
-#endif

@@ -1,32 +1,25 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
+extern void* CBall_vftable;
 
-};
-
-extern "C" void* CBall_vftable; // Forward declaration of virtual table
-
-CBall::~CBall(CBall *this)
+void CBall_destructor(CBall* self)
 {
-    void** ball_points_data;
     uint8_t log_buffer[16];
-    int flag;
 
-    this->vftable = &CBall_vftable;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::~CBall", 0);
-    ball_points_data = reinterpret_cast<void**>(this->ball_points_ptr);
-    flag = 0;
-    if (ball_points_data)
+    *reinterpret_cast<void**>(self) = &CBall_vftable;
+    new (log_buffer) Helpers::CLogBlock(log_buffer, "CBall::~CBall", 0);
+    auto layout = reinterpret_cast<CBallLayout*>(self);
+    if (layout->field_120)
     {
-        BallPoints::scalar_deleting_destructor(ball_points_data, 1);
-        this->ball_points_ptr = nullptr;
+        operator delete(reinterpret_cast<void*>(layout->field_120));
+        layout->field_120 = 0;
     }
-    flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
 
-#endif
+void CBall::~CBall()
+{
+    CBall_destructor(this);
+}

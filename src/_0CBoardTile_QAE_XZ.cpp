@@ -1,25 +1,17 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
+extern void* CBoardTile_vftable;
 
-};
-
-extern "C" void* CBoardTile_vftable; // Forward declaration of virtual table
-
-CBoardTile* __thiscall CBoardTile::CBoardTile(CBoardTile *this)
+CBoardTile* CBoardTile::CBoardTile(CBoardTile* self)
 {
     uint8_t log_buffer[8];
 
-    CBoardObject::CBoardObject(this);
-    this->vftable = &CBoardTile_vftable;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTile::CBoardTile", 0);
-    this->tile_type = 0;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
-    return this;
+    CBoardObject::CBoardObject(self);
+    self->vftable = &CBoardTile_vftable;
+    new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTile::CBoardTile", 0);
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 68) = 0;
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+    return self;
 }
-
-#endif

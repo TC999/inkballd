@@ -1,43 +1,40 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-CBoardTile *__thiscall CBoardTileRLGray::CBoardTileRLGray(
-        CBoardTile *this,
-        int a2,
-        int a3,
-        int a4,
-        int a5,
-        int a6,
-        int a7,
-        int a8)
+
+extern void* CBoardTileRLGray_vftable;
+extern void AddGameObjectToUpdateList(void* game_object);
+
+CBoardTile* CBoardTileRLGray::CBoardTileRLGray(
+    CBoardTile* self,
+    int a2,
+    int a3,
+    int a4,
+    int a5,
+    int a6,
+    int a7,
+    int a8)
 {
-  uint8_t v10[16]; // [esp+10h] [ebp-14h] BYREF
-  int v11; // [esp+20h] [ebp-4h]
+    uint8_t v10[16];
 
-  CBoardTile::CBoardTile(this);
-  *(uint32_t *)this = &CBoardTileRLGray::`vftable';
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CBoardTileRLGray::CBoardTileRLGray", 0);
-  *((uint32_t *)this + 19) = a2;
-  *((uint32_t *)this + 20) = a3;
-  *((uint32_t *)this + 8) = a4;
-  *((uint32_t *)this + 11) = a5;
-  *((uint32_t *)this + 25) = a7;
-  *((uint32_t *)this + 26) = a8;
-  *((uint32_t *)this + 18) = a6;
-  v11 = 0;
-  *((uint32_t *)this + 17) = 7;
-  *((uint32_t *)this + 24) = a6 != 0 ? 2 : 0;
-  *((uint32_t *)this + 16) = 0;
-  *((uint32_t *)this + 22) = 0;
-  *((uint32_t *)this + 23) = 0;
-  AddGameObjectToUpdateList(this);
-  v11 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
-  return this;
+    CBoardTile::CBoardTile(self);
+    *reinterpret_cast<uint32_t*>(self) = reinterpret_cast<uint32_t>(&CBoardTileRLGray_vftable);
+    new (v10) Helpers::CLogBlock(v10, "CBoardTileRLGray::CBoardTileRLGray", 0);
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 76) = a2;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 80) = a3;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 32) = a4;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 44) = a5;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 100) = a7;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 104) = a8;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 72) = a6;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 68) = 7;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 96) = (a6 != 0) ? 2 : 0;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 64) = 0;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 88) = 0;
+    *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 92) = 0;
+    AddGameObjectToUpdateList(self);
+    reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
+    return self;
 }
-
-#endif
