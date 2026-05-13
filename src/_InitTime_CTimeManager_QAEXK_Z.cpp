@@ -1,13 +1,11 @@
 #include "global_types.h"
 #include <cstdint>
-#include <cstring>
-#include <cstdlib>
 #include <windows.h>
 void CTimeManager::InitTime(void* self, uint32_t a2)
 {
-  uint8_t v3[8]; // [esp+4h] [ebp-8h] BYREF
+  uint8_t v3[8];
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "CTimeManager::InitTime", 0);
+  Helpers::CLogBlock::CLogBlock(v3, "CTimeManager::InitTime", 0);
   *((uint32_t *)self + 9) = a2;
   if ( a2 != -1 && a2 > 0xF3E58 )
     *((uint32_t *)self + 9) = 999000;
