@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameManager::DropWallTile(CGameManager *this, void*a2, uint32_t a3)
+
+void CGameManager::DropWallTile(void* self, void* a2, uint32_t a3)
 {
   bool v3; // cc
   CBoardTile*Tile; // eax
@@ -17,7 +16,7 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void*a2, uint32_t
   int v10; // [esp+24h] [ebp-4h]
   CBoardTile *v11; // [esp+30h] [ebp+8h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameManager::DropWallTile", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "CGameManager::DropWallTile", 0);
   v3 = (uint32_t)a2 <= *((uint32_t *)g_pCGameBoard + 2467);
   v10 = 0;
   if ( !v3
@@ -56,5 +55,3 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void*a2, uint32_t
   v10 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
 }
-
-#endif

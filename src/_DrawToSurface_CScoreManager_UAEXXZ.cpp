@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
+
+void CScoreManager::DrawToSurface()
 {
   int v5; // edi
   DWORD v6; // edi
@@ -25,7 +24,7 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   int v39; // [esp+30h] [ebp-4h]
 
   v37 = this;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v34, "CScoreManager::DrawToSurface", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v34), "CScoreManager::DrawToSurface", 0);
   v39 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   lpVtbl = DDrawSurface->lpVtbl;
@@ -93,5 +92,3 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   v39 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v34)->~CLogBlock();
 }
-
-#endif

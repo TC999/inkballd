@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
+
+int CGameBoard::DisplayFrame(int a2, int a3)
 {
   int v4; // edi
   int v6; // eax
@@ -21,7 +20,7 @@ int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
 
   v4 = 0;
   v17[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CGameBoard::DisplayFrame", v17);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CGameBoard::DisplayFrame", v17);
   v18 = 0;
   if ( !BoardIsActive() && !a3 )
     goto LABEL_25;
@@ -123,5 +122,3 @@ LABEL_7:
   reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
   return v4;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CTileManager::DrawToSurface(CTileManager *this)
+
+void CTileManager::DrawToSurface()
 {
   uint32_t v7; // edx
   void (__stdcall **p_BltFast)(struct IDirectDrawSurface7 *, int, int, struct IDirectDrawSurface7 *, char*, uint32_t); // esi
@@ -19,7 +18,7 @@ void __thiscall CTileManager::DrawToSurface(CTileManager *this)
   int v19; // [esp+30h] [ebp-4h]
 
   v16 = this;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CTileManager::DrawToSurface", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CTileManager::DrawToSurface", 0);
   v19 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pTileManagerSurface);
   lpVtbl = DDrawSurface->lpVtbl;
@@ -58,5 +57,3 @@ void __thiscall CTileManager::DrawToSurface(CTileManager *this)
   v19 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
 }
-
-#endif

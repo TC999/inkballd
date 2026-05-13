@@ -1,16 +1,15 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::FreeDirectDraw(CGameBoard *this)
+
+void CGameBoard::FreeDirectDraw()
 {
   uint8_t v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v1, "CGameBoard::FreeDirectDraw", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v1), "CGameBoard::FreeDirectDraw", 0);
   v2 = 0;
   if ( g_pTimeManagerSurface )
   {
@@ -40,5 +39,3 @@ void __thiscall CGameBoard::FreeDirectDraw(CGameBoard *this)
   v2 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
-
-#endif

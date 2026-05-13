@@ -1,14 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-};
-
-void __thiscall CBoardTile::DeflectBall(CBoardTile *this, CBall* ball)
+void CBoardTile::DeflectBall(CBall* ball)
 {
     uint8_t log_buffer[16];
     int flag;
@@ -21,5 +15,3 @@ void __thiscall CBoardTile::DeflectBall(CBoardTile *this, CBall* ball)
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

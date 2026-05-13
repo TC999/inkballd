@@ -1,20 +1,12 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
-
-};
 
 extern "C" void* g_pBallManagerSurface; // Global ball manager surface
 extern "C" void* g_pGamePiecesSurface; // Global game pieces surface
 extern "C" void* g_CBitmapRects; // Global bitmap rectangles
 
-void __thiscall CBallManager::DrawToSurface(CBallManager *this)
+void CBallManager::DrawToSurface()
 {
     IDirectDrawSurface7* ddraw_surface;
     IDirectDrawSurface7Vtbl* surface_vtable;
@@ -81,5 +73,3 @@ void __thiscall CBallManager::DrawToSurface(CBallManager *this)
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CSurface::DrawBitmap(CSurface *this, HDC h, uint32_t xSrc, uint32_t ySrc, int wSrc, int hSrc)
+
+int CSurface::DrawBitmap(HDC h, uint32_t xSrc, uint32_t ySrc, int wSrc, int hSrc)
 {
   int v7; // eax
   int v8; // eax
@@ -28,7 +27,7 @@ int __thiscall CSurface::DrawBitmap(CSurface *this, HDC h, uint32_t xSrc, uint32
   int v26; // [esp+C0h] [ebp-4h]
 
   *(uint32_t *)v25 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v22, "CSurface::DrawBitmap", (int*)v25);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v22), "CSurface::DrawBitmap", (int*)v25);
   v26 = 0;
   if ( !h || !*(uint32_t *)this )
   {
@@ -94,5 +93,3 @@ LABEL_26:
   reinterpret_cast<Helpers::CLogBlock*>(v22)->~CLogBlock();
   return v9;
 }
-
-#endif

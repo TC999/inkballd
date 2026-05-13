@@ -1,18 +1,12 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
 
 extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
 extern "C" void ConvertTileToFloor(void* tile);
 extern "C" void ScoreBreak(CBall* ball);
 
-void __thiscall CBoardTileBreakWall::DeflectBall(CBoardTileBreakWall *this, CBall* ball)
+void CBoardTileBreakWall::DeflectBall(CBall* ball)
 {
     uint32_t tile_type;
     uint8_t log_buffer[16];
@@ -32,5 +26,3 @@ void __thiscall CBoardTileBreakWall::DeflectBall(CBoardTileBreakWall *this, CBal
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

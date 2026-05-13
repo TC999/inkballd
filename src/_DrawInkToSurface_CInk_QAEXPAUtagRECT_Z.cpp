@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
+
+void CInk::DrawInkToSurface(struct tagRECT *a2)
 {
   int v2; // ecx
   int v3; // eax
@@ -16,7 +15,7 @@ void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
   int v8; // [esp+38h] [ebp-4h]
 
   v7[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CInk::DrawInkToSurface", v7);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "CInk::DrawInkToSurface", v7);
   v8 = 0;
   if ( a2 )
   {
@@ -46,5 +45,3 @@ void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
   v8 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
-
-#endif

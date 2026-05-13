@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CTimeManager::DrawToSurface(CTimeManager *this)
+
+void CTimeManager::DrawToSurface()
 {
   uint32_t v2; // eax
   uint32_t v3; // edi
@@ -40,7 +39,7 @@ void __thiscall CTimeManager::DrawToSurface(CTimeManager *this)
   uint32_t v42; // [esp+40h] [ebp-10h]
   int v43; // [esp+4Ch] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v35, "CTimeManager::DrawToSurface", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v35), "CTimeManager::DrawToSurface", 0);
   v2 = *((uint32_t *)this + 9) / 0x3E8u;
   v3 = *((uint32_t *)this + 3) - dwLeftDrawDif - 9;
   v43 = 0;
@@ -177,5 +176,3 @@ LABEL_15:
   v43 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v35)->~CLogBlock();
 }
-
-#endif

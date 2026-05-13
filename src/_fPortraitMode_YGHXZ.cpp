@@ -1,10 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+
 BOOL __stdcall fPortraitMode()
 {
   BOOL v0; // esi
@@ -16,7 +15,7 @@ BOOL __stdcall fPortraitMode()
   int v7; // [esp+100h] [ebp-4h]
 
   v0 = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "fPortraitMode", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "fPortraitMode", 0);
   v7 = 0;
   memset(&DevMode, 0, sizeof(DevMode));
   DevMode.dmSize = 220;
@@ -34,5 +33,3 @@ BOOL __stdcall fPortraitMode()
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v0;
 }
-
-#endif

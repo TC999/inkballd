@@ -1,12 +1,6 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
 
 int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)
 {
@@ -51,5 +45,3 @@ LABEL_4:
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return found;
 }
-
-#endif

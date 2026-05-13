@@ -1,16 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-};
-
-};
-
-void __thiscall CBoardTileChevron::DeflectBall(CBoardTileChevron *this, CBall* ball)
+void CBoardTileChevron::DeflectBall(CBall* ball)
 {
     uint32_t direction;
     double* velocity_ptr;
@@ -59,30 +51,3 @@ LABEL_11:
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-      else
-      {
-        if ( v3 != 3 )
-          goto LABEL_11;
-        v6 = (double *)a2;
-        v7 = *((double *)a2 + 8) + 3.0;
-      }
-      v6[8] = v7;
-      CBall::SetXVel((CBall *)v6, v7);
-      goto LABEL_11;
-    }
-    v4 = (double *)a2;
-    v5 = *((double *)a2 + 9) + 3.0;
-  }
-  else
-  {
-    v4 = (double *)a2;
-    v5 = *((double *)a2 + 9) - 3.0;
-  }
-  v4[9] = v5;
-  CBall::SetYVel((CBall *)v4, v5);
-LABEL_11:
-  v9 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
-}
-
-#endif

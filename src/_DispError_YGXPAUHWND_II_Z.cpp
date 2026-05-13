@@ -1,10 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+
 void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3)
 {
   int*v3; // [esp+0h] [ebp-20A4h]
@@ -14,7 +13,7 @@ void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3)
   WCHAR Caption[64]; // [esp+2014h] [ebp-90h] BYREF
   int v8; // [esp+20A0h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "DispError", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "DispError", 0);
   v8 = 0;
   Helpers::LoadStringW(0, uID, Caption, (uint16_t *)0x40, 0, v3);
   Helpers::LoadStringW(0, a3, Text, (uint16_t *)0x1000, 0, v4);
@@ -22,5 +21,3 @@ void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3)
   v8 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }
-
-#endif

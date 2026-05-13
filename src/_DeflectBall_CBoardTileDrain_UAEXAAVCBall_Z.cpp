@@ -1,15 +1,7 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
-
-};
 
 extern "C" void* g_CBitmapRects; // Global bitmap rectangles
 extern "C" void CBitmapRects::GetBitmapRect(void* bitmap_rects, int index);
@@ -20,7 +12,7 @@ extern "C" void KillPlayer(int reason);
 extern "C" void ScoreBall(CBall* ball, int score);
 extern "C" void ToggleRLWalls(int walls);
 
-void __thiscall CBoardTileDrain::DeflectBall(CBoardTileDrain *this, CBall* ball)
+void CBoardTileDrain::DeflectBall(CBall* ball)
 {
     uint32_t direction;
     LONG right_edge;
@@ -108,5 +100,3 @@ void __thiscall CBoardTileDrain::DeflectBall(CBoardTileDrain *this, CBall* ball)
     
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

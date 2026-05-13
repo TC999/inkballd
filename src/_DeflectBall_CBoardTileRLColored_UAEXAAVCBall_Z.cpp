@@ -1,16 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-};
-
 extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
 
-void __thiscall CBoardTileRLColored::DeflectBall(CBoardTileRLColored *this, CBall* ball)
+void CBoardTileRLColored::DeflectBall(CBall* ball)
 {
     uint8_t log_buffer[16];
     int flag;
@@ -23,5 +17,3 @@ void __thiscall CBoardTileRLColored::DeflectBall(CBoardTileRLColored *this, CBal
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif
