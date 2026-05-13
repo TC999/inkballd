@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -17,7 +16,7 @@ BOOL CGameBoard::PointIntersectsWithTile(
   uint8_t v10[16]; // [esp+10h] [ebp-14h] BYREF
   int v11; // [esp+20h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v10), "CGameBoard::PointIntersectsWithTile", 0);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v10, "CGameBoard::PointIntersectsWithTile", 0);
   y = a2->y;
   v11 = 0;
   Tile = CGameBoard::GetTile(this, a2->x, y);
@@ -34,15 +33,14 @@ BOOL CGameBoard::PointIntersectsWithTile(
     if ( v7 == 1 )
       v8 = a4 == 0;
     v11 = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
+    ((Helpers::CLogBlock*)v10)->~CLogBlock();
     return v8;
   }
   else
   {
     v11 = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
+    ((Helpers::CLogBlock*)v10)->~CLogBlock();
     return 0;
   }
 }
 
-#endif

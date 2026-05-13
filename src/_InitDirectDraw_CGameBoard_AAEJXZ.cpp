@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
+int CGameBoard::InitDirectDraw(CGameBoard *this)
 {
   int v2; // esi
   void*v3; // ecx
@@ -73,8 +71,7 @@ LABEL_11:
     v2 = WindowedDisplay;
   }
   v15 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
+  ((Helpers::CLogBlock*)v9)->~CLogBlock();
   return v2;
 }
 
-#endif

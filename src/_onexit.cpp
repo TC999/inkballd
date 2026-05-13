@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -26,4 +25,3 @@ _onexit_t __cdecl _onexit(_onexit_t Func)
   return v2;
 }
 
-#endif

@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CInk::Init(CInk *this)
+int CInk::Init(CInk *this)
 {
   CInk *v1; // edi
   uint32_t *v2; // eax
@@ -268,8 +266,7 @@ LABEL_23:
 LABEL_70:
   v4 = *(uint32_t *)v23;
   v24 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v13)->~CLogBlock();
+  ((Helpers::CLogBlock*)v13)->~CLogBlock();
   return v4;
 }
 
-#endif

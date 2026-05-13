@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-uint32_t *__thiscall CGameBoard::CGameBoard(uint32_t *this, HWND a2, void*a3)
+uint32_t *CGameBoard::CGameBoard(uint32_t *this, HWND a2, void*a3)
 {
   CTimeManager *v4; // edi
   double v5; // st7
@@ -130,8 +128,7 @@ LABEL_6:
     v4 = CTimeManager::CTimeManager(v16);
   v23 = -1;
   this[2479] = v4;
-  reinterpret_cast<Helpers::CLogBlock*>(v20)->~CLogBlock();
+  ((Helpers::CLogBlock*)v20)->~CLogBlock();
   return this;
 }
 
-#endif

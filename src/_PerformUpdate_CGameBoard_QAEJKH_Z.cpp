@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -22,7 +21,7 @@ int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
 
   v4 = 0;
   v15 = 0;
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v13), "CGameBoard::PerformUpdate", &v15);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v13, "CGameBoard::PerformUpdate", &v15);
   v17 = 0;
   v16 = a2;
   if ( dword_105C760 )
@@ -120,8 +119,7 @@ LABEL_27:
   v4 = NewSurfaces;
 LABEL_28:
   v17 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v13)->~CLogBlock();
+  ((Helpers::CLogBlock*)v13)->~CLogBlock();
   return v4;
 }
 
-#endif

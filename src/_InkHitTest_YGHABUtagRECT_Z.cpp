@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __stdcall InkHitTest(const struct tagRECT *a1)
 {
   LONG left; // esi
@@ -31,8 +29,7 @@ int __stdcall InkHitTest(const struct tagRECT *a1)
   v6 = CInk::HitCircleTest(*((CInk **)g_pCGameBoard + 2481), &v10, v3, 0);
   v11 = -1;
   v7 = v6;
-  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
+  ((Helpers::CLogBlock*)v9)->~CLogBlock();
   return v7;
 }
 
-#endif

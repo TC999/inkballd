@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CGameBoard::~CGameBoard(CGameBoard *this)
+void CGameBoard::~CGameBoard(CGameBoard *this)
 {
   CBallManager *v2; // ecx
   CScoreManager *v3; // ecx
@@ -50,7 +48,6 @@ void __thiscall CGameBoard::~CGameBoard(CGameBoard *this)
     *v4 = 0;
   }
   v6 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
+  ((Helpers::CLogBlock*)v5)->~CLogBlock();
 }
 
-#endif

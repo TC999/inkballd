@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
+int CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
 {
   int v5; // ecx
   uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
@@ -99,8 +97,7 @@ int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int 
     }
   }
   v15 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
+  ((Helpers::CLogBlock*)v8)->~CLogBlock();
   return v12;
 }
 
-#endif

@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -10,7 +9,7 @@ void CGameBoard::QueryNewPallete(CGameBoard *this)
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF
   int v5; // [esp+24h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "CGameBoard::QueryNewPallete", 0);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v3, "CGameBoard::QueryNewPallete", 0);
   v5 = 0;
   v4[0] = 0;
   FrontBuffer = CDisplay::GetFrontBuffer(g_pDisplay);
@@ -23,7 +22,6 @@ void CGameBoard::QueryNewPallete(CGameBoard *this)
     v4[0] = 0;
   }
   v5 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
+  ((Helpers::CLogBlock*)v3)->~CLogBlock();
 }
 
-#endif

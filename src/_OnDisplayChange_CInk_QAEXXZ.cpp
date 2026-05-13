@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,7 +14,7 @@ void CInk::OnDisplayChange(CInk *this)
 
   v1 = 0;
   v5[0] = 0;
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CInk::OnDisplayChange", v5);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v4, "CInk::OnDisplayChange", v5);
   v6 = 0;
   if ( dword_10B068C > 0 )
   {
@@ -37,7 +36,6 @@ void CInk::OnDisplayChange(CInk *this)
     while ( v2 );
   }
   v6 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
+  ((Helpers::CLogBlock*)v4)->~CLogBlock();
 }
 
-#endif

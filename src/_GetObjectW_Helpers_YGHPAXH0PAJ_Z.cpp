@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __stdcall Helpers::GetObjectW(HANDLE h, void*c, LPVOID pv, uint32_t *a4, int*a5)
 {
   int ObjectW; // esi
@@ -24,8 +22,7 @@ int __stdcall Helpers::GetObjectW(HANDLE h, void*c, LPVOID pv, uint32_t *a4, int
     WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x12u, &stru_10036F8, v9[0]);
   if ( a4 )
     *a4 = *(uint32_t *)v9;
-  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
+  ((Helpers::CLogBlock*)v8)->~CLogBlock();
   return ObjectW;
 }
 
-#endif

@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -24,7 +23,7 @@ int CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
   RECT *lprcSrca; // [esp+60h] [ebp+8h]
 
   v17[0] = 0;
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v16), "CDisplay::Present", v17);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v16, "CDisplay::Present", v17);
   v3 = this->right == 0;
   v18 = 0;
   if ( v3 || !this->bottom )
@@ -97,8 +96,7 @@ LABEL_9:
   }
 LABEL_7:
   v18 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v16)->~CLogBlock();
+  ((Helpers::CLogBlock*)v16)->~CLogBlock();
   return v4;
 }
 
-#endif

@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -19,7 +18,7 @@ int __stdcall CSink::Packets(
   int v11; // [esp+Ch] [ebp-4h] BYREF
 
   v11 = 0;
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v10), "CSink::Packets", &v11);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v10, "CSink::Packets", &v11);
   if ( !AcceptInkInput() )
     goto LABEL_9;
   if ( (HDC)g_tcid != a2 )
@@ -50,8 +49,7 @@ LABEL_9:
   v11 = -2147467259;
   v8 = -2147467259;
 LABEL_7:
-  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
+  ((Helpers::CLogBlock*)v10)->~CLogBlock();
   return v8;
 }
 
-#endif

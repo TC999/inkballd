@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -48,7 +47,7 @@ void CGameManager::LoadBoard(CGameManager *this, const unsigned __int8 *a2, int 
   int v43; // [esp+34h] [ebp-4h]
   int v44; // [esp+40h] [ebp+8h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v37), "CGameManager::LoadBoard", 0);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v37, "CGameManager::LoadBoard", 0);
   v43 = 0;
   v44 = 0;
   v40 = &a2[a3];
@@ -198,7 +197,6 @@ LABEL_8:
   (*(void (**)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v37)->~CLogBlock();
+  ((Helpers::CLogBlock*)v37)->~CLogBlock();
 }
 
-#endif

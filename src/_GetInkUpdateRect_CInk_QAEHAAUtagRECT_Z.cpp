@@ -1,11 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
+int CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
 {
   int v3; // edi
   bool v4; // zf
@@ -48,8 +46,7 @@ int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
     }
   }
   v9 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
+  ((Helpers::CLogBlock*)v7)->~CLogBlock();
   return v3;
 }
 
-#endif
