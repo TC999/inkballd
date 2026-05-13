@@ -11,7 +11,7 @@ void GetInkBufferHDC(HDC *a1)
   int v4; // [esp+24h] [ebp-4h]
 
   v3[0] = -2147467259;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "GetInkBufferHDC", v3);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v2), "GetInkBufferHDC", v3);
   *a1 = 0;
   v4 = 0;
   InkBuffer = CDisplay::GetInkBuffer(g_pDisplay);

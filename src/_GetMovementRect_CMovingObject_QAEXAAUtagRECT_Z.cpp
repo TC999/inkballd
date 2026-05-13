@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRECT *a2)
+
+void CMovingObject::GetMovementRect(struct tagRECT *a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -18,7 +17,7 @@ void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRE
   uint8_t v11[8]; // [esp+8h] [ebp-Ch] BYREF
   int v12; // [esp+10h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CMovingObject::GetMovementRect", 0);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v11), "CMovingObject::GetMovementRect", 0);
   v3 = *((uint32_t *)this + 6);
   if ( v3 <= *((uint32_t *)this + 28) )
     v3 = *((uint32_t *)this + 28);
@@ -54,5 +53,3 @@ void __thiscall CMovingObject::GetMovementRect(CMovingObject *this, struct tagRE
   a2->bottom = v12 + (int)v10;
   reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
 }
-
-#endif

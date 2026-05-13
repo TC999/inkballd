@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -6,12 +5,10 @@
 extern "C" {
 }
 
-};
-
 extern "C" void* g_pDisplay; // Global display instance
 extern "C" void* g_pBallManagerSurface; // Global ball manager surface
 
-int __thiscall CBallManager::InitSurface(CBallManager *this)
+int CBallManager::InitSurface()
 {
     int surface_result;
     int return_value;
@@ -22,7 +19,7 @@ int __thiscall CBallManager::InitSurface(CBallManager *this)
     int flag;
 
     log_data[0] = 0;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::InitSurface", log_data);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::InitSurface", log_data);
     surface_size = this->surface_size;
     surface_data = reinterpret_cast<void*>(this->surface_data);
     flag = 0;
@@ -30,8 +27,6 @@ int __thiscall CBallManager::InitSurface(CBallManager *this)
     flag = -1;
     log_data[0] = surface_result;
     return_value = surface_result;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return return_value;
 }
-
-#endif

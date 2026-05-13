@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -6,11 +5,7 @@
 extern "C" {
 }
 
-};
-
-};
-
-BallPoint* __thiscall CBall::GetNextPoint(CBall *this)
+BallPoint* CBall::GetNextPoint()
 {
     int current_index;
     BallPoint* next_point;
@@ -18,7 +13,7 @@ BallPoint* __thiscall CBall::GetNextPoint(CBall *this)
     uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::GetNextPoint", 0);
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBall::GetNextPoint", 0);
     current_index = this->current_point_index;
     if (current_index <= 16)
     {
@@ -32,8 +27,6 @@ BallPoint* __thiscall CBall::GetNextPoint(CBall *this)
         next_point = nullptr;
     }
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return next_point;
 }
-
-#endif

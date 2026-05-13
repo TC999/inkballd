@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CScoreManager::InitSurface(CScoreManager *this)
+
+int CScoreManager::InitSurface()
 {
   int Surface; // eax
   int v3; // esi
@@ -16,7 +15,7 @@ int __thiscall CScoreManager::InitSurface(CScoreManager *this)
   int v9; // [esp+24h] [ebp-4h]
 
   v8[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CScoreManager::InitSurface", v8);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v7), "CScoreManager::InitSurface", v8);
   v6 = *((uint32_t *)this + 4);
   v5 = (void*)*((uint32_t *)this + 3);
   v9 = 0;
@@ -27,5 +26,3 @@ int __thiscall CScoreManager::InitSurface(CScoreManager *this)
   reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v3;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::Init(CGameBoard *this)
+
+int CGameBoard::Init()
 {
   CInk *v2; // ecx
   int v3; // eax
@@ -15,7 +14,7 @@ int __thiscall CGameBoard::Init(CGameBoard *this)
   int v8; // [esp+24h] [ebp-4h]
 
   v7[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::Init", v7);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v6), "CGameBoard::Init", v7);
   v2 = (CInk *)*((uint32_t *)this + 2481);
   v8 = 0;
   v3 = CInk::Init(v2);
@@ -25,5 +24,3 @@ int __thiscall CGameBoard::Init(CGameBoard *this)
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v4;
 }
-
-#endif
