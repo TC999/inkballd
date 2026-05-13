@@ -5,6 +5,7 @@
 #include <windows.h>
 int Blt_CDisplay(CDisplay *self, uint32_t a2, uint32_t a3, CSurface*a4, struct tagRECT *a5)
 {
+    void* DDrawSurface; // auto-declared
   int v7; // eax
   int v8; // esi
   uint32_t v10; // [esp-4h] [ebp-2Ch]

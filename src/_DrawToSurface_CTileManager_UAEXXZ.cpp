@@ -6,6 +6,13 @@
 
 void CTileManager::DrawToSurface()
 {
+    void* DDrawSurface;
+    void* lpVtbl;
+    uint32_t v17;
+    uint32_t v3;
+    uint32_t v4;
+    uint32_t v5;
+    uint32_t v6;
   uint32_t v7; // edx
   void (__stdcall **p_BltFast)(struct IDirectDrawSurface7 *, int, int, struct IDirectDrawSurface7 *, char*, uint32_t); // esi
   char*BitmapRect; // [esp-8h] [ebp-3Ch]
@@ -28,6 +35,15 @@ void CTileManager::DrawToSurface()
   lpVtbl->BltFast(v17, 0, 0, v3, (LPRECT)BitmapRect, 0);
   if ( *((uint32_t *)v16 + 9) <= 0x63u )
   {
+    void* DDrawSurface; // auto-declared
+    void* lpVtbl; // auto-declared
+    uint32_t v10; // auto-declared
+    uint32_t v17; // auto-declared
+    uint32_t v3; // auto-declared
+    uint32_t v4; // auto-declared
+    uint32_t v5; // auto-declared
+    uint32_t v6; // auto-declared
+    uint32_t v8; // auto-declared
     v17 = (struct IDirectDrawSurface7 *)*((uint32_t *)v16 + 9);
     v18 = 14;
     do

@@ -5,6 +5,7 @@
 #include <windows.h>
 int InitDirectDraw_CGameBoard(CGameBoard *self)
 {
+    void* InkBuffer;
   int v2; // esi
   void*v3; // ecx
   CDisplay *v4; // eax
@@ -45,7 +46,8 @@ int InitDirectDraw_CGameBoard(CGameBoard *self)
     goto LABEL_16;
   if ( g_pDisplay )
   {
-    CDisplay::`scalar deleting destructor'(g_pDisplay, 1);
+    void* InkBuffer; // auto-declared
+    CDisplay::scalar_deleting_destructor(g_pDisplay, 1);
     g_pDisplay = 0;
   }
   if ( WindowedDisplay >= 0 )

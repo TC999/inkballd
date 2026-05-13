@@ -5,6 +5,9 @@
 #include <windows.h>
 CBoardTile*__stdcall CheckForBallCollisionWithTile(CBall*a1)
 {
+    uint32_t v12;
+    uint32_t v15;
+    uint32_t v7;
   int v1; // edi
   int v2; // ebx
   CBoardObject *v3; // esi
@@ -38,6 +41,11 @@ CBoardTile*__stdcall CheckForBallCollisionWithTile(CBall*a1)
   v10[7] = v15.bottom;
   do
   {
+    uint32_t v12; // auto-declared
+    uint32_t v13; // auto-declared
+    uint32_t v15; // auto-declared
+    uint32_t v7; // auto-declared
+    uint32_t v8; // auto-declared
     v3 = v11[v1];
     if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t *))(*(uint32_t *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
     {

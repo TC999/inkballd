@@ -5,6 +5,7 @@
 #include <windows.h>
 void Restore_CScoreManager(CScoreManager *self)
 {
+    void* DDrawSurface; // auto-declared
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 

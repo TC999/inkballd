@@ -5,6 +5,7 @@
 #include <windows.h>
 void __stdcall ReleaseInkBufferHDC(HDC a1)
 {
+    void* InkBuffer; // auto-declared
   uint8_t v2[8]; // [esp+10h] [ebp-18h] BYREF
   int v3[3]; // [esp+18h] [ebp-10h] BYREF
   int v4; // [esp+24h] [ebp-4h]

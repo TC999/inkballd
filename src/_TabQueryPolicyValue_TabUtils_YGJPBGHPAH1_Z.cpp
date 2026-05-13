@@ -83,7 +83,7 @@ extern "C" {
   else
   {
     error_code = -2147467261;
-    if (WPP_Global_Control != &WPP_Global_Control && ((*reinterpret_cast<uint8_t*>(WPP_Global_Control) + 28) & 4) != 0)
+    if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
       WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xAu, &stru_1003974, 3);
   }
   return_code = error_code;

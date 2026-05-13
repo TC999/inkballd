@@ -6,6 +6,7 @@
 
 uint32_t CDisplay::CreateSurfaceFromBitmap(CSurface**a2, HINSTANCE name, uint32_t a4, int cy)
 {
+    uint32_t v14;
   uint32_t v6; // esi
   HMODULE ModuleHandleW; // eax
   CSurface *v8; // ecx
@@ -29,6 +30,7 @@ uint32_t CDisplay::CreateSurfaceFromBitmap(CSurface**a2, HINSTANCE name, uint32_
   v22 = 0;
   if ( name && a2 )
   {
+    uint32_t v14; // auto-declared
     if ( *((uint32_t *)this + 1) )
     {
       *a2 = 0;

@@ -5,6 +5,9 @@
 #include <windows.h>
 void QueryNewPallete_CGameBoard(CGameBoard *self)
 {
+    void* FrontBuffer;
+    uint32_t v2;
+    uint32_t v4;
   uint8_t v3[8]; // [esp+10h] [ebp-18h] BYREF
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF
   int v5; // [esp+24h] [ebp-4h]
@@ -18,6 +21,9 @@ void QueryNewPallete_CGameBoard(CGameBoard *self)
   v2->lpVtbl->SetPalette(v2, v4[0]);
   if ( v4[0] )
   {
+    void* FrontBuffer; // auto-declared
+    uint32_t v2; // auto-declared
+    uint32_t v4; // auto-declared
     (*(void (__stdcall **)(LPDIRECTDRAWPALETTE))(*(uint32_t *)v4[0] + 8))(v4[0]);
     v4[0] = 0;
   }

@@ -5,6 +5,7 @@
 #include <windows.h>
 void Paint_CGameBoard(CGameBoard *self)
 {
+    void* DirectDraw;
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 
@@ -13,6 +14,7 @@ void Paint_CGameBoard(CGameBoard *self)
   DirectDraw = CDisplay::GetDirectDraw(g_pDisplay);
   if ( DirectDraw->lpVtbl->TestCooperativeLevel(DirectDraw) == -2005532085 )
   {
+    void* DirectDraw; // auto-declared
     CGameBoard::CreateNewSurfaces(self);
     CGameBoard::RestoreSurfaces((CScoreManager **)self);
   }

@@ -3,6 +3,7 @@
 #include <windows.h>
 
 extern "C" {
+    void* point_array;
 }
 
 void CBall::InitBallPoints()
@@ -25,6 +26,7 @@ void CBall::InitBallPoints()
 
     do
     {
+    void* point_array; // auto-declared
         current_dot_product = static_cast<double>(point_array[1].y) * this->velocity_y +
                               static_cast<double>(point_array[0].x) * this->velocity_x;
         if (current_dot_product > max_value)

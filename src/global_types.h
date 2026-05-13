@@ -176,6 +176,7 @@ struct CInk {
     static void SetInkModifiedFlag(CInk* self);
     static int HitCircleTest(CInk* self, void* point, int a3, int a4);
     static int Init(CInk* self);
+    static void scalar_deleting_destructor(CInk* self, int flags);
 };
 struct CSink {
     void* vftable;
@@ -298,6 +299,7 @@ struct CSurface {
     static void* GetDDrawSurface(CSurface* self);
     static void Clear(CSurface* self, uint32_t color);
     static int SetColorKey(CSurface* self, uint32_t color);
+    static void scalar_deleting_destructor(CSurface* self, int flags);
 };
 
 struct CBoardTileRLColored {
@@ -356,6 +358,7 @@ struct CBallManager {
     static CBoardTile* GetRandomBallLauncher(CBallManager* self);
     static void DrawToSurface(CBallManager* self);
     static void Restore(CBallManager* self);
+    static void scalar_deleting_destructor(CBallManager* self, int flags);
 };
 
 // ============================================================================
@@ -381,6 +384,7 @@ struct IDirectDrawSurface7Vtbl {
 struct IDirectDrawSurface7 {
     IDirectDrawSurface7Vtbl* lpVtbl;
 };
+typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7;
 struct BoardCollection {
     const wchar_t* board_name;
     uint32_t board_data_offset;
@@ -514,6 +518,11 @@ extern "C" {
     extern uint32_t dwTimeDigitWidth;
     extern uint32_t dwTopDrawLoc;
     extern uint32_t dwLeftDrawDif;
+    extern void* g_pIInkCollect;
+    extern void* g_pIInkManager;
+    extern void* g_pTabletManager;
+    extern void* g_pIRenderInk;
+    extern RECT g_rcInkSpace;
 }
 
 // ============================================================================
@@ -612,6 +621,7 @@ struct CBitmapRects {
 };
 
 extern "C" { extern void* SQM_INCREMENT_DWORD; }
+extern int __onexitbegin;
 
 // ============================================================================
 // External data references

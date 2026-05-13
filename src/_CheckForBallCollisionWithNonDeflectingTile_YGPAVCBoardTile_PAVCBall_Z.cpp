@@ -5,6 +5,10 @@
 #include <windows.h>
 CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
 {
+    uint32_t v10;
+    uint32_t v13;
+    uint32_t v16;
+    uint32_t v7;
   int v1; // ebx
   int v2; // edi
   CBoardObject *v3; // esi
@@ -30,6 +34,12 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
   v16 = v7;
   do
   {
+    uint32_t v10; // auto-declared
+    uint32_t v13; // auto-declared
+    uint32_t v14; // auto-declared
+    uint32_t v16; // auto-declared
+    uint32_t v7; // auto-declared
+    uint32_t v8; // auto-declared
     v3 = v9[v1];
     if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t))(*(uint32_t *)v3 + 8))(v3, a1, 0) == 1 )
     {

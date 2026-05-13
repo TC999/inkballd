@@ -11,6 +11,7 @@ int CursorDown_CSink(CSink *self,
         uint32_t a5,
         unsigned __int8 *a6)
 {
+    void* PlayingAreaRect; // auto-declared
   uint32_t v6; // ecx
   uint32_t v8; // ecx
   int v9; // esi

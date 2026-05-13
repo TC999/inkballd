@@ -6,6 +6,13 @@
 
 void CTimeManager::DrawToSurface()
 {
+    uint32_t v20;
+    uint32_t v26;
+    uint32_t v28;
+    uint32_t v34;
+    uint32_t v39;
+    uint32_t v4;
+    uint32_t v40;
   uint32_t v2; // eax
   uint32_t v3; // edi
   uint32_t v5; // edx
@@ -59,6 +66,16 @@ void CTimeManager::DrawToSurface()
     0);
   if ( (uint32_t)v40 <= 0x3E7 )
   {
+    uint32_t v14; // auto-declared
+    uint32_t v15; // auto-declared
+    uint32_t v20; // auto-declared
+    uint32_t v26; // auto-declared
+    uint32_t v28; // auto-declared
+    uint32_t v34; // auto-declared
+    uint32_t v39; // auto-declared
+    uint32_t v4; // auto-declared
+    uint32_t v40; // auto-declared
+    uint32_t v6; // auto-declared
     DDrawSurface = (uint32_t)v40;
     v40 = (struct IDirectDrawSurface7 *)&unk_10B06A4;
     while ( 1 )

@@ -16,13 +16,13 @@ void Dtor_CGameBoard(CGameBoard *self)
   v6 = 0;
   if ( v2 )
   {
-    CBallManager::`scalar deleting destructor'(v2, 1);
+    CBallManager::scalar_deleting_destructor(v2, 1);
     *((uint32_t *)self + 2476) = 0;
   }
   v3 = (CScoreManager *)*((uint32_t *)self + 2477);
   if ( v3 )
   {
-    CScoreManager::`scalar deleting destructor'(v3, 1);
+    CScoreManager::scalar_deleting_destructor(v3, 1);
     *((uint32_t *)self + 2477) = 0;
   }
   if ( *((uint32_t *)self + 2478) )
@@ -37,14 +37,14 @@ void Dtor_CGameBoard(CGameBoard *self)
   }
   if ( g_pGamePiecesSurface )
   {
-    CSurface::`scalar deleting destructor'(g_pGamePiecesSurface, 1);
+    CSurface::scalar_deleting_destructor(g_pGamePiecesSurface, 1);
     g_pGamePiecesSurface = 0;
   }
   CGameBoard::FreeDirectDraw(self);
   v4 = (CInk **)(reinterpret_cast<char*>(self) + 9924);
   if ( *v4 )
   {
-    CInk::`scalar deleting destructor'(*v4, 1);
+    CInk::scalar_deleting_destructor(*v4, 1);
     *v4 = 0;
   }
   v6 = -1;

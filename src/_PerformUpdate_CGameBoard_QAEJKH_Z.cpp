@@ -5,6 +5,7 @@
 #include <windows.h>
 int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
 {
+    void* DirectDraw;
   int v4; // ebx
   uint32_t *v5; // edi
   bool v6; // cc
@@ -26,6 +27,7 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
   v16 = a2;
   if ( dword_105C760 )
   {
+    void* DirectDraw; // auto-declared
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2477) + 4))(*((uint32_t *)self + 2477));
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2478) + 4))(*((uint32_t *)self + 2478));
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2479) + 4))(*((uint32_t *)self + 2479));

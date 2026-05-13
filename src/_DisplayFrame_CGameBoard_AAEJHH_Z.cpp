@@ -6,6 +6,9 @@
 
 int CGameBoard::DisplayFrame(int a2, int a3)
 {
+    void* PlayingAreaRect;
+    uint32_t v11;
+    uint32_t v12;
   int v4; // edi
   int v6; // eax
   uint32_t *v8; // ebx
@@ -58,6 +61,10 @@ int CGameBoard::DisplayFrame(int a2, int a3)
   v19 = 0;
   if ( *((int*)this + 656) > 0 )
   {
+    void* PlayingAreaRect; // auto-declared
+    uint32_t v11; // auto-declared
+    uint32_t v12; // auto-declared
+    uint32_t v13; // auto-declared
     v16 = reinterpret_cast<char*>(this) + 2628;
     while ( 1 )
     {

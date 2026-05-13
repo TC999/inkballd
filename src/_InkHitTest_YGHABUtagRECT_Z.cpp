@@ -5,6 +5,7 @@
 #include <windows.h>
 int __stdcall InkHitTest(const struct tagRECT *a1)
 {
+    uint32_t v10; // auto-declared
   LONG left; // esi
   int v2; // eax
   int v3; // edi

@@ -6,6 +6,25 @@
 
 void CScoreManager::DrawToSurface()
 {
+    void* DDrawSurface;
+    void* lpVtbl;
+    uint32_t v14;
+    uint32_t v15;
+    uint32_t v16;
+    uint32_t v18;
+    uint32_t v19;
+    uint32_t v20;
+    uint32_t v21;
+    uint32_t v22;
+    uint32_t v23;
+    uint32_t v24;
+    uint32_t v25;
+    uint32_t v26;
+    uint32_t v38;
+    uint32_t v4;
+    uint32_t v7;
+    uint32_t v8;
+    uint32_t v9;
   int v5; // edi
   DWORD v6; // edi
   DWORD v13; // edi
@@ -43,6 +62,28 @@ void CScoreManager::DrawToSurface()
   v8->BltFast((IDirectDrawSurface7 *)v36, v6, 13, v9, (LPRECT)v28, 0);
   do
   {
+    void* DDrawSurface; // auto-declared
+    void* lpVtbl; // auto-declared
+    uint32_t v10; // auto-declared
+    uint32_t v11; // auto-declared
+    uint32_t v12; // auto-declared
+    uint32_t v14; // auto-declared
+    uint32_t v15; // auto-declared
+    uint32_t v16; // auto-declared
+    uint32_t v18; // auto-declared
+    uint32_t v19; // auto-declared
+    uint32_t v20; // auto-declared
+    uint32_t v21; // auto-declared
+    uint32_t v22; // auto-declared
+    uint32_t v23; // auto-declared
+    uint32_t v24; // auto-declared
+    uint32_t v25; // auto-declared
+    uint32_t v26; // auto-declared
+    uint32_t v38; // auto-declared
+    uint32_t v4; // auto-declared
+    uint32_t v7; // auto-declared
+    uint32_t v8; // auto-declared
+    uint32_t v9; // auto-declared
     v6 -= 9;
     v36 = (uint32_t)v38 % 0xA;
     v38 = (struct IDirectDrawSurface7 *)((uint32_t)v38 / 0xA);
