@@ -10,7 +10,7 @@ extern "C" void* GetBitmapRect(int index);
 extern "C" void UpdateBoardTile(void* tile);
 extern "C" void ShadowizeTile(void* tile);
 
-void __thiscall CBoardTileRLGray::UpdateObject(CBoardTileRLGray *this, uint32_t delta_time)
+void CBoardTileRLGray::UpdateObject(uint32_t delta_time)
 {
     uint32_t animation_state;
     uint32_t color_index;
