@@ -97,6 +97,7 @@ struct CGameBoard {
     static int BallOnTile(CGameBoard* self, CBoardTile* tile);
     static char* GetBitmapRect(CGameBoard* self, int a1);
     static void BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2);
+    static int ShadowizeTile(CGameBoard* self, CBoardTile* tile, int flags);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
@@ -173,6 +174,11 @@ struct CBallManager;
 struct BallPoints;
 struct CBoardObject;
 
+struct BOARDHIST {
+    uint32_t count;
+    int history[10];
+};
+
 // ============================================================================
 // Game struct definitions with static method declarations
 // ============================================================================
@@ -248,6 +254,7 @@ struct CDisplay {
     static int Present(void* self, RECT* rect);
     static void BltInk(void* self, RECT* rect);
     static int DestroyObjects(CDisplay* self);
+    static int UpdateBounds(CDisplay* self);
 };
 
 struct CBallManager {

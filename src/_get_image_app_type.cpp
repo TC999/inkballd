@@ -6,17 +6,17 @@
 
 int _get_image_app_type(int a1)
 {
-  HMODULE ModuleHandleA; // eax
-  int v2; // eax
-  __int16 v3; // ax
+  HMODULE ModuleHandleA;
+  PIMAGE_NT_HEADERS v2;
+  __int16 v3;
 
   ModuleHandleA = GetModuleHandleA(0);
   if ( !ModuleHandleA )
     return a1;
-  v2 = RtlpImageNtHeader((int)ModuleHandleA);
+  v2 = RtlImageNtHeader(ModuleHandleA);
   if ( !v2 )
     return a1;
-  v3 = *(uint16_t *)(v2 + 92);
+  v3 = *reinterpret_cast<uint16_t*>(reinterpret_cast<char*>(v2) + 92);
   if ( v3 == 2 )
     return 2;
   if ( v3 == 3 )

@@ -1,15 +1,16 @@
 #include "global_types.h"
 #include <cstdint>
+#include <new>
 
 extern "C" {
     void __stdcall ToggleRLWalls(uint32_t color)
     {
-      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
-      int cleanup_flag; // [esp+20h] [ebp-4h]
+      uint8_t log_buffer[16];
+      int cleanup_flag;
 
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "ToggleRLWalls", 0);
+      new (log_buffer) Helpers::CLogBlock(log_buffer, "ToggleRLWalls", 0);
       cleanup_flag = 0;
-      CGameBoard::ToggleRLWalls(g_pCGameBoard, color);
+      CGameBoard::ToggleRLWalls(g_pCGameBoard, static_cast<int>(color));
       cleanup_flag = -1;
       reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     }

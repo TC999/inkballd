@@ -1,6 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
+#include <new>
 
 int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)
 {
@@ -12,7 +13,7 @@ int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)
     uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "fPrevSeen", 0);
+    new (log_buffer) Helpers::CLogBlock(log_buffer, "fPrevSeen", 0);
     current_count = history->count;
     search_index = 0;
     flag = 0;
@@ -42,6 +43,6 @@ LABEL_4:
     }
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return found;
 }

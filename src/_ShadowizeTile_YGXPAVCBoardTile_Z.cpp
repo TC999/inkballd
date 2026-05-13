@@ -1,19 +1,17 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
+#include <new>
 
 extern "C" {
     void __stdcall ShadowizeTile(CBoardTile* tile)
     {
-      uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
-      int cleanup_flag; // [esp+20h] [ebp-4h]
+      uint8_t log_buffer[16];
+      int cleanup_flag;
 
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "ShadowizeTile", 0);
+      new (log_buffer) Helpers::CLogBlock(log_buffer, "ShadowizeTile", 0);
       cleanup_flag = 0;
       CGameBoard::ShadowizeTile(reinterpret_cast<CInk**>(g_pCGameBoard), tile, 0);
       cleanup_flag = -1;
       reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     }
 }
-
-#endif
