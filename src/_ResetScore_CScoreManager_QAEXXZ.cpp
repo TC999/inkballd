@@ -13,7 +13,7 @@ void CScoreManager::ResetScore(void* self)
   v2 = *(uint32_t *)self;
   v4 = 0;
   *((uint32_t *)self + 10) = 0;
-  (*(void (__thiscall **)(void*))(v2 + 4))(self);
+  (*(void (**)(void*))(v2 + 4))(self);
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }

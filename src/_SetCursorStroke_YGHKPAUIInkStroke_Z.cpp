@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -18,3 +19,5 @@ void __stdcall SetCursorStroke(uint32_t a1, void* a2)
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
+
+#endif

@@ -9,7 +9,7 @@ void CTimeManager::SetTime(void* self, uint32_t time_value)
   cleanup_flag = 0;
   *((uint32_t*)self + 13) = 0;
   *((uint32_t*)self + 9) = time_value;
-  (*(void(__thiscall **)(void*))(*(uint32_t*)self + 4))(self);
+  (*(void(**)(void*))(*(uint32_t*)self + 4))(self);
   cleanup_flag = -1;
   reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }

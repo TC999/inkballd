@@ -1,3 +1,4 @@
+#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -44,3 +45,5 @@ void __stdcall SetCursorAttributes(uint32_t a1)
   v8 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
 }
+
+#endif
