@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -45,7 +44,7 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
       if ( v3 >= 0 )
       {
         if ( g_pGamePiecesSurface )
-          CSurface::`scalar deleting destructor'(g_pGamePiecesSurface, 1);
+          CSurface::scalar_deleting_destructor(g_pGamePiecesSurface, 1);
         g_pGamePiecesSurface = v11;
         v3 = CSurface::SetColorKey(v11, 0xFF00FFu);
         v13[0] = v3;
@@ -67,8 +66,6 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
     }
   }
   v14 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
+  ((Helpers::CLogBlock *)v10)->~CLogBlock();
   return v3;
 }
-
-#endif

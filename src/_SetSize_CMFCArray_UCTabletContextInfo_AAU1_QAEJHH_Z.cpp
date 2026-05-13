@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetSize(int this, signed int a2, int a3)
 {
   uint32_t *v6; // ecx
@@ -86,5 +84,3 @@ LABEL_16:
   *(uint32_t *)(this + 4) = a2;
   return v12;
 }
-
-#endif

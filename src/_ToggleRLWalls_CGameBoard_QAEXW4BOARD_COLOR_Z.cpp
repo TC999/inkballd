@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
 {
   int v3; // ebx
@@ -30,7 +28,5 @@ void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
     while ( v3 < (int)this[366] );
   }
   v7 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
+  ((Helpers::CLogBlock *)v6)->~CLogBlock();
 }
-
-#endif

@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -12,7 +11,7 @@ extern "C" {
       int result_code; // [esp+Ch] [ebp-4h] BYREF
 
       result_code = 0;
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CSink::SystemEvent", &result_code);
+      Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "CSink::SystemEvent", &result_code);
       if (static_cast<uint16_t>(event_type) == 21 && g_tcid == tablet_id && g_cid == context_id)
       {
         tablet_context = GetTabletContextInfo(g_tcid);
@@ -37,9 +36,7 @@ extern "C" {
         }
       }
       result_code = 0;
-      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+      ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
       return 0;
     }
 }
-
-#endif

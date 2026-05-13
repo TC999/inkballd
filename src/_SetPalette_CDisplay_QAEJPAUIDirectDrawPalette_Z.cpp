@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CDisplay::SetPalette(CDisplay *this, struct IDirectDrawPalette *a2)
 {
   int v3; // eax
@@ -25,8 +23,6 @@ int __thiscall CDisplay::SetPalette(CDisplay *this, struct IDirectDrawPalette *a
   v8 = -1;
   v4 = v3;
   v7[0] = v3;
-  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
+  ((Helpers::CLogBlock *)v6)->~CLogBlock();
   return v4;
 }
-
-#endif

@@ -1,12 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
 }
-
-};
 
 void __thiscall CBallManager::UpdateObject(CBallManager *this, uint32_t delta_time)
 {
@@ -82,7 +79,5 @@ LABEL_12:
 LABEL_13:
     (reinterpret_cast<void(__thiscall*)(CBallManager*)>(this->update_function))(this);
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock *)&log_buffer)->~CLogBlock();
 }
-
-#endif

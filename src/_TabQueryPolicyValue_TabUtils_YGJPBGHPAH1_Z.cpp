@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -19,7 +18,7 @@ extern "C" {
       int error_code; // [esp+18h] [ebp-4h] BYREF
 
   error_code = 0;
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "TabUtils::TabQueryPolicyValue", &error_code);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "TabUtils::TabQueryPolicyValue", &error_code);
   if (value_name && result_data)
   {
     *result_data = reinterpret_cast<uint32_t>(default_data);
@@ -88,8 +87,6 @@ extern "C" {
       WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xAu, &stru_1003974, 3);
   }
   return_code = error_code;
-  reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+  ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
   return return_code;
 }
-
-#endif

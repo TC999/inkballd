@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, CBall*a2, CBoardTile*a3)
 {
   int v4; // eax
@@ -23,7 +21,5 @@ void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, CBall*a2, CB
     *((double *)a2 + 2) = (double)(int)v8;
   }
   v7 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
 }
-
-#endif

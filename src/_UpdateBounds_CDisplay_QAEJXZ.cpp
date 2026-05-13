@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -19,7 +18,7 @@ extern "C" {
       int cleanup_flag; // [esp+24h] [ebp-4h]
 
       error_code[0] = 0;
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CDisplay::UpdateBounds", error_code);
+      Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "CDisplay::UpdateBounds", error_code);
       is_fullscreen = *reinterpret_cast<uint32_t*>(this_ptr + 12) == 0;
       cleanup_flag = 0;
       if (is_fullscreen)
@@ -43,9 +42,7 @@ extern "C" {
       }
       result = error_code[0];
       cleanup_flag = -1;
-      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+      ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
       return result;
     }
 }
-
-#endif

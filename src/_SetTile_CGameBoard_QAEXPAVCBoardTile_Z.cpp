@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __thiscall CGameBoard::SetTile(CGameBoard *this, CBoardTile*a2)
 {
   int v3; // eax
@@ -37,7 +35,5 @@ void __thiscall CGameBoard::SetTile(CGameBoard *this, CBoardTile*a2)
     (*p_Blt)(BoardBuffer, &v8, DDrawSurface, v7, 0, 0);
   }
   v10 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
+  ((Helpers::CLogBlock *)v9)->~CLogBlock();
 }
-
-#endif

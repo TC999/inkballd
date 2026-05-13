@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -6,10 +5,6 @@
 extern "C" {
 extern void* operator new(size_t size);
 }
-
-};
-
-};
 
 void __thiscall CBall::SetTallness(CBall *this, void* new_tallness)
 {
@@ -61,7 +56,5 @@ void __thiscall CBall::SetTallness(CBall *this, void* new_tallness)
     }
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock *)&log_buffer)->~CLogBlock();
 }
-
-#endif

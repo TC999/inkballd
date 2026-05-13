@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -18,7 +17,7 @@ extern "C" {
       int cleanup_flag; // [esp+34h] [ebp-4h]
 
       error_code[0] = 0;
-      Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "UpdateBoardTile", error_code);
+      Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "UpdateBoardTile", error_code);
       cleanup_flag = 0;
       CBoardObject::GetBoundingRect(reinterpret_cast<CBoardObject*>(tile_rect), &bounding_rect);
       if (*reinterpret_cast<uint32_t*>(g_pCGameBoard + 2475) == 1)
@@ -47,9 +46,7 @@ extern "C" {
       }
       final_result = error_code[0];
       cleanup_flag = -1;
-      reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
+      ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
       return final_result;
     }
 }
-
-#endif

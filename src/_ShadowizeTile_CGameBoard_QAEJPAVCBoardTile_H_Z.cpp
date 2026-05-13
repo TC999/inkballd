@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::ShadowizeTile(CInk **this, CBoardTile*a2, int a3)
 {
   int v4; // edi
@@ -31,8 +29,6 @@ int __thiscall CGameBoard::ShadowizeTile(CInk **this, CBoardTile*a2, int a3)
     v4 = v5;
   }
   v10 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
+  ((Helpers::CLogBlock *)v8)->~CLogBlock();
   return v4;
 }
-
-#endif

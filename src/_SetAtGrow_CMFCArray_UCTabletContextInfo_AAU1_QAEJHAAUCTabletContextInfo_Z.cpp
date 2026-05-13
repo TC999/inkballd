@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetAtGrow(uint32_t *this, int a2, const void*a3)
 {
   int result; // eax
@@ -19,5 +17,3 @@ int __thiscall CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetAtGrow(uin
   }
   return result;
 }
-
-#endif

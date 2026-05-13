@@ -1,14 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
 }
-
-};
-
-};
 
 void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, uint32_t delta_time)
 {
@@ -64,7 +59,5 @@ void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, uint32_t d
         }
         ball_ptr += 4;
     }
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock *)&log_buffer)->~CLogBlock();
 }
-
-#endif

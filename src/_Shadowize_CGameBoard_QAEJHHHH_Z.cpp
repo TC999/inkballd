@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, int a5)
 {
   int v6; // ebx
@@ -63,8 +61,6 @@ LABEL_7:
   v6 = v9;
 LABEL_8:
   v20 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v18)->~CLogBlock();
+  ((Helpers::CLogBlock *)v18)->~CLogBlock();
   return v6;
 }
-
-#endif

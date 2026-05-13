@@ -1,12 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
 extern "C" {
 }
-
-};
 
 extern "C" bool BallOnTile(void* tile);
 extern "C" void* GetBitmapRect(int index);
@@ -96,7 +93,5 @@ LABEL_21:
     }
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock *)&log_buffer)->~CLogBlock();
 }
-
-#endif

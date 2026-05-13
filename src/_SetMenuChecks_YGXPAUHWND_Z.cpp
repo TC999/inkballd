@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __stdcall SetMenuChecks(HWND hWnd)
 {
   HMENU Menu; // eax
@@ -34,7 +32,5 @@ LABEL_11:
       v2 = 40006;
       goto LABEL_11;
   }
-  reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
+  ((Helpers::CLogBlock *)v3)->~CLogBlock();
 }
-
-#endif

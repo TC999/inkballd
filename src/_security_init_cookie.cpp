@@ -1,10 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __cdecl __security_init_cookie()
 {
   DWORD v0; // esi
@@ -36,5 +34,3 @@ void __cdecl __security_init_cookie()
     __security_cookie_complement = ~__security_cookie;
   }
 }
-
-#endif

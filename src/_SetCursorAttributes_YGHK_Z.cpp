@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -15,7 +14,7 @@ void __stdcall SetCursorAttributes(uint32_t a1)
   int v7; // [esp+2Ch] [ebp-8h]
   int v8; // [esp+30h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v6), "SetCursorAttributes", 0);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "SetCursorAttributes", 0);
   v2 = 0;
   v8 = 0;
   if ( a1 == 1 )
@@ -43,7 +42,5 @@ void __stdcall SetCursorAttributes(uint32_t a1)
     (*(int (__stdcall **)(void*, uint32_t))(**((uint32_t **)g_pIInkObject) + 20))((void*)*((uint32_t *)g_pIInkObject), 2);
   }
   v8 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
+  ((Helpers::CLogBlock *)v6)->~CLogBlock();
 }
-
-#endif
