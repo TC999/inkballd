@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
@@ -8,7 +7,7 @@
 int __stdcall CSink::CursorMove(CSink *this, uint32_t a2, uint32_t a3, HWND a4, int a5, int a6)
 {
   int v6; // esi
-  uint8_t v8[8]; // [esp+4h] [ebp-Ch] BYREF
+  uint8_t v8[16]; // [esp+4h] [ebp-Ch] BYREF
   int v9; // [esp+Ch] [ebp-4h] BYREF
 
   v9 = 0;
@@ -17,5 +16,3 @@ int __stdcall CSink::CursorMove(CSink *this, uint32_t a2, uint32_t a3, HWND a4, 
   reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v6;
 }
-
-#endif

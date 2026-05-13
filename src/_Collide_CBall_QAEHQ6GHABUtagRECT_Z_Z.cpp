@@ -1,4 +1,3 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -6,10 +5,6 @@
 extern "C" {
 typedef int (__stdcall *CollisionCheckFunc)(const RECT*);
 }
-
-};
-
-};
 
 int __thiscall CBall::Collide(CBall *this, CollisionCheckFunc collision_check)
 {
@@ -22,10 +17,10 @@ int __thiscall CBall::Collide(CBall *this, CollisionCheckFunc collision_check)
     int collision_occurred = 0;
     RECT collision_rect;
     POINT center_point;
-    uint8_t log_buffer[8];
+    uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::Collide", 0);
+    Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)log_buffer, "CBall::Collide", 0);
     flag = 0;
     CBall::InitBallPoints(this);
     collision_occurred = 0;
@@ -71,8 +66,6 @@ LABEL_12:
     }
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return flag;
 }
-
-#endif

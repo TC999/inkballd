@@ -1,8 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
+#include <exception>
 #include <windows.h>
 #include "common.h"
 LONG __stdcall __CxxUnhandledExceptionFilter(struct _EXCEPTION_POINTERS *ExceptionInfo)
@@ -15,9 +15,7 @@ LONG __stdcall __CxxUnhandledExceptionFilter(struct _EXCEPTION_POINTERS *Excepti
   {
     v2 = ExceptionRecord->ExceptionInformation[0];
     if ( v2 == 429065504 || v2 == 429065505 || v2 == 429065506 || v2 == 26820608 )
-      terminate();
+      std::terminate();
   }
   return 0;
 }
-
-#endif

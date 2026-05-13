@@ -1,13 +1,7 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
 
 int __thiscall CBall::Collide(CBall *this, CBall *other_ball)
 {
@@ -28,13 +22,13 @@ int __thiscall CBall::Collide(CBall *this, CBall *other_ball)
     double impulse_magnitude;
     double impulse_x;
     double impulse_y;
-    uint8_t log_buffer[8];
+    uint8_t log_buffer[16];
     double temp_x;
     double temp_y;
     int flag;
 
     collision_occurred = 0;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::Collide", 0);
+    Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)log_buffer, "CBall::Collide", 0);
     flag = 0;
     if (!CBall::BallsIntersect(this, other_ball))
         goto LABEL_4;
@@ -64,13 +58,16 @@ int __thiscall CBall::Collide(CBall *this, CBall *other_ball)
         other_ball->velocity_x = normal_x * (impulse_magnitude * this->mass) + other_ball->velocity_x;
         other_ball->velocity_y = normal_y * (impulse_magnitude * this->mass) + other_ball->velocity_y;
         
+        this->collision_flags = other_ball->collision_flags + 42;
+        other_ball->collision_flags = this->collision_flags + 42;
+    }
+    else
+    {
 LABEL_4:
         this->collision_flags = other_ball->collision_flags + 42;
         other_ball->collision_flags = this->collision_flags + 42;
     }
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return collision_occurred;
 }
-
-#endif
