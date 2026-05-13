@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
+int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
 {
   int v4; // ebx
   uint32_t *v5; // edi
@@ -26,35 +26,35 @@ int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
   v16 = a2;
   if ( dword_105C760 )
   {
-    (*(void (**)(uint32_t))(**((uint32_t **)this + 2477) + 4))(*((uint32_t *)this + 2477));
-    (*(void (**)(uint32_t))(**((uint32_t **)this + 2478) + 4))(*((uint32_t *)this + 2478));
-    (*(void (**)(uint32_t))(**((uint32_t **)this + 2479) + 4))(*((uint32_t *)this + 2479));
+    (*(void (**)(uint32_t))(**((uint32_t **)self + 2477) + 4))(*((uint32_t *)self + 2477));
+    (*(void (**)(uint32_t))(**((uint32_t **)self + 2478) + 4))(*((uint32_t *)self + 2478));
+    (*(void (**)(uint32_t))(**((uint32_t **)self + 2479) + 4))(*((uint32_t *)self + 2479));
     dword_105C760 = 0;
   }
-  if ( *(int*)this > 0 )
+  if ( *(int*)self > 0 )
   {
-    v5 = (uint32_t *)(reinterpret_cast<char*>(this) + 4);
+    v5 = (uint32_t *)(reinterpret_cast<char*>(self) + 4);
     do
     {
       (**(void (***)(uint32_t, uint32_t))*v5)(*v5, a2);
       ++v4;
       ++v5;
     }
-    while ( v4 < *(uint32_t *)this );
+    while ( v4 < *(uint32_t *)self );
     v4 = 0;
   }
-  v6 = *((uint32_t *)this + 301) <= 0;
+  v6 = *((uint32_t *)self + 301) <= 0;
   v14 = 0;
   if ( !v6 )
   {
-    v7 = (CMovingObject **)(reinterpret_cast<char*>(this) + 1208);
+    v7 = (CMovingObject **)(reinterpret_cast<char*>(self) + 1208);
     do
     {
       CMovingObject::PrepareToMove(*v7);
       ++v14;
       ++v7;
     }
-    while ( v14 < *((uint32_t *)this + 301) );
+    while ( v14 < *((uint32_t *)self + 301) );
   }
   if ( a2 )
   {
@@ -63,16 +63,16 @@ int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
       v18 = 4;
       if ( v16 <= 4 )
         v18 = v16;
-      if ( *((int*)this + 301) > 0 )
+      if ( *((int*)self + 301) > 0 )
       {
-        v8 = (uint32_t *)(reinterpret_cast<char*>(this) + 1208);
+        v8 = (uint32_t *)(reinterpret_cast<char*>(self) + 1208);
         do
         {
           (**(void (***)(uint32_t, uint32_t))*v8)(*v8, v18);
           ++v4;
           ++v8;
         }
-        while ( v4 < *((uint32_t *)this + 301) );
+        while ( v4 < *((uint32_t *)self + 301) );
         v4 = 0;
       }
       if ( v16 <= 4 )
@@ -82,24 +82,24 @@ int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
     }
     while ( v16 );
   }
-  Score = CScoreManager::GetScore(*((CScoreManager **)this + 2477));
-  CTileManager::SetTiles(*((CTileManager **)this + 2478), Score);
+  Score = CScoreManager::GetScore(*((CScoreManager **)self + 2477));
+  CTileManager::SetTiles(*((CTileManager **)self + 2478), Score);
   DirectDraw = CDisplay::GetDirectDraw(g_pDisplay);
   NewSurfaces = DirectDraw->lpVtbl->TestCooperativeLevel(DirectDraw);
   v15 = NewSurfaces;
   if ( NewSurfaces >= 0 )
   {
-    NewSurfaces = CGameBoard::DisplayFrame(this, a3, 0);
+    NewSurfaces = CGameBoard::DisplayFrame(self, a3, 0);
     v15 = NewSurfaces;
     if ( NewSurfaces < 0 )
     {
       if ( NewSurfaces != -2005532222 )
         goto LABEL_27;
-      CGameBoard::RestoreSurfaces((CScoreManager **)this);
-      CGameBoard::DisplayFrame(this, 1, 1);
+      CGameBoard::RestoreSurfaces((CScoreManager **)self);
+      CGameBoard::DisplayFrame(self, 1, 1);
     }
-    *((uint32_t *)this + 1018) = 0;
-    *((uint32_t *)this + 2175) = 0;
+    *((uint32_t *)self + 1018) = 0;
+    *((uint32_t *)self + 2175) = 0;
     v15 = 0;
     goto LABEL_28;
   }
@@ -111,7 +111,7 @@ int CGameBoard::PerformUpdate(CGameBoard *this, uint32_t a2, int a3)
   }
   if ( NewSurfaces == -2005532085 )
   {
-    NewSurfaces = CGameBoard::CreateNewSurfaces(this);
+    NewSurfaces = CGameBoard::CreateNewSurfaces(self);
 LABEL_26:
     v15 = NewSurfaces;
   }

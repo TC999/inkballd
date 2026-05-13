@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, int a5)
+int Shadowize_CGameBoard(CGameBoard *this, int a2, int a3, int a4, int a5)
 {
   int v6; // ebx
   int v7; // eax

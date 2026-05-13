@@ -23,7 +23,7 @@ extern "C" int fPrevSeen(int value, BOARDHIST* history, int max_size);
 extern "C" HWND GetMainWindowHwnd();
 extern "C" void* memcpy(void* dest, const void* src, size_t count);
 
-void CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager *this, uint8_t* output_buffer, int* result)
+void LoadRandomBonusBoardFromResources_CBoardManager(CBoardManager *self, uint8_t* output_buffer, int* result)
 {
     int random_number;
     uint8_t* board_data_ptr;

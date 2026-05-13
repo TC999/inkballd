@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameBoard::~CGameBoard(CGameBoard *this)
+void Dtor_CGameBoard(CGameBoard *self)
 {
   CBallManager *v2; // ecx
   CScoreManager *v3; // ecx
@@ -12,36 +12,36 @@ void CGameBoard::~CGameBoard(CGameBoard *this)
   int v6; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CGameBoard::~CGameBoard", 0);
-  v2 = (CBallManager *)*((uint32_t *)this + 2476);
+  v2 = (CBallManager *)*((uint32_t *)self + 2476);
   v6 = 0;
   if ( v2 )
   {
     CBallManager::`scalar deleting destructor'(v2, 1);
-    *((uint32_t *)this + 2476) = 0;
+    *((uint32_t *)self + 2476) = 0;
   }
-  v3 = (CScoreManager *)*((uint32_t *)this + 2477);
+  v3 = (CScoreManager *)*((uint32_t *)self + 2477);
   if ( v3 )
   {
     CScoreManager::`scalar deleting destructor'(v3, 1);
-    *((uint32_t *)this + 2477) = 0;
+    *((uint32_t *)self + 2477) = 0;
   }
-  if ( *((uint32_t *)this + 2478) )
+  if ( *((uint32_t *)self + 2478) )
   {
-    operator delete(*((void**)this + 2478));
-    *((uint32_t *)this + 2478) = 0;
+    operator delete(*((void**)self + 2478));
+    *((uint32_t *)self + 2478) = 0;
   }
-  if ( *((uint32_t *)this + 2479) )
+  if ( *((uint32_t *)self + 2479) )
   {
-    operator delete(*((void**)this + 2479));
-    *((uint32_t *)this + 2479) = 0;
+    operator delete(*((void**)self + 2479));
+    *((uint32_t *)self + 2479) = 0;
   }
   if ( g_pGamePiecesSurface )
   {
     CSurface::`scalar deleting destructor'(g_pGamePiecesSurface, 1);
     g_pGamePiecesSurface = 0;
   }
-  CGameBoard::FreeDirectDraw(this);
-  v4 = (CInk **)(reinterpret_cast<char*>(this) + 9924);
+  CGameBoard::FreeDirectDraw(self);
+  v4 = (CInk **)(reinterpret_cast<char*>(self) + 9924);
   if ( *v4 )
   {
     CInk::`scalar deleting destructor'(*v4, 1);

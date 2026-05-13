@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <windows.h>
 
-void __thiscall CBall::Deflect(CBall *this, double impulse_x, double impulse_y)
+void Deflect_CBall(CBall *this, double impulse_x, double impulse_y)
 {
     double dot_product; // st5
     uint8_t log_buffer[16]; // [esp+4h] [ebp-8h] BYREF

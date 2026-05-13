@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
+int GetInkUpdateRect_CInk(CInk *self, struct tagRECT *a2)
 {
   int v3; // edi
   bool v4; // zf
@@ -15,16 +15,16 @@ int CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
   v3 = 0;
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CInk::GetInkUpdateRect", v8);
-  v4 = *((uint32_t *)this + 3) == 0;
+  v4 = *((uint32_t *)self + 3) == 0;
   v9 = 0;
   if ( !v4 )
   {
-    *((uint32_t *)this + 3) = 0;
-    CInk::DrawInkToSurface(this, 0);
+    *((uint32_t *)self + 3) = 0;
+    CInk::DrawInkToSurface(self, 0);
   }
-  if ( *((uint32_t *)this + 2) )
+  if ( *((uint32_t *)self + 2) )
   {
-    *((uint32_t *)this + 2) = 0;
+    *((uint32_t *)self + 2) = 0;
     v8[0] = (*(int (__stdcall **)(struct IRenderingContext *, tagXFORM *))(*(uint32_t *)g_pIRenderingContext + 20))(
               g_pIRenderingContext,
               &v6);

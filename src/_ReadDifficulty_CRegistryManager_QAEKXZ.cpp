@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CRegistryManager::ReadDifficulty(CRegistryManager *this)
+int ReadDifficulty_CRegistryManager(CRegistryManager *self)
 {
   int v2; // esi
   BYTE v4[8]; // [esp+10h] [ebp-18h] BYREF
@@ -15,7 +15,7 @@ int CRegistryManager::ReadDifficulty(CRegistryManager *this)
   if ( !ReadRegValueDWORD(HKEY_CURRENT_USER, (HKEY)&SubKey, (HKEY)&stru_1002CD8, Data) )
   {
     CreateInkballKey();
-    CRegistryManager::WriteDifficulty(this, 0);
+    CRegistryManager::WriteDifficulty(self, 0);
     *(uint32_t *)Data = 0;
   }
   v2 = *(uint32_t *)Data;

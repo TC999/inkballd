@@ -1,7 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-void* CSurface::GetDDrawSurface(CSurface* self)
+void* GetDDrawSurface_CSurface(CSurface *self)
 {
   uint8_t log_buffer[8];
 

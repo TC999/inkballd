@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <windows.h>
 
-void CBallManager::AddBallGenerator(CBallManager* self, CBoardTile* tile)
+void AddBallGenerator_CBallManager(CBallManager *self, CBoardTile* tile)
 {
     uint8_t log_buffer[8];
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::AddBallGenerator", 0);

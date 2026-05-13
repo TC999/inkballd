@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CScoreManager::Restore(CScoreManager *this)
+void Restore_CScoreManager(CScoreManager *self)
 {
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
@@ -12,7 +12,7 @@ void CScoreManager::Restore(CScoreManager *this)
   v4 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   DDrawSurface->Restore();
-  (*(void (**)(CScoreManager *))(*(uint32_t *)this + 4))(this);
+  (*(void (**)(CScoreManager *))(*(uint32_t *)self + 4))(self);
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }

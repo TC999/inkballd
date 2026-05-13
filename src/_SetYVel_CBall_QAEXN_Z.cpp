@@ -6,7 +6,7 @@
 #include <windows.h>
 #include <new>
 
-void CBall::SetYVel(CBall *self, long double a2)
+void SetYVel_CBall(CBall *self, long double a2)
 {
   long double v3;
   uint8_t v4[8];

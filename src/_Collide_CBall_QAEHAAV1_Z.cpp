@@ -3,7 +3,7 @@
 #include <cmath>
 #include <windows.h>
 
-int __thiscall CBall::Collide(CBall *this, CBall *other_ball)
+int Collide_CBall(CBall *this, CBall *other_ball)
 {
     int collision_occurred = 0;
     double this_radius_half;

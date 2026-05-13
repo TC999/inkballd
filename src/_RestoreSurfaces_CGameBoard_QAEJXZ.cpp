@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
+int RestoreSurfaces_CGameBoard(CScoreManager * *this)
 {
   int v3; // esi
   int v9; // eax

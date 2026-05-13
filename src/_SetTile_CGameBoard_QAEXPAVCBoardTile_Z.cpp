@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void __thiscall CGameBoard::SetTile(CGameBoard *this, CBoardTile*a2)
+void SetTile_CGameBoard(CGameBoard *this, CBoardTile*a2)
 {
   int v3; // eax
   void (__stdcall **p_Blt)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t); // edi

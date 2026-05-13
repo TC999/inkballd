@@ -7,7 +7,7 @@
 extern "C" {
     extern BOOL PointInRect(LONG x, LONG y, const RECT* rect);
 
-int __thiscall CBall::VerifyCollision(CBall *this, RECT* collision_rect, POINT* collision_point)
+int VerifyCollision_CBall(CBall *this, RECT* collision_rect, POINT* collision_point)
 {
     int point_index = 0;
     BallPoint* current_point;

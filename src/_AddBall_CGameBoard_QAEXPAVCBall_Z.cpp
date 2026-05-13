@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameBoard::AddBall(CGameBoard* self, CBall* a2)
+void AddBall_CGameBoard(CGameBoard *self, CBall* a2)
 {
   uint32_t *v3; // eax
   int v4; // edx

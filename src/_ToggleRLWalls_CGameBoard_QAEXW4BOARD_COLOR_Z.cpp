@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
+void ToggleRLWalls_CGameBoard(CBoardTileRLColored **self, int a2)
 {
   int v3; // ebx
   bool v4; // cc
@@ -13,11 +13,11 @@ void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::ToggleRLWalls", 0);
   v3 = 0;
-  v4 = (int)this[366] <= 0;
+  v4 = (int)self[366] <= 0;
   v7 = 0;
   if ( !v4 )
   {
-    v5 = this + 367;
+    v5 = self + 367;
     do
     {
       if ( *((uint32_t *)*v5 + 11) == a2 )
@@ -25,7 +25,7 @@ void __thiscall CGameBoard::ToggleRLWalls(CBoardTileRLColored **this, int a2)
       ++v3;
       ++v5;
     }
-    while ( v3 < (int)this[366] );
+    while ( v3 < (int)self[366] );
   }
   v7 = -1;
   ((Helpers::CLogBlock *)v6)->~CLogBlock();

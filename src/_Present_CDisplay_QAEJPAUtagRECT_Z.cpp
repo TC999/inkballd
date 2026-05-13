@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
+int Present_CDisplay(const RECT *self, struct tagRECT *lprcSrc)
 {
   bool v3; // zf
   int v4; // esi
@@ -24,16 +24,16 @@ int CDisplay::Present(const RECT *this, struct tagRECT *lprcSrc)
 
   v17[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v16, "CDisplay::Present", v17);
-  v3 = this->right == 0;
+  v3 = self->right == 0;
   v18 = 0;
-  if ( v3 || !this->bottom )
+  if ( v3 || !self->bottom )
   {
     v4 = -2147467261;
     goto LABEL_6;
   }
   if ( lprcSrc )
   {
-    if ( !this[3].left )
+    if ( !self[3].left )
     {
       v4 = -2147467263;
 LABEL_6:
@@ -41,17 +41,17 @@ LABEL_6:
       goto LABEL_7;
     }
     CopyRect(&rcDst, lprcSrc);
-    OffsetRect(&rcDst, this[2].left, this[2].top);
-    IntersectRect(&rcSrc, &rcDst, this + 2);
+    OffsetRect(&rcDst, self[2].left, self[2].top);
+    IntersectRect(&rcSrc, &rcDst, self + 2);
     CopyRect(&rcDst, &rcSrc);
-    OffsetRect(&rcDst, -this[2].left, -this[2].top);
-    left = this[2].left + (unsigned int64_t)((double)rcDst.left / dSizeFactor);
-    v13 = this[2].top + (unsigned int64_t)((double)rcDst.top / dSizeFactor);
+    OffsetRect(&rcDst, -self[2].left, -self[2].top);
+    left = self[2].left + (unsigned int64_t)((double)rcDst.left / dSizeFactor);
+    v13 = self[2].top + (unsigned int64_t)((double)rcDst.top / dSizeFactor);
     v14 = left + (unsigned int64_t)((double)(rcSrc.right - rcSrc.left) / dSizeFactor);
-    bottom = this->bottom;
+    bottom = self->bottom;
     v15 = v13 + (unsigned int64_t)((double)(rcSrc.bottom - rcSrc.top) / dSizeFactor);
-    v6 = (*(int (__stdcall **)(LONG, long*, LONG, tagRECT *, int, uint32_t))(*(uint32_t *)this->right + 20))(
-           this->right,
+    v6 = (*(int (__stdcall **)(LONG, long*, LONG, tagRECT *, int, uint32_t))(*(uint32_t *)self->right + 20))(
+           self->right,
            &left,
            bottom,
            &rcDst,
@@ -65,17 +65,17 @@ LABEL_9:
   {
     while ( 1 )
     {
-      if ( this[3].left )
+      if ( self[3].left )
       {
-        lprcSrca = (RECT *)(this[2].right - this[2].left);
-        top = this[2].top;
-        left = this[2].left;
+        lprcSrca = (RECT *)(self[2].right - self[2].left);
+        top = self[2].top;
+        left = self[2].left;
         v13 = top;
-        v14 = this[2].left + (unsigned int64_t)((double)(int)lprcSrca / dSizeFactor);
-        v9 = this->bottom;
-        v15 = top + (unsigned int64_t)((double)(this[2].bottom - top) / dSizeFactor);
-        v6 = (*(int (__stdcall **)(LONG, long*, LONG, uint32_t, int, uint32_t))(*(uint32_t *)this->right + 20))(
-               this->right,
+        v14 = self[2].left + (unsigned int64_t)((double)(int)lprcSrca / dSizeFactor);
+        v9 = self->bottom;
+        v15 = top + (unsigned int64_t)((double)(self[2].bottom - top) / dSizeFactor);
+        v6 = (*(int (__stdcall **)(LONG, long*, LONG, uint32_t, int, uint32_t))(*(uint32_t *)self->right + 20))(
+               self->right,
                &left,
                v9,
                0,
@@ -84,7 +84,7 @@ LABEL_9:
       }
       else
       {
-        v6 = (*(int (__stdcall **)(LONG, uint32_t, uint32_t))(*(uint32_t *)this->right + 44))(this->right, 0, 0);
+        v6 = (*(int (__stdcall **)(LONG, uint32_t, uint32_t))(*(uint32_t *)self->right + 44))(self->right, 0, 0);
       }
       v17[0] = v6;
       if ( v6 == -2005532222 )

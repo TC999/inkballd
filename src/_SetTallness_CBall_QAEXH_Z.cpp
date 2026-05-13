@@ -6,7 +6,7 @@ extern "C" {
 extern void* operator new(size_t size);
 }
 
-void __thiscall CBall::SetTallness(CBall *this, void* new_tallness)
+void SetTallness_CBall(CBall *this, void* new_tallness)
 {
     bool is_same_tallness;
     int size_difference;

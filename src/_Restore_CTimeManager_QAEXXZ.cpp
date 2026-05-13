@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void __thiscall CTimeManager::Restore(CTimeManager *this)
+void Restore_CTimeManager(CTimeManager *this)
 {
   uint32_t v6; // esi
   uint32_t v10; // edx

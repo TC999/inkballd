@@ -10,8 +10,7 @@ extern "C" int iBoardCollectionsCount; // Global board collections count
 extern "C" int* iBoardCounts; // Global board counts array
 extern "C" void** pBoardCollections; // Global board collections array
 
-int CBoardManager::LoadBoardFromResources(
-    CBoardManager *this,
+int LoadBoardFromResources_CBoardManager(CBoardManager *self,
     wchar_t* board_name,
     uint8_t* output_buffer,
     int* result)

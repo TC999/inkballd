@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameBoard::ResetBoard(CGameBoard *this)
+void ResetBoard_CGameBoard(CGameBoard *self)
 {
   CBall **v2; // ebx
   void**v3; // ebx
@@ -13,14 +13,14 @@ void CGameBoard::ResetBoard(CGameBoard *this)
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CGameBoard::ResetBoard", 0);
   v6 = 0;
-  *(uint32_t *)this = 0;
-  memset(reinterpret_cast<char*>(this) + 4, 0, 0x4B0u);
-  *((uint32_t *)this + 301) = 0;
-  memset(reinterpret_cast<char*>(this) + 1208, 0, 0x100u);
-  *((uint32_t *)this + 366) = 0;
-  memset(reinterpret_cast<char*>(this) + 1468, 0, 0x484u);
-  *((uint32_t *)this + 656) = 0;
-  v2 = (CBall **)(reinterpret_cast<char*>(this) + 2628);
+  *(uint32_t *)self = 0;
+  memset(reinterpret_cast<char*>(self) + 4, 0, 0x4B0u);
+  *((uint32_t *)self + 301) = 0;
+  memset(reinterpret_cast<char*>(self) + 1208, 0, 0x100u);
+  *((uint32_t *)self + 366) = 0;
+  memset(reinterpret_cast<char*>(self) + 1468, 0, 0x484u);
+  *((uint32_t *)self + 656) = 0;
+  v2 = (CBall **)(reinterpret_cast<char*>(self) + 2628);
   v5 = 64;
   do
   {
@@ -33,8 +33,8 @@ void CGameBoard::ResetBoard(CGameBoard *this)
     --v5;
   }
   while ( v5 );
-  *((uint32_t *)this + 2473) = 0;
-  v3 = (void**)(reinterpret_cast<char*>(this) + 2884);
+  *((uint32_t *)self + 2473) = 0;
+  v3 = (void**)(reinterpret_cast<char*>(self) + 2884);
   v5 = 289;
   do
   {
@@ -47,7 +47,7 @@ void CGameBoard::ResetBoard(CGameBoard *this)
     --v5;
   }
   while ( v5 );
-  CInk::ClearInk(*((CInk **)this + 2481));
+  CInk::ClearInk(*((CInk **)self + 2481));
   CDisplay::ClearInk(g_pDisplay, 0, 0);
   CDisplay::Clear(g_pDisplay, 0);
   v6 = -1;

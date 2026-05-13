@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, uint32_t delta_time)
+void UpdateBallPositions_CBallManager(CBallManager *this, uint32_t delta_time)
 {
     double time_factor;
     uint32_t active_ball_offset;

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CGameBoard::InitDirectDraw(CGameBoard *this)
+int InitDirectDraw_CGameBoard(CGameBoard *self)
 {
   int v2; // esi
   void*v3; // ecx
@@ -19,7 +19,7 @@ int CGameBoard::InitDirectDraw(CGameBoard *this)
   int v15; // [esp+2BCh] [ebp-4h]
 
   v2 = 0;
-  v11[2] = this;
+  v11[2] = self;
   WindowedDisplay = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::InitDirectDraw", &WindowedDisplay);
   v15 = 1;
@@ -38,9 +38,9 @@ int CGameBoard::InitDirectDraw(CGameBoard *this)
     goto LABEL_11;
   WindowedDisplay = CDisplay::CreateWindowedDisplay(
                       v4,
-                      *((HWND *)this + 2480),
-                      *((uint32_t *)this + 2465),
-                      *((uint32_t *)this + 2466));
+                      *((HWND *)self + 2480),
+                      *((uint32_t *)self + 2465),
+                      *((uint32_t *)self + 2466));
   if ( WindowedDisplay >= 0 )
     goto LABEL_16;
   if ( g_pDisplay )
@@ -63,11 +63,11 @@ LABEL_11:
     memset(Caption, 0, 128);
     memset(Text, 0, sizeof(Text));
     Helpers::LoadStringW(0, (HINSTANCE)0x3AA3, Caption, (uint16_t *)0x40, 0, v7);
-    if ( CGameBoard::IsRemoteSession(this) == 1 )
+    if ( CGameBoard::IsRemoteSession(self) == 1 )
       Helpers::LoadStringW(0, (HINSTANCE)0x3AAB, Text, (uint16_t *)0x100, 0, v8);
     else
       Helpers::LoadStringW(0, (HINSTANCE)0x3AA5, Text, (uint16_t *)0x100, 0, v8);
-    MessageBoxW(*((HWND *)this + 2480), Text, Caption, 0x10u);
+    MessageBoxW(*((HWND *)self + 2480), Text, Caption, 0x10u);
     v2 = WindowedDisplay;
   }
   v15 = -1;

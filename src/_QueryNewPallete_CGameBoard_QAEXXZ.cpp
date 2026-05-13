@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameBoard::QueryNewPallete(CGameBoard *this)
+void QueryNewPallete_CGameBoard(CGameBoard *self)
 {
   uint8_t v3[8]; // [esp+10h] [ebp-18h] BYREF
   LPDIRECTDRAWPALETTE v4[3]; // [esp+18h] [ebp-10h] BYREF

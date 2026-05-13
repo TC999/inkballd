@@ -6,7 +6,7 @@ extern "C" {
 typedef int (__stdcall *CollisionCheckFunc)(const POINT*, const CBall*);
 }
 
-int __thiscall CBall::Collide(CBall *this, CollisionCheckFunc collision_check)
+int Collide_CBall(CBall *this, CollisionCheckFunc collision_check)
 {
     int last_collision_point = -1;
     int first_collision_point = -1;

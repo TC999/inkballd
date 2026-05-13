@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <windows.h>
 
-int CBall::AddRef(CBall* self)
+int AddRef_CBall(CBall *self)
 {
     uint32_t result;
     uint8_t log_buffer[8];

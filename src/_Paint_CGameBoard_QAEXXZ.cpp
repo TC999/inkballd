@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameBoard::Paint(CGameBoard *this)
+void Paint_CGameBoard(CGameBoard *self)
 {
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
@@ -13,13 +13,13 @@ void CGameBoard::Paint(CGameBoard *this)
   DirectDraw = CDisplay::GetDirectDraw(g_pDisplay);
   if ( DirectDraw->lpVtbl->TestCooperativeLevel(DirectDraw) == -2005532085 )
   {
-    CGameBoard::CreateNewSurfaces(this);
-    CGameBoard::RestoreSurfaces((CScoreManager **)this);
+    CGameBoard::CreateNewSurfaces(self);
+    CGameBoard::RestoreSurfaces((CScoreManager **)self);
   }
-  if ( CGameBoard::DisplayFrame(this, 1, 1) == -2005532222 )
+  if ( CGameBoard::DisplayFrame(self, 1, 1) == -2005532222 )
   {
-    CGameBoard::RestoreSurfaces((CScoreManager **)this);
-    CGameBoard::DisplayFrame(this, 1, 1);
+    CGameBoard::RestoreSurfaces((CScoreManager **)self);
+    CGameBoard::DisplayFrame(self, 1, 1);
   }
   v4 = -1;
   ((Helpers::CLogBlock*)v3)->~CLogBlock();

@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL CGameBoard::PointIntersectsWithTile(
-        CGameBoard *this,
+BOOL PointIntersectsWithTile_CGameBoard(CGameBoard *self,
         const struct tagPOINT *a2,
         const CBall*a3,
         int a4)
@@ -19,7 +18,7 @@ BOOL CGameBoard::PointIntersectsWithTile(
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v10, "CGameBoard::PointIntersectsWithTile", 0);
   y = a2->y;
   v11 = 0;
-  Tile = CGameBoard::GetTile(this, a2->x, y);
+  Tile = CGameBoard::GetTile(self, a2->x, y);
   if ( (*(int (**)(CBoardTile*, const CBall*, const struct tagPOINT *))(*(uint32_t *)Tile + 8))(
          Tile,
          a3,

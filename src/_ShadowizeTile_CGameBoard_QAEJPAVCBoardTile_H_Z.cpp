@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CGameBoard::ShadowizeTile(CInk **this, CBoardTile*a2, int a3)
+int ShadowizeTile_CGameBoard(CInk * *this, CBoardTile*a2, int a3)
 {
   int v4; // edi
   int v5; // eax

@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-void __thiscall CBallManager::UpdateObject(CBallManager *this, uint32_t delta_time)
+void UpdateObject_CBallManager(CBallManager *this, uint32_t delta_time)
 {
     bool should_update;
     uint32_t time_remaining;

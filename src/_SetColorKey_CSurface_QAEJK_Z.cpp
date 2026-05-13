@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CSurface::SetColorKey(CSurface *this, COLORREF a2)
+int SetColorKey_CSurface(CSurface *this, COLORREF a2)
 {
   int v3; // eax
   int v4; // esi

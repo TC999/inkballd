@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CInk::OnDisplayChange(CInk *this)
+void OnDisplayChange_CInk(CInk *self)
 {
   int v1; // esi
   int v2; // edi

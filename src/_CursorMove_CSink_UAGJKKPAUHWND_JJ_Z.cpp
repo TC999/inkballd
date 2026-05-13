@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include "common.h"
-int __stdcall CSink::CursorMove(CSink *this, uint32_t a2, uint32_t a3, HWND a4, int a5, int a6)
+int __stdcall CursorMove_CSink(CSink *self, uint32_t a2, uint32_t a3, HWND a4, int a5, int a6)
 {
   int v6; // esi
   uint8_t v8[16]; // [esp+4h] [ebp-Ch] BYREF

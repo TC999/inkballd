@@ -97,58 +97,58 @@ extern "C" {
 // ============================================================================
 // CBall static method stubs
 // ============================================================================
-int* CBall::GetDrainPoints(CBall* self) {
+int* GetDrainPoints_CBall(CBall *self) {
     (void)self;
     return nullptr;
 }
-int* CBall::GetBreakWallPoints(CBall* self) {
+int* GetBreakWallPoints_CBall(CBall *self) {
     (void)self;
     return nullptr;
 }
-int CBall::GetCurrBallPoint(CBall* self) {
+int GetCurrBallPoint_CBall(CBall *self) {
     (void)self;
     return 0;
 }
-int CBall::GetPrevBallPoint(CBall* self) {
+int GetPrevBallPoint_CBall(CBall *self) {
     (void)self;
     return 0;
 }
-int CBall::AddRef(CBall* self) {
+int AddRef_CBall(CBall *self) {
     (void)self;
     return 0;
 }
-int CBall::Release(CBall* self) {
+int Release_CBall(CBall *self) {
     (void)self;
     return 0;
 }
-void CBall::SetXVel(CBall* self, long double vel) {
+void SetXVel_CBall(CBall *self, long double vel) {
     (void)self; (void)vel;
 }
-void CBall::SetYVel(CBall* self, long double vel) {
+void SetYVel_CBall(CBall *self, long double vel) {
     (void)self; (void)vel;
 }
-void CBall::Deflect(CBall* self, double x, double y) {
+void Deflect_CBall(CBall *self, double x, double y) {
     (void)self; (void)x; (void)y;
 }
-void CBall::SetTallness(CBall* self, int tallness) {
+void SetTallness_CBall(CBall *self, int tallness) {
     (void)self; (void)tallness;
 }
-int CGameBoard::PerformUpdate(CGameBoard* self, uint32_t a2, int a3) {
+int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3) {
     (void)self; (void)a2; (void)a3; return 0;
 }
-int CGameBoard::GetTileByIndices(CGameBoard* self, int a2, int a3) {
+int GetTileByIndices_CGameBoard(CGameBoard *self, int a2, int a3) {
     (void)self; (void)a2; (void)a3; return 0;
 }
 void CGameBoard::RestoreSurfaces(CScoreManager** self) {
     (void)self;
 }
-void CGameBoard::QueryNewPallete(CGameBoard* self) {
+void QueryNewPallete_CGameBoard(CGameBoard *self) {
     (void)self;
 }
-void CGameBoard::UpdateBounds(CGameBoard* self) {
+void UpdateBounds_CGameBoard(CGameBoard *self) {
     (void)self;
 }
-int CGameBoard::Paint(CGameBoard* self) {
+int Paint_CGameBoard(CGameBoard *self) {
     (void)self; return 0;
 }
 // [TODOne] AddDisplayUpdateRect
@@ -159,39 +159,39 @@ int CGameBoard::Paint(CGameBoard* self) {
 // [TODOne] GetBall
 // [TODOne] NumBallsOnBoard
 // [TODOne] GetPlayingAreaRect
-int CGameBoard::BallOnTile(CGameBoard* self, CBoardTile* tile) {
+int BallOnTile_CGameBoard(CGameBoard *self, CBoardTile* tile) {
     (void)self; (void)tile; return 0;
 }
-char* CGameBoard::GetBitmapRect(CGameBoard* self, int a1) {
+char* GetBitmapRect_CGameBoard(CGameBoard *self, int a1) {
     (void)self; (void)a1; return nullptr;
 }
-void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) {
+void ToggleRLWalls_CGameBoard(CGameBoard *self, int color) {
     (void)self; (void)color;
 }
-void CGameBoard::BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2) {
+void BltBoardToInk_CGameBoard(CGameBoard *self, struct tagRECT* a1, int a2) {
     (void)self; (void)a1; (void)a2;
 }
 
 // ============================================================================
 // CGameManager static method stubs
 // ============================================================================
-void CGameManager::DropWallTile(CGameManager* self, void* p1, void* p2) {
+void DropWallTile_CGameManager(CGameManager *self, void* p1, void* p2) {
     (void)self; (void)p1; (void)p2;
 }
-void CGameManager::LoadBoard(CGameManager* self, void* data, int size) {
+void LoadBoard_CGameManager(CGameManager *self, void* data, int size) {
     (void)self; (void)data; (void)size;
 }
 
 // ============================================================================
 // CInk static method stubs
 // ============================================================================
-void CInk::ClearInk(CInk* self) {
+void ClearInk_CInk(CInk *self) {
     (void)self;
 }
-void CInk::OnDisplayChange(CInk* self) {
+void OnDisplayChange_CInk(CInk *self) {
     (void)self;
 }
-void CInk::Cleanup(CInk* self) {
+void Cleanup_CInk(CInk *self) {
     (void)self;
 }
 // [TODOne] CInk::CInk
@@ -287,7 +287,7 @@ int CDisplay::Present(void* self, RECT* rect) {
 void CDisplay::BltInk(void* self, RECT* rect) {
     (void)self; (void)rect;
 }
-int CDisplay::DestroyObjects(CDisplay* self) {
+int DestroyObjects_CDisplay(CDisplay *self) {
     (void)self;
     return 0;
 }
@@ -308,25 +308,25 @@ int CGameBoard_Init(CGameBoard* self) {
     return 0;
 }
 
-void CGameManager::UpdateTime(CGameManager* self) {
+void UpdateTime_CGameManager(CGameManager *self) {
     (void)self;
 }
 
 // ============================================================================
 // CRegistryManager member stubs
 // ============================================================================
-uint32_t CRegistryManager::ReadDifficulty(CRegistryManager* self) {
+uint32_t ReadDifficulty_CRegistryManager(CRegistryManager *self) {
     (void)self;
     return 0;
 }
-void CRegistryManager::WriteDifficulty(CRegistryManager* self, uint32_t difficulty) {
+void WriteDifficulty_CRegistryManager(CRegistryManager *self, uint32_t difficulty) {
     (void)self; (void)difficulty;
 }
-uint32_t CRegistryManager::ReadHiScore(CRegistryManager* self) {
+uint32_t ReadHiScore_CRegistryManager(CRegistryManager *self) {
     (void)self;
     return 0;
 }
-void CRegistryManager::WriteHiScore(CRegistryManager* self, int score) {
+void WriteHiScore_CRegistryManager(CRegistryManager *self, int score) {
     (void)self; (void)score;
 }
 
@@ -386,7 +386,7 @@ const wchar_t* ValueName = L"";
 // ============================================================================
 // CBallManager static method stubs
 // ============================================================================
-int CBallManager::InitSurface(CBallManager* self) {
+int InitSurface_CBallManager(CBallManager *self) {
     (void)self;
     return 0;
 }
@@ -398,11 +398,11 @@ int CBallManager::InitSurface(CBallManager* self) {
 // ============================================================================
 // [TODOne] CBoardManager::CBoardManager
 // [TODOne] CBoardManager::~CBoardManager
-void* CBoardManager::GetLastLoadedBoardData(CBoardManager* self) {
+void* GetLastLoadedBoardData_CBoardManager(CBoardManager *self) {
     (void)self;
     return nullptr;
 }
-int CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* boardData, int* boardSize) {
+int LoadRandomBonusBoardFromResources_CBoardManager(CBoardManager *self, void* boardData, int* boardSize) {
     (void)self; (void)boardData; (void)boardSize;
     return 0;
 }
@@ -418,7 +418,7 @@ int CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* 
 // ============================================================================
 // CBitmapRects static method stubs
 // ============================================================================
-char* CBitmapRects::GetBitmapRect(CBitmapRects* self, int id) {
+char* GetBitmapRect_CBitmapRects(CBitmapRects *self, int id) {
     (void)self; (void)id;
     return nullptr;
 }
@@ -520,9 +520,9 @@ extern "C" int __cdecl ___wgetmainargs(int* argc, int* argv, int* envp, int dowi
 // ============================================================================
 // Additional stubs for unblocked files
 // ============================================================================
-int CScoreManager::InitSurface(CScoreManager* self) { (void)self; return 0; }
-int CTileManager::InitSurface(CTileManager* self) { (void)self; return 0; }
-int CTimeManager::InitSurface(CTimeManager* self) { (void)self; return 0; }
-void CSurface::Clear(CSurface* self, uint32_t color) { (void)self; (void)color; }
+int InitSurface_CScoreManager(CScoreManager *self) { (void)self; return 0; }
+int InitSurface_CTileManager(CTileManager *self) { (void)self; return 0; }
+int InitSurface_CTimeManager(CTimeManager *self) { (void)self; return 0; }
+void Clear_CSurface(CSurface *self, uint32_t color) { (void)self; (void)color; }
 
 extern "C" void* CBall_func(int a1, int a2, int a3, int a4, int a5) { (void)a1; (void)a2; (void)a3; (void)a4; (void)a5; return nullptr; }

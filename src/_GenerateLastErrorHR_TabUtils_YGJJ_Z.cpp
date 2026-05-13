@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-TabUtils* __stdcall TabUtils::GenerateLastErrorHR(TabUtils* self, int a2)
+TabUtils* __stdcall GenerateLastErrorHR_TabUtils(TabUtils *self, int a2)
 {
     TabUtils* result;
     bool v3;

@@ -4,7 +4,7 @@
 #include <windows.h>
 #include "global_types.h"
 
-int CGameBoard::GetRandomNumber(CGameBoard* self, int a2)
+int GetRandomNumber_CGameBoard(CGameBoard *self, int a2)
 {
   int v2;
   uint8_t v4[8];

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CGameManager::LoadBoard(CGameManager *this, const unsigned __int8 *a2, int a3)
+void LoadBoard_CGameManager(CGameManager *self, const unsigned __int8 *a2, int a3)
 {
   int v4; // eax
   const unsigned __int8 *v5; // esi

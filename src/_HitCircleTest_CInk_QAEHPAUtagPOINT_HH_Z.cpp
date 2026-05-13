@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
+int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
 {
   int v5; // ecx
   uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
@@ -69,7 +69,7 @@ int CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
             0,
             0,
             0);
-          *((uint32_t *)this + 4) = 0;
+          *((uint32_t *)self + 4) = 0;
         }
       }
       v13 = (*(int (__stdcall **)(struct IInkObject *, uint32_t *, float, uint32_t *))(*(uint32_t *)g_pIInkObject + 108))(
@@ -91,8 +91,8 @@ int CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
         }
       }
       BltBoardToInk(0);
-      *((uint32_t *)this + 4) = 1;
-      CInk::DrawInkToSurface(this, 0);
+      *((uint32_t *)self + 4) = 1;
+      CInk::DrawInkToSurface(self, 0);
       SetBoardActiveState(1);
     }
   }

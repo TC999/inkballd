@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CDisplay::SetPalette(CDisplay *this, struct IDirectDrawPalette *a2)
+int SetPalette_CDisplay(CDisplay *this, struct IDirectDrawPalette *a2)
 {
   int v3; // eax
   int v4; // esi

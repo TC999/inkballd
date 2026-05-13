@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void CGameBoard::AddDisplayUpdateRect(CGameBoard* self, struct tagRECT *a2)
+void AddDisplayUpdateRect_CGameBoard(CGameBoard *self, struct tagRECT *a2)
 {
   uint32_t v3;
   uint8_t v4[8];

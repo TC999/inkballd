@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CInk::Init(CInk *this)
+int Init_CInk(CInk *self)
 {
   CInk *v1; // edi
   uint32_t *v2; // eax
@@ -29,8 +29,8 @@ int CInk::Init(CInk *this)
   char v23[4]; // [esp+64h] [ebp-14h] BYREF
   int v24; // [esp+74h] [ebp-4h]
 
-  v1 = this;
-  v15 = this;
+  v1 = self;
+  v15 = self;
   *(uint32_t *)v23 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v13, "CInk::Init", (int*)v23);
   v24 = 0;

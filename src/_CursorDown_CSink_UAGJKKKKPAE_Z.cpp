@@ -4,8 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-int CSink::CursorDown(
-        CSink *self,
+int CursorDown_CSink(CSink *self,
         uint32_t a2,
         uint32_t a3,
         uint32_t a4,

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __stdcall CSink::QueryInterface(CSink *this, const struct _GUID *a2, void**a3)
+int __stdcall QueryInterface_CSink(CSink *self, const struct _GUID *a2, void**a3)
 {
   int v3; // esi
   uint8_t v5[8]; // [esp+8h] [ebp-Ch] BYREF
@@ -13,8 +13,8 @@ int __stdcall CSink::QueryInterface(CSink *this, const struct _GUID *a2, void**a
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v5, "CSink::QueryInterface", &v6);
   if ( !memcmp(a2, &IID_ITabletEventSink, 0x10u) || !memcmp(a2, &IID_IUnknown, 0x10u) )
   {
-    *a3 = this;
-    (*(void (__stdcall **)(CSink *))(*(uint32_t *)this + 4))(this);
+    *a3 = self;
+    (*(void (__stdcall **)(CSink *))(*(uint32_t *)self + 4))(self);
     v3 = v6;
     ((Helpers::CLogBlock*)v5)->~CLogBlock();
     return v3;

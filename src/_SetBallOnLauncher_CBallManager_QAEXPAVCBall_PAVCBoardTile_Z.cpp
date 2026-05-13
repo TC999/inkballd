@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, CBall*a2, CBoardTile*a3)
+void SetBallOnLauncher_CBallManager(CBallManager *this, CBall*a2, CBoardTile*a3)
 {
   int v4; // eax
   uint8_t v5[8]; // [esp+10h] [ebp-1Ch] BYREF

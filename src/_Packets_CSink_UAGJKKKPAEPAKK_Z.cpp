@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __stdcall CSink::Packets(
-        CSink *this,
+int __stdcall Packets_CSink(CSink *self,
         HDC a2,
         uint32_t a3,
         uint32_t a4,
@@ -24,7 +23,7 @@ int __stdcall CSink::Packets(
   if ( (HDC)g_tcid != a2 )
     goto LABEL_9;
   v7 = a7;
-  if ( g_cid != a7 || !*((uint32_t *)this + 2) )
+  if ( g_cid != a7 || !*((uint32_t *)self + 2) )
     goto LABEL_9;
   CInk::SetInkModifiedFlag(*((CInk **)g_pCGameBoard + 2481));
   v11 = (*(int (__stdcall **)(struct IInkCollect *, uint32_t, uint32_t, unsigned __int8 *))(*(uint32_t *)g_pIInkCollect
