@@ -1,18 +1,16 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+
+IDirectDraw7* CDisplay::GetDirectDraw()
 {
-  int v2; // esi
-  uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF
+    int v2;
+    uint8_t v4[8];
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CDisplay::GetDirectDraw", 0);
-  v2 = *((uint32_t *)this + 1);
-  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
-  return (struct IDirectDraw7 *)v2;
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CDisplay::GetDirectDraw", 0);
+    v2 = *((uint32_t*)this + 1);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
+    return (IDirectDraw7*)v2;
 }
-
-#endif

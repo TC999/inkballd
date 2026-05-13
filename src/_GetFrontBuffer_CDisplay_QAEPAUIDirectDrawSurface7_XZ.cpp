@@ -1,18 +1,16 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+
+IDirectDrawSurface7* CDisplay::GetFrontBuffer()
 {
-  int v2; // esi
-  uint8_t v4[8]; // [esp+4h] [ebp-8h] BYREF
+    int v2;
+    uint8_t v4[8];
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CDisplay::GetFrontBuffer", 0);
-  v2 = *((uint32_t *)this + 2);
-  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
-  return (struct IDirectDrawSurface7 *)v2;
+    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CDisplay::GetFrontBuffer", 0);
+    v2 = *((uint32_t*)this + 2);
+    reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
+    return (IDirectDrawSurface7*)v2;
 }
-
-#endif
