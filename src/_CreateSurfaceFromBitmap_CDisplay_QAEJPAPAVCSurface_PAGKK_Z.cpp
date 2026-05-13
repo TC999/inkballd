@@ -1,16 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
-        CDisplay *this,
-        CSurface**a2,
-        HINSTANCE name,
-        uint32_t a4,
-        int cy)
+
+uint32_t CDisplay::CreateSurfaceFromBitmap(CSurface**a2, HINSTANCE name, uint32_t a4, int cy)
 {
   uint32_t v6; // esi
   HMODULE ModuleHandleW; // eax
@@ -54,7 +48,7 @@ uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
         v8 = (CSurface *)operator new(0x84u);
         LOBYTE(v22) = 2;
         if ( v8 )
-          v9 = CSurface::CSurface(v8);
+          v9 = new (v8) CSurface();
         else
           v9 = 0;
         *a2 = v9;
@@ -66,7 +60,7 @@ uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
         {
           if ( *a2 )
           {
-            CSurface::`scalar deleting destructor'(*a2, 1);
+              delete *a2;
             *a2 = 0;
           }
         }
@@ -89,5 +83,3 @@ uint32_t __thiscall CDisplay::CreateSurfaceFromBitmap(
   reinterpret_cast<Helpers::CLogBlock*>(v18)->~CLogBlock();
   return v6;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CSurface::Clear(CSurface *this, uint32_t a2)
+
+int CSurface::Clear(uint32_t a2)
 {
   int v3; // esi
   int v4; // eax
@@ -36,5 +35,3 @@ int __thiscall CSurface::Clear(CSurface *this, uint32_t a2)
   reinterpret_cast<Helpers::CLogBlock*>(v8)->~CLogBlock();
   return v5;
 }
-
-#endif

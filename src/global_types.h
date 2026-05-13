@@ -151,6 +151,8 @@ struct CInk {
     static void ClearInk(CInk* self);
     static void OnDisplayChange(CInk* self);
     static void Cleanup(CInk* self);
+    static void SetInkRedrawFlag(CInk* self);
+    static void SetInkModifiedFlag(CInk* self);
 };
 struct CSink;
 struct CGameObject;

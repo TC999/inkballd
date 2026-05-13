@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __stdcall CleanupTabletContexts()
+
+void CleanupTabletContexts()
 {
   int v0; // ebx
   int v1; // esi
@@ -43,5 +42,3 @@ void __stdcall CleanupTabletContexts()
   v5 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }
-
-#endif

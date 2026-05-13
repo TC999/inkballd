@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __stdcall GetInkBufferHDC(HDC *a1)
+
+void GetInkBufferHDC(HDC *a1)
 {
   uint8_t v2[8]; // [esp+10h] [ebp-18h] BYREF
   int v3[3]; // [esp+18h] [ebp-10h] BYREF
@@ -21,5 +20,3 @@ void __stdcall GetInkBufferHDC(HDC *a1)
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }
-
-#endif

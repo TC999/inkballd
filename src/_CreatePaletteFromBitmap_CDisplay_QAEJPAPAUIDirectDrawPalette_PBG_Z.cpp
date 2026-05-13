@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectDrawPalette **a2, WCHAR *lpFileName)
+
+int CDisplay::CreatePaletteFromBitmap(struct IDirectDrawPalette **a2, WCHAR *lpFileName)
 {
   bool v4; // zf
   HINSTANCE ResourceW; // eax
@@ -194,5 +193,3 @@ LABEL_56:
   reinterpret_cast<Helpers::CLogBlock*>(v38)->~CLogBlock();
   return v8;
 }
-
-#endif

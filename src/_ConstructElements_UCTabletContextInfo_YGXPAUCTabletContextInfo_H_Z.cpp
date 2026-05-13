@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-uint32_t __stdcall ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t a2)
+
+uint32_t ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t a2)
 {
   uint32_t v2; // ebx
   uint32_t result; // eax
@@ -34,5 +33,3 @@ uint32_t __stdcall ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t 
   }
   return result;
 }
-
-#endif

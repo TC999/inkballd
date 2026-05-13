@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-BOOL __stdcall CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
+
+BOOL CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
 {
   BOOL v2; // esi
   const char*v4[2]; // [esp+0h] [ebp-10h] BYREF
@@ -24,5 +23,3 @@ BOOL __stdcall CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::CreateSurface(CDisplay *this, CSurface**a2, void*a3, DWORD a4)
+
+int CDisplay::CreateSurface(CSurface**a2, void*a3, DWORD a4)
 {
   int v5; // eax
   int v6; // esi
@@ -33,7 +32,8 @@ LABEL_3:
     v5 = -2147418113;
     goto LABEL_3;
   }
-  memset(&v10, 0, sizeof(v10));
+    _DDSURFACEDESC2 v10;
+    memset(&v10, 0, sizeof(v10));
   v10.dwWidth = (DWORD)a3;
   v10.dwSize = 124;
   v10.dwFlags = 7;
@@ -45,7 +45,7 @@ LABEL_3:
   v8 = (CSurface *)operator new(0x84u);
   LOBYTE(v14) = 2;
   if ( v8 )
-    v9 = CSurface::CSurface(v8);
+    v9 = new (v8) CSurface();
   else
     v9 = 0;
   *a2 = v9;
@@ -57,7 +57,7 @@ LABEL_3:
     {
       if ( *a2 )
       {
-        CSurface::`scalar deleting destructor'(*a2, 1);
+          delete *a2;
         *a2 = 0;
       }
     }
@@ -68,5 +68,3 @@ LABEL_4:
   reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return v6;
 }
-
-#endif

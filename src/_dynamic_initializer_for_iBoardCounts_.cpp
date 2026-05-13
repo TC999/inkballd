@@ -1,10 +1,9 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
+
 int dynamic_initializer_for__iBoardCounts__()
 {
   int result; // eax
@@ -22,5 +21,3 @@ int dynamic_initializer_for__iBoardCounts__()
   dword_10AF5B4 = iExpertBonusBoardsCount;
   return result;
 }
-
-#endif

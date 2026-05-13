@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::Clear(CDisplay *this, uint32_t a2)
+
+int CDisplay::Clear(uint32_t a2)
 {
   bool v3; // zf
   int v4; // eax
@@ -38,5 +37,3 @@ int __thiscall CDisplay::Clear(CDisplay *this, uint32_t a2)
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v5;
 }
-
-#endif

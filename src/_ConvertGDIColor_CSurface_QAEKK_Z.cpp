@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CSurface::ConvertGDIColor(CSurface *this, COLORREF color)
+
+int CSurface::ConvertGDIColor(COLORREF color)
 {
   int v3; // edi
   int v4; // eax
@@ -73,5 +72,3 @@ int __thiscall CSurface::ConvertGDIColor(CSurface *this, COLORREF color)
   reinterpret_cast<Helpers::CLogBlock*>(v12)->~CLogBlock();
   return v3;
 }
-
-#endif

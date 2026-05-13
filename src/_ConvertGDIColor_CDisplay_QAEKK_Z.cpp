@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::ConvertGDIColor(CDisplay *this, COLORREF color)
+
+int CDisplay::ConvertGDIColor(COLORREF color)
 {
   int v3; // edi
   bool v4; // zf
@@ -71,5 +70,3 @@ int __thiscall CDisplay::ConvertGDIColor(CDisplay *this, COLORREF color)
   reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();
   return v3;
 }
-
-#endif

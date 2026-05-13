@@ -1,17 +1,18 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __stdcall CSink::CursorDown(
-        CSink *this,
+
+int CSink::CursorDown(
+        CSink *self,
+        uint32_t a2,
         uint32_t a3,
         uint32_t a4,
         uint32_t a5,
         unsigned __int8 *a6)
 {
+  uint32_t v6; // ecx
   uint32_t v8; // ecx
   int v9; // esi
   uint32_t v11; // esi
@@ -22,7 +23,7 @@ int __stdcall CSink::CursorDown(
   *(uint32_t *)v15 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CSink::CursorDown", (int*)v15);
   v6 = a2;
-  TabletContextInfo = GetTabletContextInfo((uint32_t)a2);
+  auto* TabletContextInfo = GetTabletContextInfo((uint32_t)a2);
   if ( TabletContextInfo )
   {
     v8 = *((uint32_t *)TabletContextInfo + 4);
@@ -41,17 +42,17 @@ LABEL_17:
   }
   v11 = a3;
   v13 = a3;
-  *((uint32_t *)this + 2) = 1;
+  *((uint32_t *)self + 2) = 1;
   SetCursorAttributes(v13);
   g_tcid = (uint32_t)v6;
   g_cid = v11;
-  if ( (*(int (__stdcall **)(struct IInkObject *, CSink **))(*(uint32_t *)g_pIInkObject + 16))(g_pIInkObject, &this) >= 0
-    && (uint32_t)this >= 0x14 )
+  if ( (*(int (__stdcall **)(struct IInkObject *, CSink **))(*(uint32_t *)g_pIInkObject + 16))(g_pIInkObject, &self) >= 0
+    && (uint32_t)self >= 0x14 )
   {
     (*(void (__stdcall **)(struct IInkObject *, uint32_t, char*))(*(uint32_t *)g_pIInkObject + 68))(
       g_pIInkObject,
       0,
-      reinterpret_cast<char*>(this) - 19);
+      reinterpret_cast<char*>(self) - 19);
     BltBoardToInk(0);
     CInk::SetInkRedrawFlag(*((CInk **)g_pCGameBoard + 2481));
     PlayingAreaRect = CGameBoard::GetPlayingAreaRect(g_pCGameBoard);
@@ -82,5 +83,3 @@ LABEL_5:
   reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
   return v9;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __thiscall CInk::Cleanup(CInk *this)
+
+void CInk::Cleanup()
 {
   uint8_t v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
@@ -35,5 +34,3 @@ void __thiscall CInk::Cleanup(CInk *this)
   v2 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }
-
-#endif

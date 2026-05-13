@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
+
+int CGameBoard::CreateNewSurfaces()
 {
   void*v2; // ecx
   CDisplay *v3; // edi
@@ -28,7 +27,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
   v11 = v2;
   LOBYTE(v14) = 2;
   if ( v2 )
-    v3 = CDisplay::CDisplay((CDisplay *)v2);
+    v3 = new (v2) CDisplay();
   else
     v3 = 0;
   v14 = 0;
@@ -41,12 +40,12 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
                *((uint32_t *)this + 2466));
     if ( v13[0] < 0 )
     {
-      CDisplay::`scalar deleting destructor'(v3, 1);
+      delete v3;
     }
     else
     {
       if ( g_pDisplay )
-        CDisplay::`scalar deleting destructor'(g_pDisplay, 1);
+        delete g_pDisplay;
       g_pDisplay = v3;
     }
   }
@@ -60,7 +59,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
     }
     else if ( v4 )
     {
-      CSurface::`scalar deleting destructor'(v4, 1);
+      delete v4;
     }
     if ( v13[0] >= 0 )
     {
@@ -72,7 +71,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
       }
       else if ( v5 )
       {
-        CSurface::`scalar deleting destructor'(v5, 1);
+        delete v5;
       }
       if ( v13[0] >= 0 )
       {
@@ -84,7 +83,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
         }
         else if ( v6 )
         {
-          CSurface::`scalar deleting destructor'(v6, 1);
+          delete v6;
         }
         if ( v13[0] >= 0 )
         {
@@ -96,7 +95,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
           }
           else if ( v7 )
           {
-            CSurface::`scalar deleting destructor'(v7, 1);
+            delete v7;
           }
         }
       }
@@ -107,5 +106,3 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
   reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
   return v8;
 }
-
-#endif

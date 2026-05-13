@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
+
+int CDisplay::ClearInk(struct tagRECT *a2, int a3)
 {
   int v4; // eax
   int v5; // esi
@@ -33,5 +32,3 @@ int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
   reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v5;
 }
-
-#endif

@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-void __stdcall ConvertTileToFloor(CBoardTileBreakWall*a1)
+
+void ConvertTileToFloor(CBoardTileBreakWall*a1)
 {
   CBoardTile*v2; // eax
   char*BitmapRect; // eax
@@ -29,7 +28,7 @@ void __stdcall ConvertTileToFloor(CBoardTileBreakWall*a1)
   if ( v8 )
   {
     BitmapRect = CGameBoard::GetBitmapRect(0);
-    v4 = CBoardTile::CBoardTile(v8, 0, *((uint32_t *)a1 + 19), *((uint32_t *)a1 + 20), (int)BitmapRect);
+    v4 = new (v8) CBoardTile(0, *((uint32_t *)a1 + 19), *((uint32_t *)a1 + 20), (int)BitmapRect);
   }
   else
   {
@@ -51,5 +50,3 @@ LABEL_8:
   v7 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
 }
-
-#endif

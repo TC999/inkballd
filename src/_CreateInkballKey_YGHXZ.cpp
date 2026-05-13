@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __stdcall CreateInkballKey()
+
+int CreateInkballKey()
 {
   int v0; // edi
   int*v2; // [esp+0h] [ebp-28h]
@@ -26,5 +25,3 @@ int __stdcall CreateInkballKey()
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v0;
 }
-
-#endif

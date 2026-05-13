@@ -1,14 +1,13 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __userpurge CSink::CursorUp@<eax>(
-        int a1@<ebx>,
-        int a2@<edi>,
-        CSink *this,
+
+int CSink::CursorUp(
+        int a1,
+        int a2,
+        CSink *self,
         HDC a4,
         uint32_t a5,
         uint32_t a6,
@@ -32,7 +31,7 @@ int __userpurge CSink::CursorUp@<eax>(
         if ( *((uint32_t *)this + 2) )
         {
           v10 = a8;
-          *((uint32_t *)this + 2) = 0;
+          *((uint32_t *)self + 2) = 0;
           *(uint32_t *)v13 = (*(int (__stdcall **)(struct IInkCollect *, uint32_t, uint32_t, unsigned __int8 *, int, int))(*(uint32_t *)g_pIInkCollect + 16))(
                              g_pIInkCollect,
                              v8,
@@ -83,5 +82,3 @@ int __userpurge CSink::CursorUp@<eax>(
   reinterpret_cast<Helpers::CLogBlock*>(v12)->~CLogBlock();
   return 0;
 }
-
-#endif

@@ -1,17 +1,17 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t xRight, int yBottom)
+
+int CDisplay::CreateWindowedDisplay(LPVOID *self, HWND hWnd, uint32_t xRight, int yBottom)
 {
-  void (__thiscall **v5)(LPVOID *); // eax
+  void (**v5)(LPVOID *); // eax
   uint32_t *v6; // edi
   LONG v7; // eax
   int v8; // eax
   int v9; // esi
+  RECT rc; // [esp-8h] [ebp-D0h]
   BOOL v11; // [esp-8h] [ebp-D0h]
   LONG WindowLongW; // [esp-4h] [ebp-CCh]
   int*v13; // [esp+0h] [ebp-C8h]
@@ -29,11 +29,11 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
 
   *(uint32_t *)v24 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int*)v24);
-  v5 = (void (__thiscall **)(LPVOID *))*this;
+  auto v5 = (void (**)(LPVOID *))*self;
   v25 = 0;
-  (*v5)(this);
-  v6 = this + 1;
-  *(uint32_t *)v24 = DirectDrawCreateEx(0, this + 1, &IID_IDirectDraw7, 0);
+  (*v5)(self);
+  v6 = self + 1;
+      *(uint32_t *)v24 = DirectDrawCreateEx(0, self + 1, &IID_IDirectDraw7, 0);
   if ( *(int*)v24 < 0 )
   {
     if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
@@ -71,7 +71,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
       *(uint32_t *)v24 = (*(int (__stdcall **)(int, uint32_t *, char*, uint32_t))(*(uint32_t *)v8 + 24))(
                          v8,
                          v18,
-                         reinterpret_cast<char*>(this) + 8,
+                         reinterpret_cast<char*>(self) + 8,
                          0);
       if ( *(int*)v24 < 0 )
       {
@@ -89,7 +89,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
         *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                            *v6,
                            v18,
-                           reinterpret_cast<char*>(this) + 12,
+                           reinterpret_cast<char*>(self) + 12,
                            0);
         if ( *(int*)v24 < 0 )
         {
@@ -101,7 +101,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
           *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                              *v6,
                              v18,
-                             reinterpret_cast<char*>(this) + 20,
+                             reinterpret_cast<char*>(self) + 20,
                              0);
           if ( *(int*)v24 < 0 )
           {
@@ -113,7 +113,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
             *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, uint32_t *, char*, uint32_t))(*(uint32_t *)*v6 + 24))(
                                *v6,
                                v18,
-                               reinterpret_cast<char*>(this) + 24,
+                               reinterpret_cast<char*>(self) + 24,
                                0);
             if ( *(int*)v24 < 0 )
             {
@@ -142,7 +142,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
                 }
                 else
                 {
-                  *(uint32_t *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(uint32_t *)this[2] + 112))(this[2], v23);
+                  *(uint32_t *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(uint32_t *)self[2] + 112))(self[2], v23);
                   if ( *(int*)v24 < 0 )
                   {
                     if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
@@ -150,9 +150,9 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
                   }
                   else
                   {
-                    this[7] = hWnd;
-                    this[12] = (LPVOID)1;
-                    CDisplay::UpdateBounds((CDisplay *)this);
+                    self[7] = hWnd;
+                    self[12] = (LPVOID)1;
+                    CDisplay::UpdateBounds((CDisplay *)self);
                   }
                 }
                 (*(void (__stdcall **)(int))(*(uint32_t *)v23 + 8))(v23);
@@ -168,5 +168,3 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, uint32_t
   reinterpret_cast<Helpers::CLogBlock*>(v21)->~CLogBlock();
   return v9;
 }
-
-#endif

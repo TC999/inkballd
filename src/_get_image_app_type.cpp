@@ -1,11 +1,10 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
-int __cdecl _get_image_app_type(int a1)
+
+int _get_image_app_type(int a1)
 {
   HMODULE ModuleHandleA; // eax
   int v2; // eax
@@ -25,5 +24,3 @@ int __cdecl _get_image_app_type(int a1)
   else
     return a1;
 }
-
-#endif
