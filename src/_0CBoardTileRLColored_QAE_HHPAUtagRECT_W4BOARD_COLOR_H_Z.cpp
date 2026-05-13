@@ -5,9 +5,7 @@
 extern void* CBoardTileRLColored_vftable;
 extern void AddGameObjectToUpdateList(void* game_object);
 extern void AddRLColoredWallToList(void* wall_tile);
-
-CBoardTile* CBoardTileRLColored::CBoardTileRLColored(
-    CBoardTile* self,
+CBoardTile* CBoardTileRLColored_CBoardTileRLColored(CBoardTileRLColored* self, CBoardTile* self,
     int x,
     int y,
     int bitmap_rect,

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HGLOBAL __stdcall Helpers::LoadResource(HMODULE hModule, HRSRC hResInfo, HRSRC a3, int*a4)
+HGLOBAL __stdcall LoadResource_Helpers(Helpers* self, HMODULE hModule, HRSRC hResInfo, HRSRC a3, int*a4)
 {
   HGLOBAL Resource; // esi
   signed int LastError; // eax

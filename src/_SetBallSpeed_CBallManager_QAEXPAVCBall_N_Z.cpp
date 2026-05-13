@@ -9,8 +9,7 @@ extern "C" {
     extern long double sind(double angle);
     extern int GetRandomNumber(int max_value);
 }
-
-void CBallManager::SetBallSpeed(CBall* ball, double angle_degrees)
+void SetBallSpeed_CBallManager(CBallManager* self, CBall* ball, double angle_degrees)
 {
     int max_speed_value;
     int min_speed_value;
@@ -27,8 +26,8 @@ void CBallManager::SetBallSpeed(CBall* ball, double angle_degrees)
     double final_velocity_y;
 
     new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBallManager::SetBallSpeed", 0);
-    max_speed_value = this->max_speed;
-    min_speed_value = this->min_speed;
+    max_speed_value = self->max_speed;
+    min_speed_value = self->min_speed;
     flag = 0;
     
     if (max_speed_value != min_speed_value)

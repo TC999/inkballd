@@ -1,8 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-void CBoardTile::DeflectBall(CBall* ball)
+void DeflectBall_CBoardTile(CBoardTile* self, CBall* ball)
 {
     uint8_t log_buffer[16];
     int flag;

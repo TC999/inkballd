@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::CreateWindowedDisplay(LPVOID *self, HWND hWnd, uint32_t xRight, int yBottom)
+int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint32_t xRight, int yBottom)
 {
   void (**v5)(LPVOID *); // eax
   uint32_t *v6; // edi

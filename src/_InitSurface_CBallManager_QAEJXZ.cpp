@@ -7,8 +7,7 @@ extern "C" {
 
 extern "C" void* g_pDisplay; // Global display instance
 extern "C" void* g_pBallManagerSurface; // Global ball manager surface
-
-int CBallManager::InitSurface()
+int InitSurface_CBallManager(CBallManager* self)
 {
     int surface_result;
     int return_value;
@@ -20,8 +19,8 @@ int CBallManager::InitSurface()
 
     log_data[0] = 0;
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::InitSurface", log_data);
-    surface_size = this->surface_size;
-    surface_data = reinterpret_cast<void*>(this->surface_data);
+    surface_size = self->surface_size;
+    surface_data = reinterpret_cast<void*>(self->surface_data);
     flag = 0;
     surface_result = CDisplay::CreateSurface(g_pDisplay, &g_pBallManagerSurface, surface_data, surface_size);
     flag = -1;

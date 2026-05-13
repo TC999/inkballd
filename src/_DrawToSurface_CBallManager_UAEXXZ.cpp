@@ -6,7 +6,7 @@ extern "C" void* g_pBallManagerSurface; // Global ball manager surface
 extern "C" void* g_pGamePiecesSurface; // Global game pieces surface
 extern "C" void* g_CBitmapRects; // Global bitmap rectangles
 
-void CBallManager::DrawToSurface()
+void DrawToSurface_CBallManager(CBallManager* self)
 {
     IDirectDrawSurface7* ddraw_surface;
     IDirectDrawSurface7Vtbl* surface_vtable;
@@ -28,13 +28,13 @@ void CBallManager::DrawToSurface()
     int ball_index;
     int flag;
 
-    manager = this;
+    manager = self;
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::DrawToSurface", 0);
     flag = 0;
     
     ddraw_surface = CSurface::GetDDrawSurface(g_pBallManagerSurface);
     surface_vtable = ddraw_surface->lpVtbl;
-    update_rect = reinterpret_cast<RECT*>(reinterpret_cast<uint8_t*>(this) + 20);
+    update_rect = reinterpret_cast<RECT*>(reinterpret_cast<uint8_t*>(self) + 20);
     bitmap_rect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 106);
     game_pieces_surface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
     surface_vtable->Blt(ddraw_surface, update_rect, game_pieces_surface, bitmap_rect, 0, 0);

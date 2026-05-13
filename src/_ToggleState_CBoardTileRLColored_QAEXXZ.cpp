@@ -4,8 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include <new>
-
-void CBoardTileRLColored::ToggleState(void* self)
+void ToggleState_CBoardTileRLColored(CBoardTileRLColored* self, void* self)
 {
   uint8_t v2[8];
 

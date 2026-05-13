@@ -4,8 +4,7 @@
 
 extern "C" {
 }
-
-int CBall::GetPrevBallPoint()
+int GetPrevBallPoint_CBall(CBall* self)
 {
     int prev_ball_point;
     uint8_t log_buffer[16];
@@ -13,7 +12,7 @@ int CBall::GetPrevBallPoint()
 
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBall::GetPrevBallPoint", 0);
     flag = 0;
-    int current_point = CBall::GetCurrBallPoint(this);
+    int current_point = CBall::GetCurrBallPoint(self);
     if (current_point > 0)
         prev_ball_point = current_point - 1;
     else

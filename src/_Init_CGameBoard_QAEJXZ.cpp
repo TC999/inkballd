@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CGameBoard::Init()
+int Init_CGameBoard(CGameBoard* self)
 {
   CInk *v2; // ecx
   int v3; // eax
@@ -15,7 +14,7 @@ int CGameBoard::Init()
 
   v7[0] = 0;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v6), "CGameBoard::Init", v7);
-  v2 = (CInk *)*((uint32_t *)this + 2481);
+  v2 = (CInk *)*((uint32_t *)self + 2481);
   v8 = 0;
   v3 = CInk::Init(v2);
   v8 = -1;

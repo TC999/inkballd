@@ -1,8 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-BOOL __stdcall Helpers::SetWindowPos(
-        HWND hWnd,
+BOOL __stdcall SetWindowPos_Helpers(Helpers* self, HWND hWnd,
         HWND hWndInsertAfter,
         int x,
         int y,

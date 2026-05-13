@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-uint32_t CDisplay::CreateSurfaceFromBitmap(CSurface**a2, HINSTANCE name, uint32_t a4, int cy)
+uint32_t CreateSurfaceFromBitmap_CDisplay(CDisplay* self, CSurface**a2, HINSTANCE name, uint32_t a4, int cy)
 {
     uint32_t v14;
   uint32_t v6; // esi
@@ -24,14 +23,14 @@ uint32_t CDisplay::CreateSurfaceFromBitmap(CSurface**a2, HINSTANCE name, uint32_
   uint32_t v21[4]; // [esp+B4h] [ebp-14h] BYREF
   int v22; // [esp+C4h] [ebp-4h]
 
-  v19 = this;
+  v19 = self;
   v21[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v18, "CDisplay::CreateSurfaceFromBitmap", (int*)v21);
   v22 = 0;
   if ( name && a2 )
   {
     uint32_t v14; // auto-declared
-    if ( *((uint32_t *)this + 1) )
+    if ( *((uint32_t *)self + 1) )
     {
       *a2 = 0;
       ModuleHandleW = GetModuleHandleW(0);

@@ -9,8 +9,7 @@ extern "C" bool BallOnTile(void* tile);
 extern "C" void* GetBitmapRect(int index);
 extern "C" void UpdateBoardTile(void* tile);
 extern "C" void ShadowizeTile(void* tile);
-
-void CBoardTileRLGray::UpdateObject(uint32_t delta_time)
+void UpdateObject_CBoardTileRLGray(CBoardTileRLGray* self, uint32_t delta_time)
 {
     uint32_t animation_state;
     uint32_t color_index;
@@ -24,16 +23,16 @@ void CBoardTileRLGray::UpdateObject(uint32_t delta_time)
     uint32_t max_time;
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLGray::UpdateObject", 0);
-    this->animation_timer += delta_time;
-    this->state_timer += delta_time;
-    animation_state = this->animation_state;
-    color_index = this->color_index;
-    animation_timer = this->animation_timer;
-    state_timer = this->state_timer;
+    self->animation_timer += delta_time;
+    self->state_timer += delta_time;
+    animation_state = self->animation_state;
+    color_index = self->color_index;
+    animation_timer = self->animation_timer;
+    state_timer = self->state_timer;
     flag = 0;
     current_color = color_index;
-    min_time = this->min_time;
-    max_time = this->max_time;
+    min_time = self->min_time;
+    max_time = self->max_time;
     
     if (!animation_state)
     {
@@ -43,16 +42,16 @@ void CBoardTileRLGray::UpdateObject(uint32_t delta_time)
             {
                 new_color_index = color_index - 1;
 LABEL_6:
-                this->color_index = new_color_index;
+                self->color_index = new_color_index;
 LABEL_20:
-                this->state_timer = 0;
+                self->state_timer = 0;
                 goto LABEL_21;
             }
             goto LABEL_21;
         }
-        this->animation_state = 1;
+        self->animation_state = 1;
 LABEL_8:
-        this->animation_timer = 0;
+        self->animation_timer = 0;
         goto LABEL_21;
     }
     
@@ -60,20 +59,20 @@ LABEL_8:
     {
         if (animation_timer > max_time)
         {
-            this->animation_state = 0;
+            self->animation_state = 0;
             goto LABEL_8;
         }
-        if (BallOnTile(this))
+        if (BallOnTile(self))
             goto LABEL_21;
-        this->animation_state = 2;
+        self->animation_state = 2;
 LABEL_19:
-        this->animation_timer = 0;
+        self->animation_timer = 0;
         goto LABEL_20;
     }
     
     if (animation_timer >= max_time)
     {
-        this->animation_state = 0;
+        self->animation_state = 0;
         goto LABEL_19;
     }
     
@@ -84,12 +83,12 @@ LABEL_19:
     }
     
 LABEL_21:
-    uint32_t final_color = this->color_index;
+    uint32_t final_color = self->color_index;
     if (final_color != current_color)
     {
-        this->bitmap_rect = GetBitmapRect(5 * final_color + 77);
-        UpdateBoardTile(this);
-        ShadowizeTile(this);
+        self->bitmap_rect = GetBitmapRect(5 * final_color + 77);
+        UpdateBoardTile(self);
+        ShadowizeTile(self);
     }
     
     flag = -1;

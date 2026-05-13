@@ -3,11 +3,10 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-CScoreManager* CScoreManager::scalar_deleting_destructor(char a2)
+CScoreManager* scalar_deleting_destructor_CScoreManager(CScoreManager* self, char a2)
 {
     CScoreManager::~CScoreManager();
     if ((a2 & 1) != 0)
-        operator delete(this);
-    return this;
+        operator delete(self);
+    return self;
 }

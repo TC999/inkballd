@@ -4,8 +4,7 @@
 #include <new>
 
 extern "C" int CalcUnsqrtDistance(POINT* point1, POINT* point2);
-
-void CBoardTile::SetClosestSide(POINT* test_point)
+void SetClosestSide_CBoardTile(CBoardTile* self, POINT* test_point)
 {
     RECT bounding_rect;
     POINT test_point_top;
@@ -18,7 +17,7 @@ void CBoardTile::SetClosestSide(POINT* test_point)
     new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBoardTile::SetClosestSide", 0);
     flag = 0;
     
-    CBoardObject::GetBoundingRect(reinterpret_cast<uintptr_t>(this), &bounding_rect);
+    CBoardObject::GetBoundingRect(reinterpret_cast<uintptr_t>(self), &bounding_rect);
     
     // Calculate distances to all four sides
     test_point_top.x = test_point->x;

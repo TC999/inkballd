@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void CScoreManager::DrawToSurface()
+void DrawToSurface_CScoreManager(CScoreManager* self)
 {
     void* DDrawSurface;
     void* lpVtbl;
@@ -42,7 +42,7 @@ void CScoreManager::DrawToSurface()
   CScoreManager *v37; // [esp+20h] [ebp-14h]
   int v39; // [esp+30h] [ebp-4h]
 
-  v37 = this;
+  v37 = self;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v34), "CScoreManager::DrawToSurface", 0);
   v39 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
@@ -51,8 +51,8 @@ void CScoreManager::DrawToSurface()
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 107);
   v4 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   lpVtbl->BltFast(v38, 0, 0, v4, (LPRECT)BitmapRect, 0);
-  v5 = *((uint32_t *)this + 3);
-  v38 = (struct IDirectDrawSurface7 *)*((uint32_t *)this + 9);
+  v5 = *((uint32_t *)self + 3);
+  v38 = (struct IDirectDrawSurface7 *)*((uint32_t *)self + 9);
   v6 = v5 - 12;
   v7 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   v8 = v7->lpVtbl;

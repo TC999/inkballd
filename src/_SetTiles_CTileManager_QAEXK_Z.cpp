@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include <new>
-void CTileManager::SetTiles(void* self, uint32_t a2)
+void SetTiles_CTileManager(CTileManager* self, void* self, uint32_t a2)
 {
   uint32_t v3; // eax
   uint32_t v4; // ecx

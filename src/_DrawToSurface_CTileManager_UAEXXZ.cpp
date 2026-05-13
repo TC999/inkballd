@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void CTileManager::DrawToSurface()
+void DrawToSurface_CTileManager(CTileManager* self)
 {
     void* DDrawSurface;
     void* lpVtbl;
@@ -24,7 +24,7 @@ void CTileManager::DrawToSurface()
   int v18; // [esp+24h] [ebp-10h]
   int v19; // [esp+30h] [ebp-4h]
 
-  v16 = this;
+  v16 = self;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CTileManager::DrawToSurface", 0);
   v19 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pTileManagerSurface);

@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HANDLE __stdcall Helpers::LoadImageW(
-        HINSTANCE hInst,
+HANDLE __stdcall LoadImageW_Helpers(Helpers* self, HINSTANCE hInst,
         const WCHAR *name,
         UINT type,
         uint32_t a4,

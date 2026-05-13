@@ -2,8 +2,7 @@
 #include <cstdint>
 
 extern void* CBoardTileBreakWall_vftable;
-
-CBoardTile* CBoardTileBreakWall::CBoardTileBreakWall(CBoardTile* self, int x, int y, int rect_param, int color)
+CBoardTile* CBoardTileBreakWall_CBoardTileBreakWall(CBoardTileBreakWall* self, CBoardTile* self, int x, int y, int rect_param, int color)
 {
     uint8_t log_buffer[8];
 

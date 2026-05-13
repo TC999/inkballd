@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void CTimeManager::DrawToSurface()
+void DrawToSurface_CTimeManager(CTimeManager* self)
 {
     uint32_t v20;
     uint32_t v26;
@@ -47,8 +47,8 @@ void CTimeManager::DrawToSurface()
   int v43; // [esp+4Ch] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v35), "CTimeManager::DrawToSurface", 0);
-  v2 = *((uint32_t *)this + 9) / 0x3E8u;
-  v3 = *((uint32_t *)this + 3) - dwLeftDrawDif - 9;
+  v2 = *((uint32_t *)self + 9) / 0x3E8u;
+  v3 = *((uint32_t *)self + 3) - dwLeftDrawDif - 9;
   v43 = 0;
   v42 = v3;
   v40 = (struct IDirectDrawSurface7 *)v2;
@@ -83,7 +83,7 @@ void CTimeManager::DrawToSurface()
       v5 = DDrawSurface % 0xA;
       DDrawSurface /= 0xAu;
       v42 -= dwTimeDigitWidth;
-      if ( *((uint32_t *)this + 12) )
+      if ( *((uint32_t *)self + 12) )
       {
         v13 = v40->lpVtbl == (struct IDirectDrawSurface7Vtbl *)(v5 + 146);
         v39 = (struct IDirectDrawSurface7 *)(v5 + 146);
@@ -102,12 +102,12 @@ void CTimeManager::DrawToSurface()
             0);
           v15 = v39;
           v40->lpVtbl = (struct IDirectDrawSurface7Vtbl *)v39;
-          v34.left = v42 + *((uint32_t *)this + 1);
+          v34.left = v42 + *((uint32_t *)self + 1);
           v16 = CBitmapRects::GetBitmapRect(g_CBitmapRects, (int)v15);
           v36 = (char*)(v34.left + *((uint32_t *)v16 + 2));
           v17 = CBitmapRects::GetBitmapRect(g_CBitmapRects, (int)v39);
           v18 = (LONG)&v36[-*(uint32_t *)v17];
-          v19 = v41 + *((uint32_t *)this + 2);
+          v19 = v41 + *((uint32_t *)self + 2);
           v34.right = v18;
           v34.top = v19;
           v36 = CBitmapRects::GetBitmapRect(g_CBitmapRects, (int)v39) + 12;
@@ -130,12 +130,12 @@ void CTimeManager::DrawToSurface()
           v30,
           0);
         v40->lpVtbl = (struct IDirectDrawSurface7Vtbl *)157;
-        v34.left = v42 + *((uint32_t *)this + 1);
+        v34.left = v42 + *((uint32_t *)self + 1);
         v7 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 157);
         p_BltFast = (char*)(v34.left + *((uint32_t *)v7 + 2));
         v8 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 157);
         v9 = (LONG)&p_BltFast[-*(uint32_t *)v8];
-        v10 = v41 + *((uint32_t *)this + 2);
+        v10 = v41 + *((uint32_t *)self + 2);
         v34.right = v9;
         v34.top = v10;
         p_BltFast = CBitmapRects::GetBitmapRect(g_CBitmapRects, 157) + 12;
@@ -167,12 +167,12 @@ LABEL_8:
         v32,
         0);
       v39->lpVtbl = (struct IDirectDrawSurface7Vtbl *)156;
-      v34.left = v42 + *((uint32_t *)this + 1);
+      v34.left = v42 + *((uint32_t *)self + 1);
       v21 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 156);
       v36 = (char*)(v34.left + *((uint32_t *)v21 + 2));
       v22 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 156);
       v23 = (LONG)&v36[-*(uint32_t *)v22];
-      v24 = v41 + *((uint32_t *)this + 2);
+      v24 = v41 + *((uint32_t *)self + 2);
       v34.right = v23;
       v34.top = v24;
       v36 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 156) + 12;

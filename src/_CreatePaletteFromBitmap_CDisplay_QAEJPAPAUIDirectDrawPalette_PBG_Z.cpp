@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::CreatePaletteFromBitmap(struct IDirectDrawPalette **a2, WCHAR *lpFileName)
+int CreatePaletteFromBitmap_CDisplay(CDisplay* self, struct IDirectDrawPalette **a2, WCHAR *lpFileName)
 {
   bool v4; // zf
   HINSTANCE ResourceW; // eax
@@ -47,10 +46,10 @@ int CDisplay::CreatePaletteFromBitmap(struct IDirectDrawPalette **a2, WCHAR *lpF
   int v43; // [esp+468h] [ebp-4h]
   LPCWSTR lpFileNamea; // [esp+478h] [ebp+Ch]
 
-  v40 = this;
+  v40 = self;
   *(uint32_t *)v42 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v38, "CDisplay::CreatePaletteFromBitmap", (int*)v42);
-  v4 = *((uint32_t *)this + 1) == 0;
+  v4 = *((uint32_t *)self + 1) == 0;
   v43 = 0;
   if ( v4 || !lpFileName || !a2 )
   {

@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-void CInk::DrawInkToSurface(struct tagRECT *a2)
+void DrawInkToSurface_CInk(CInk* self, struct tagRECT *a2)
 {
   int v2; // ecx
   int v3; // eax

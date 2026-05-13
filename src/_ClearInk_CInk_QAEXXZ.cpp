@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-void CInk::ClearInk()
+void ClearInk_CInk(CInk* self)
 {
   int v1; // ecx
   uint8_t v2[8]; // [esp+10h] [ebp-1Ch] BYREF

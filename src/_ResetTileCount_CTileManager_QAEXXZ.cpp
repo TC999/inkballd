@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void CTileManager::ResetTileCount(void* self)
+void ResetTileCount_CTileManager(CTileManager* self, void* self)
 {
   int v2; // eax
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF

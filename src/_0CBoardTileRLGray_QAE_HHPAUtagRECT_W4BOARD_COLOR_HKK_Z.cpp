@@ -6,9 +6,7 @@
 
 extern void* CBoardTileRLGray_vftable;
 extern void AddGameObjectToUpdateList(void* game_object);
-
-CBoardTile* CBoardTileRLGray::CBoardTileRLGray(
-    CBoardTile* self,
+CBoardTile* CBoardTileRLGray_CBoardTileRLGray(CBoardTileRLGray* self, CBoardTile* self,
     int a2,
     int a3,
     int a4,

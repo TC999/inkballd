@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CSurface::Create(LPDIRECTDRAWSURFACE7 *self, struct IDirectDraw7 *a2, struct _DDSURFACEDESC2 *a3)
+int Create_CSurface(CSurface* self, LPDIRECTDRAWSURFACE7 *self, struct IDirectDraw7 *a2, struct _DDSURFACEDESC2 *a3)
 {
   LPDIRECTDRAWSURFACE7 v6; // esi
   int v7; // esi

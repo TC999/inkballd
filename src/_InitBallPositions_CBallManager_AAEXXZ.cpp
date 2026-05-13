@@ -4,8 +4,7 @@
 
 extern "C" {
 }
-
-void CBallManager::InitBallPositions()
+void InitBallPositions_CBallManager(CBallManager* self)
 {
     uint8_t* ball_ptr;
     uint32_t ball_index;
@@ -15,11 +14,11 @@ void CBallManager::InitBallPositions()
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::InitBallPositions", 0);
 
     // Initialize first ball position
-    CBall* first_ball = reinterpret_cast<CBall*>(this->active_ball_count);
+    CBall* first_ball = reinterpret_cast<CBall*>(self->active_ball_count);
     first_ball->position_x = 104.0;
     first_ball->position_y = 14.0;
 
-    ball_ptr = reinterpret_cast<uint8_t*>(this) + 60;
+    ball_ptr = reinterpret_cast<uint8_t*>(self) + 60;
     ball_index = 5;
     do
     {
@@ -38,7 +37,7 @@ void CBallManager::InitBallPositions()
         CBall* ball = reinterpret_cast<CBall*>(current_ball);
         ball->position_y = 14.0;
 
-        this->ball_indices[0] = 0;
+        self->ball_indices[0] = 0;
         --ball_index;
     }
     while (ball_index);

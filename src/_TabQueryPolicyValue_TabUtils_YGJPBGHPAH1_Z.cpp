@@ -3,8 +3,7 @@
 #include <windows.h>
 
 extern "C" {
-    int __stdcall TabUtils::TabQueryPolicyValue(
-            LPCWSTR value_name,
+int __stdcall TabQueryPolicyValue_TabUtils(TabUtils* self, LPCWSTR value_name,
             const uint16_t* default_data,
             uint32_t* result_data,
             int* data_type,

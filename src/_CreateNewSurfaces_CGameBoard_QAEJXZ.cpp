@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CGameBoard::CreateNewSurfaces()
+int CreateNewSurfaces_CGameBoard(CGameBoard* self)
 {
   void*v2; // ecx
   CDisplay *v3; // edi
@@ -19,7 +18,7 @@ int CGameBoard::CreateNewSurfaces()
   int v13[4]; // [esp+20h] [ebp-14h] BYREF
   int v14; // [esp+30h] [ebp-4h]
 
-  v12 = this;
+  v12 = self;
   v13[0] = -2147024882;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::CreateNewSurfaces", v13);
   v14 = 1;
@@ -35,9 +34,9 @@ int CGameBoard::CreateNewSurfaces()
   {
     v13[0] = CDisplay::CreateWindowedDisplay(
                v3,
-               *((HWND *)this + 2480),
-               *((uint32_t *)this + 2465),
-               *((uint32_t *)this + 2466));
+               *((HWND *)self + 2480),
+               *((uint32_t *)self + 2465),
+               *((uint32_t *)self + 2466));
     if ( v13[0] < 0 )
     {
       delete v3;
@@ -52,7 +51,7 @@ int CGameBoard::CreateNewSurfaces()
   if ( v13[0] >= 0 )
   {
     v4 = g_pBallManagerSurface;
-    v13[0] = CBallManager::InitSurface(*((CBallManager **)this + 2476));
+    v13[0] = CBallManager::InitSurface(*((CBallManager **)self + 2476));
     if ( v13[0] < 0 )
     {
       g_pBallManagerSurface = v4;
@@ -64,7 +63,7 @@ int CGameBoard::CreateNewSurfaces()
     if ( v13[0] >= 0 )
     {
       v5 = g_pScoreManagerSurface;
-      v13[0] = CScoreManager::InitSurface(*((CScoreManager **)this + 2477));
+      v13[0] = CScoreManager::InitSurface(*((CScoreManager **)self + 2477));
       if ( v13[0] < 0 )
       {
         g_pScoreManagerSurface = v5;
@@ -76,7 +75,7 @@ int CGameBoard::CreateNewSurfaces()
       if ( v13[0] >= 0 )
       {
         v6 = g_pTileManagerSurface;
-        v13[0] = CTileManager::InitSurface(*((CTileManager **)this + 2478));
+        v13[0] = CTileManager::InitSurface(*((CTileManager **)self + 2478));
         if ( v13[0] < 0 )
         {
           g_pTileManagerSurface = v6;
@@ -88,7 +87,7 @@ int CGameBoard::CreateNewSurfaces()
         if ( v13[0] >= 0 )
         {
           v7 = g_pTimeManagerSurface;
-          v13[0] = CTimeManager::InitSurface(*((CTimeManager **)this + 2479));
+          v13[0] = CTimeManager::InitSurface(*((CTimeManager **)self + 2479));
           if ( v13[0] < 0 )
           {
             g_pTimeManagerSurface = v7;

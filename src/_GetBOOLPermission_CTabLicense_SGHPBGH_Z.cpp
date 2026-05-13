@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-BOOL CTabLicense::GetBOOLPermission(PCWSTR pwszValueName, DWORD a2)
+BOOL GetBOOLPermission_CTabLicense(CTabLicense* self, PCWSTR pwszValueName, DWORD a2)
 {
   BOOL v2; // esi
   const char*v4[2]; // [esp+0h] [ebp-10h] BYREF

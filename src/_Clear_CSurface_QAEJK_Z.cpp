@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CSurface::Clear(uint32_t a2)
+int Clear_CSurface(CSurface* self, uint32_t a2)
 {
   int v3; // esi
   int v4; // eax
@@ -16,7 +15,7 @@ int CSurface::Clear(uint32_t a2)
 
   v9[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CSurface::Clear", v9);
-  v3 = *(uint32_t *)this;
+  v3 = *(uint32_t *)self;
   v10 = 0;
   if ( v3 )
   {

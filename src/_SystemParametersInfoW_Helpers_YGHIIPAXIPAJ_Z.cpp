@@ -1,8 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-BOOL __stdcall Helpers::SystemParametersInfoW(
-        UINT action,
+BOOL __stdcall SystemParametersInfoW_Helpers(Helpers* self, UINT action,
         UINT param,
         void* value,
         UINT flags,

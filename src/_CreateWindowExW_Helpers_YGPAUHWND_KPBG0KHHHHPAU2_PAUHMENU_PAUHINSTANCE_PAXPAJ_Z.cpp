@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HWND __stdcall Helpers::CreateWindowExW(
-        DWORD dwExStyle,
+HWND __stdcall CreateWindowExW_Helpers(Helpers* self, DWORD dwExStyle,
         LPCWSTR lpClassName,
         LPCWSTR lpWindowName,
         DWORD dwStyle,

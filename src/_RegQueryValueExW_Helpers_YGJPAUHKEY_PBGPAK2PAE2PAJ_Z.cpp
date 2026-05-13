@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-LSTATUS __stdcall Helpers::RegQueryValueExW(
-        HKEY hKey,
+LSTATUS __stdcall RegQueryValueExW_Helpers(Helpers* self, HKEY hKey,
         const WCHAR *lpValueName,
         LPDWORD lpReserved,
         LPDWORD lpType,

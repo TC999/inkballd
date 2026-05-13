@@ -5,8 +5,7 @@
 #include <windows.h>
 
 extern void* g_CBitmapRects;
-
-char* CGameBoard::GetBitmapRect(int a1)
+char* GetBitmapRect_CGameBoard(CGameBoard* self, int a1)
 {
     char* BitmapRect;
     char* v2;

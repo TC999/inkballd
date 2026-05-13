@@ -3,7 +3,7 @@
 #include <windows.h>
 
 extern "C" {
-    int CDisplay::UpdateBounds(CDisplay* this_ptr)
+int UpdateBounds_CDisplay(CDisplay* self, CDisplay* this_ptr)
     {
       bool is_fullscreen; // zf
       uint32_t* width_ptr; // ebx

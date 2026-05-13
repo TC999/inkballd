@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::Clear(uint32_t a2)
+int Clear_CDisplay(CDisplay* self, uint32_t a2)
 {
   bool v3; // zf
   int v4; // eax
@@ -17,7 +16,7 @@ int CDisplay::Clear(uint32_t a2)
 
   v10[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CDisplay::Clear", v10);
-  v3 = *((uint32_t *)this + 6) == 0;
+  v3 = *((uint32_t *)self + 6) == 0;
   v11 = 0;
   if ( v3 )
   {
@@ -27,7 +26,7 @@ int CDisplay::Clear(uint32_t a2)
   {
     memset(v8, 0, sizeof(v8));
     v8[20] = a2;
-    v7 = *((uint32_t *)this + 3);
+    v7 = *((uint32_t *)self + 3);
     v8[0] = 100;
     v4 = (*(int (__stdcall **)(int, uint32_t, uint32_t, uint32_t, int, uint32_t *))(*(uint32_t *)v7 + 20))(v7, 0, 0, 0, 1024, v8);
   }

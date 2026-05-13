@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::CreateSurface(CSurface**a2, void*a3, DWORD a4)
+int CreateSurface_CDisplay(CDisplay* self, CSurface**a2, void*a3, DWORD a4)
 {
     uint32_t v10;
   int v5; // eax
@@ -16,7 +15,7 @@ int CDisplay::CreateSurface(CSurface**a2, void*a3, DWORD a4)
   int v13[4]; // [esp+98h] [ebp-14h] BYREF
   int v14; // [esp+A8h] [ebp-4h]
 
-  v12 = this;
+  v12 = self;
   v13[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CDisplay::CreateSurface", v13);
   v14 = 0;
@@ -29,7 +28,7 @@ LABEL_3:
     v13[0] = v5;
     goto LABEL_4;
   }
-  if ( !*((uint32_t *)this + 1) )
+  if ( !*((uint32_t *)self + 1) )
   {
     v5 = -2147418113;
     goto LABEL_3;

@@ -2,8 +2,7 @@
 #include <cstdint>
 
 extern void* CBoardTileOWF_vftable;
-
-CBoardTile* CBoardTileOWF::CBoardTileOWF(CBoardTile* self, int x, int y, int rect_param, int color, int direction)
+CBoardTile* CBoardTileOWF_CBoardTileOWF(CBoardTileOWF* self, CBoardTile* self, int x, int y, int rect_param, int color, int direction)
 {
     uint8_t log_buffer[8];
 

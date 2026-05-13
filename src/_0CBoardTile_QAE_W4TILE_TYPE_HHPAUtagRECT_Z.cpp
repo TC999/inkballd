@@ -2,8 +2,7 @@
 #include <cstdint>
 
 extern void* CBoardTile_vftable;
-
-CBoardTile* CBoardTile::CBoardTile(CBoardTile* self, int tile_type, int x, int y, int rect_param)
+CBoardTile* CBoardTile_CBoardTile(CBoardTile* self, CBoardTile* self, int tile_type, int x, int y, int rect_param)
 {
     uint8_t log_buffer[8];
 

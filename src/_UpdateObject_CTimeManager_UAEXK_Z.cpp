@@ -3,7 +3,7 @@
 #include <cstdint>
 
 extern "C" {
-    void CTimeManager::UpdateObject(CTimeManager* this_ptr, uint32_t delta_time)
+void UpdateObject_CTimeManager(CTimeManager* self, CTimeManager* this_ptr, uint32_t delta_time)
     {
       bool is_active; // zf
       uint32_t remaining_time; // ecx
@@ -81,53 +81,53 @@ LABEL_18:
 }
     else
     {
-      v4 = *((_DWORD *)this + 9);
+      v4 = *((_DWORD *)self + 9);
       if ( v4 != -1 )
       {
         if ( v4 > a2 )
         {
           v5 = v4 - a2;
-          *((_DWORD *)this + 9) = v5;
+          *((_DWORD *)self + 9) = v5;
           if ( v5 < 0x2AF8 )
           {
-            *((_DWORD *)this + 10) += a2;
-            v6 = *((_DWORD *)this + 10);
-            *((_DWORD *)this + 11) += a2;
-            v7 = *((_DWORD *)this + 11);
+            *((_DWORD *)self + 10) += a2;
+            v6 = *((_DWORD *)self + 10);
+            *((_DWORD *)self + 11) += a2;
+            v7 = *((_DWORD *)self + 11);
             if ( v6 >= 0x14D )
             {
-              v3 = *((_DWORD *)this + 12) == 0;
-              *((_DWORD *)this + 10) = 0;
+              v3 = *((_DWORD *)self + 12) == 0;
+              *((_DWORD *)self + 10) = 0;
               v10 = 1;
-              *((_DWORD *)this + 12) = v3;
+              *((_DWORD *)self + 12) = v3;
             }
             if ( v7 >= 0x3E8 )
-              *((_DWORD *)this + 11) = 0;
+              *((_DWORD *)self + 11) = 0;
           }
         }
         else
         {
-          *((_DWORD *)this + 9) = 0;
-          *((_DWORD *)this + 12) = 1;
+          *((_DWORD *)self + 9) = 0;
+          *((_DWORD *)self + 12) = 1;
         }
       }
     }
-    v8 = *((_DWORD *)this + 9);
-    if ( v8 >= 0x3E8 || *((_DWORD *)this + 13) )
+    v8 = *((_DWORD *)self + 9);
+    if ( v8 >= 0x3E8 || *((_DWORD *)self + 13) )
     {
       v3 = v10 == 1;
-      *((_DWORD *)this + 13) = 0;
+      *((_DWORD *)self + 13) = 0;
       if ( !v3 && v8 / 0x3E8 == dword_105C81C / 0x3E8u )
         goto LABEL_18;
     }
     else
     {
-      *((_DWORD *)this + 12) = 1;
-      *((_DWORD *)this + 13) = 1;
+      *((_DWORD *)self + 12) = 1;
+      *((_DWORD *)self + 13) = 1;
     }
-    (*(void (__thiscall **)(CTimeManager *))(*(_DWORD *)this + 4))(this);
+    (*(void (__thiscall **)(CTimeManager *))(*(_DWORD *)self + 4))(self);
 LABEL_18:
-    dword_105C81C = *((_DWORD *)this + 9);
+    dword_105C81C = *((_DWORD *)self + 9);
   }
   v11 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();

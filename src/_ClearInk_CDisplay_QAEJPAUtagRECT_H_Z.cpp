@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::ClearInk(struct tagRECT *a2, int a3)
+int ClearInk_CDisplay(CDisplay* self, struct tagRECT *a2, int a3)
 {
   int v4; // eax
   int v5; // esi
@@ -15,12 +14,12 @@ int CDisplay::ClearInk(struct tagRECT *a2, int a3)
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CDisplay::ClearInk", v8);
   v9 = 0;
-  if ( *((uint32_t *)this + 5) )
-    v4 = (*(int (__stdcall **)(uint32_t, struct tagRECT *, uint32_t, struct tagRECT *, int, uint32_t))(**((uint32_t **)this + 5)
+  if ( *((uint32_t *)self + 5) )
+    v4 = (*(int (__stdcall **)(uint32_t, struct tagRECT *, uint32_t, struct tagRECT *, int, uint32_t))(**((uint32_t **)self + 5)
                                                                                                + 20))(
-           *((uint32_t *)this + 5),
+           *((uint32_t *)self + 5),
            a2,
-           *((uint32_t *)this + 6),
+           *((uint32_t *)self + 6),
            a2,
            0x1000000,
            0);

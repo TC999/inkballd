@@ -60,6 +60,8 @@ namespace Helpers {
     LSTATUS __stdcall RegQueryValueExW(HKEY hKey, const WCHAR* lpValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData, uint32_t* a7, int* a8);
     LSTATUS __stdcall RegSetValueExW(HKEY hKey, const WCHAR* lpValueName, DWORD Reserved, DWORD dwType, BYTE* lpData, DWORD cbData, int* a7, int* a8);
     int __stdcall __wcsicmp(const wchar_t* a, const wchar_t* b);
+    void* __cdecl memcpy(void* dst, const void* src, size_t n);
+    void* __cdecl memset(void* dst, int val, size_t n);
 }
 
 // [TODO] TabUtils namespace — verify full definition
@@ -113,6 +115,9 @@ struct CGameBoard {
     static void DisplayFrame(CGameBoard* self, int a2, int a3);
     static void ResetBoard(CGameBoard* self);
     static void PerformGameUpdate(CGameBoard* self);
+    static void scalar_deleting_destructor(CGameBoard* self, int flags);
+    static void FreeDirectDraw(CGameBoard* self);
+    static void BltBall(CGameBoard* self, void* a2, void* a3, void* a4);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
@@ -126,6 +131,18 @@ struct BallPoints {
 
 struct CBall {
     void* vftable;
+    uint32_t unk[32];
+    double velocity_x;
+    double velocity_y;
+    double position_x;
+    double position_y;
+    uint32_t update_flags;
+    uint32_t best_point_index;
+    uint32_t current_point_index;
+    uint32_t reference_count;
+    uint32_t width;
+    uint32_t height;
+    uint32_t radius;
     static int* GetDrainPoints(CBall* self);
     static int* GetBreakWallPoints(CBall* self);
     static int GetCurrBallPoint(CBall* self);
@@ -141,6 +158,7 @@ struct CBall {
     static int Collide(CBall* self, void* a2);
     static int BallsIntersect(CBall* self, CBall* a2);
     static int VerifyCollision(CBall* self, void* rect, void* point);
+    static void scalar_deleting_destructor(CBall* self, int flags);
 };
 
 struct CMovingObject;
@@ -157,6 +175,7 @@ struct CGameManager {
     static void UpdateTime(CGameManager* self);
     static void DropWallTile(CGameManager* self, void* p1, void* p2);
     static void LoadBoard(CGameManager* self, void* data, int size);
+    static void scalar_deleting_destructor(CGameManager* self, int flags);
 };
 struct CDisplay;
 struct CSurface;
@@ -177,6 +196,8 @@ struct CInk {
     static int HitCircleTest(CInk* self, void* point, int a3, int a4);
     static int Init(CInk* self);
     static void scalar_deleting_destructor(CInk* self, int flags);
+    static void DrawInkToSurface(CInk* self);
+    static void GetInkUpdateRect(CInk* self, RECT* out);
 };
 struct CSink {
     void* vftable;
@@ -226,6 +247,11 @@ struct CBoardTileRLColored;
 struct CBoardTileRLGray {
     void* vftable;
     uint32_t unk[30];
+    uint32_t tile_type;
+    uint32_t animation_state;
+    uint32_t animation_timer;
+    uint32_t state_timer;
+    uint32_t color_index;
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -266,6 +292,7 @@ struct CScoreManager {
     static void Restore(CScoreManager* self);
     static void UpdateObject(CScoreManager* self, uint32_t delta_time);
     static void DrawToSurface(CScoreManager* self);
+    static void scalar_deleting_destructor(CScoreManager* self, int flags);
 };
 
 struct CTileManager {
@@ -282,6 +309,7 @@ struct CTileManager {
 
 struct CBoardTile {
     void* vftable;
+    uint32_t tile_type;
     CBoardTile();
     CBoardTile(int tile_type, int x, int y, int rect_param);
     static void SetClosestSide(CBoardTile* self, void* point);
@@ -296,10 +324,14 @@ struct CSurface {
     CSurface();
     ~CSurface();
     static int IsColorKeyed(CSurface* self);
-    static void* GetDDrawSurface(CSurface* self);
+    static void* GetDDrawSurface(void* self);
     static void Clear(CSurface* self, uint32_t color);
     static int SetColorKey(CSurface* self, uint32_t color);
     static void scalar_deleting_destructor(CSurface* self, int flags);
+    static void* GetDirectDraw(CSurface* self);
+    static int DrawBitmap(CSurface* self, void* bitmap, int a3, int a4, int a5, int a6);
+    static int GetSurfaceDesc(CSurface* self, void* desc);
+    static int ConvertGDIColor(CSurface* self, uint32_t color);
 };
 
 struct CBoardTileRLColored {
@@ -315,24 +347,25 @@ struct CUIBarObject {
 struct CBoardObject {
     void* vftable;
     CBoardObject();
-    static void GetBoundingRect(uint32_t self, RECT* out);
-    static void GetCenterPoint(CBoardObject* self, void* out);
+    static void GetBoundingRect(void* self, RECT* out);
+    static void GetCenterPoint(void* self, void* out);
 };
 
 struct CMovingObject : public CBoardObject {
     CMovingObject();
+    static void GetMovementRect(CMovingObject* self, RECT* out);
 };
 
 struct CDisplay {
     void* vftable;
     CDisplay();
     ~CDisplay();
-    static void Blt(void* self, int x, int y, void* surface, RECT* src);
+    static int Blt(void* self, int x, int y, void* surface, RECT* src);
     static int Present(void* self, RECT* rect);
-    static void BltInk(void* self, RECT* rect);
+    static int BltInk(void* self, RECT* rect);
     static int DestroyObjects(CDisplay* self);
     static int UpdateBounds(CDisplay* self);
-    static void SetPalette(CDisplay* self, void* palette);
+    static int SetPalette(CDisplay* self, void* palette);
     static int BltToBoard(void* self, uint64_t a2, uint64_t a3, void* surface, RECT* src);
     static void* GetBoardBuffer(void* self);
     static void* GetInkBuffer(void* self);
@@ -340,7 +373,8 @@ struct CDisplay {
     static void* GetFrontBuffer(void* self);
     static int CreateSurfaceFromBitmap(CDisplay* self, void** surface, int a3, int a4, int a5);
     static int CreateWindowedDisplay(CDisplay* self);
-    static void CreatePaletteFromBitmap(CDisplay* self);
+    static int CreatePaletteFromBitmap(CDisplay* self);
+    static void scalar_deleting_destructor(CDisplay* self, int flags);
 };
 
 struct CBallManager {
@@ -617,7 +651,7 @@ struct CBoardManager {
 
 struct CBitmapRects {
     void* vftable;
-    static char* GetBitmapRect(CBitmapRects* self, int id);
+    static char* GetBitmapRect(void* self, int id);
 };
 
 extern "C" { extern void* SQM_INCREMENT_DWORD; }
@@ -705,7 +739,7 @@ extern "C" {
     bool BallOnTile(void* tile);
     CBall* GetBall(int index);
     void StartTimer();
-    void AddDisplayUpdateRect(struct tagRECT* rect);
+    void AddDisplayUpdateRect(void* rect);
     void AddGameObjectToUpdateList(void* game_object);
     void AddBallToUpdateList(void* ball);
     void AddRLColoredWallToList(void* wall_tile);
@@ -731,9 +765,6 @@ extern "C" {
     LSTATUS __stdcall SHRegGetValueW(HKEY, const wchar_t*, const wchar_t*, uint32_t, uint32_t*, void*, uint32_t*);
     // String helpers
     void StringExHandleOtherFlagsW(void* flags, size_t* dest, uint32_t f, void* d, void* temp, uint32_t err);
-    // CRT/Win32
-    void* memcpy(void* dst, const void* src, size_t n);
-    void* memset(void* dst, int val, size_t n);
 }
 // Helpers functions declared inside namespace above
 

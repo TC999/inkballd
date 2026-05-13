@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CDisplay::DestroyObjects(void* self)
+int DestroyObjects_CDisplay(CDisplay* self, void* self)
 {
   int v2; // eax
   int v3; // eax

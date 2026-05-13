@@ -1,7 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-void CTimeManager::InitTime(void* self, uint32_t a2)
+void InitTime_CTimeManager(CTimeManager* self, void* self, uint32_t a2)
 {
   uint8_t v3[8];
 

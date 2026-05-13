@@ -3,8 +3,7 @@
 #include <windows.h>
 
 extern "C" void* g_pLastLoadedLevel;
-
-const uint8_t* CBoardManager::GetLastLoadedBoardData()
+const uint8_t* GetLastLoadedBoardData_CBoardManager(CBoardManager* self)
 {
     uint8_t log_buffer[8];
 

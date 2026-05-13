@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-LSTATUS __stdcall Helpers::RegCloseKey(HKEY hKey, HKEY a2, int*a3)
+LSTATUS __stdcall RegCloseKey_Helpers(Helpers* self, HKEY hKey, HKEY a2, int*a3)
 {
   LSTATUS v3; // eax
   LSTATUS v4; // esi

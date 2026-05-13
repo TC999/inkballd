@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CSurface::DrawBitmap(HDC h, uint32_t xSrc, uint32_t ySrc, int wSrc, int hSrc)
+int DrawBitmap_CSurface(CSurface* self, HDC h, uint32_t xSrc, uint32_t ySrc, int wSrc, int hSrc)
 {
   int v7; // eax
   int v8; // eax
@@ -29,17 +28,17 @@ int CSurface::DrawBitmap(HDC h, uint32_t xSrc, uint32_t ySrc, int wSrc, int hSrc
   *(uint32_t *)v25 = 0;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v22), "CSurface::DrawBitmap", (int*)v25);
   v26 = 0;
-  if ( !h || !*(uint32_t *)this )
+  if ( !h || !*(uint32_t *)self )
   {
     v9 = -2147024809;
     *(uint32_t *)v25 = -2147024809;
     goto LABEL_26;
   }
-  v7 = (*(int (__stdcall **)(uint32_t))(**(uint32_t **)this + 108))(*(uint32_t *)this);
+  v7 = (*(int (__stdcall **)(uint32_t))(**(uint32_t **)self + 108))(*(uint32_t *)self);
   *(uint32_t *)v25 = v7;
   if ( v7 < 0 )
     goto LABEL_6;
-  v8 = *(uint32_t *)this;
+  v8 = *(uint32_t *)self;
   v18[0] = 124;
   (*(void (__stdcall **)(int, uint32_t *))(*(uint32_t *)v8 + 88))(v8, v18);
   if ( v18[19] == 4 )
@@ -61,7 +60,7 @@ LABEL_6:
     v11 = hSrc;
     if ( !hSrc )
       v11 = v21;
-    *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC *))(**(uint32_t **)this + 68))(*(uint32_t *)this, &hdcDest);
+    *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC *))(**(uint32_t **)self + 68))(*(uint32_t *)self, &hdcDest);
     if ( *(int*)v25 < 0 )
     {
       if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
@@ -70,7 +69,7 @@ LABEL_6:
     else
     {
       StretchBlt(hdcDest, 0, 0, v18[3], v18[2], hdcSrc, xSrc, ySrc, wSrc, v11, 0xCC0020u);
-      *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC))(**(uint32_t **)this + 104))(*(uint32_t *)this, hdcDest);
+      *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC))(**(uint32_t **)self + 104))(*(uint32_t *)self, hdcDest);
       if ( *(int*)v25 < 0
         && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
         && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )

@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-void CMovingObject::GetMovementRect(struct tagRECT *a2)
+void GetMovementRect_CMovingObject(CMovingObject* self, struct tagRECT *a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -18,37 +17,37 @@ void CMovingObject::GetMovementRect(struct tagRECT *a2)
   int v12; // [esp+10h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v11), "CMovingObject::GetMovementRect", 0);
-  v3 = *((uint32_t *)this + 6);
-  if ( v3 <= *((uint32_t *)this + 28) )
-    v3 = *((uint32_t *)this + 28);
+  v3 = *((uint32_t *)self + 6);
+  if ( v3 <= *((uint32_t *)self + 28) )
+    v3 = *((uint32_t *)self + 28);
   v4 = v3 + 2;
-  v5 = *((uint32_t *)this + 7);
-  if ( v5 <= *((uint32_t *)this + 29) )
-    v5 = *((uint32_t *)this + 29);
-  v6 = *((double *)this + 10);
-  v7 = v6 < *((double *)this + 1);
-  v8 = v6 == *((double *)this + 1);
+  v5 = *((uint32_t *)self + 7);
+  if ( v5 <= *((uint32_t *)self + 29) )
+    v5 = *((uint32_t *)self + 29);
+  v6 = *((double *)self + 10);
+  v7 = v6 < *((double *)self + 1);
+  v8 = v6 == *((double *)self + 1);
   v12 = v5 + 2;
   if ( v7 || v8 )
   {
-    a2->left = (int)*((double *)this + 10);
-    v9 = *((double *)this + 1);
+    a2->left = (int)*((double *)self + 10);
+    v9 = *((double *)self + 1);
   }
   else
   {
-    a2->left = (int)*((double *)this + 1);
-    v9 = *((double *)this + 10);
+    a2->left = (int)*((double *)self + 1);
+    v9 = *((double *)self + 10);
   }
   a2->right = v4 + (int)v9;
-  if ( *((double *)this + 11) <= *((double *)this + 2) )
+  if ( *((double *)self + 11) <= *((double *)self + 2) )
   {
-    a2->top = (int)*((double *)this + 11);
-    v10 = *((double *)this + 2);
+    a2->top = (int)*((double *)self + 11);
+    v10 = *((double *)self + 2);
   }
   else
   {
-    a2->top = (int)*((double *)this + 2);
-    v10 = *((double *)this + 11);
+    a2->top = (int)*((double *)self + 2);
+    v10 = *((double *)self + 11);
   }
   a2->bottom = v12 + (int)v10;
   reinterpret_cast<Helpers::CLogBlock*>(v11)->~CLogBlock();

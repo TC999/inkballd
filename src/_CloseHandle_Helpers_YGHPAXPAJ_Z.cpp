@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall Helpers::CloseHandle_wpp(HANDLE hObject, uint32_t *a2, int*a3)
+BOOL __stdcall CloseHandle_wpp_Helpers(Helpers* self, HANDLE hObject, uint32_t *a2, int*a3)
 {
   BOOL v3; // esi
   signed int LastError; // eax

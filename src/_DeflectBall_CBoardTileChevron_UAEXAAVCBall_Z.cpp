@@ -1,8 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-
-void CBoardTileChevron::DeflectBall(CBall* ball)
+void DeflectBall_CBoardTileChevron(CBoardTileChevron* self, CBall* ball)
 {
     uint32_t direction;
     double* velocity_ptr;
@@ -13,7 +12,7 @@ void CBoardTileChevron::DeflectBall(CBall* ball)
     int flag;
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileChevron::DeflectBall", 0);
-    direction = this->chevron_direction;
+    direction = self->chevron_direction;
     flag = 0;
     
     if (direction)

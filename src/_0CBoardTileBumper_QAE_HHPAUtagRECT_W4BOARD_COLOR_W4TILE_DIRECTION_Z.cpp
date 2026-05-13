@@ -2,8 +2,7 @@
 #include <cstdint>
 
 extern void* CBoardTileBumper_vftable;
-
-CBoardTile* CBoardTileBumper::CBoardTileBumper(CBoardTile* self, int x, int y, int rect_param, int color, int direction)
+CBoardTile* CBoardTileBumper_CBoardTileBumper(CBoardTileBumper* self, CBoardTile* self, int x, int y, int rect_param, int color, int direction)
 {
     uint8_t log_buffer[8];
 

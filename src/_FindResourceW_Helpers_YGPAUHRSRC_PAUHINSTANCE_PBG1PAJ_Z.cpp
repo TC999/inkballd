@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HRSRC __stdcall Helpers::FindResourceW(
-        HMODULE hModule,
+HRSRC __stdcall FindResourceW_Helpers(Helpers* self, HMODULE hModule,
         const WCHAR *lpName,
         LPCWSTR lpType,
         uint16_t *a4,

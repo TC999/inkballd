@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-LSTATUS __stdcall Helpers::RegOpenKeyExW(
-        HKEY hKey,
+LSTATUS __stdcall RegOpenKeyExW_Helpers(Helpers* self, HKEY hKey,
         const WCHAR *lpSubKey,
         DWORD ulOptions,
         REGSAM samDesired,

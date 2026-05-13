@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CScoreManager::InitSurface()
+int InitSurface_CScoreManager(CScoreManager* self)
 {
   int Surface; // eax
   int v3; // esi
@@ -16,8 +15,8 @@ int CScoreManager::InitSurface()
 
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock *>(v7), "CScoreManager::InitSurface", v8);
-  v6 = *((uint32_t *)this + 4);
-  v5 = (void*)*((uint32_t *)this + 3);
+  v6 = *((uint32_t *)self + 4);
+  v5 = (void*)*((uint32_t *)self + 3);
   v9 = 0;
   Surface = CDisplay::CreateSurface(g_pDisplay, &g_pScoreManagerSurface, v5, v6);
   v9 = -1;

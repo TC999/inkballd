@@ -3,8 +3,7 @@
 #include <windows.h>
 
 extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
-
-void CBoardTileRLColored::DeflectBall(CBall* ball)
+void DeflectBall_CBoardTileRLColored(CBoardTileRLColored* self, CBall* ball)
 {
     uint8_t log_buffer[16];
     int flag;
@@ -12,7 +11,7 @@ void CBoardTileRLColored::DeflectBall(CBall* ball)
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLColored::DeflectBall", 0);
     flag = 0;
     
-    PerformStandardWallDeflection(this, ball);
+    PerformStandardWallDeflection(self, ball);
     
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();

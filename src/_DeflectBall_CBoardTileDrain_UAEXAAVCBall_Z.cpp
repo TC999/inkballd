@@ -11,8 +11,7 @@ extern "C" void CBall::SetTallness(CBall* ball, void* tallness);
 extern "C" void KillPlayer(int reason);
 extern "C" void ScoreBall(CBall* ball, int score);
 extern "C" void ToggleRLWalls(int walls);
-
-void CBoardTileDrain::DeflectBall(CBall* ball)
+void DeflectBall_CBoardTileDrain(CBoardTileDrain* self, CBall* ball)
 {
     uint32_t direction;
     LONG right_edge;
@@ -41,8 +40,8 @@ void CBoardTileDrain::DeflectBall(CBall* ball)
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileDrain::DeflectBall", 0);
     
-    CBoardObject::GetBoundingRect(this, &bounding_rect);
-    direction = this->drain_direction;
+    CBoardObject::GetBoundingRect(self, &bounding_rect);
+    direction = self->drain_direction;
     
     if (direction == 2 || (right_edge = bounding_rect.left, direction == 4))
         right_edge = bounding_rect.right;
@@ -82,7 +81,7 @@ void CBoardTileDrain::DeflectBall(CBall* ball)
     }
     else
     {
-        drain_tile_type = this->tile_type;
+        drain_tile_type = self->tile_type;
         ball_drain_type = ball->tile_type;
         if (drain_tile_type != ball_drain_type && drain_tile_type && ball_drain_type)
         {
@@ -90,9 +89,9 @@ void CBoardTileDrain::DeflectBall(CBall* ball)
         }
         else
         {
-            ScoreBall(ball, this->tile_type);
+            ScoreBall(ball, self->tile_type);
             ball->update_flags = 0;
-            collision_result = this->tile_type;
+            collision_result = self->tile_type;
             if (collision_result && ball->tile_type)
                 ToggleRLWalls(collision_result);
         }

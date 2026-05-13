@@ -3,9 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-int CSink::CursorUp(
-        int a1,
+int CursorUp_CSink(CSink* self, int a1,
         int a2,
         CSink *self,
         HDC a4,
@@ -28,7 +26,7 @@ int CSink::CursorUp(
       v8 = a5;
       if ( g_cid == a5 )
       {
-        if ( *((uint32_t *)this + 2) )
+        if ( *((uint32_t *)self + 2) )
         {
           v10 = a8;
           *((uint32_t *)self + 2) = 0;

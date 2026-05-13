@@ -41,8 +41,7 @@ extern "C" BoardCollection g_aAdvancedBoards; // Global advanced boards
 extern "C" BoardCollection g_aAdvancedBonusBoards; // Global advanced bonus boards
 extern "C" BoardCollection g_aExpertBoards; // Global expert boards
 extern "C" BoardCollection g_aExpertBonusBoards; // Global expert bonus boards
-
-void CBoardManager::SetDifficulty(int difficulty)
+void SetDifficulty_CBoardManager(CBoardManager* self, int difficulty)
 {
     int bonus_board_count;
     uint8_t log_buffer[16];
@@ -52,7 +51,7 @@ void CBoardManager::SetDifficulty(int difficulty)
     flag = 0;
     
     KillPlayer(2);
-    this->difficulty_level = difficulty;
+    self->difficulty_level = difficulty;
     Helpers::memset(&g_bhPrevBoards, 0, 0x2C);
     Helpers::memset(&g_bhPrevBonusBoards, 0, 0x2C);
     
@@ -82,7 +81,7 @@ void CBoardManager::SetDifficulty(int difficulty)
                 paBonusBoardList = &g_aExpertBonusBoards;
                 goto LABEL_12;
         }
-        this->difficulty_level = 0;
+        self->difficulty_level = 0;
 LABEL_11:
         iBoardListCount = iBeginnerBoardsCount;
         bonus_board_count = iBeginnerBonusBoardsCount;

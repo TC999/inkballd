@@ -2,8 +2,7 @@
 #include <cstdint>
 
 extern void* CBoardTileChevron_vftable;
-
-CBoardTile* CBoardTileChevron::CBoardTileChevron(CBoardTile* self, int x, int y, int rect_param, int direction)
+CBoardTile* CBoardTileChevron_CBoardTileChevron(CBoardTileChevron* self, CBoardTile* self, int x, int y, int rect_param, int direction)
 {
     uint8_t log_buffer[8];
 

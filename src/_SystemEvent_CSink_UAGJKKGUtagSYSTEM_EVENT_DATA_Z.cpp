@@ -3,7 +3,7 @@
 #include <windows.h>
 
 extern "C" {
-    int __stdcall CSink::SystemEvent(CSink* this_ptr, uint32_t tablet_id, uint32_t context_id, int event_type, struct tagSYSTEM_EVENT_DATA event_data)
+int __stdcall SystemEvent_CSink(CSink* self, CSink* this_ptr, uint32_t tablet_id, uint32_t context_id, int event_type, struct tagSYSTEM_EVENT_DATA event_data)
     {
       CTabletContextInfo* tablet_context; // eax
       RECT* playing_area_rect; // eax

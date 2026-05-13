@@ -3,11 +3,10 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-CDisplay* CDisplay::scalar_deleting_destructor(char a2)
+CDisplay* scalar_deleting_destructor_CDisplay(CDisplay* self, char a2)
 {
     CDisplay::~CDisplay();
     if ((a2 & 1) != 0)
-        operator delete(this);
-    return this;
+        operator delete(self);
+    return self;
 }

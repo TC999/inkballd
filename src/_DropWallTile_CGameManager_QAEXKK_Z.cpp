@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-
-void CGameManager::DropWallTile(void* self, void* a2, uint32_t a3)
+void DropWallTile_CGameManager(CGameManager* self, void* self, void* a2, uint32_t a3)
 {
   bool v3; // cc
   CBoardTile*Tile; // eax

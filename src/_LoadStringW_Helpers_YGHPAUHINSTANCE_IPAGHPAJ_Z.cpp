@@ -3,8 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __stdcall Helpers::LoadStringW_wpp(
-        HINSTANCE hInstance,
+int __stdcall LoadStringW_wpp_Helpers(Helpers* self, HINSTANCE hInstance,
         UINT uID,
         LPWSTR lpBuffer,
         uint16_t *cchBufferMax,

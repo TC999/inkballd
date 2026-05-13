@@ -3,8 +3,7 @@
 #include <windows.h>
 
 extern void* CBoardTile_vftable;
-
-CBoardTile* CBoardTile::CBoardTile(CBoardTile* self)
+CBoardTile* CBoardTile_CBoardTile(CBoardTile* self, CBoardTile* self)
 {
     uint8_t log_buffer[8];
 

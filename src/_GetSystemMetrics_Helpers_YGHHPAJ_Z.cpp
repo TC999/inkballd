@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __stdcall Helpers::GetSystemMetrics(void* self, int*a2, int*a3)
+int __stdcall GetSystemMetrics_Helpers(Helpers* self, void* self, int*a2, int*a3)
 {
   int SystemMetrics; // esi
   const char*v5[2]; // [esp+4h] [ebp-Ch] BYREF
