@@ -1,10 +1,11 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
+#include <new>
 
 extern "C" int CalcUnsqrtDistance(POINT* point1, POINT* point2);
 
-void CBoardTile::SetClosestSide(CBoardTile *this, POINT* test_point)
+void CBoardTile::SetClosestSide(POINT* test_point)
 {
     RECT bounding_rect;
     POINT test_point_top;
@@ -14,10 +15,10 @@ void CBoardTile::SetClosestSide(CBoardTile *this, POINT* test_point)
     uint8_t log_buffer[8];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(&log_buffer), "CBoardTile::SetClosestSide", 0);
+    new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBoardTile::SetClosestSide", 0);
     flag = 0;
     
-    CBoardObject::GetBoundingRect(reinterpret_cast<uint32_t>(this), &bounding_rect);
+    CBoardObject::GetBoundingRect(reinterpret_cast<uintptr_t>(this), &bounding_rect);
     
     // Calculate distances to all four sides
     test_point_top.x = test_point->x;

@@ -1,7 +1,7 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
+#include <new>
 
 extern "C" {
     namespace Helpers {
@@ -13,8 +13,6 @@ extern "C" {
         extern void* memset(void* dest, int value, size_t count);
     }
 }
-
-};
 
 extern "C" void KillPlayer(int reason);
 extern "C" BOARDHIST g_bhPrevBoards; // Global board history
@@ -44,13 +42,13 @@ extern "C" BoardCollection g_aAdvancedBonusBoards; // Global advanced bonus boar
 extern "C" BoardCollection g_aExpertBoards; // Global expert boards
 extern "C" BoardCollection g_aExpertBonusBoards; // Global expert bonus boards
 
-void __thiscall CBoardManager::SetDifficulty(CBoardManager *this, int difficulty)
+void CBoardManager::SetDifficulty(int difficulty)
 {
     int bonus_board_count;
     uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardManager::SetDifficulty", 0);
+    new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBoardManager::SetDifficulty", 0);
     flag = 0;
     
     KillPlayer(2);
@@ -103,5 +101,3 @@ LABEL_12:
     iBonusBoardListCount = bonus_board_count;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }
-
-#endif

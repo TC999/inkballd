@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+#include <new>
 void CTileManager::SetTiles(void* self, uint32_t a2)
 {
   uint32_t v3; // eax
@@ -10,7 +11,7 @@ void CTileManager::SetTiles(void* self, uint32_t a2)
   uint8_t v5[16]; // [esp+10h] [ebp-14h] BYREF
   int v6; // [esp+20h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "CTileManager::SetTiles", 0);
+  new (v5) Helpers::CLogBlock(v5, "CTileManager::SetTiles", 0);
   v6 = 0;
   if ( a2 )
   {

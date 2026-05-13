@@ -1,9 +1,8 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
-#include "math_utils.h"
+#include <new>
 
 extern "C" {
     extern long double cosd(double angle);
@@ -11,11 +10,7 @@ extern "C" {
     extern int GetRandomNumber(int max_value);
 }
 
-};
-
-};
-
-void __thiscall CBallManager::SetBallSpeed(CBallManager *this, CBall* ball, double angle_degrees)
+void CBallManager::SetBallSpeed(CBall* ball, double angle_degrees)
 {
     int max_speed_value;
     int min_speed_value;
@@ -31,7 +26,7 @@ void __thiscall CBallManager::SetBallSpeed(CBallManager *this, CBall* ball, doub
     double final_velocity_x;
     double final_velocity_y;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::SetBallSpeed", 0);
+    new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBallManager::SetBallSpeed", 0);
     max_speed_value = this->max_speed;
     min_speed_value = this->min_speed;
     flag = 0;
@@ -110,5 +105,3 @@ LABEL_20:
     target_ball->velocity_y = final_velocity_y;
     goto LABEL_21;
 }
-
-#endif

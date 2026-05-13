@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+#include <new>
 
 void __stdcall ScoreBall(CBall *a1, int a2)
 {
@@ -10,7 +11,7 @@ void __stdcall ScoreBall(CBall *a1, int a2)
   uint8_t v3[8]; // [esp+10h] [ebp-14h] BYREF
   int v4; // [esp+20h] [ebp-4h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v3), "ScoreBall", 0);
+  new (v3) Helpers::CLogBlock(v3, "ScoreBall", 0);
   v4 = 0;
   if ( a2 )
   {

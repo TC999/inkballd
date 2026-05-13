@@ -1,7 +1,7 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
+#include <new>
 
 extern "C" {
     namespace Helpers {
@@ -16,8 +16,6 @@ extern "C" {
         extern int LoadStringW(HINSTANCE hInstance, UINT uID, LPWSTR lpBuffer, int nMaxCount, int* result);
     }
 }
-
-};
 
 extern "C" void* g_BoardData; // Global board data
 extern "C" void* g_pLastLoadedLevel; // Global last loaded level
@@ -41,7 +39,7 @@ int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int b
 
     search_name = board_name;
     source_data = output_buffer;
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "SearchBoardList", 0);
+    new (&log_buffer) Helpers::CLogBlock(&log_buffer, "SearchBoardList", 0);
     flag = 0;
     board_index = 0;
     
@@ -83,5 +81,3 @@ LABEL_5:
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return search_result;
 }
-
-#endif
