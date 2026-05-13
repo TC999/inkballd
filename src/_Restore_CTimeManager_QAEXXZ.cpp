@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __thiscall CTimeManager::Restore(CTimeManager *this)
 {
   uint32_t v6; // esi

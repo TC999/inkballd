@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
 {
   int v3; // esi
