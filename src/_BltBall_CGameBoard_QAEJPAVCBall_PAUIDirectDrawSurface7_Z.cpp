@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::BltBall(CGameBoard *this, struct tagRECT **a2, struct IDirectDrawSurface7 *a3)
 {
   int v5; // eax

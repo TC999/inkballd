@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 BOOL __stdcall CBoardTile::CareAboutCollisions(int a1, int a2)
 {
   BOOL v2; // esi

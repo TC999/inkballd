@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __stdcall CanRunInkball(int*a1)
 {
   int v1; // edi

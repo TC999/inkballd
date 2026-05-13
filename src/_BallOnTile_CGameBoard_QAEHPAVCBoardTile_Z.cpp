@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::BallOnTile(CGameBoard *this, CBoardTile*a2)
 {
   int v3; // ebx

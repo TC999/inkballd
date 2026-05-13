@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 void __thiscall CGameBoard::AddRLColoredWallToList(CGameBoard *this, CBoardTileRLColored*a2)
 {
   int v3; // ecx

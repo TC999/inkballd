@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
 {
   uint32_t v4; // ebx

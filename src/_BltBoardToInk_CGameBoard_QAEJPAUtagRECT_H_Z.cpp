@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CGameBoard::BltBoardToInk(CGameBoard *this, struct tagRECT *a2, int a3)
 {
   int v3; // esi

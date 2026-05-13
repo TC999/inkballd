@@ -96,6 +96,7 @@ struct CGameBoard {
     static struct tagRECT* GetPlayingAreaRect(CGameBoard* self);
     static int BallOnTile(CGameBoard* self, CBoardTile* tile);
     static char* GetBitmapRect(CGameBoard* self, int a1);
+    static void BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
@@ -252,6 +253,7 @@ struct CBallManager {
     CBallManager();
     ~CBallManager();
     static int InitSurface(CBallManager* self);
+    static void AddBallGenerator(CBallManager* self, CBoardTile* tile);
 };
 
 // ============================================================================

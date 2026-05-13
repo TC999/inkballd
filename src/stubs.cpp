@@ -168,6 +168,9 @@ char* CGameBoard::GetBitmapRect(CGameBoard* self, int a1) {
 void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) {
     (void)self; (void)color;
 }
+void CGameBoard::BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2) {
+    (void)self; (void)a1; (void)a2;
+}
 
 // ============================================================================
 // CGameManager static method stubs

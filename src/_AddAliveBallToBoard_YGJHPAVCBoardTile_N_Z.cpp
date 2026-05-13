@@ -10,7 +10,6 @@ public:
     public:
         CLogBlock(void* buffer, const char* message, int* error_code);
         ~CLogBlock();
-    };
 };
 
 extern "C" {
@@ -23,9 +22,6 @@ extern "C" {
     void SetBallSpeed(void* mgr, void* ball, double speed);
     void AddBall(void* game_board, void* ball);
 }
-
-};
-
 extern "C" {
     extern void* g_pCGameBoard;
     

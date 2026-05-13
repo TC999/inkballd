@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CDisplay::BltInk(CDisplay *this, struct tagRECT *a2)
 {
   int v3; // ecx

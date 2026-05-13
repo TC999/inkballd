@@ -4,7 +4,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include "common.h"
 int __thiscall CDisplay::BltToBoard(
         CDisplay *this,
         uint32_t a2,

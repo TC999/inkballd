@@ -3,12 +3,6 @@
 #include <cstdint>
 #include <cmath>
 #include <windows.h>
-
-extern "C" {
-}
-
-};
-
 bool __thiscall CBall::BallsIntersect(CBall *this, const CBall *other_ball)
 {
     double distance_y;
