@@ -52,6 +52,18 @@ extern "C" {
     // GUIDs
     const GUID _GUID_8cec58e7_07a1_11d9_b15e_000d56bfe6ee = {};
     const GUID _GUID_8cec5884_07a1_11d9_b15e_000d56bfe6ee = {};
+
+    // Additional extern variable definitions
+    void* CDisplay_vftable = nullptr;
+    void* CScoreManager_vftable = nullptr;
+    void* CInk_vftable = nullptr;
+    void* CTimeManager_vftable = nullptr;
+    void* CTileManager_vftable = nullptr;
+    uint32_t dwTimeDigitWidth = 0;
+    uint32_t dwTopDrawLoc = 0;
+    uint32_t dwLeftDrawDif = 0;
+    void* g_pIStroke = nullptr;
+    void* g_BoardData = nullptr;
 }
 
 // ============================================================================
@@ -128,8 +140,9 @@ void CGameBoard::UpdateBounds(CGameBoard* self) {
 int CGameBoard::Paint(CGameBoard* self) {
     (void)self; return 0;
 }
-// [TODOne] GetRandomNumber — now provided by implementation file
-// [TODOne] AddDisplayUpdateRect — now provided by implementation file
+void CGameBoard::AddDisplayUpdateRect(CGameBoard* self, struct tagRECT* a2) {
+    (void)self; (void)a2;
+}
 void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) {
     (void)self; (void)color;
 }
@@ -179,6 +192,10 @@ void CInk::OnDisplayChange(CInk* self) {
 }
 void CInk::Cleanup(CInk* self) {
     (void)self;
+}
+CInk::CInk() {
+}
+CInk::~CInk() {
 }
 int CBoardManager::LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize) {
     (void)manager; (void)name; (void)boardData; (void)boardSize;
@@ -242,6 +259,10 @@ uint32_t CScoreManager::GetScore(void* self) {
 void CScoreManager::ResetScore(void* self) {
     (void)self;
 }
+CScoreManager::CScoreManager() {
+}
+CScoreManager::~CScoreManager() {
+}
 
 // ============================================================================
 // CTileManager static method stubs
@@ -270,6 +291,14 @@ void CUIBarObject::GetBoundingRect(void* self, RECT* out) {
 void CBoardObject::GetBoundingRect(uint32_t self, RECT* out) {
     (void)self; (void)out;
 }
+CBoardObject::CBoardObject() {
+}
+
+// ============================================================================
+// CMovingObject constructor stub
+// ============================================================================
+CMovingObject::CMovingObject() {
+}
 
 // ============================================================================
 // CDisplay static method stubs
@@ -287,6 +316,10 @@ void CDisplay::BltInk(void* self, RECT* rect) {
 int CDisplay::DestroyObjects(CDisplay* self) {
     (void)self;
     return 0;
+}
+CDisplay::CDisplay() {
+}
+CDisplay::~CDisplay() {
 }
 
 CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) {
@@ -385,6 +418,26 @@ int CBallManager::InitSurface(CBallManager* self) {
     (void)self;
     return 0;
 }
+CBallManager::CBallManager() {
+}
+CBallManager::~CBallManager() {
+}
+
+// ============================================================================
+// CBoardManager constructor/destructor and additional method stubs
+// ============================================================================
+CBoardManager::CBoardManager() {
+}
+CBoardManager::~CBoardManager() {
+}
+void* CBoardManager::GetLastLoadedBoardData(CBoardManager* self) {
+    (void)self;
+    return nullptr;
+}
+int CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* boardData, int* boardSize) {
+    (void)self; (void)boardData; (void)boardSize;
+    return 0;
+}
 
 // ============================================================================
 // CSurface static method stubs
@@ -396,6 +449,10 @@ int CSurface::IsColorKeyed(CSurface* self) {
 void* CSurface::GetDDrawSurface(CSurface* self) {
     (void)self;
     return nullptr;
+}
+CSurface::CSurface() {
+}
+CSurface::~CSurface() {
 }
 
 // ============================================================================
@@ -419,6 +476,15 @@ void CBoardTileRLColored::ToggleState(void* self) {
 BallPoints::BallPoints() {
 }
 BallPoints::~BallPoints() {
+}
+
+// ============================================================================
+// CBoardTile constructor stubs
+// ============================================================================
+CBoardTile::CBoardTile() {
+}
+CBoardTile::CBoardTile(int tile_type, int x, int y, int rect_param) {
+    (void)tile_type; (void)x; (void)y; (void)rect_param;
 }
 
 // ============================================================================

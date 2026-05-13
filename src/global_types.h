@@ -144,6 +144,7 @@ struct CTimeManager;
 struct CInk {
     void* vftable;
     uint32_t field_4;
+    CInk();
     ~CInk();
     static void ClearInk(CInk* self);
     static void OnDisplayChange(CInk* self);
@@ -176,10 +177,12 @@ struct CTimeManager {
     static uint32_t GetTime(void* self);
     static void SetTime(void* self, uint32_t time);
     static void InitTime(void* self, uint32_t time);
+    static int InitSurface(CTimeManager* self);
 };
 
 struct CScoreManager {
     void* vftable;
+    CScoreManager();
     ~CScoreManager();
     static void IncrementScore(void* self, uint32_t count);
     static uint32_t GetScore(void* self);
@@ -220,12 +223,17 @@ struct CUIBarObject {
 
 struct CBoardObject {
     void* vftable;
-    CBoardObject() {}
+    CBoardObject();
     static void GetBoundingRect(uint32_t self, RECT* out);
+};
+
+struct CMovingObject : public CBoardObject {
+    CMovingObject();
 };
 
 struct CDisplay {
     void* vftable;
+    CDisplay();
     ~CDisplay();
     static void Blt(void* self, int x, int y, void* surface, RECT* src);
     static int Present(void* self, RECT* rect);
@@ -235,6 +243,7 @@ struct CDisplay {
 
 struct CBallManager {
     void* vftable;
+    CBallManager();
     ~CBallManager();
     static int InitSurface(CBallManager* self);
 };
@@ -334,6 +343,7 @@ extern "C" {
     extern void* BoardData;
     extern int iBoardSizeBytes;
     extern void* g_pIInkObject;
+    extern void* g_pIStroke;
     extern HWND g_hWnd;
     extern RECT g_rcClient;
     extern HINSTANCE g_hInst;
@@ -442,10 +452,13 @@ struct CRegistryManager {
 
 struct CBoardManager {
     void* vftable;
+    CBoardManager();
     ~CBoardManager();
     static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
     static int LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
     static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
+    static void* GetLastLoadedBoardData(CBoardManager*);
+    static int LoadRandomBonusBoardFromResources(CBoardManager*, void*, int*);
 };
 
 struct CBitmapRects {
