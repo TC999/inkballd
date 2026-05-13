@@ -128,6 +128,35 @@ void CGameBoard::UpdateBounds(CGameBoard* self) {
 int CGameBoard::Paint(CGameBoard* self) {
     (void)self; return 0;
 }
+// [TODOne] GetRandomNumber — now provided by implementation file
+// [TODOne] AddDisplayUpdateRect — now provided by implementation file
+void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) {
+    (void)self; (void)color;
+}
+void CGameBoard::AddBall(CGameBoard* self, CBall* ball) {
+    (void)self; (void)ball;
+}
+void CGameBoard::AddBallToUpdateList(CGameBoard* self, CBall* ball) {
+    (void)self; (void)ball;
+}
+void CGameBoard::AddGameObjectToUpdateList(CGameBoard* self, CGameObject* obj) {
+    (void)self; (void)obj;
+}
+CBall* CGameBoard::GetBall(CGameBoard* self, int index) {
+    (void)self; (void)index; return nullptr;
+}
+int CGameBoard::NumBallsOnBoard(CGameBoard* self) {
+    (void)self; return 0;
+}
+struct tagRECT* CGameBoard::GetPlayingAreaRect(CGameBoard* self) {
+    (void)self; return nullptr;
+}
+int CGameBoard::BallOnTile(CGameBoard* self, CBoardTile* tile) {
+    (void)self; (void)tile; return 0;
+}
+char* CGameBoard::GetBitmapRect(CGameBoard* self, int a1) {
+    (void)self; (void)a1; return nullptr;
+}
 
 // ============================================================================
 // CGameManager static method stubs
@@ -146,6 +175,9 @@ void CInk::ClearInk(CInk* self) {
     (void)self;
 }
 void CInk::OnDisplayChange(CInk* self) {
+    (void)self;
+}
+void CInk::Cleanup(CInk* self) {
     (void)self;
 }
 int CBoardManager::LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize) {
@@ -193,6 +225,9 @@ uint32_t CTimeManager::GetTime(void* self) {
 void CTimeManager::SetTime(void* self, uint32_t time) {
     (void)self; (void)time;
 }
+void CTimeManager::InitTime(void* self, uint32_t time) {
+    (void)self; (void)time;
+}
 
 // ============================================================================
 // CScoreManager static method stubs
@@ -204,12 +239,22 @@ uint32_t CScoreManager::GetScore(void* self) {
     (void)self;
     return 0;
 }
+void CScoreManager::ResetScore(void* self) {
+    (void)self;
+}
 
 // ============================================================================
 // CTileManager static method stubs
 // ============================================================================
 void CTileManager::SetTiles(void* self, uint32_t score) {
     (void)self; (void)score;
+}
+void CTileManager::ResetTileCount(void* self) {
+    (void)self;
+}
+int CTileManager::GetTileCount(void* self) {
+    (void)self;
+    return 0;
 }
 
 // ============================================================================
@@ -239,6 +284,10 @@ int CDisplay::Present(void* self, RECT* rect) {
 void CDisplay::BltInk(void* self, RECT* rect) {
     (void)self; (void)rect;
 }
+int CDisplay::DestroyObjects(CDisplay* self) {
+    (void)self;
+    return 0;
+}
 
 CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) {
     (void)self; (void)hWnd; (void)param;
@@ -264,6 +313,16 @@ void CGameManager::UpdateTime(CGameManager* self) {
 uint32_t CRegistryManager::ReadDifficulty(CRegistryManager* self) {
     (void)self;
     return 0;
+}
+void CRegistryManager::WriteDifficulty(CRegistryManager* self, uint32_t difficulty) {
+    (void)self; (void)difficulty;
+}
+uint32_t CRegistryManager::ReadHiScore(CRegistryManager* self) {
+    (void)self;
+    return 0;
+}
+void CRegistryManager::WriteHiScore(CRegistryManager* self, int score) {
+    (void)self; (void)score;
 }
 
 // ============================================================================
@@ -318,6 +377,56 @@ uint32_t unk_10B26E0 = 0;
 const wchar_t* stru_1002CD8 = L"";
 const wchar_t* SubKey = L"";
 const wchar_t* ValueName = L"";
+
+// ============================================================================
+// CBallManager static method stubs
+// ============================================================================
+int CBallManager::InitSurface(CBallManager* self) {
+    (void)self;
+    return 0;
+}
+
+// ============================================================================
+// CSurface static method stubs
+// ============================================================================
+int CSurface::IsColorKeyed(CSurface* self) {
+    (void)self;
+    return 0;
+}
+void* CSurface::GetDDrawSurface(CSurface* self) {
+    (void)self;
+    return nullptr;
+}
+
+// ============================================================================
+// CBitmapRects static method stubs
+// ============================================================================
+char* CBitmapRects::GetBitmapRect(CBitmapRects* self, int id) {
+    (void)self; (void)id;
+    return nullptr;
+}
+
+// ============================================================================
+// CBoardTileRLColored static method stubs
+// ============================================================================
+void CBoardTileRLColored::ToggleState(void* self) {
+    (void)self;
+}
+
+// ============================================================================
+// BallPoints constructor/destructor stubs
+// ============================================================================
+BallPoints::BallPoints() {
+}
+BallPoints::~BallPoints() {
+}
+
+// ============================================================================
+// CBoardTile vftable extern
+// ============================================================================
+extern "C" {
+    void* CBoardTile_vftable = nullptr;
+}
 
 // ============================================================================
 // Win32 globals

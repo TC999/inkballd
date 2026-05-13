@@ -65,6 +65,9 @@ namespace TabUtils {
 // ============================================================================
 // Game object structures - Forward declarations
 // ============================================================================
+struct CBall;
+struct CGameObject;
+struct CBoardTile;
 struct CBitmapRects;
 struct CScoreManager;
 struct CGameBoard {
@@ -83,13 +86,43 @@ struct CGameBoard {
     static int GetTileByIndices(CGameBoard* self, int a2, int a3);
     static void RestoreSurfaces(CScoreManager** self);
     static int GetRandomNumber(CGameBoard* self, int max_value);
-    void AddDisplayUpdateRect(struct tagRECT* a2);
-    // [TODO] ToggleRLWalls(BOARD_COLOR), SetTile(CBoardTile*) — types not yet defined
+    static void AddDisplayUpdateRect(CGameBoard* self, struct tagRECT* a2);
+    static void ToggleRLWalls(CGameBoard* self, int color);
+    static void AddBall(CGameBoard* self, CBall* ball);
+    static void AddBallToUpdateList(CGameBoard* self, CBall* ball);
+    static void AddGameObjectToUpdateList(CGameBoard* self, CGameObject* obj);
+    static CBall* GetBall(CGameBoard* self, int index);
+    static int NumBallsOnBoard(CGameBoard* self);
+    static struct tagRECT* GetPlayingAreaRect(CGameBoard* self);
+    static int BallOnTile(CGameBoard* self, CBoardTile* tile);
+    static char* GetBitmapRect(CGameBoard* self, int a1);
 };
 CGameBoard* CGameBoard_Ctor(CGameBoard* this_ptr, HWND hWnd, void* param);
 void CGameBoard_Dtor(CGameBoard* self, int flags);
 int CGameBoard_Init(CGameBoard* self);
-struct CBall;
+struct BallPoints {
+    void* vftable;
+    uint32_t* data_array;
+    BallPoints();
+    ~BallPoints();
+};
+
+struct CBall {
+    void* vftable;
+    static int* GetDrainPoints(CBall* self);
+    static int* GetBreakWallPoints(CBall* self);
+    static int GetCurrBallPoint(CBall* self);
+    static int GetPrevBallPoint(CBall* self);
+    static int AddRef(CBall* self);
+    static int Release(CBall* self);
+    static void SetXVel(CBall* self, long double vel);
+    static void SetYVel(CBall* self, long double vel);
+    static void Deflect(CBall* self, double x, double y);
+    static void SetTallness(CBall* self, int tallness);
+};
+
+struct CMovingObject;
+
 struct CGameManager {
     void* vftable;
     uint32_t field_4;
@@ -111,8 +144,10 @@ struct CTimeManager;
 struct CInk {
     void* vftable;
     uint32_t field_4;
+    ~CInk();
     static void ClearInk(CInk* self);
     static void OnDisplayChange(CInk* self);
+    static void Cleanup(CInk* self);
 };
 struct CSink;
 struct CGameObject;
@@ -140,17 +175,42 @@ struct CTimeManager {
     void* vftable;
     static uint32_t GetTime(void* self);
     static void SetTime(void* self, uint32_t time);
+    static void InitTime(void* self, uint32_t time);
 };
 
 struct CScoreManager {
     void* vftable;
+    ~CScoreManager();
     static void IncrementScore(void* self, uint32_t count);
     static uint32_t GetScore(void* self);
+    static void ResetScore(void* self);
 };
 
 struct CTileManager {
     void* vftable;
     static void SetTiles(void* self, uint32_t score);
+    static void ResetTileCount(void* self);
+    static int GetTileCount(void* self);
+};
+
+struct CBoardTile {
+    void* vftable;
+    CBoardTile();
+    CBoardTile(int tile_type, int x, int y, int rect_param);
+};
+extern "C" { extern void* CBoardTile_vftable; }
+
+struct CSurface {
+    void* vftable;
+    CSurface();
+    ~CSurface();
+    static int IsColorKeyed(CSurface* self);
+    static void* GetDDrawSurface(CSurface* self);
+};
+
+struct CBoardTileRLColored {
+    void* vftable;
+    static void ToggleState(void* self);
 };
 
 struct CUIBarObject {
@@ -160,14 +220,23 @@ struct CUIBarObject {
 
 struct CBoardObject {
     void* vftable;
+    CBoardObject() {}
     static void GetBoundingRect(uint32_t self, RECT* out);
 };
 
 struct CDisplay {
     void* vftable;
+    ~CDisplay();
     static void Blt(void* self, int x, int y, void* surface, RECT* src);
     static int Present(void* self, RECT* rect);
     static void BltInk(void* self, RECT* rect);
+    static int DestroyObjects(CDisplay* self);
+};
+
+struct CBallManager {
+    void* vftable;
+    ~CBallManager();
+    static int InitSurface(CBallManager* self);
 };
 
 // ============================================================================
@@ -296,23 +365,6 @@ extern "C" {
 // Layout structures for object memory layouts
 // ============================================================================
 
-// CBall memory layout
-// CBall class definition (decompiled layout, validated against CBallLayout)
-struct CBall {
-    void* vftable;
-    // [TODO] Full member layout — see CBallLayout for byte offsets
-    static int* GetDrainPoints(CBall* self);
-    static int* GetBreakWallPoints(CBall* self);
-    static int GetCurrBallPoint(CBall* self);
-    static int GetPrevBallPoint(CBall* self);
-    static int AddRef(CBall* self);
-    static int Release(CBall* self);
-    static void SetXVel(CBall* self, long double vel);
-    static void SetYVel(CBall* self, long double vel);
-    static void Deflect(CBall* self, double x, double y);
-    static void SetTallness(CBall* self, int tallness);
-};
-
 // Low-level memory layout for CBall — used for raw byte-offset access
 struct CBallLayout {
     uint32_t vftable_ptr;
@@ -383,13 +435,22 @@ struct CRegistryManager {
     const wchar_t* SubKey;
     const wchar_t* ValueName;
     static uint32_t ReadDifficulty(CRegistryManager* self);
+    static void WriteDifficulty(CRegistryManager*, uint32_t);
+    static uint32_t ReadHiScore(CRegistryManager*);
+    static void WriteHiScore(CRegistryManager*, int);
 };
 
 struct CBoardManager {
     void* vftable;
+    ~CBoardManager();
     static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
     static int LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
     static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
+};
+
+struct CBitmapRects {
+    void* vftable;
+    static char* GetBitmapRect(CBitmapRects* self, int id);
 };
 
 extern "C" { extern void* SQM_INCREMENT_DWORD; }
