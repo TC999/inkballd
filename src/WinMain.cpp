@@ -42,7 +42,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     uint16_t* file_path;
     uint16_t* file_path_end;
     char last_error;
-    int* unused_ptr;
+    int* unused_ptr = nullptr;
     tagMSG msg;
     uint8_t log_buffer[8];
     LARGE_INTEGER due_time;
