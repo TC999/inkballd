@@ -1,8 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by RestoreProject.rc
+// Used by inkball.rc
 
-// пб╤тоС╣добр╩вИд╛хож╣
+// О©╫б╤О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫д╛О©╫О©╫ж╣
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
