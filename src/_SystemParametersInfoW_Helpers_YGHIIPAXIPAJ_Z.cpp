@@ -22,8 +22,8 @@ BOOL __stdcall SystemParametersInfoW_Helpers(void* self, UINT action,
     if (last_error > 0)
       last_error = static_cast<uint16_t>(last_error) | 0x80070000;
     error_code[0] = last_error;
-    if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0)
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x4Eu, &stru_10036F8, error_code[0]);
+    if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t*)WPP_GLOBAL_Control + 28) & 4) != 0)
+      WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8), 0x4Eu, &stru_10036F8, error_code[0]);
   }
   if (error_result)
     *error_result = error_code[0];

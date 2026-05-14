@@ -286,7 +286,7 @@ void CUIBarObject::GetBoundingRect(void* self, RECT* out) {
 void CBoardObject::GetBoundingRect(void* self, RECT* out) {
     (void)self; (void)out;
 }
-// [TODOne] CBoardObject::CBoardObject
+CBoardObject::CBoardObject() {}
 
 // ============================================================================
 // CMovingObject constructor stub
@@ -487,8 +487,8 @@ void BallPoints::scalar_deleting_destructor(BallPoints* self, int flags) {
 // ============================================================================
 // CBoardTile constructor stubs
 // ============================================================================
-// [TODOne] CBoardTile::CBoardTile
-// [TODOne] CBoardTile::CBoardTile
+CBoardTile::CBoardTile() {}
+CBoardTile::CBoardTile(int tile_type, int x, int y, int rect_param) { (void)tile_type; (void)x; (void)y; (void)rect_param; }
 
 // ============================================================================
 // CBoardTile vftable extern
@@ -576,3 +576,26 @@ int InitSurface_CTimeManager(CTimeManager *self) { (void)self; return 0; }
 void Clear_CSurface(CSurface *self, uint32_t color) { (void)self; (void)color; }
 
 extern "C" void* CBall_func(int a1, int a2, int a3, int a4, int a5) { (void)a1; (void)a2; (void)a3; (void)a4; (void)a5; return nullptr; }
+
+// ============================================================================
+// Board count globals (referenced by SetDifficulty)
+// ============================================================================
+int iBoardListCount = 0;
+int iBonusBoardListCount = 0;
+void* paBoardList = nullptr;
+void* paBonusBoardList = nullptr;
+int iBeginnerBoardsCount = 0, iBeginnerBonusBoardsCount = 0;
+void* g_aBeginnerBoards = nullptr;
+void* g_aBeginnerBonusBoards = nullptr;
+int iNoviceBoardsCount = 0, iNoviceBonusBoardsCount = 0;
+void* g_aNoviceBoards = nullptr;
+void* g_aNoviceBonusBoards = nullptr;
+int iIntermediateBoardsCount = 0, iIntermediateBonusBoardsCount = 0;
+void* g_aIntermediateBoards = nullptr;
+void* g_aIntermediateBonusBoards = nullptr;
+int iAdvancedBoardsCount = 0, iAdvancedBonusBoardsCount = 0;
+void* g_aAdvancedBoards = nullptr;
+void* g_aAdvancedBonusBoards = nullptr;
+int iExpertBoardsCount = 0, iExpertBonusBoardsCount = 0;
+void* g_aExpertBoards = nullptr;
+void* g_aExpertBonusBoards = nullptr;

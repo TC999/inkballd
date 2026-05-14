@@ -2,9 +2,9 @@
 #include <cstdint>
 #include <windows.h>
 
-extern "C" void PerformStandardWallDeflection(void* tile, CBall* ball);
-extern "C" void ConvertTileToFloor(void* tile);
-extern "C" void ScoreBreak(CBall* ball);
+extern "C" void __stdcall PerformStandardWallDeflection(void* tile, CBall* ball);
+extern "C" void __stdcall ConvertTileToFloor(void* tile);
+extern "C" void __stdcall ScoreBreak(void* ball);
 void DeflectBall_CBoardTileBreakWall(CBoardTileBreakWall* self, CBall* ball)
 {
     uint32_t tile_type;

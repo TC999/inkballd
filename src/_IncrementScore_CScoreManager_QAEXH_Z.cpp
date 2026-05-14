@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void IncrementScore_CScoreManager(CScoreManager* self, void* self, uint32_t a2)
+void IncrementScore_CScoreManager(CScoreManager* self, uint32_t a2)
 {
   uint32_t v3; // eax
   uint8_t v4[16]; // [esp+10h] [ebp-14h] BYREF

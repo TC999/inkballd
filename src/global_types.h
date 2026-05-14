@@ -161,6 +161,8 @@ struct CBall {
     double mass;
     void* ball_points_data;
     void* ball_points_ptr;
+    int tile_type;
+    ~CBall();
     static int* GetDrainPoints(CBall* self);
     static int* GetBreakWallPoints(CBall* self);
     static int GetCurrBallPoint(CBall* self);
@@ -238,6 +240,7 @@ struct CBoardTileWall {
 struct CBoardTileBreakWall {
     void* vftable;
     uint32_t unk[30];
+    int tile_type;
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -250,6 +253,7 @@ struct CBoardTileBumper {
 struct CBoardTileChevron {
     void* vftable;
     uint32_t unk[30];
+    int chevron_direction;
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -383,6 +387,10 @@ struct CBoardObject {
     uint32_t current_point_index;
     uint32_t reference_count;
     uint32_t tile_type;
+    int position_x;
+    int position_y;
+    int width;
+    int height;
     CBoardObject();
     static void GetBoundingRect(void* self, RECT* out);
     static void GetCenterPoint(void* self, void* out);
@@ -471,6 +479,9 @@ struct IInkManager;
 struct IInkCollect;
 struct IRenderInk;
 struct ITabletManager;
+#ifndef __IDirectDraw7_FWD_DEFINED
+#define __IDirectDraw7_FWD_DEFINED
+#if !defined(DIRECTDRAW_VERSION) && !defined(__DDRAW_INCLUDED__)
 struct IDirectDraw7;
 struct IDirectDraw7Vtbl {
     int (__stdcall *RestoreAllSurfaces)(IDirectDraw7*);
@@ -480,9 +491,16 @@ struct IDirectDraw7Vtbl {
 struct IDirectDraw7 {
     IDirectDraw7Vtbl* lpVtbl;
 };
+#endif
+#endif
+#ifndef __IDirectDrawPalette_FWD_DEFINED
+#define __IDirectDrawPalette_FWD_DEFINED
+#if !defined(DIRECTDRAW_VERSION) && !defined(__DDRAW_INCLUDED__)
 struct IDirectDrawPalette {
     void* vftable;
 };
+#endif
+#endif
 typedef IDirectDrawPalette* LPDIRECTDRAWPALETTE;
 struct CTabletContextInfo {
     uint32_t unk[6];
@@ -490,6 +508,9 @@ struct CTabletContextInfo {
 struct tagSYSTEM_EVENT_DATA {
     uint32_t unk[8];
 };
+#ifndef __IDirectDrawSurface7_FWD_DEFINED
+#define __IDirectDrawSurface7_FWD_DEFINED
+#if !defined(DIRECTDRAW_VERSION) && !defined(__DDRAW_INCLUDED__)
 struct IDirectDrawSurface7;
 struct IDirectDrawSurface7Vtbl {
     void* dummy[10];
@@ -503,6 +524,8 @@ struct IDirectDrawSurface7Vtbl {
 struct IDirectDrawSurface7 {
     IDirectDrawSurface7Vtbl* lpVtbl;
 };
+#endif
+#endif
 typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7;
 struct BoardCollection {
     const wchar_t* board_name;
@@ -618,8 +641,8 @@ extern "C" {
     extern uint32_t dword_10B0674;
     extern uint32_t dword_10B0678;
     extern uint32_t dword_10B0670;
-    extern uint32_t g_tcid;
-    extern uint32_t g_cid;
+    extern void* g_tcid;
+    extern void* g_cid;
     extern uint32_t dword_10B068C;
     extern void* g_arrTCI;
     extern uint32_t dword_105C81C;
@@ -752,7 +775,7 @@ extern int __onexitbegin;
 // External data references
 // ============================================================================
 extern "C" {
-    extern uint64_t WPP_GLOBAL_Control;
+    extern void* WPP_GLOBAL_Control;
     extern struct WppControl WPP_MAIN_CB;
     extern const GUID* WPP_ThisDir_CTLGUID_ControlGuid;
     extern const GUID* WPP_ThisDir_CTLGUID_MobTabPerfTraceProvider;
@@ -827,38 +850,36 @@ extern "C" {
     void CheckForBallCollisionWithBall(void* self);
     void CheckForBallCollisionWithInk(void* self);
     void CheckForBallCollisionWithTile(void* self);
-    bool BallOnTile(void* tile);
-    CBall* GetBall(int index);
+     bool __stdcall BallOnTile(void* tile);
+    CBall* __stdcall GetBall(int index);
     void StartTimer();
-    void AddDisplayUpdateRect(void* rect);
-    void AddGameObjectToUpdateList(void* game_object);
-    void AddBallToUpdateList(void* ball);
-    void AddRLColoredWallToList(void* wall_tile);
-    void ConvertTileToFloor(void* tile);
+    void __stdcall AddDisplayUpdateRect(void* rect);
+    void __stdcall AddGameObjectToUpdateList(void* game_object);
+    void __stdcall AddBallToUpdateList(void* ball);
+    void __stdcall AddRLColoredWallToList(void* wall_tile);
+    void __stdcall ConvertTileToFloor(void* tile);
     void* GetTabletContextInfo(uint32_t id);
     void ShadowizeTile(CBoardTile* tile);
     void UpdateBoardTile(void* tile);
-    bool fPortraitMode();
+    int __stdcall fPortraitMode();
     bool fPrevSeen(void* board_hist, int index);
     void ScoreBall(void* ball, uint32_t color);
-    void ScoreBreak(void* ball);
+    void __stdcall ScoreBreak(void* ball);
     void SetBoardActiveState(int state);
-    bool BoardIsActive();
     void ToggleRLWalls(uint32_t color);
-    bool canRunInkball(int* param);
-    bool AcceptInkInput();
+    int __stdcall canRunInkball(int* param);
+    int __stdcall AcceptInkInput();
     uint32_t CalcUnsqrtDistance(void* point1, void* point2);
     HWND GetMainWindowHwnd();
-    void SetCursorAttributes(uint32_t cursor_id);
-    void SetCursorStroke(uint32_t cursor_id, void* stroke);
+    void __stdcall SetCursorAttributes(uint32_t cursor_id);
+    void __stdcall SetCursorStroke(uint32_t cursor_id, void* stroke);
     void GetInkBufferHDC(HDC* hdc);
-    void ReleaseInkBufferHDC(HDC hdc);
+    void __stdcall ReleaseInkBufferHDC(HDC hdc);
     // CRT helpers
     int __cdecl _time(void* timer);
     void __cdecl _srand(unsigned int seed);
     // Win32 helpers
     int __cdecl _vsnwprintf(wchar_t* buf, size_t count, const wchar_t* fmt, va_list args);
-    LSTATUS __stdcall SHRegGetValueW(HKEY, const wchar_t*, const wchar_t*, uint32_t, uint32_t*, void*, uint32_t*);
     // String helpers
     void StringExHandleOtherFlagsW(void* flags, size_t* dest, uint32_t f, void* d, void* temp, uint32_t err);
 }

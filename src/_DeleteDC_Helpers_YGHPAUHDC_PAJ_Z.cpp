@@ -19,8 +19,8 @@ BOOL __stdcall DeleteDC_Helpers(void* self, HDC hdc, HDC a2, int*a3)
     if ( LastError > 0 )
       LastError = (uint16_t)LastError | 0x80070000;
     *(uint32_t *)v7 = LastError;
-    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0xFu, &stru_10036F8, v7[0]);
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t*)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8), 0xFu, &stru_10036F8, v7[0]);
   }
   if ( a2 )
     *(uint32_t *)a2 = *(uint32_t *)v7;

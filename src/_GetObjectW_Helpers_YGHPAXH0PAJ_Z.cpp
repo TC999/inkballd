@@ -18,7 +18,7 @@ int __stdcall GetObjectW_Helpers(void* self, HANDLE h, void*c, LPVOID pv, uint32
   if ( LastError > 0 )
     LastError = (uint16_t)LastError | 0x80070000;
   *(uint32_t *)v9 = LastError;
-  if ( LastError < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+  if ( LastError < 0 && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
     WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x12u, &stru_10036F8, v9[0]);
   if ( a4 )
     *a4 = *(uint32_t *)v9;

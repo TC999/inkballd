@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int DestroyObjects_CDisplay(CDisplay* self, void* self)
+int DestroyObjects_CDisplay(CDisplay* self)
 {
   int v2; // eax
   int v3; // eax
@@ -54,7 +54,7 @@ int DestroyObjects_CDisplay(CDisplay* self, void* self)
   if ( v7 )
   {
     *(uint32_t *)v12 = (*(int (__stdcall **)(int, uint32_t, int))(*(uint32_t *)v7 + 80))(v7, *((uint32_t *)self + 7), 8);
-    if ( *(int*)v12 < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+    if ( *(int*)v12 < 0 && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xAu, &stru_1002FB8, v12[0]);
     v8 = *((uint32_t *)self + 1);
     if ( v8 )

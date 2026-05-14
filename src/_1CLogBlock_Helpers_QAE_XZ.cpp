@@ -14,17 +14,17 @@ CLogBlock::~CLogBlock()
     if (error >= 0)
         return;
 
-    if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control))
+    if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control)
     {
-        uint8_t* ctrl = reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control));
+        uint8_t* ctrl = (uint8_t*)WPP_GLOBAL_Control;
         if ((ctrl[28] & 4) != 0)
         {
-            WPP_SF_sL(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2,
+            WPP_SF_sL(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8),
                       0xBu, &stru_10036F8, func_name, static_cast<char>(error));
         }
         if ((ctrl[14] & 0x400) != 0)
         {
-            WPP_SF_s(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2,
+            WPP_SF_s(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8),
                      0xCu, &stru_10036F8, func_name);
         }
     }

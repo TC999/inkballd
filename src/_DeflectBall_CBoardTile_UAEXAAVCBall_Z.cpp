@@ -9,7 +9,7 @@ void DeflectBall_CBoardTile(CBoardTile* self, CBall* ball)
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTile::DeflectBall", 0);
     flag = 0;
     
-    CBall::SetTallness(ball, nullptr);
+    CBall::SetTallness(ball, 0);
     
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();

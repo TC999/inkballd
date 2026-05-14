@@ -38,7 +38,8 @@ void CleanupTabletContexts()
     }
     while ( v0 < dword_10B068C );
   }
-  CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetSize((int)&g_arrTCI, 0, -1);
+  int SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* self, int unused, int a2, int a3);
+  SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___((int*)&g_arrTCI, 0, 0, -1);
   v5 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }

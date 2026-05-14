@@ -5,7 +5,7 @@
 #include <windows.h>
 CGameBoard* scalar_deleting_destructor_CGameBoard(CGameBoard* self, char a2)
 {
-    CGameBoard::~CGameBoard();
+    self->~CGameBoard();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

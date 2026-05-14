@@ -5,7 +5,7 @@
 #include <windows.h>
 CGameManager* scalar_deleting_destructor_CGameManager(CGameManager* self, char a2)
 {
-    CGameManager::~CGameManager();
+    self->~CGameManager();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

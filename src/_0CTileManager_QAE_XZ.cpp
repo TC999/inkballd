@@ -4,7 +4,7 @@
 extern "C" void* CTileManager_vftable;
 
 extern "C" {
- CTileManager_CTileManager(CTileManager* self)
+  void CTileManager_CTileManager(CTileManager* self)
     {
       uint8_t exception_object[12]; // [esp+10h] [ebp-20h] BYREF
       uint8_t log_buffer[16]; // [esp+1Ch] [ebp-14h] BYREF

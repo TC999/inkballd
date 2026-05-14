@@ -3,11 +3,11 @@
 #include <cstdint>
 
 extern void* CBoardTileBreakWall_vftable;
-CBoardTile* CBoardTileBreakWall_CBoardTileBreakWall(CBoardTileBreakWall* self, CBoardTile* self, int x, int y, int rect_param, int color)
+CBoardTile* CBoardTileBreakWall_CBoardTileBreakWall(CBoardTileBreakWall* self, int x, int y, int rect_param, int color)
 {
     uint8_t log_buffer[8];
 
-    CBoardTile::CBoardTile(self);
+    new ((CBoardTile*)self) CBoardTile();
     *reinterpret_cast<uint32_t*>(self) = reinterpret_cast<uint32_t>(&CBoardTileBreakWall_vftable);
     new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTileBreakWall::CBoardTileBreakWall", 0);
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 88) = 0;
@@ -19,5 +19,5 @@ CBoardTile* CBoardTileBreakWall_CBoardTileBreakWall(CBoardTileBreakWall* self, C
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 72) = 4;
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 44) = color;
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
-    return self;
+    return (CBoardTile*)self;
 }

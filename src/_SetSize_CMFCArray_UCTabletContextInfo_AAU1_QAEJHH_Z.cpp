@@ -4,19 +4,9 @@
 #include <cstdlib>
 #include <windows.h>
 
-template<class TYPE, class ARG_TYPE>
-struct CMFCArray {
-    TYPE* m_pData;
-    int m_nSize;
-    int m_nMaxSize;
-    int m_nGrowBy;
-};
+extern "C" void ConstructElements_CTabletContextInfo(CTabletContextInfo* pElements, int nCount);
 
-template<class TYPE>
-void ConstructElements(TYPE* pElements, int nCount) {
-}
-
-int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* self, int unused, signed int a2, int a3)
+int __cdecl SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* self, int unused, signed int a2, int a3)
 {
   uint32_t *v6; // ecx
   uint32_t *v7; // eax
@@ -52,7 +42,7 @@ int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* 
     {
       v9 = _this[1];
       if ( a2 > v9 )
-        ConstructElements<CTabletContextInfo>((CTabletContextInfo*)(&v6[6 * v9]), a2 - v9);
+        ConstructElements_CTabletContextInfo((CTabletContextInfo*)(&v6[6 * v9]), a2 - v9);
       goto LABEL_16;
     }
     v10 = _this[3];
@@ -78,7 +68,7 @@ int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* 
       if ( v11 )
       {
         memcpy(v11, *(const void**)self, 24 * _this[1]);
-        ConstructElements<CTabletContextInfo>((CTabletContextInfo*)((uint32_t*)v11 + 6 * _this[1]), a2 - _this[1]);
+        ConstructElements_CTabletContextInfo((CTabletContextInfo*)((uint32_t*)v11 + 6 * _this[1]), a2 - _this[1]);
         operator delete[]((void*)_this[0]);
         _this[0] = (uint32_t)v11;
         _this[1] = a2;
@@ -92,7 +82,7 @@ int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* 
   if ( !v7 )
     return -2147024882;
   _this[0] = (uint32_t)v7;
-  ConstructElements<CTabletContextInfo>((CTabletContextInfo*)v7, a2);
+  ConstructElements_CTabletContextInfo((CTabletContextInfo*)v7, a2);
   _this[2] = a2;
 LABEL_16:
   _this[1] = a2;

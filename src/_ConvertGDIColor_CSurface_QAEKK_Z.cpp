@@ -32,7 +32,7 @@ int ConvertGDIColor_CSurface(CSurface* self, COLORREF color)
       v7 = (*(int (__stdcall **)(int, HDC *))(*(uint32_t *)v4 + 68))(v4, hdc);
       if ( v7 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x2Bu, &stru_1002FB8, v7);
       }
       else
@@ -56,7 +56,7 @@ int ConvertGDIColor_CSurface(CSurface* self, COLORREF color)
       v9 = (*(int (__stdcall **)(uint32_t, HDC *))(**(uint32_t **)self + 68))(*(uint32_t *)self, hdc);
       if ( v9 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x2Cu, &stru_1002FB8, v9);
       }
       else

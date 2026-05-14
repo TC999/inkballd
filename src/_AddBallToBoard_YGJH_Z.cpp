@@ -2,6 +2,8 @@
 #include <cstdint>
 #include <new>
 
+extern "C" { void* CBall_func(int, int, int, int, int); }
+
 extern "C" {
     int __stdcall AddBallToBoard(int ball_type)
     {

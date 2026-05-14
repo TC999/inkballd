@@ -2,10 +2,12 @@
 #include <cstdint>
 #include <windows.h>
 
+extern int iBonusBoardListCount;
+extern void* paBonusBoardList;
 extern "C" {
     int GetRandomNumber(int max_value);
-    int fPrevSeen(int value, void* history, int max_size);
-    HWND GetMainWindowHwnd();
+    int __stdcall fPrevSeen(void* history, int index);
+    HWND __stdcall GetMainWindowHwnd();
 }
 
 void LoadRandomBonusBoardFromResources_CBoardManager(CBoardManager *self, uint8_t* output_buffer, int* result)

@@ -45,7 +45,7 @@ extern "C" {
       if (RegisterClassExW(&wc))
       {
         accel_handle = LoadAcceleratorsW(hInstance, (LPCWSTR)0x67);
-        if (!accel_handle && WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
+        if (!accel_handle && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
         {
           last_error = GetLastError();
           WPP_SF_d(WPP_GLOBAL_Control + 2, 0xBu, &stru_1003520, last_error);
@@ -76,7 +76,7 @@ extern "C" {
           goto LABEL_6;
         }
       }
-      else if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
+      else if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(&WPP_GLOBAL_Control) + 28) & 4) != 0)
       {
         error_char = GetLastError();
         WPP_SF_d(WPP_GLOBAL_Control + 2, 0xAu, &stru_1003520, error_char);

@@ -2,6 +2,5 @@
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
 extern void operator delete(void* ptr);
-}
+extern void* BallPoints_vftable;

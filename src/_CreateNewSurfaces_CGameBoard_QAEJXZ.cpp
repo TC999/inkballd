@@ -33,7 +33,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
   v14 = 0;
   if ( v3 )
   {
-    v13[0] = CDisplay::CreateWindowedDisplay(v3);
+    v13[0] = CDisplay::CreateWindowedDisplay(v3, (HWND)self, 0);
     if ( v13[0] < 0 )
     {
       delete v3;

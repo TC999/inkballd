@@ -30,7 +30,7 @@ int ConvertGDIColor_CDisplay(CDisplay* self, COLORREF color)
       v6 = (*(int (__stdcall **)(uint32_t, HDC *))(**((uint32_t **)self + 5) + 68))(*((uint32_t *)self + 5), hdc);
       if ( v6 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x22u, &stru_1002FB8, v6);
       }
       else
@@ -54,7 +54,7 @@ int ConvertGDIColor_CDisplay(CDisplay* self, COLORREF color)
       v8 = (*(int (__stdcall **)(uint32_t, HDC *))(**((uint32_t **)self + 5) + 68))(*((uint32_t *)self + 5), hdc);
       if ( v8 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x23u, &stru_1002FB8, v8);
       }
       else

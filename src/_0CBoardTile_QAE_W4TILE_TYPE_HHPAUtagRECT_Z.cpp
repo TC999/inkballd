@@ -3,11 +3,11 @@
 #include <cstdint>
 
 extern void* CBoardTile_vftable;
-CBoardTile* CBoardTile_CBoardTile(CBoardTile* self, CBoardTile* self, int tile_type, int x, int y, int rect_param)
+CBoardTile* CBoardTile_CBoardTile(CBoardTile* self, int tile_type, int x, int y, int rect_param)
 {
     uint8_t log_buffer[8];
 
-    CBoardObject::CBoardObject(self);
+    new ((CBoardObject*)self) CBoardObject();
     *reinterpret_cast<uint32_t*>(self) = reinterpret_cast<uint32_t>(&CBoardTile_vftable);
     new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTile::CBoardTile", 0);
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 72) = 0;

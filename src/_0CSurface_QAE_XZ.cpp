@@ -2,7 +2,7 @@
 #include <cstdint>
 
 extern "C" {
- CSurface_CSurface(CSurface* self)
+  void CSurface_CSurface(CSurface* self)
     {
       uint8_t log_buffer[8]; // [esp+4h] [ebp-8h] BYREF
 

@@ -5,7 +5,7 @@
 #include <windows.h>
 CInk* scalar_deleting_destructor_CInk(CInk* self, char a2)
 {
-    CInk::~CInk();
+    self->~CInk();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

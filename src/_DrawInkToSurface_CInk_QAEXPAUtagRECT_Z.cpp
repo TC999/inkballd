@@ -27,17 +27,17 @@ void DrawInkToSurface_CInk(CInk* self, struct tagRECT *a2)
   v2 = *(uint32_t *)g_pIRenderInk;
   if ( a2 )
     v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, uint32_t *, struct tagRECT *, uint32_t))(v2 + 16))(
-           g_pIRenderInk,
+           (IRenderInk*)g_pIRenderInk,
            v6,
            v4,
            a2,
            0);
   else
     v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, void*, struct HWND__ *, uint32_t))(v2 + 16))(
-           g_pIRenderInk,
+           (IRenderInk*)g_pIRenderInk,
            v6,
            &g_rcInkSpace,
-           &g_rcClient,
+           0,
            0);
   v7[0] = v3;
   ReleaseInkBufferHDC(v6);

@@ -21,7 +21,7 @@ int __stdcall TabQueryPolicyValue_TabUtils(void* _self, LPCWSTR value_name,
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "TabUtils::TabQueryPolicyValue", &error_code);
   if (value_name && result_data)
   {
-    *result_data = reinterpret_cast<uint32_t>(default_data);
+    *result_data = (uint32_t)(uintptr_t)default_data;
     uint16_t* local_default = 0;
     data_size = 4;
     reg_result = SHRegGetValueW(
@@ -53,13 +53,13 @@ int __stdcall TabQueryPolicyValue_TabUtils(void* _self, LPCWSTR value_name,
             if (user_result > 0)
               user_result = static_cast<uint16_t>(user_result) | 0x80070000;
             error_code = user_result;
-            if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+            if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
               WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 16), 0xCu, &stru_1003974, error_code);
           }
         }
         else
         {
-          *result_data = reinterpret_cast<uint32_t>(local_default != 0);
+          *result_data = (uint32_t)(local_default != 0);
           if (data_type)
             *data_type = 0;
         }
@@ -69,13 +69,13 @@ int __stdcall TabQueryPolicyValue_TabUtils(void* _self, LPCWSTR value_name,
         if (reg_result > 0)
           reg_result = static_cast<uint16_t>(reg_result) | 0x80070000;
         error_code = reg_result;
-        if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+        if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
           WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 16), 0xBu, &stru_1003974, error_code);
       }
     }
     else
     {
-      *result_data = reinterpret_cast<uint32_t>(local_default != 0);
+      *result_data = (uint32_t)(local_default != 0);
       if (data_type)
         *data_type = 1;
     }
@@ -83,7 +83,7 @@ int __stdcall TabQueryPolicyValue_TabUtils(void* _self, LPCWSTR value_name,
   else
   {
     error_code = -2147467261;
-    if (WPP_GLOBAL_Control != &WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+    if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
       WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 16), 0xAu, &stru_1003974, 3);
   }
   return_code = error_code;

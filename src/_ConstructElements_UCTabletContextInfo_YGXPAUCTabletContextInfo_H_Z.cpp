@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-uint32_t ConstructElements<CTabletContextInfo>(uint32_t *a1, uint32_t a2)
+uint32_t ConstructElements_CTabletContextInfo(uint32_t *a1, uint32_t a2)
 {
   uint32_t v2; // ebx
   uint32_t result; // eax

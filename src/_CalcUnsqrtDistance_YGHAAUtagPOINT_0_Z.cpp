@@ -17,4 +17,5 @@ extern "C" {
                       (point1->x - point2->x) * (point1->x - point2->x);
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return distance_squared;
+    }
 }

@@ -3,6 +3,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+
+extern "C" void SetBallColor(void* ball, uint32_t color);
+extern "C" void PerformStandardWallDeflection(void* tile, void* ball);
 void DeflectBall_CBoardTileWall(CBoardTileWall* self, CBall* a2)
 {
   int v3; // eax

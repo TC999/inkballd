@@ -7,7 +7,7 @@ extern "C" {
       uint64_t* control_ptr; // esi
 
       control_ptr = &WPP_GLOBAL_Control;
-      if (WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control))
+      if ((uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control)
       {
         while (control_ptr)
         {
@@ -19,7 +19,7 @@ extern "C" {
           }
           control_ptr = reinterpret_cast<uint64_t*>(*control_ptr);
         }
-        WPP_GLOBAL_Control = reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control);
+        WPP_GLOBAL_Control = (uintptr_t)&WPP_GLOBAL_Control;
       }
     }
 }

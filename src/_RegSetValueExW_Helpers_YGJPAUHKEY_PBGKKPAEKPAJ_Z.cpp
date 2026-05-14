@@ -28,8 +28,8 @@ LSTATUS __stdcall RegSetValueExW_Helpers(void* self, HKEY hKey,
     if ( v8 > 0 )
       v10 = (uint16_t)v8 | 0x80070000;
     v13 = v10;
-    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x3Du, &stru_10036F8, v10);
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t*)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8), 0x3Du, &stru_10036F8, v10);
   }
   v10 = v13;
   if ( a7 )

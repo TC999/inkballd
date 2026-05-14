@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void SetInkRedrawFlag_CInk(CInk* self, void* self)
+void SetInkRedrawFlag_CInk(CInk* self)
 {
   uint8_t v2[8]; // [esp+4h] [ebp-8h] BYREF
 

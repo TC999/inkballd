@@ -27,8 +27,8 @@ LSTATUS __stdcall RegOpenKeyExW_Helpers(void* self, HKEY hKey,
     if ( v7 > 0 )
       v9 = (HKEY)((uint16_t)v7 | 0x80070000);
     v12 = (int)v9;
-    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x39u, &stru_10036F8, (char)v9);
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t*)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8), 0x39u, &stru_10036F8, (char)v9);
   }
   v9 = (HKEY)v12;
   if ( a6 )

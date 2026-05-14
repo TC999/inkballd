@@ -34,9 +34,9 @@ LABEL_3:
     v5 = -2147418113;
     goto LABEL_3;
   }
-    _DDSURFACEDESC2 v10;
-    memset(&v10, 0, sizeof(v10));
-  v10.dwWidth = (DWORD)a3;
+  DDSURFACEDESC2 v10;
+  memset(&v10, 0, sizeof(v10));
+  v10.dwWidth = (DWORD)(uintptr_t)a3;
   v10.dwSize = 124;
   v10.dwFlags = 7;
   v10.ddsCaps.dwCaps = 64;
@@ -54,7 +54,7 @@ LABEL_3:
   v14 = 0;
   if ( v13[0] >= 0 )
   {
-    v13[0] = CSurface::Create((LPDIRECTDRAWSURFACE7 *)*a2, *((struct IDirectDraw7 **)v12 + 1), &v10);
+    v13[0] = CSurface_Create(*a2, *((struct IDirectDraw7 **)v12 + 1), &v10);
     if ( v13[0] < 0 )
     {
       if ( *a2 )

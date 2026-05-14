@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void __stdcall __noreturn DisplayBoardLoadMsg()
+void __stdcall DisplayBoardLoadMsg()
 {
   int*v0; // [esp+0h] [ebp-2A8h]
   int*v1; // [esp+0h] [ebp-2A8h]

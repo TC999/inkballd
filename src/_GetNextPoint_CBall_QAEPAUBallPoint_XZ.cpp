@@ -2,8 +2,8 @@
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
+extern "C" { }
+struct BallPoint;
 BallPoint* GetNextPoint_CBall(CBall* self)
 {
     int current_index;

@@ -5,7 +5,7 @@
 #include <windows.h>
 CBallManager* scalar_deleting_destructor_CBallManager(CBallManager* self, char a2)
 {
-    CBallManager::~CBallManager();
+    self->~CBallManager();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

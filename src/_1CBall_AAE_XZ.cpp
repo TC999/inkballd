@@ -20,7 +20,7 @@ void CBall_destructor(CBall* self)
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }
 
-void CBall::~CBall()
+CBall::~CBall()
 {
     CBall_destructor(this);
 }

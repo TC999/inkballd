@@ -43,8 +43,8 @@ HWND __stdcall CreateWindowExW_Helpers(void* self, DWORD dwExStyle,
   if ( !Window )
   {
     *(uint32_t *)v18 = TabUtils::GenerateLastErrorHR(0x80004005, v16);
-    if ( WPP_GLOBAL_Control != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (reinterpret_cast<uint8_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control))[28] & 4) != 0 )
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(static_cast<uintptr_t>(WPP_GLOBAL_Control)) + 2, 0x60u, &stru_10036F8, v18[0]);
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t*)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 2*8), 0x60u, &stru_10036F8, v18[0]);
   }
   if ( a13 )
     *a13 = *(uint32_t *)v18;

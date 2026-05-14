@@ -5,7 +5,7 @@
 #include <windows.h>
 CScoreManager* scalar_deleting_destructor_CScoreManager(CScoreManager* self, char a2)
 {
-    CScoreManager::~CScoreManager();
+    self->~CScoreManager();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

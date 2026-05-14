@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <new>
 
-BOOL __stdcall fPortraitMode()
+int __stdcall fPortraitMode()
 {
   BOOL v0;
   int SystemMetrics;
@@ -27,8 +27,8 @@ BOOL __stdcall fPortraitMode()
   }
   else
   {
-    SystemMetrics = Helpers::GetSystemMetrics(reinterpret_cast<Helpers*>(1), 0, v3);
-    v0 = Helpers::GetSystemMetrics(0, 0, v4) < SystemMetrics;
+    SystemMetrics = Helpers::GetSystemMetrics((void*)1, 0, v3);
+    v0 = Helpers::GetSystemMetrics((void*)0, 0, v4) < SystemMetrics;
   }
   v7 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();

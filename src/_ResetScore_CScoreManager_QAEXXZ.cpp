@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void ResetScore_CScoreManager(CScoreManager* self, void* self)
+void ResetScore_CScoreManager(CScoreManager* self)
 {
   int v2; // eax
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF

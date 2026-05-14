@@ -16,7 +16,7 @@ int CreateInkballKey()
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CreateInkballKey", 0);
   v6 = 0;
   v0 = 0;
-  if ( !Helpers::RegCreateKeyExW(HKEY_CURRENT_USER, (HKEY)&SubKey, 0, 0, 0, 0x2001Fu, 0, &hKey, 0, 0, v2) )
+  if ( !Helpers::RegCreateKeyExW(HKEY_CURRENT_USER, SubKey, 0, 0, 0, 0x2001Fu, 0, &hKey, 0, 0, v2) )
   {
     v0 = 1;
     Helpers::RegCloseKey(hKey, 0, v3);

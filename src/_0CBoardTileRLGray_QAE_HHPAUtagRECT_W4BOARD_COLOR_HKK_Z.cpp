@@ -6,8 +6,8 @@
 #include <windows.h>
 
 extern void* CBoardTileRLGray_vftable;
-extern void AddGameObjectToUpdateList(void* game_object);
-CBoardTile* CBoardTileRLGray_CBoardTileRLGray(CBoardTileRLGray* self, CBoardTile* self,
+extern void __stdcall AddGameObjectToUpdateList(void* game_object);
+CBoardTile* CBoardTileRLGray_CBoardTileRLGray(CBoardTileRLGray* self,
     int a2,
     int a3,
     int a4,
@@ -18,7 +18,7 @@ CBoardTile* CBoardTileRLGray_CBoardTileRLGray(CBoardTileRLGray* self, CBoardTile
 {
     uint8_t v10[16];
 
-    CBoardTile::CBoardTile(self);
+    new ((CBoardTile*)self) CBoardTile();
     *reinterpret_cast<uint32_t*>(self) = reinterpret_cast<uint32_t>(&CBoardTileRLGray_vftable);
     new (v10) Helpers::CLogBlock(v10, "CBoardTileRLGray::CBoardTileRLGray", 0);
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 76) = a2;
@@ -35,5 +35,5 @@ CBoardTile* CBoardTileRLGray_CBoardTileRLGray(CBoardTileRLGray* self, CBoardTile
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 92) = 0;
     AddGameObjectToUpdateList(self);
     reinterpret_cast<Helpers::CLogBlock*>(v10)->~CLogBlock();
-    return self;
+    return (CBoardTile*)self;
 }

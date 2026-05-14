@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-extern void* g_pCGameBoard;
+extern CGameBoard* g_pCGameBoard;
 
 void GetBoardRect(struct tagRECT* a1)
 {

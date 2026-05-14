@@ -40,7 +40,7 @@ int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
         
         if (collision_check(&collision_point, self))
         {
-            prev_ball_point = CBall::GetPrevBallPoint(self);
+            prev_ball_point = (int)(intptr_t)CBall::GetPrevBallPoint(self);
             if (first_collision_point == -1)
                 first_collision_point = prev_ball_point;
             last_collision_point = prev_ball_point;
@@ -56,7 +56,7 @@ int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
         if (last_collision_point < first_collision_point)
             collision_index = (collision_index + 16) % 32;
         point_data = reinterpret_cast<int*>(CBall::GetPoint(self, collision_index));
-        CBall::Deflect(self, static_cast<double>(point_data[0]), static_cast<double>(point_data[1]));
+        CBall::Deflect(self, (double)point_data[0], (double)point_data[1]);
         flag = 1;
     }
     else

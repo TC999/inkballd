@@ -37,7 +37,7 @@ int CursorUp_CSink(CSink* self, int a1,
                              a2,
                              a1);
           if ( *(int*)v13 < 0
-            && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
+            && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control
             && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           {
             WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002480, v13[0]);
@@ -51,7 +51,7 @@ int CursorUp_CSink(CSink* self, int a1,
                                v8,
                                a4);
             if ( *(int*)v13 < 0
-              && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
+              && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control
               && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
             {
               WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x19u, &stru_1002480, v13[0]);
@@ -62,7 +62,7 @@ int CursorUp_CSink(CSink* self, int a1,
                              g_pIInkCollect,
                              v8);
           if ( *(int*)v13 < 0
-            && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
+            && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control
             && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
           {
             WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x1Au, &stru_1002480, v13[0]);

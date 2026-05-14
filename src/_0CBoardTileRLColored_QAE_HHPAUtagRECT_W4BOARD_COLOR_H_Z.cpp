@@ -4,9 +4,9 @@
 #include <windows.h>
 
 extern void* CBoardTileRLColored_vftable;
-extern void AddGameObjectToUpdateList(void* game_object);
-extern void AddRLColoredWallToList(void* wall_tile);
-CBoardTile* CBoardTileRLColored_CBoardTileRLColored(CBoardTileRLColored* self, CBoardTile* self,
+extern void __stdcall AddGameObjectToUpdateList(void* game_object);
+extern void __stdcall AddRLColoredWallToList(void* wall_tile);
+CBoardTile* CBoardTileRLColored_CBoardTileRLColored(CBoardTileRLColored* self,
     int x,
     int y,
     int bitmap_rect,
@@ -15,7 +15,7 @@ CBoardTile* CBoardTileRLColored_CBoardTileRLColored(CBoardTileRLColored* self, C
 {
     uint8_t log_buffer[16];
 
-    CBoardTile::CBoardTile(self);
+    new ((CBoardTile*)self) CBoardTile();
     self->vftable = &CBoardTileRLColored_vftable;
     new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTileRLColored::CBoardTileRLColored", 0);
 
@@ -32,5 +32,5 @@ CBoardTile* CBoardTileRLColored_CBoardTileRLColored(CBoardTileRLColored* self, C
     AddRLColoredWallToList(self);
 
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
-    return self;
+    return (CBoardTile*)self;
 }

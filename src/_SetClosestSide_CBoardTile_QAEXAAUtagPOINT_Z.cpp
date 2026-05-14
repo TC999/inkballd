@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <new>
 
-extern "C" int CalcUnsqrtDistance(POINT* point1, POINT* point2);
+extern "C" uint32_t CalcUnsqrtDistance(void* point1, void* point2);
 void SetClosestSide_CBoardTile(CBoardTile* self, POINT* test_point)
 {
     RECT bounding_rect;

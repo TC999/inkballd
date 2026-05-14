@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <windows.h>
 
+extern "C" PIMAGE_NT_HEADERS __stdcall RtlImageNtHeader(PVOID Base);
+
 int _get_image_app_type(int a1)
 {
   HMODULE ModuleHandleA;

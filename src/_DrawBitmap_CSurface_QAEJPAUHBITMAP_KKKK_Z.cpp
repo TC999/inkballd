@@ -54,7 +54,7 @@ LABEL_6:
   if ( CompatibleDC )
   {
     Helpers::SelectObject(CompatibleDC, h, 0, v15);
-    Helpers::GetObjectW(h, (void*)0x18, pv, 0, v16);
+    GetObjectW(h, (void*)0x18, pv, 0, v16);
     if ( !wSrc )
       wSrc = v20;
     v11 = hSrc;
@@ -63,7 +63,7 @@ LABEL_6:
     *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC *))(**(uint32_t **)self + 68))(*(uint32_t *)self, &hdcDest);
     if ( *(int*)v25 < 0 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
         WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x27u, &stru_1002FB8, v25[0]);
     }
     else
@@ -71,7 +71,7 @@ LABEL_6:
       StretchBlt(hdcDest, 0, 0, v18[3], v18[2], hdcSrc, xSrc, ySrc, wSrc, v11, 0xCC0020u);
       *(uint32_t *)v25 = (*(int (__stdcall **)(uint32_t, HDC))(**(uint32_t **)self + 104))(*(uint32_t *)self, hdcDest);
       if ( *(int*)v25 < 0
-        && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
+        && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control
         && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x26u, &stru_1002FB8, v25[0]);

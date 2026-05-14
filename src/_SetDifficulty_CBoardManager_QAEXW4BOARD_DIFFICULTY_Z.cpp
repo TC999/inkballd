@@ -3,9 +3,25 @@
 #include <windows.h>
 #include <new>
 
-extern "C" {
-    void KillPlayer(int reason);
-}
+extern int iBoardListCount;
+extern int iBonusBoardListCount;
+extern void* paBoardList;
+extern void* paBonusBoardList;
+extern int iBeginnerBoardsCount, iBeginnerBonusBoardsCount;
+extern void* g_aBeginnerBoards;
+extern void* g_aBeginnerBonusBoards;
+extern int iNoviceBoardsCount, iNoviceBonusBoardsCount;
+extern void* g_aNoviceBoards;
+extern void* g_aNoviceBonusBoards;
+extern int iIntermediateBoardsCount, iIntermediateBonusBoardsCount;
+extern void* g_aIntermediateBoards;
+extern void* g_aIntermediateBonusBoards;
+extern int iAdvancedBoardsCount, iAdvancedBonusBoardsCount;
+extern void* g_aAdvancedBoards;
+extern void* g_aAdvancedBonusBoards;
+extern int iExpertBoardsCount, iExpertBonusBoardsCount;
+extern void* g_aExpertBoards;
+extern void* g_aExpertBonusBoards;
 
 void SetDifficulty_CBoardManager(CBoardManager* self, int difficulty)
 {

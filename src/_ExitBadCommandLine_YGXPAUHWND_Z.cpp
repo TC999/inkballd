@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-void __stdcall __noreturn ExitBadCommandLine(HWND hWnd)
+void __stdcall ExitBadCommandLine(HWND hWnd)
 {
   uint8_t v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]

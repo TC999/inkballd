@@ -12,7 +12,7 @@ int __stdcall FreeCursorStroke()
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v1), "FreeCursorStroke", 0);
   v2 = 0;
   if ( g_pIStroke )
-    (*(void (__stdcall **)(struct IInkStroke *))(*(uint32_t *)g_pIStroke + 8))(g_pIStroke);
+    (*(void (__stdcall **)(struct IInkStroke *))(*(uint32_t *)g_pIStroke + 8))((IInkStroke*)g_pIStroke);
   g_pIStroke = 0;
   v2 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();

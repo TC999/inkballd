@@ -17,7 +17,7 @@ BOOL GetBOOLPermission_CTabLicense(CTabLicense* self, PCWSTR pwszValueName, DWOR
   if ( v5 < 0 )
     pdwValue = a2;
   v2 = pdwValue == 1;
-  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 0x10) != 0 )
+  if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 0x10) != 0 )
     WPP_SF_Sd(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xAu, &stru_10039F4, pwszValueName, pdwValue == 1);
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
   return v2;

@@ -5,7 +5,7 @@
 #include <windows.h>
 CDisplay* scalar_deleting_destructor_CDisplay(CDisplay* self, char a2)
 {
-    CDisplay::~CDisplay();
+    self->~CDisplay();
     if ((a2 & 1) != 0)
         operator delete(self);
     return self;

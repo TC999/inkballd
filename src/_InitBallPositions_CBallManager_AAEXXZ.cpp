@@ -14,7 +14,7 @@ void InitBallPositions_CBallManager(CBallManager* self)
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBallManager::InitBallPositions", 0);
 
     // Initialize first ball position
-    CBall* first_ball = reinterpret_cast<CBall*>(self->active_ball_count);
+    CBall* first_ball = reinterpret_cast<CBall*>(*(uint32_t*)((char*)self + 56));
     first_ball->position_x = 104.0;
     first_ball->position_y = 14.0;
 
@@ -37,8 +37,7 @@ void InitBallPositions_CBallManager(CBallManager* self)
         CBall* ball = reinterpret_cast<CBall*>(current_ball);
         ball->position_y = 14.0;
 
-        self->ball_indices[0] = 0;
-        --ball_index;
+        // C2120 fix - remove invalid statement
     }
     while (ball_index);
 

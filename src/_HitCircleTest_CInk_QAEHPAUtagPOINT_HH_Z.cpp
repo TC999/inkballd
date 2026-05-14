@@ -6,8 +6,7 @@
 
 #define LODWORD(x) (*(uint32_t*)&(x))
 
-extern void* g_tcid;
-extern void* g_cid;
+// g_tcid and g_cid declared in global_types.h as void*
 extern void* GetTabletContextInfo(void* tcid);
 extern void SetBoardActiveState(int active);
 extern int BltBoardToInk(void* rect);

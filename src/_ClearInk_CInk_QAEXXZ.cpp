@@ -15,10 +15,10 @@ void ClearInk_CInk(CInk* self)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "CInk::ClearInk", v4);
   v1 = *(uint32_t *)g_pIInkObject;
   v5 = 0;
-  v4[0] = (*(int (__stdcall **)(struct IInkObject *, int*))(v1 + 16))(g_pIInkObject, &v3);
+  v4[0] = (*(int (__stdcall **)(struct IInkObject *, int*))(v1 + 16))((IInkObject*)g_pIInkObject, &v3);
   if ( v4[0] >= 0 )
     v4[0] = (*(int (__stdcall **)(struct IInkObject *, uint32_t, int))(*(uint32_t *)g_pIInkObject + 68))(
-              g_pIInkObject,
+              (IInkObject*)g_pIInkObject,
               0,
               v3);
   v5 = -1;

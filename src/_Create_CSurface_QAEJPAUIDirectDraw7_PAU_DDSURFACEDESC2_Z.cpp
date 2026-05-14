@@ -1,13 +1,9 @@
-#include "global_types.h"
-#include <cstdint>
-#include <cstring>
-#include <cstdlib>
-#include <windows.h>
 #include <ddraw.h>
+#include <ddraw.h>`n#include "global_types.h"
 
 extern void* WPP_GLOBAL_Control;
 extern void __stdcall WPP_SF_d(uint64_t, uint64_t, void*, int);
-extern void* stru_1002FB8;
+extern const GUID stru_1002FB8;
 
 int Create_CSurface(CSurface* self, LPDIRECTDRAWSURFACE7 *pSurface, struct IDirectDraw7 *a2, struct _DDSURFACEDESC2 *a3)
 {
@@ -23,7 +19,7 @@ int Create_CSurface(CSurface* self, LPDIRECTDRAWSURFACE7 *pSurface, struct IDire
   *(uint32_t *)v10 = a2->lpVtbl->CreateSurface(a2, a3, pSurface, 0);
   if ( *(int*)v10 < 0 )
   {
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 16), 0x25u, &stru_1002FB8, v10[0]);
   }
   else
@@ -32,7 +28,7 @@ int Create_CSurface(CSurface* self, LPDIRECTDRAWSURFACE7 *pSurface, struct IDire
     v6 = *pSurface;
     v5->dwSize = 124;
     *(uint32_t *)v10 = v6->lpVtbl->GetSurfaceDesc(v6, v5);
-    if ( *(int*)v10 < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+    if ( *(int*)v10 < 0 && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
       WPP_SF_d(*(uint64_t*)((uint8_t*)WPP_GLOBAL_Control + 16), 0x24u, &stru_1002FB8, v10[0]);
   }
   v7 = *(uint32_t *)v10;

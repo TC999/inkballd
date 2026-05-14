@@ -13,7 +13,7 @@ char* GetBitmapRect(int a1)
 
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "GetBitmapRect", 0);
     v5 = 0;
-    BitmapRect = CGameBoard::GetBitmapRect(a1);
+    BitmapRect = CGameBoard::GetBitmapRect(g_pCGameBoard, a1);
     v5 = -1;
     v2 = BitmapRect;
     reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();

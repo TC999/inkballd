@@ -4,7 +4,7 @@
 extern "C" void* CScoreManager_vftable;
 
 extern "C" {
- CScoreManager_CScoreManager(CScoreManager* self)
+  void CScoreManager_CScoreManager(CScoreManager* self)
     {
       int hi_score; // eax
       uint8_t exception_object[12]; // [esp+10h] [ebp-20h] BYREF

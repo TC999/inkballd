@@ -33,7 +33,7 @@ void SetTile_CGameBoard(CGameBoard *self, CBoardTile*a2)
     CBoardObject::GetBoundingRect(a2, &v8);
     BoardBuffer = CDisplay::GetBoardBuffer(g_pDisplay);
     v7 = *((uint32_t *)a2 + 8);
-    p_Blt = (void (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))&BoardBuffer->lpVtbl->Blt;
+    p_Blt = (void (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))&((IDirectDrawSurface7*)BoardBuffer)->lpVtbl->Blt;
     DDrawSurface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
     (*p_Blt)((uint32_t)(uintptr_t)BoardBuffer, (uint32_t)(uintptr_t)&v8, (uint32_t)(uintptr_t)DDrawSurface, (uint32_t)v7, 0, 0);
   }

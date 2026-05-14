@@ -3,11 +3,11 @@
 #include <cstdint>
 
 extern void* CBoardTileBumper_vftable;
-CBoardTile* CBoardTileBumper_CBoardTileBumper(CBoardTileBumper* self, CBoardTile* self, int x, int y, int rect_param, int color, int direction)
+CBoardTile* CBoardTileBumper_CBoardTileBumper(CBoardTileBumper* self, int x, int y, int rect_param, int color, int direction)
 {
     uint8_t log_buffer[8];
 
-    CBoardTile::CBoardTile(self);
+    new ((CBoardTile*)self) CBoardTile();
     *reinterpret_cast<uint32_t*>(self) = reinterpret_cast<uint32_t>(&CBoardTileBumper_vftable);
     new (log_buffer) Helpers::CLogBlock(log_buffer, "CBoardTileBumper::CBoardTileBumper", 0);
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 72) = 0;
@@ -19,5 +19,5 @@ CBoardTile* CBoardTileBumper_CBoardTileBumper(CBoardTileBumper* self, CBoardTile
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 68) = 11;
     *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(self) + 88) = direction;
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
-    return self;
+    return (CBoardTile*)self;
 }

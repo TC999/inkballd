@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int GetTileCount_CTileManager(CTileManager* self, void* self)
+int GetTileCount_CTileManager(CTileManager* self)
 {
   int v2; // eax
   int v3; // esi

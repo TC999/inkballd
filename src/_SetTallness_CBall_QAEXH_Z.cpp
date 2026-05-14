@@ -2,10 +2,6 @@
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-extern void* operator new(size_t size);
-}
-
 void SetTallness_CBall(CBall *self, void* new_tallness)
 {
     bool is_same_tallness;
@@ -41,7 +37,7 @@ void SetTallness_CBall(CBall *self, void* new_tallness)
         new_ball_points = reinterpret_cast<BallPoints*>(operator new(4));
         flag = 2;
         if (new_ball_points)
-            created_points = BallPoints::BallPoints(new_ball_points, self->width);
+            created_points = BallPoints::BallPoints(new_ball_points, self->width, 0);
         else
             created_points = nullptr;
             
@@ -49,7 +45,7 @@ void SetTallness_CBall(CBall *self, void* new_tallness)
         flag = 1;
         if (old_ball_points)
         {
-            BallPoints::scalar_deleting_destructor(old_ball_points, 1);
+            BallPoints::scalar_deleting_destructor((BallPoints*)old_ball_points, 1);
             self->ball_points_ptr = nullptr;
         }
         self->ball_points_ptr = created_points;

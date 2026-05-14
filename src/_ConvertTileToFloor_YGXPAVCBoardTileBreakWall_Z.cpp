@@ -28,14 +28,14 @@ void ConvertTileToFloor(CBoardTileBreakWall*a1)
   LOBYTE(v7) = 2;
   if ( v8 )
   {
-    BitmapRect = CGameBoard::GetBitmapRect(0);
-    v4 = new (v8) CBoardTile(0, *((uint32_t *)a1 + 19), *((uint32_t *)a1 + 20), (int)BitmapRect);
+    BitmapRect = CGameBoard::GetBitmapRect(g_pCGameBoard, 0);
+    v4 = (CBoardObject*)new (v8) CBoardTile(0, *((uint32_t *)a1 + 19), *((uint32_t *)a1 + 20), (int)BitmapRect);
   }
   else
   {
     v4 = 0;
   }
-  v5 = v4;
+  v5 = (CBoardTile*)v4;
   v7 = 0;
   if ( v4 )
   {
@@ -46,7 +46,7 @@ void ConvertTileToFloor(CBoardTileBreakWall*a1)
 LABEL_8:
     operator delete(a1);
     CGameBoard::SetTile(g_pCGameBoard, v5);
-    CGameBoard::ShadowizeTile((CInk **)g_pCGameBoard, v5, 0);
+    CGameBoard::ShadowizeTile(g_pCGameBoard, v5, 0);
   }
   v7 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
