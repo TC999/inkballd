@@ -113,7 +113,7 @@ struct CGameBoard {
     static void RedrawBoardBuffer(CGameBoard* self);
     static void CreateNewSurfaces(CGameBoard* self);
     static void RandomizeBallOrder(CGameBoard* self);
-    static void DisplayFrame(CGameBoard* self, int a2, int a3);
+    static int DisplayFrame(CGameBoard* self, int a2, int a3);
     static void ResetBoard(CGameBoard* self);
     static void PerformGameUpdate(CGameBoard* self);
     static void scalar_deleting_destructor(CGameBoard* self, int flags);
