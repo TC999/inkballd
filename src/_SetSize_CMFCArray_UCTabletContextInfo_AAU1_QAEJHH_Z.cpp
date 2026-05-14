@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetSize(int this, signed int a2, int a3)
+int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(CMFCArray<CTabletContextInfo,CTabletContextInfo &>* self, int this, signed int a2, int a3)
 {
   uint32_t *v6; // ecx
   uint32_t *v7; // eax

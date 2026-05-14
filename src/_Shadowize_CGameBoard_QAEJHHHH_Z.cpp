@@ -3,8 +3,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int Shadowize_CGameBoard(CGameBoard *this, int a2, int a3, int a4, int a5)
+int Shadowize_CGameBoard(CGameBoard *self, int a2, int a3, int a4, int a5)
 {
+    void* BoardBuffer;
+    void* DDrawSurface;
+    uint32_t v16;
+    uint32_t v17;
   int v6; // ebx
   int v7; // eax
   int v8; // esi
@@ -30,9 +34,9 @@ int Shadowize_CGameBoard(CGameBoard *this, int a2, int a3, int a4, int a5)
     if ( ++v7 >= a5 )
       goto LABEL_11;
   }
-  v8 = *((uint32_t *)this + a2 + v7 * *((uint32_t *)this + 2469) + 721);
+  v8 = *((uint32_t *)self + a2 + v7 * *((uint32_t *)self + 2469) + 721);
   CBoardObject::GetBoundingRect((CBoardObject *)v8, &v16);
-  if ( *((uint32_t *)this + 2475) != 1 )
+  if ( *((uint32_t *)self + 2475) != 1 )
   {
     CBoardObject::GetBoundingRect((CBoardObject *)v8, &v17);
     BoardBuffer = CDisplay::GetBoardBuffer(g_pDisplay);

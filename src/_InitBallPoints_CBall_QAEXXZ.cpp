@@ -7,6 +7,7 @@ extern "C" {
 }
 void InitBallPoints_CBall(CBall* self)
 {
+    int BallPoint;
     uint32_t ball_data_offset;
     int max_dot_product = 0;
     int point_index = 1;

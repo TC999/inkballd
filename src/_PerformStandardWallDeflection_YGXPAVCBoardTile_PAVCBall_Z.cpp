@@ -5,6 +5,7 @@
 #include <windows.h>
 void __stdcall PerformStandardWallDeflection(CBoardTile*a1, CBall*a2)
 {
+    void* PointIntersectsWithTileDeflect;
   uint8_t v2[16]; // [esp+10h] [ebp-14h] BYREF
   int v3; // [esp+20h] [ebp-4h]
 

@@ -3,8 +3,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void SetBallOnLauncher_CBallManager(CBallManager *this, CBall*a2, CBoardTile*a3)
+void SetBallOnLauncher_CBallManager(CBallManager *self, CBall*a2, CBoardTile*a3)
 {
+    uint32_t v6;
   int v4; // eax
   uint8_t v5[8]; // [esp+10h] [ebp-1Ch] BYREF
   int v7; // [esp+28h] [ebp-4h]
@@ -12,7 +13,7 @@ void SetBallOnLauncher_CBallManager(CBallManager *this, CBall*a2, CBoardTile*a3)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBallManager::SetBallOnLauncher", 0);
   v7 = 0;
-  if ( *((uint32_t *)this + 20) )
+  if ( *((uint32_t *)self + 20) )
   {
     CBoardObject::GetCenterPoint(a3, &v6);
     v4 = *((uint32_t *)a2 + 6) / 2;

@@ -5,6 +5,13 @@
 #include <windows.h>
 int Init_CInk(CInk *self)
 {
+    void* CLSID_TpcPlatformManager;
+    void* GUID_BARRELDOWN;
+    void* IID_IInkCollect;
+    void* IID_IInkManager;
+    void* IID_IRenderInk;
+    void* IID_ITabletManager;
+    void* dword_10029E0;
   CInk *v1; // edi
   uint32_t *v2; // eax
   bool v3; // zf

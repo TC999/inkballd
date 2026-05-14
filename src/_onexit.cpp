@@ -5,6 +5,10 @@
 #include <windows.h>
 _onexit_t __cdecl _onexit(_onexit_t Func)
 {
+    void* CPPEH_RECORD;
+    void* __dllonexit;
+    void* _lock;
+    void* _unlock;
     void* ms_exc; // auto-declared
   int (__cdecl *v2)(); // [esp+10h] [ebp-24h]
   int v3; // [esp+14h] [ebp-20h] BYREF

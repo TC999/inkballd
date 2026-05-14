@@ -3,8 +3,14 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int RestoreSurfaces_CGameBoard(CScoreManager * *this)
+int RestoreSurfaces_CGameBoard(CScoreManager * *self)
 {
+    void* BackBuffer;
+    void* BoardBuffer;
+    void* DirectDraw;
+    void* FrontBuffer;
+    void* InkBuffer;
+    uint32_t v12;
   int v3; // esi
   int v9; // eax
   uint8_t v10[8]; // [esp+10h] [ebp-20h] BYREF
@@ -50,11 +56,11 @@ int RestoreSurfaces_CGameBoard(CScoreManager * *this)
         v13[0] = v3;
         if ( v3 >= 0 )
         {
-          CScoreManager::Restore(this[2477]);
-          CTileManager::Restore(this[2478]);
-          CBallManager::Restore(this[2476]);
-          CTimeManager::Restore(this[2479]);
-          CGameBoard::RedrawBoardBuffer((CGameBoard *)this);
+          CScoreManager::Restore(self[2477]);
+          CTileManager::Restore(self[2478]);
+          CBallManager::Restore(self[2476]);
+          CTimeManager::Restore(self[2479]);
+          CGameBoard::RedrawBoardBuffer((CGameBoard *)self);
           v13[0] = 0;
           v3 = 0;
         }

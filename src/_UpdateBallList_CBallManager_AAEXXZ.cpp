@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-CBall* UpdateBallList_CBallManager(CBallManager *this)
+CBall* UpdateBallList_CBallManager(CBallManager *self)
 {
     int old_active_count;
     uint32_t* ball_list_ptr;
@@ -26,8 +26,8 @@ CBall* UpdateBallList_CBallManager(CBallManager *this)
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::UpdateBallList", 0);
     flag = 0;
     active_count = 0;
-    old_active_count = this->active_ball_count;
-    ball_list_ptr = reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(this) + 56);
+    old_active_count = self->active_ball_count;
+    ball_list_ptr = reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(self) + 56);
     max_balls_count = 5;
     
     do
@@ -40,13 +40,13 @@ CBall* UpdateBallList_CBallManager(CBallManager *this)
     }
     while (!iteration_complete);
     
-    this->active_ball_count = old_active_count;
+    self->active_ball_count = old_active_count;
     reinterpret_cast<uint32_t*>(reinterpret_cast<uint8_t*>(old_active_count) + 156)[0] = 0;
     
-    current_ball_index = this->ball_start_index;
-    if (current_ball_index < current_ball_index + this->ball_count)
+    current_ball_index = self->ball_start_index;
+    if (current_ball_index < current_ball_index + self->ball_count)
     {
-        ball_indices_ptr = reinterpret_cast<int*>(reinterpret_cast<uint8_t*>(this) + 56);
+        ball_indices_ptr = reinterpret_cast<int*>(reinterpret_cast<uint8_t*>(self) + 56);
         do
         {
             current_ball = GetBall(current_ball_index);
@@ -61,7 +61,7 @@ CBall* UpdateBallList_CBallManager(CBallManager *this)
                 break;
             ++current_ball_index;
         }
-        while (current_ball_index < this->ball_count + this->ball_start_index);
+        while (current_ball_index < self->ball_count + self->ball_start_index);
     }
     
     flag = -1;

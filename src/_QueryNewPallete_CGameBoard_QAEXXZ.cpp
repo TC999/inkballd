@@ -5,6 +5,7 @@
 #include <windows.h>
 void QueryNewPallete_CGameBoard(CGameBoard *self)
 {
+    void* LPDIRECTDRAWPALETTE;
     void* FrontBuffer;
     uint32_t v2;
     uint32_t v4;

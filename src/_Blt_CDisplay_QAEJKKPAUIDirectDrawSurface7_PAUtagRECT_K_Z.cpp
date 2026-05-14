@@ -8,6 +8,8 @@ int Blt_CDisplay(CDisplay *self,
         uint32_t a3,
         uint32_t a6)
 {
+    void* a4;
+    void* a5;
   int v7; // eax
   int v8; // esi
   uint8_t v10[8]; // [esp+10h] [ebp-18h] BYREF

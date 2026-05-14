@@ -6,8 +6,9 @@ extern "C" {
 typedef int (__stdcall *CollisionCheckFunc)(const POINT*, const CBall*);
 }
 
-int Collide_CBall(CBall *this, CollisionCheckFunc collision_check)
+int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
 {
+    int BallPoint;
     int last_collision_point = -1;
     int first_collision_point = -1;
     BallPoint* next_point;
@@ -22,12 +23,12 @@ int Collide_CBall(CBall *this, CollisionCheckFunc collision_check)
 
     Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)log_buffer, "CBall::Collide", 0);
     flag = 0;
-    CBall::InitBallPoints(this);
+    CBall::InitBallPoints(self);
     collision_occurred = 0;
     last_collision_point = -1;
     first_collision_point = -1;
-    CBoardObject::GetCenterPoint(this, &center_point);
-    next_point = CBall::GetNextPoint(this);
+    CBoardObject::GetCenterPoint(self, &center_point);
+    next_point = CBall::GetNextPoint(self);
     if (!next_point)
         goto LABEL_12;
     
@@ -36,15 +37,15 @@ int Collide_CBall(CBall *this, CollisionCheckFunc collision_check)
         collision_point.x = center_point.x + next_point->x;
         collision_point.y = center_point.y + next_point->y;
         
-        if (collision_check(&collision_point, this))
+        if (collision_check(&collision_point, self))
         {
-            prev_ball_point = CBall::GetPrevBallPoint(this);
+            prev_ball_point = CBall::GetPrevBallPoint(self);
             if (first_collision_point == -1)
                 first_collision_point = prev_ball_point;
             last_collision_point = prev_ball_point;
             collision_occurred = 1;
         }
-        next_point = CBall::GetNextPoint(this);
+        next_point = CBall::GetNextPoint(self);
     }
     while (next_point);
     
@@ -53,8 +54,8 @@ int Collide_CBall(CBall *this, CollisionCheckFunc collision_check)
         collision_index = (last_collision_point + first_collision_point) / 2;
         if (last_collision_point < first_collision_point)
             collision_index = (collision_index + 16) % 32;
-        point_data = reinterpret_cast<int*>(CBall::GetPoint(this, collision_index));
-        CBall::Deflect(this, static_cast<double>(point_data[0]), static_cast<double>(point_data[1]));
+        point_data = reinterpret_cast<int*>(CBall::GetPoint(self, collision_index));
+        CBall::Deflect(self, static_cast<double>(point_data[0]), static_cast<double>(point_data[1]));
         flag = 1;
     }
     else

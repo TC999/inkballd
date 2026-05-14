@@ -3,8 +3,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int ShadowizeTile_CGameBoard(CInk * *this, CBoardTile*a2, int a3)
+int ShadowizeTile_CGameBoard(CInk * *self, CBoardTile*a2, int a3)
 {
+    uint32_t v7;
   int v4; // edi
   int v5; // eax
   uint8_t v8[8]; // [esp+20h] [ebp-18h] BYREF
@@ -16,12 +17,12 @@ int ShadowizeTile_CGameBoard(CInk * *this, CBoardTile*a2, int a3)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CGameBoard::ShadowizeTile", v9);
   v10 = 0;
   CBoardObject::GetBoundingRect(a2, &v7);
-  v5 = CGameBoard::BltBoardToInk((CGameBoard *)this, &v7, 1);
+  v5 = CGameBoard::BltBoardToInk((CGameBoard *)self, &v7, 1);
   v9[0] = v5;
   if ( v5 >= 0 )
   {
-    CGameBoard::AddDisplayUpdateRect((CGameBoard *)this, &v7);
-    CInk::SetInkRedrawFlag(this[2481]);
+    CGameBoard::AddDisplayUpdateRect((CGameBoard *)self, &v7);
+    CInk::SetInkRedrawFlag(self[2481]);
     v9[0] = 0;
   }
   else

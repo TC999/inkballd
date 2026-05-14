@@ -3,8 +3,28 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void Restore_CTimeManager(CTimeManager *this)
+void Restore_CTimeManager(CTimeManager *self)
 {
+    void* DDrawSurface;
+    void* lpVtbl;
+    uint32_t v12;
+    uint32_t v13;
+    uint32_t v14;
+    uint32_t v15;
+    uint32_t v16;
+    uint32_t v17;
+    uint32_t v18;
+    uint32_t v19;
+    uint32_t v20;
+    uint32_t v21;
+    uint32_t v22;
+    uint32_t v23;
+    uint32_t v3;
+    uint32_t v31;
+    uint32_t v5;
+    uint32_t v7;
+    uint32_t v8;
+    uint32_t v9;
   uint32_t v6; // esi
   uint32_t v10; // edx
   bool v11; // zf
@@ -22,7 +42,7 @@ void Restore_CTimeManager(CTimeManager *this)
   uint32_t v36; // [esp+2Ch] [ebp-10h]
   int v37; // [esp+38h] [ebp-4h]
 
-  v33 = this;
+  v33 = self;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v30, "CTimeManager::Restore", 0);
   v37 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
@@ -33,8 +53,8 @@ void Restore_CTimeManager(CTimeManager *this)
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 109);
   v5 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   lpVtbl->BltFast((IDirectDrawSurface7 *)v34, 0, 0, v5, (LPRECT)BitmapRect, 0);
-  v6 = *((uint32_t *)this + 3) - dwLeftDrawDif - 9;
-  v35 = *((uint32_t *)this + 9) / 0x3E8u;
+  v6 = *((uint32_t *)self + 3) - dwLeftDrawDif - 9;
+  v35 = *((uint32_t *)self + 9) / 0x3E8u;
   v36 = dwTopDrawLoc;
   v7 = CSurface::GetDDrawSurface(g_pTimeManagerSurface);
   v8 = v7->lpVtbl;

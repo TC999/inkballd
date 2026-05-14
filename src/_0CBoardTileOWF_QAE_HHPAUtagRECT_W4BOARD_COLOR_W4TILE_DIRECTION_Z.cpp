@@ -1,4 +1,5 @@
 #include "global_types.h"
+#include <new>
 #include <cstdint>
 
 extern void* CBoardTileOWF_vftable;

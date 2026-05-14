@@ -10,7 +10,7 @@ extern "C" void* GetBitmapRect(int index);
 extern "C" void UpdateBoardTile(void* tile);
 extern "C" void ShadowizeTile(void* tile);
 
-void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *this, uint32_t delta_time)
+void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *self, uint32_t delta_time)
 {
     uint32_t animation_state;
     uint32_t color_index;
@@ -21,10 +21,10 @@ void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *this, uint32_t delta_
     int flag;
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLColored::UpdateObject", 0);
-    this->animation_timer += delta_time;
-    animation_state = this->animation_state;
-    color_index = this->color_index;
-    animation_timer = this->animation_timer;
+    self->animation_timer += delta_time;
+    animation_state = self->animation_state;
+    color_index = self->color_index;
+    animation_timer = self->animation_timer;
     flag = 0;
     current_color = color_index;
     
@@ -32,9 +32,9 @@ void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *this, uint32_t delta_
     {
         if (animation_state == 1)
         {
-            if (BallOnTile(this))
+            if (BallOnTile(self))
                 goto LABEL_13;
-            this->animation_state = 2;
+            self->animation_state = 2;
             goto LABEL_12;
         }
         if (color_index < 4 && animation_timer > 50)
@@ -47,18 +47,18 @@ void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *this, uint32_t delta_
     {
         new_color_index = color_index - 1;
 LABEL_11:
-        this->color_index = new_color_index;
+        self->color_index = new_color_index;
 LABEL_12:
-        this->animation_timer = 0;
+        self->animation_timer = 0;
     }
     
 LABEL_13:
-    uint32_t final_color = this->color_index;
+    uint32_t final_color = self->color_index;
     if (final_color != current_color)
     {
-        this->bitmap_rect = GetBitmapRect(5 * final_color + this->tile_type + 77);
-        UpdateBoardTile(this);
-        ShadowizeTile(this);
+        self->bitmap_rect = GetBitmapRect(5 * final_color + self->tile_type + 77);
+        UpdateBoardTile(self);
+        ShadowizeTile(self);
     }
     
     flag = -1;

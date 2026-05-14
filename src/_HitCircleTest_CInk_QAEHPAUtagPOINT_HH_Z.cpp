@@ -5,6 +5,7 @@
 #include <windows.h>
 int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
 {
+    void* TabletContextInfo;
   int v5; // ecx
   uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
   uint32_t v9[2]; // [esp+64h] [ebp-2Ch] BYREF

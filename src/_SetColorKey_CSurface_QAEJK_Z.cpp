@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int SetColorKey_CSurface(CSurface *this, COLORREF a2)
+int SetColorKey_CSurface(CSurface *self, COLORREF a2)
 {
   int v3; // eax
   int v4; // esi
@@ -17,12 +17,12 @@ int SetColorKey_CSurface(CSurface *this, COLORREF a2)
   v10[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CSurface::SetColorKey", v10);
   v11 = 0;
-  if ( *(uint32_t *)this )
+  if ( *(uint32_t *)self )
   {
-    *((uint32_t *)this + 32) = 1;
-    v9[0] = CSurface::ConvertGDIColor(this, a2);
-    v6 = CSurface::ConvertGDIColor(this, a2);
-    v7 = *(uint32_t *)this;
+    *((uint32_t *)self + 32) = 1;
+    v9[0] = CSurface::ConvertGDIColor(self, a2);
+    v6 = CSurface::ConvertGDIColor(self, a2);
+    v7 = *(uint32_t *)self;
     v9[1] = v6;
     v3 = (*(int (__stdcall **)(int, int, uint32_t *))(*(uint32_t *)v7 + 116))(v7, 8, v9);
   }

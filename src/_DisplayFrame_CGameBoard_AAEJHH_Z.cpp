@@ -5,6 +5,7 @@
 #include <windows.h>
 int DisplayFrame_CGameBoard(CGameBoard* self, int a2, int a3)
 {
+    void* BackBuffer;
     void* PlayingAreaRect;
     uint32_t v11;
     uint32_t v12;

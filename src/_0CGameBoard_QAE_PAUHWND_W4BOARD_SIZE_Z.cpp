@@ -2,8 +2,7 @@
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
-#include <windows.h>
-uint32_t *CGameBoard::CGameBoard(uint32_t *this, HWND a2, void*a3)
+#include <windows.h>CGameBoard* Ctor_CGameBoard(uint32_t *self, HWND a2, void*a3)
 {
   CTimeManager *v4; // edi
   double v5; // st7

@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-void UpdateObject_CBall(CBall *this, uint32_t delta_time)
+void UpdateObject_CBall(CBall *self, uint32_t delta_time)
 {
     bool should_update;
     double time_factor;
@@ -13,27 +13,27 @@ void UpdateObject_CBall(CBall *this, uint32_t delta_time)
     int flag;
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBall::UpdateObject", 0);
-    should_update = this->update_flags == 0;
+    should_update = self->update_flags == 0;
     flag = 0;
     if (!should_update)
     {
         time_factor = static_cast<double>(delta_time) / 1000.0;
-        this->old_position_x = this->position_x;
-        this->old_position_y = this->position_y;
-        this->position_x = this->velocity_x * time_factor + this->position_x;
-        this->position_y = time_factor * this->velocity_y + this->position_y;
-        if (!CBall::CheckBoardBounds(this))
+        self->old_position_x = self->position_x;
+        self->old_position_y = self->position_y;
+        self->position_x = self->velocity_x * time_factor + self->position_x;
+        self->position_y = time_factor * self->velocity_y + self->position_y;
+        if (!CBall::CheckBoardBounds(self))
         {
-            CBall::AddRef(this);
-            CheckForBallCollisionWithNonDeflectingTile(this);
-            if (static_cast<int>(this->position_x) != static_cast<int>(this->old_position_x) ||
-                static_cast<int>(this->position_y) != static_cast<int>(this->old_position_y))
+            CBall::AddRef(self);
+            CheckForBallCollisionWithNonDeflectingTile(self);
+            if (static_cast<int>(self->position_x) != static_cast<int>(self->old_position_x) ||
+                static_cast<int>(self->position_y) != static_cast<int>(self->old_position_y))
             {
-                CheckForBallCollisionWithBall(this);
-                CheckForBallCollisionWithInk(this);
-                CheckForBallCollisionWithTile(this);
+                CheckForBallCollisionWithBall(self);
+                CheckForBallCollisionWithInk(self);
+                CheckForBallCollisionWithTile(self);
             }
-            CBall::Release(this);
+            CBall::Release(self);
         }
     }
     flag = -1;

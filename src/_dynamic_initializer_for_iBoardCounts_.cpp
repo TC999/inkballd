@@ -6,6 +6,11 @@
 
 int dynamic_initializer_for__iBoardCounts__()
 {
+    void* dword_10AF5A4;
+    void* dword_10AF5A8;
+    void* dword_10AF5AC;
+    void* dword_10AF5B0;
+    void* dword_10AF5B4;
   int result; // eax
 
   iBoardCounts = iBeginnerBoardsCount;

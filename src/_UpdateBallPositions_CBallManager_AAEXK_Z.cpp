@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-void UpdateBallPositions_CBallManager(CBallManager *this, uint32_t delta_time)
+void UpdateBallPositions_CBallManager(CBallManager *self, uint32_t delta_time)
 {
     double time_factor;
     uint32_t active_ball_offset;
@@ -17,7 +17,7 @@ void UpdateBallPositions_CBallManager(CBallManager *this, uint32_t delta_time)
 
     Helpers::CLogBlock::CLogBlock(&log_buffer, "CBallManager::UpdateBallPositions", 0);
     time_factor = static_cast<double>(delta_time) / 1000.0;
-    active_ball_offset = this->active_ball_count;
+    active_ball_offset = self->active_ball_count;
     
     CBall* first_ball = reinterpret_cast<CBall*>(active_ball_offset);
     if (first_ball->position_x > 6.0)
@@ -34,7 +34,7 @@ void UpdateBallPositions_CBallManager(CBallManager *this, uint32_t delta_time)
         first_ball->position_x = 6.0;
     }
     
-    ball_ptr = reinterpret_cast<uint8_t*>(this) + 60;
+    ball_ptr = reinterpret_cast<uint8_t*>(self) + 60;
     for (ball_index = 5; ball_index > 0; --ball_index)
     {
         current_ball = *reinterpret_cast<uint32_t*>(ball_ptr);

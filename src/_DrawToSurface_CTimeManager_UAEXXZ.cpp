@@ -6,6 +6,7 @@
 
 void DrawToSurface_CTimeManager(CTimeManager* self)
 {
+    void* Src;
     uint32_t v20;
     uint32_t v26;
     uint32_t v28;
@@ -51,7 +52,7 @@ void DrawToSurface_CTimeManager(CTimeManager* self)
   v3 = *((uint32_t *)self + 3) - dwLeftDrawDif - 9;
   v43 = 0;
   v42 = v3;
-  v40 = (struct IDirectDrawSurface7 *)v2;
+  v40 = (struct IDirectDrawSurface7 *)(uintptr_t)v2;
   v41 = dwTopDrawLoc;
   DDrawSurface = (uint32_t)CSurface::GetDDrawSurface(g_pTimeManagerSurface);
   v39 = (struct IDirectDrawSurface7 *)(*(uint32_t *)DDrawSurface + 28);

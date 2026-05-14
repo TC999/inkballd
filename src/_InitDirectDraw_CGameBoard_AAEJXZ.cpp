@@ -5,6 +5,7 @@
 #include <windows.h>
 int InitDirectDraw_CGameBoard(CGameBoard *self)
 {
+    void* LPDDCOLORKEY;
     void* InkBuffer;
   int v2; // esi
   void*v3; // ecx

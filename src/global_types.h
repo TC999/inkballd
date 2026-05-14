@@ -136,6 +136,8 @@ struct CBall {
     double velocity_y;
     double position_x;
     double position_y;
+    double old_position_x;
+    double old_position_y;
     uint32_t update_flags;
     uint32_t best_point_index;
     uint32_t current_point_index;
@@ -143,6 +145,15 @@ struct CBall {
     uint32_t width;
     uint32_t height;
     uint32_t radius;
+    uint32_t hidden_flag;
+    uint32_t break_point_index;
+    uint32_t drain_point_index;
+    uint32_t collision_flags;
+    double accumulator_x;
+    double accumulator_y;
+    double mass;
+    void* ball_points_data;
+    void* ball_points_ptr;
     static int* GetDrainPoints(CBall* self);
     static int* GetBreakWallPoints(CBall* self);
     static int GetCurrBallPoint(CBall* self);
@@ -159,6 +170,10 @@ struct CBall {
     static int BallsIntersect(CBall* self, CBall* a2);
     static int VerifyCollision(CBall* self, void* rect, void* point);
     static void scalar_deleting_destructor(CBall* self, int flags);
+    static int GetNextPoint(CBall* self);
+    static int GetPoint(CBall* self, int index);
+    static void InitBallPoints(CBall* self);
+    static int MovingTowards(CBall* self, void* a2);
 };
 
 struct CMovingObject;
@@ -257,7 +272,6 @@ struct CBoardTileRLGray {
 };
 struct CRegistryManager;
 struct CTabLicense;
-struct CBallManager;
 struct BallPoints;
 struct CBoardObject;
 
@@ -336,8 +350,14 @@ struct CSurface {
 
 struct CBoardTileRLColored {
     void* vftable;
+    uint32_t unk[20];
+    uint32_t animation_timer;
+    uint32_t animation_state;
+    uint32_t color_index;
+    char* bitmap_rect;
     static void ToggleState(void* self);
 };
+
 
 struct CUIBarObject {
     void* vftable;
@@ -372,6 +392,7 @@ struct CDisplay {
     static void* GetBackBuffer(void* self);
     static void* GetFrontBuffer(void* self);
     static int CreateSurfaceFromBitmap(CDisplay* self, void** surface, int a3, int a4, int a5);
+    static int CreateSurface(CDisplay* self, void** surface, int a3, int a4);
     static int CreateWindowedDisplay(CDisplay* self);
     static int CreatePaletteFromBitmap(CDisplay* self);
     static void scalar_deleting_destructor(CDisplay* self, int flags);
@@ -379,6 +400,17 @@ struct CDisplay {
 
 struct CBallManager {
     void* vftable;
+    uint32_t active_ball_count;
+    uint32_t ball_start_index;
+    uint32_t ball_count;
+    uint32_t next_ball_timer;
+    uint32_t spawn_timer;
+    uint32_t spawn_delay;
+    uint32_t timer_started;
+    uint32_t generator_count;
+    void* generators;
+    uint32_t ball_points_data_offset;
+    void* ball_indices;
     CBallManager();
     ~CBallManager();
     static int InitSurface(CBallManager* self);

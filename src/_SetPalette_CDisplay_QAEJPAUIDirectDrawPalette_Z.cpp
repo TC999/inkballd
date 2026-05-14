@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int SetPalette_CDisplay(CDisplay *this, struct IDirectDrawPalette *a2)
+int SetPalette_CDisplay(CDisplay *self, struct IDirectDrawPalette *a2)
 {
   int v3; // eax
   int v4; // esi
@@ -14,9 +14,9 @@ int SetPalette_CDisplay(CDisplay *this, struct IDirectDrawPalette *a2)
   v7[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CDisplay::SetPalette", v7);
   v8 = 0;
-  if ( *((uint32_t *)this + 2) )
-    v3 = (*(int (__stdcall **)(uint32_t, struct IDirectDrawPalette *))(**((uint32_t **)this + 2) + 124))(
-           *((uint32_t *)this + 2),
+  if ( *((uint32_t *)self + 2) )
+    v3 = (*(int (__stdcall **)(uint32_t, struct IDirectDrawPalette *))(**((uint32_t **)self + 2) + 124))(
+           *((uint32_t *)self + 2),
            a2);
   else
     v3 = -2147467261;

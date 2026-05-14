@@ -3,7 +3,7 @@
 #include <cmath>
 #include <windows.h>
 
-int Collide_CBall(CBall *this, CBall *other_ball)
+int Collide_CBall(CBall *self, CBall *other_ball)
 {
     int collision_occurred = 0;
     double this_radius_half;
@@ -30,16 +30,16 @@ int Collide_CBall(CBall *this, CBall *other_ball)
     collision_occurred = 0;
     Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)log_buffer, "CBall::Collide", 0);
     flag = 0;
-    if (!CBall::BallsIntersect(this, other_ball))
+    if (!CBall::BallsIntersect(self, other_ball))
         goto LABEL_4;
     
     collision_occurred = 1;
-    if (CBall::MovingTowards(this, other_ball))
+    if (CBall::MovingTowards(self, other_ball))
     {
-        this_radius_half = static_cast<double>(this->radius) * 0.5;
+        this_radius_half = static_cast<double>(self->radius) * 0.5;
         other_radius_half = static_cast<double>(other_ball->radius) * 0.5;
-        this_center_x = this->position_x + this_radius_half;
-        this_center_y = this_radius_half + this->position_y;
+        this_center_x = self->position_x + this_radius_half;
+        this_center_y = this_radius_half + self->position_y;
         other_center_x = other_ball->position_x + other_radius_half;
         other_center_y = other_radius_half + other_ball->position_y;
         
@@ -49,23 +49,23 @@ int Collide_CBall(CBall *this, CBall *other_ball)
         normal_x = distance_x / distance_magnitude;
         normal_y = distance_y / distance_magnitude;
         
-        relative_velocity_x = normal_y * this->velocity_y + normal_x * this->velocity_x -
+        relative_velocity_x = normal_y * self->velocity_y + normal_x * self->velocity_x -
                              (other_ball->velocity_y * normal_y + other_ball->velocity_x * normal_x);
-        impulse_magnitude = (relative_velocity_x + relative_velocity_x) / (this->mass + other_ball->mass);
+        impulse_magnitude = (relative_velocity_x + relative_velocity_x) / (self->mass + other_ball->mass);
         
-        this->velocity_x = this->velocity_x - other_ball->mass * impulse_magnitude * normal_x;
-        this->velocity_y = this->velocity_y - other_ball->mass * impulse_magnitude * normal_y;
-        other_ball->velocity_x = normal_x * (impulse_magnitude * this->mass) + other_ball->velocity_x;
-        other_ball->velocity_y = normal_y * (impulse_magnitude * this->mass) + other_ball->velocity_y;
+        self->velocity_x = self->velocity_x - other_ball->mass * impulse_magnitude * normal_x;
+        self->velocity_y = self->velocity_y - other_ball->mass * impulse_magnitude * normal_y;
+        other_ball->velocity_x = normal_x * (impulse_magnitude *self->mass) + other_ball->velocity_x;
+        other_ball->velocity_y = normal_y * (impulse_magnitude *self->mass) + other_ball->velocity_y;
         
-        this->collision_flags = other_ball->collision_flags + 42;
-        other_ball->collision_flags = this->collision_flags + 42;
+        self->collision_flags = other_ball->collision_flags + 42;
+        other_ball->collision_flags = self->collision_flags + 42;
     }
     else
     {
 LABEL_4:
-        this->collision_flags = other_ball->collision_flags + 42;
-        other_ball->collision_flags = this->collision_flags + 42;
+        self->collision_flags = other_ball->collision_flags + 42;
+        other_ball->collision_flags = self->collision_flags + 42;
     }
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
