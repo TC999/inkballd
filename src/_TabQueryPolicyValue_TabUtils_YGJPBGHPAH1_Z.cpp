@@ -90,3 +90,4 @@ int __stdcall TabQueryPolicyValue_TabUtils(void* _self, LPCWSTR value_name,
   ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
   return return_code;
 }
+}
