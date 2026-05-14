@@ -402,6 +402,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\simple_test.cpp" />
     <ClCompile Include="src\stubs.cpp" />
+    <ClCompile Include="src\link_stubs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
