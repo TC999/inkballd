@@ -252,7 +252,7 @@
     <ClCompile Include="src\_DeflectBall_CBoardTileRLGray_UAEXAAVCBall_Z.cpp" />
     <ClCompile Include="src\_DeflectBall_CBoardTileWall_UAEXAAVCBall_Z.cpp" />
     <ClCompile Include="src\_DestroyObjects_CDisplay_UAEJXZ.cpp" />
-    <ClCompile Include="src\_DispError_YGXPAUHWND_II_Z.cpp" />
+    <ClCompile Include="src\DispError.cpp" />
     <ClCompile Include="src\_DisplayBoardLoadMsg_YGXXZ.cpp" />
     <ClCompile Include="src\_DisplayFrame_CGameBoard_AAEJHH_Z.cpp" />
     <ClCompile Include="src\_DrawBitmap_CSurface_QAEJPAUHBITMAP_KKKK_Z.cpp" />
@@ -304,7 +304,7 @@
     <ClCompile Include="src\_GetTileByIndices_CGameBoard_QAEPAVCBoardTile_HH_Z.cpp" />
     <ClCompile Include="src\_GetTileCount_CTileManager_QAEHXZ.cpp" />
     <ClCompile Include="src\_GetTime_CTimeManager_QAEKXZ.cpp" />
-<ClCompile Include="src\_HitCircleTest_CInk_QAEHPAUtagPOINT_HH_Z.cpp" />
+    <ClCompile Include="src\_HitCircleTest_CInk_QAEHPAUtagPOINT_HH_Z.cpp" />
     <ClCompile Include="src\_Init_CBallManager_QAEXHHKHH_Z.cpp" />
     <ClCompile Include="src\_Init_CGameBoard_QAEJXZ.cpp" />
     <ClCompile Include="src\_Init_CGameManager_QAEJXZ.cpp" />
@@ -348,7 +348,7 @@
     <ClCompile Include="src\_RedrawBoardBuffer_CGameBoard_QAEJXZ.cpp" />
     <ClCompile Include="src\_Release_CBall_QAEKXZ.cpp" />
     <ClCompile Include="src\_ReleaseInkBufferHDC_YGXPAUHDC_Z.cpp" />
-<ClCompile Include="src\_ResetBoard_CGameBoard_QAEXXZ.cpp" />
+    <ClCompile Include="src\_ResetBoard_CGameBoard_QAEXXZ.cpp" />
     <ClCompile Include="src\_ResetScore_CScoreManager_QAEXXZ.cpp" />
     <ClCompile Include="src\_ResetTileCount_CTileManager_QAEXXZ.cpp" />
     <ClCompile Include="src\_RestoreSurfaces_CGameBoard_QAEJXZ.cpp" />

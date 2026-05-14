@@ -94,6 +94,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
   }
   if (EnableClassicWispWithPtr(&wisp_ptr))
   {
+    printf("[wWinMain] EnableClassicWispWithPtr SUCCESS\n");
     g_hInst = hInstance;
     if (WinInit(hInstance, nShowCmd, reinterpret_cast<HWND*>(&hInstance), &accel_table) < 0)
       goto LABEL_61;
@@ -110,6 +111,7 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     init_step = 0;
     if (CGameManager_Init(game_manager) >= 0)
     {
+      printf("[wWinMain] CGameManager_Init SUCCESS\n");
       difficulty = CRegistryManager::ReadDifficulty((CRegistryManager*)&g_CRegistryManager);
       CBoardManager::SetDifficulty((CBoardManager*)&g_CBoardManager, difficulty);
       if (!*lpCmdLine)
