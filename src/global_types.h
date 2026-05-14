@@ -641,8 +641,8 @@ extern "C" {
     extern uint32_t dword_10B0674;
     extern uint32_t dword_10B0678;
     extern uint32_t dword_10B0670;
-    extern void* g_tcid;
-    extern void* g_cid;
+    extern uint32_t g_tcid;
+    extern uint32_t g_cid;
     extern uint32_t dword_10B068C;
     extern void* g_arrTCI;
     extern uint32_t dword_105C81C;
@@ -775,7 +775,7 @@ extern int __onexitbegin;
 // External data references
 // ============================================================================
 extern "C" {
-    extern void* WPP_GLOBAL_Control;
+    extern uint64_t WPP_GLOBAL_Control;
     extern struct WppControl WPP_MAIN_CB;
     extern const GUID* WPP_ThisDir_CTLGUID_ControlGuid;
     extern const GUID* WPP_ThisDir_CTLGUID_MobTabPerfTraceProvider;

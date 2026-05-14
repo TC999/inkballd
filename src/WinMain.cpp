@@ -76,11 +76,11 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
     _WinSqmDWORDEvent(&SQM_INCREMENT_DWORD, 0, 157, 1);
   SetProcessDPIAware();
   result = RegisterApplicationRestart(L" ", 0);
-  if (result < 0 && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
-    WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xCu, &stru_1003520, result);
+  if (result < 0 && reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+    WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0xCu, &stru_1003520, result);
   coinit_result = RegisterApplicationRecoveryCallback(InkBallRecovery, 0, 0, 0);
-  if (coinit_result < 0 && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
-    WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xDu, &stru_1003520, coinit_result);
+  if (coinit_result < 0 && reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+    WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0xDu, &stru_1003520, coinit_result);
   wParam = -1;
   wisp_ptr = 0;
   timer_handle = 0;
@@ -88,8 +88,8 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCm
   com_initialized = create_result >= 0;
   if (create_result < 0)
   {
-    if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
-      WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xEu, &stru_1003520, create_result);
+    if (reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+      WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0xEu, &stru_1003520, create_result);
     goto LABEL_61;
   }
   if (EnableClassicWispWithPtr(&wisp_ptr))
@@ -143,10 +143,10 @@ LABEL_43:
       }
       SetMenuChecks((HWND)hInstance);
       timer_handle = CreateWaitableTimerW(0, 0, 0);
-      if (!timer_handle && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
+      if (!timer_handle && reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 4) != 0)
       {
         last_error = GetLastError();
-        WPP_SF_d(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0x12u, &stru_1003520, last_error);
+        WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x12u, &stru_1003520, last_error);
       }
       due_time.QuadPart = -150000;
       SetWaitableTimer(timer_handle, &due_time, 0, 0, 0, 0);
@@ -174,12 +174,12 @@ LABEL_52:
       wParam = msg.wParam;
       goto LABEL_61;
     }
-    if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
-      WPP_SF_(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0x11u, &stru_1003520);
+    if (reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+      WPP_SF_(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x11u, &stru_1003520);
   }
-  else if (WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
+  else if (reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && ((*reinterpret_cast<uint8_t*>(WPP_GLOBAL_Control) + 28) & 8) != 0)
   {
-    WPP_SF_(*reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2, 0xFu, &stru_1003520);
+    WPP_SF_(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0xFu, &stru_1003520);
   }
   DispError(0, (HINSTANCE)0x3AA3, (HINSTANCE)0x3AAA);
 LABEL_61:

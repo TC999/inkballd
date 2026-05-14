@@ -82,6 +82,8 @@ void* CSink_vftable = nullptr;
 uint32_t dwTimeDigitWidth = 0;
 uint32_t dwTopDrawLoc = 0;
 uint32_t dwLeftDrawDif = 0;
+uint32_t g_tcid = 0;
+uint32_t g_cid = 0;
 
 // ============================================================================
 // Missing function stubs
