@@ -305,14 +305,12 @@
     <ClCompile Include="src\_GetTileCount_CTileManager_QAEHXZ.cpp" />
     <ClCompile Include="src\_GetTime_CTimeManager_QAEKXZ.cpp" />
 <ClCompile Include="src\_HitCircleTest_CInk_QAEHPAUtagPOINT_HH_Z.cpp" />
-    <ClCompile Include="src\_IncrementScore_CScoreManager_QAEHX_Z.cpp" />
     <ClCompile Include="src\_Init_CBallManager_QAEXHHKHH_Z.cpp" />
     <ClCompile Include="src\_Init_CGameBoard_QAEJXZ.cpp" />
     <ClCompile Include="src\_Init_CGameManager_QAEJXZ.cpp" />
     <ClCompile Include="src\_Init_CInk_QAEJXZ.cpp" />
     <ClCompile Include="src\_InitBallPoints_CBall_QAEXXZ.cpp" />
     <ClCompile Include="src\_InitBallPositions_CBallManager_AAEXXZ.cpp" />
-    <ClCompile Include="src\_InitDirectDraw_CGameBoard_AAEXXZ.cpp" />
     <ClCompile Include="src\_InitSurface_CBallManager_QAEJXZ.cpp" />
     <ClCompile Include="src\_InitSurface_CScoreManager_QAEJXZ.cpp" />
     <ClCompile Include="src\_InitSurface_CTileManager_QAEJXZ.cpp" />
