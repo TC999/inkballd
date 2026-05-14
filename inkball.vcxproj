@@ -325,7 +325,7 @@
     <ClCompile Include="src\_LoadNextLevel_YGXXZ.cpp" />
     <ClCompile Include="src\_LoadRandomBoardFromResources_CBoardManager_QAEXPAEAAH_Z.cpp" />
     <ClCompile Include="src\_LoadRandomBonusBoardFromResources_CBoardManager_QAEXPAEAAH_Z.cpp" />
-    <ClCompile Include="src\_MainWndProc_YGJPAUHWND_IIJ_Z.cpp" />
+    <ClCompile Include="src\_MainWndProc.cpp" />
     <ClCompile Include="src\_MovingTowards_CBall_QAEHPAV1_Z.cpp" />
     <ClCompile Include="src\_NormalizeRect_YGXPAUtagRECT_Z.cpp" />
     <ClCompile Include="src\_NumBallsOnBoard_CGameBoard_QAEHXZ.cpp" />
