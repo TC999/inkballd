@@ -3,10 +3,10 @@
 #include <windows.h>
 
 extern "C" {
-}
-
-int __stdcall CalcUnsqrtDistance(POINT* point1, POINT* point2)
-{
+    uint32_t CalcUnsqrtDistance(void* p1, void* p2)
+    {
+        POINT* point1 = reinterpret_cast<POINT*>(p1);
+        POINT* point2 = reinterpret_cast<POINT*>(p2);
     int distance_y_squared;
     int distance_squared;
     uint8_t log_buffer[8];

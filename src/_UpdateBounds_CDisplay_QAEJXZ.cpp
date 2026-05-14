@@ -23,13 +23,13 @@ int UpdateBounds_CDisplay(CDisplay* self, CDisplay* this_ptr)
       cleanup_flag = 0;
       if (is_fullscreen)
       {
-        system_metrics = reinterpret_cast<int*>(Helpers::GetSystemMetrics(reinterpret_cast<Helpers*>(1), 0, unused_ptr));
+        system_metrics = reinterpret_cast<int*>(Helpers::GetSystemMetrics((void*)1, 0, unused_ptr));
         client_height = Helpers::GetSystemMetrics(0, 0, system_metrics);
         SetRect(reinterpret_cast<LPRECT>(this_ptr + 2), 0, 0, client_height, window_height);
       }
       else
       {
-        Helpers::GetClientRect(*reinterpret_cast<HWND*>(this_ptr + 7), reinterpret_cast<HWND>(this_ptr + 8), 0, unused_ptr);
+        Helpers::GetClientRect(*reinterpret_cast<HWND*>(this_ptr + 7), reinterpret_cast<RECT*>(this_ptr + 8), 0, unused_ptr);
         ClientToScreen(*reinterpret_cast<HWND*>(this_ptr + 7), reinterpret_cast<LPPOINT>(this_ptr + 4));
         width_ptr = reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(this_ptr) + 40);
         ClientToScreen(*reinterpret_cast<HWND*>(this_ptr + 7), reinterpret_cast<LPPOINT>(this_ptr + 5));

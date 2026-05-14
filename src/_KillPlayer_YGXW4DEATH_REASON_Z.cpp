@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+extern "C" {
 void __stdcall KillPlayer(int a1)
 {
   bool v1; // zf
@@ -47,4 +48,5 @@ LABEL_7:
     *((uint32_t *)g_pCGameManager + 1) = 1;
   v8 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
+}
 }

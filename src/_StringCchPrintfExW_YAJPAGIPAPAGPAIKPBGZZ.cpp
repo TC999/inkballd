@@ -60,7 +60,7 @@ LABEL_8:
       {
         result = 0;
         remaining_space = buffer_size - 1;
-        format_result = __vsnwprintf(buffer, buffer_size - 1, format, args);
+        format_result = _vsnwprintf(buffer, buffer_size - 1, format, args);
         if (format_result < 0 || format_result > remaining_space)
         {
           result = -2147024774; // STRSAFE_E_INSUFFICIENT_BUFFER

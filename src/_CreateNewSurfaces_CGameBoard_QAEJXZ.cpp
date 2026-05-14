@@ -33,11 +33,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
   v14 = 0;
   if ( v3 )
   {
-    v13[0] = CDisplay::CreateWindowedDisplay(
-               v3,
-               *((HWND *)self + 2480),
-               *((uint32_t *)self + 2465),
-               *((uint32_t *)self + 2466));
+    v13[0] = CDisplay::CreateWindowedDisplay(v3);
     if ( v13[0] < 0 )
     {
       delete v3;
@@ -51,7 +47,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
   }
   if ( v13[0] >= 0 )
   {
-    v4 = g_pBallManagerSurface;
+    v4 = (CSurface*)g_pBallManagerSurface;
     v13[0] = CBallManager::InitSurface(*((CBallManager **)self + 2476));
     if ( v13[0] < 0 )
     {
@@ -63,7 +59,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
     }
     if ( v13[0] >= 0 )
     {
-      v5 = g_pScoreManagerSurface;
+      v5 = (CSurface*)g_pScoreManagerSurface;
       v13[0] = CScoreManager::InitSurface(*((CScoreManager **)self + 2477));
       if ( v13[0] < 0 )
       {
@@ -75,7 +71,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
       }
       if ( v13[0] >= 0 )
       {
-        v6 = g_pTileManagerSurface;
+        v6 = (CSurface*)g_pTileManagerSurface;
         v13[0] = CTileManager::InitSurface(*((CTileManager **)self + 2478));
         if ( v13[0] < 0 )
         {
@@ -87,7 +83,7 @@ int CreateNewSurfaces_CGameBoard(CGameBoard* self)
         }
         if ( v13[0] >= 0 )
         {
-          v7 = g_pTimeManagerSurface;
+          v7 = (CSurface*)g_pTimeManagerSurface;
           v13[0] = CTimeManager::InitSurface(*((CTimeManager **)self + 2479));
           if ( v13[0] < 0 )
           {

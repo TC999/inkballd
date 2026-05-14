@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HICON __stdcall LoadIconW_wpp_Helpers(Helpers* self, HINSTANCE hInstance, const WCHAR *lpIconName, uint16_t *a3, int*a4)
+HICON __stdcall LoadIconW_wpp_Helpers(void* self, HINSTANCE hInstance, const WCHAR *lpIconName, uint16_t *a3, int*a4)
 {
   HICON IconW; // esi
   signed int LastError; // eax

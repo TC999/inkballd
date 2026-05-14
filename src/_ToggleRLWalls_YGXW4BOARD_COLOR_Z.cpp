@@ -3,7 +3,7 @@
 #include <new>
 
 extern "C" {
-    void __stdcall ToggleRLWalls(uint32_t color)
+    void ToggleRLWalls(uint32_t color)
     {
       uint8_t log_buffer[16];
       int cleanup_flag;

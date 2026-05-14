@@ -4,13 +4,30 @@
 #include <cstdlib>
 #include <windows.h>
 
+extern int32_t iBoardCounts;
+extern int32_t iBeginnerBoardsCount;
+extern int32_t iBeginnerBonusBoardsCount;
+extern int32_t iNoviceBoardsCount;
+extern int32_t iNoviceBonusBoardsCount;
+extern int32_t iIntermediateBoardsCount;
+extern int32_t iIntermediateBonusBoardsCount;
+extern int32_t iAdvancedBoardsCount;
+extern int32_t iAdvancedBonusBoardsCount;
+extern int32_t iExpertBoardsCount;
+extern int32_t iExpertBonusBoardsCount;
+
+int32_t dword_10AF594;
+int32_t dword_10AF598;
+int32_t dword_10AF59C;
+int32_t dword_10AF5A0;
+int32_t dword_10AF5A4;
+int32_t dword_10AF5A8;
+int32_t dword_10AF5AC;
+int32_t dword_10AF5B0;
+int32_t dword_10AF5B4;
+
 int dynamic_initializer_for__iBoardCounts__()
 {
-    void* dword_10AF5A4;
-    void* dword_10AF5A8;
-    void* dword_10AF5AC;
-    void* dword_10AF5B0;
-    void* dword_10AF5B4;
   int result; // eax
 
   iBoardCounts = iBeginnerBoardsCount;

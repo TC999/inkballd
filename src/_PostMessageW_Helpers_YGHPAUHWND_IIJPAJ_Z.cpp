@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall PostMessageW_wpp_Helpers(Helpers* self, HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam, uint32_t *a5, int*a6)
+BOOL __stdcall PostMessageW_wpp_Helpers(void* self, HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam, uint32_t *a5, int*a6)
 {
   BOOL v6; // esi
   signed int LastError; // eax

@@ -7,8 +7,8 @@ int Shadowize_CGameBoard(CGameBoard *self, int a2, int a3, int a4, int a5)
 {
     void* BoardBuffer;
     void* DDrawSurface;
-    uint32_t v16;
-    uint32_t v17;
+    RECT v16;
+    RECT v17;
   int v6; // ebx
   int v7; // eax
   int v8; // esi
@@ -41,9 +41,9 @@ int Shadowize_CGameBoard(CGameBoard *self, int a2, int a3, int a4, int a5)
     CBoardObject::GetBoundingRect((CBoardObject *)v8, &v17);
     BoardBuffer = CDisplay::GetBoardBuffer(g_pDisplay);
     v14 = *(uint32_t *)(v8 + 32);
-    p_Blt = (int (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))&BoardBuffer->lpVtbl->Blt;
+    p_Blt = (int (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))&((IDirectDrawSurface7*)BoardBuffer)->lpVtbl->Blt;
     DDrawSurface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-    v9 = (*p_Blt)(BoardBuffer, &v17, DDrawSurface, v14, 0, 0);
+    v9 = (*p_Blt)((uint32_t)(uintptr_t)BoardBuffer, (uint32_t)(uintptr_t)&v17, (uint32_t)(uintptr_t)DDrawSurface, (uint32_t)v14, 0, 0);
     v19[0] = v9;
     if ( v9 < 0 )
       goto LABEL_7;
@@ -54,8 +54,8 @@ LABEL_11:
   }
   v9 = CDisplay::BltToBoard(
          g_pDisplay,
-         (unsigned int64_t)*(double *)(v8 + 8),
-         (unsigned int64_t)*(double *)(v8 + 16),
+         *(uint64_t *)(v8 + 8),
+         *(uint64_t *)(v8 + 16),
          g_pGamePiecesSurface,
          *(struct tagRECT **)(v8 + 32));
   v19[0] = v9;

@@ -3,7 +3,20 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(CMFCArray<CTabletContextInfo,CTabletContextInfo &>* self, int this, signed int a2, int a3)
+
+template<class TYPE, class ARG_TYPE>
+struct CMFCArray {
+    TYPE* m_pData;
+    int m_nSize;
+    int m_nMaxSize;
+    int m_nGrowBy;
+};
+
+template<class TYPE>
+void ConstructElements(TYPE* pElements, int nCount) {
+}
+
+int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(void* self, int unused, signed int a2, int a3)
 {
   uint32_t *v6; // ecx
   uint32_t *v7; // eax
@@ -13,38 +26,39 @@ int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(CMFCAr
   void*v11; // ebx
   int v12; // [esp+Ch] [ebp-4h]
   int v13; // [esp+18h] [ebp+8h]
+  uint32_t* _this = (uint32_t*)self;
 
   v12 = 0;
   if ( a2 < 0 || a3 < -1 )
     return -2147024809;
   if ( a3 != -1 )
-    *(uint32_t *)(this + 12) = a3;
+    _this[3] = a3;
   if ( !a2 )
   {
-    if ( *(uint32_t *)this )
+    if ( _this[0] )
     {
-      operator delete[](*(void**)this);
-      *(uint32_t *)this = 0;
+      operator delete[]((void*)_this[0]);
+      _this[0] = 0;
     }
-    *(uint32_t *)(this + 8) = 0;
-    *(uint32_t *)(this + 4) = 0;
+    _this[2] = 0;
+    _this[1] = 0;
     return v12;
   }
-  v6 = *(uint32_t **)this;
-  if ( *(uint32_t *)this )
+  v6 = (uint32_t*)_this[0];
+  if ( _this[0] )
   {
-    v8 = *(uint32_t *)(this + 8);
-    if ( a2 <= v8 )
+    v8 = _this[2];
+    if ( a2 <= (signed int)v8 )
     {
-      v9 = *(uint32_t *)(this + 4);
+      v9 = _this[1];
       if ( a2 > v9 )
-        ConstructElements<CTabletContextInfo>(&v6[6 * v9], a2 - v9);
+        ConstructElements<CTabletContextInfo>((CTabletContextInfo*)(&v6[6 * v9]), a2 - v9);
       goto LABEL_16;
     }
-    v10 = *(uint32_t *)(this + 12);
+    v10 = _this[3];
     if ( !v10 )
     {
-      v10 = *(uint32_t *)(this + 4) / 8;
+      v10 = _this[1] / 8;
       if ( v10 >= 4 )
       {
         if ( v10 > 1024 )
@@ -58,29 +72,29 @@ int __thiscall SetSize_CMFCArray_CTabletContextInfo_CTabletContextInfo___(CMFCAr
     v13 = v8 + v10;
     if ( a2 >= v8 + v10 )
       v13 = a2;
-    if ( v13 >= *(uint32_t *)(this + 4) )
+    if ( v13 >= (signed int)_this[1] )
     {
       v11 = operator new[](24 * v13);
       if ( v11 )
       {
-        memcpy(v11, *(const void**)this, 24 * *(uint32_t *)(this + 4));
-        ConstructElements<CTabletContextInfo>((uint32_t *)v11 + 6 * *(uint32_t *)(this + 4), a2 - *(uint32_t *)(this + 4));
-        operator delete[](*(void**)this);
-        *(uint32_t *)this = v11;
-        *(uint32_t *)(this + 4) = a2;
-        *(uint32_t *)(this + 8) = v13;
+        memcpy(v11, *(const void**)self, 24 * _this[1]);
+        ConstructElements<CTabletContextInfo>((CTabletContextInfo*)((uint32_t*)v11 + 6 * _this[1]), a2 - _this[1]);
+        operator delete[]((void*)_this[0]);
+        _this[0] = (uint32_t)v11;
+        _this[1] = a2;
+        _this[2] = v13;
         return v12;
       }
     }
     return -2147024882;
   }
-  v7 = operator new[](24 * a2);
+  v7 = (uint32_t*)operator new[](24 * a2);
   if ( !v7 )
     return -2147024882;
-  *(uint32_t *)this = v7;
-  ConstructElements<CTabletContextInfo>(v7, a2);
-  *(uint32_t *)(this + 8) = a2;
+  _this[0] = (uint32_t)v7;
+  ConstructElements<CTabletContextInfo>((CTabletContextInfo*)v7, a2);
+  _this[2] = a2;
 LABEL_16:
-  *(uint32_t *)(this + 4) = a2;
+  _this[1] = a2;
   return v12;
 }

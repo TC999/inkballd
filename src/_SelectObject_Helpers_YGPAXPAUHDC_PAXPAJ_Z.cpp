@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HGDIOBJ __stdcall SelectObject_Helpers(Helpers* self, HDC hdc, HGDIOBJ h, uint32_t *a3, int*a4)
+HGDIOBJ __stdcall SelectObject_Helpers(void* self, HDC hdc, HGDIOBJ h, uint32_t *a3, int*a4)
 {
   HGDIOBJ v4; // esi
   signed int LastError; // eax

@@ -3,9 +3,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint32_t xRight, int yBottom)
+
+extern "C" HRESULT WINAPI DirectDrawCreateEx(GUID* lpGuid, LPVOID* lplpDD, REFIID iid, IUnknown* pUnkOuter);
+extern const IID IID_IDirectDraw7;
+
+int CreateWindowedDisplay_CDisplay(CDisplay* self, HWND hWnd, uint32_t xRight, int yBottom)
 {
-  void (**v5)(LPVOID *); // eax
   uint32_t *v6; // edi
   LONG v7; // eax
   int v8; // eax
@@ -25,26 +28,27 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
   int v23; // [esp+B4h] [ebp-14h] BYREF
   char v24[4]; // [esp+B8h] [ebp-10h] BYREF
   int v25; // [esp+C4h] [ebp-4h]
+  void* dd_object; // the DirectDraw object
 
   *(uint32_t *)v24 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int*)v24);
-  auto v5 = (void (**)(LPVOID *))*self;
+  dd_object = *(void**)self;
   v25 = 0;
-  (*v5)(self);
-  v6 = self + 1;
-      *(uint32_t *)v24 = DirectDrawCreateEx(0, self + 1, &IID_IDirectDraw7, 0);
+  (*(void (**)(CDisplay*))(*(uint32_t*)dd_object))(self);
+  v6 = (uint32_t*)((uint8_t*)self + 4);
+  *(uint32_t *)v24 = DirectDrawCreateEx(0, (LPVOID*)v6, IID_IDirectDraw7, 0);
   if ( *(int*)v24 < 0 )
   {
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
+    if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
   }
   else
   {
     *(uint32_t *)v24 = (*(int (__stdcall **)(uint32_t, HWND, int))(*(uint32_t *)*v6 + 80))(*v6, hWnd, 8);
     if ( *(int*)v24 < 0 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-        WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
+      if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+        WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
     }
     else
     {
@@ -56,12 +60,12 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
       Helpers::SetWindowPos(hWnd, 0, 0, 0, rc.right - rc.left, rc.bottom - rc.top, 0x16u, 0, v13);
       Helpers::SetWindowPos(hWnd, (HWND)0xFFFFFFFE, 0, 0, 0, 0, 0x13u, 0, v14);
       Helpers::SystemParametersInfoW(0x30u, 0, &pvParam, 0, 0, v15);
-      Helpers::GetWindowRect(hWnd, (HWND)&rc, 0, v16);
+      Helpers::GetWindowRect(hWnd, (RECT*)&rc, 0, v16);
       if ( rc.left < pvParam )
         rc.left = pvParam;
       if ( rc.top < v20 )
         rc.top = v20;
-      Helpers::SetWindowPos(hWnd, 0, (HWND)rc.left, rc.top, 0, 0, 0x15u, 0, v17);
+      Helpers::SetWindowPos(hWnd, 0, rc.left, rc.top, 0, 0, 0x15u, 0, v17);
       memset(v18, 0, sizeof(v18));
       v8 = *v6;
       v18[0] = 124;
@@ -74,8 +78,8 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
                          0);
       if ( *(int*)v24 < 0 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-          WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
+        if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+          WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
       }
       else
       {
@@ -92,8 +96,8 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
                            0);
         if ( *(int*)v24 < 0 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-            WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
+          if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+            WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
         }
         else
         {
@@ -104,8 +108,8 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
                              0);
           if ( *(int*)v24 < 0 )
           {
-            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-              WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
+            if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+              WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
           }
           else
           {
@@ -116,8 +120,8 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
                                0);
             if ( *(int*)v24 < 0 )
             {
-              if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
+              if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
             }
             else
             {
@@ -128,29 +132,30 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, LPVOID *self, HWND hWnd, uint
                                  0);
               if ( *(int*)v24 < 0 )
               {
-                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                  WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
+                if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                  WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
               }
               else
               {
                 *(uint32_t *)v24 = (*(int (__stdcall **)(int, uint32_t, HWND))(*(uint32_t *)v23 + 32))(v23, 0, hWnd);
                 if ( *(int*)v24 < 0 )
                 {
-                  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                    WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
+                  if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                    WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
                 }
                 else
                 {
-                  *(uint32_t *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(uint32_t *)self[2] + 112))(self[2], v23);
+                  LPVOID* self_ptr = (LPVOID*)((uint8_t*)self + 8);
+                  *(uint32_t *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(uint32_t *)self_ptr[0] + 112))(self_ptr[0], v23);
                   if ( *(int*)v24 < 0 )
                   {
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
+                    if ( WPP_GLOBAL_Control != (uint64_t)(uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
                   }
                   else
                   {
-                    self[7] = hWnd;
-                    self[12] = (LPVOID)1;
+                    ((HWND*)((uint8_t*)self + 28))[0] = hWnd;
+                    ((LPVOID*)((uint8_t*)self + 48))[0] = (LPVOID)1;
                     CDisplay::UpdateBounds((CDisplay *)self);
                   }
                 }

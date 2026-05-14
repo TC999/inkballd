@@ -14,7 +14,7 @@ int __stdcall SystemEvent_CSink(CSink* self, CSink* this_ptr, uint32_t tablet_id
       Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)log_buffer, "CSink::SystemEvent", &result_code);
       if (static_cast<uint16_t>(event_type) == 21 && g_tcid == tablet_id && g_cid == context_id)
       {
-        tablet_context = GetTabletContextInfo(g_tcid);
+        tablet_context = (CTabletContextInfo*)GetTabletContextInfo(g_tcid);
         if (tablet_context)
         {
           (*(void(__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))(**reinterpret_cast<uint32_t**>(tablet_context) + 36))(
@@ -25,12 +25,12 @@ int __stdcall SystemEvent_CSink(CSink* self, CSink* this_ptr, uint32_t tablet_id
             0,
             0);
         }
-        if ((*(int(__stdcall **)(IInkObject*, int*))(*reinterpret_cast<uint32_t*>(g_pIInkObject) + 16))(g_pIInkObject, &event_type) >= 0
+        if ((*(int(__stdcall **)(IInkObject*, int*))(*reinterpret_cast<uint32_t*>(g_pIInkObject) + 16))((IInkObject*)g_pIInkObject, &event_type) >= 0
           && event_type)
         {
-          (*(void(__stdcall **)(IInkObject*, int, int))(*reinterpret_cast<uint32_t*>(g_pIInkObject) + 68))(g_pIInkObject, event_type - 1, 1);
+          (*(void(__stdcall **)(IInkObject*, int, int))(*reinterpret_cast<uint32_t*>(g_pIInkObject) + 68))((IInkObject*)g_pIInkObject, event_type - 1, 1);
           BltBoardToInk(0);
-          CInk::SetInkRedrawFlag(*reinterpret_cast<CInk**>(g_pCGameBoard + 2481));
+          CInk::SetInkRedrawFlag(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(g_pCGameBoard) + 2481));
           playing_area_rect = CGameBoard::GetPlayingAreaRect(g_pCGameBoard);
           AddDisplayUpdateRect(playing_area_rect);
         }

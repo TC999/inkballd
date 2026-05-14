@@ -3,8 +3,10 @@
 #include <windows.h>
 #include <new>
 
-int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)
+extern "C" {
+bool fPrevSeen(void* board_hist, int value)
 {
+    BOARDHIST* history = reinterpret_cast<BOARDHIST*>(board_hist);
     uint32_t current_count;
     uint32_t search_index;
     uint32_t shift_index;
@@ -21,7 +23,7 @@ int __stdcall fPrevSeen(int value, BOARDHIST* history, int max_size)
     if (current_count <= 0)
     {
 LABEL_4:
-        if (current_count < 10 && current_count + 1 < max_size)
+        if (current_count < 10)
             history->count = current_count + 1;
         final_count = history->count;
         if (final_count > 1)
@@ -45,4 +47,5 @@ LABEL_4:
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return found;
+}
 }

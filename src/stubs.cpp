@@ -75,6 +75,10 @@ extern "C" {
 
 // C++ linkage globals
 RECT g_rcClient = {};
+RECT g_rcTabletInInk = {};
+const GUID IID_ITabletEventSink = {};
+const GUID IID_IUnknown = {};
+void* CSink_vftable = nullptr;
 uint32_t dwTimeDigitWidth = 0;
 uint32_t dwTopDrawLoc = 0;
 uint32_t dwLeftDrawDif = 0;
@@ -139,7 +143,7 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3) {
 int GetTileByIndices_CGameBoard(CGameBoard *self, int a2, int a3) {
     (void)self; (void)a2; (void)a3; return 0;
 }
-void CGameBoard::RestoreSurfaces(CScoreManager** self) {
+void CGameBoard::RestoreSurfaces(CGameBoard* self) {
     (void)self;
 }
 void QueryNewPallete_CGameBoard(CGameBoard *self) {
@@ -170,6 +174,21 @@ void ToggleRLWalls_CGameBoard(CGameBoard *self, int color) {
 }
 void BltBoardToInk_CGameBoard(CGameBoard *self, struct tagRECT* a1, int a2) {
     (void)self; (void)a1; (void)a2;
+}
+bool IsRemoteSession_CGameBoard(CGameBoard *self) {
+    (void)self;
+    return false;
+}
+int PointIntersectsWithTile_CGameBoard(CGameBoard *self, void* point, CBoardTile* tile) {
+    (void)self; (void)point; (void)tile;
+    return 0;
+}
+CBoardTile* BuildTileObject_CGameBoard(CGameBoard *self, int tile_type, int x, int y, int rect) {
+    (void)self; (void)tile_type; (void)x; (void)y; (void)rect;
+    return nullptr;
+}
+void DisplayBoardLoadMsg_CGameBoard(CGameBoard *self) {
+    (void)self;
 }
 
 // ============================================================================
@@ -264,7 +283,7 @@ void CUIBarObject::GetBoundingRect(void* self, RECT* out) {
 // ============================================================================
 // CBoardObject static method stubs
 // ============================================================================
-void CBoardObject::GetBoundingRect(uint32_t self, RECT* out) {
+void CBoardObject::GetBoundingRect(void* self, RECT* out) {
     (void)self; (void)out;
 }
 // [TODOne] CBoardObject::CBoardObject
@@ -273,19 +292,38 @@ void CBoardObject::GetBoundingRect(uint32_t self, RECT* out) {
 // CMovingObject constructor stub
 // ============================================================================
 // [TODOne] CMovingObject::CMovingObject
+void CMovingObject::PrepareToMove(CMovingObject* self) {
+    (void)self;
+}
 
 // ============================================================================
 // CDisplay static method stubs
 // ============================================================================
-void CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src) {
+int CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src) {
     (void)self; (void)x; (void)y; (void)surface; (void)src;
+    return 0;
 }
 int CDisplay::Present(void* self, RECT* rect) {
     (void)self; (void)rect;
     return 0;
 }
-void CDisplay::BltInk(void* self, RECT* rect) {
+int CDisplay::BltInk(void* self, RECT* rect) {
     (void)self; (void)rect;
+    return 0;
+}
+int CDisplay::ConvertGDIColor(void* self, uint32_t color) {
+    (void)self; (void)color;
+    return 0;
+}
+void* CDisplay::GetDirectDraw(void* self) {
+    (void)self;
+    return nullptr;
+}
+void CDisplay::Clear(CDisplay* self) {
+    (void)self;
+}
+void CDisplay::ClearInk(CDisplay* self) {
+    (void)self;
 }
 int DestroyObjects_CDisplay(CDisplay *self) {
     (void)self;
@@ -390,6 +428,12 @@ int InitSurface_CBallManager(CBallManager *self) {
     (void)self;
     return 0;
 }
+void Init_CBallManager(CBallManager *self) {
+    (void)self;
+}
+void AddBallToBoard_CBallManager(CBallManager *self, CBall* ball) {
+    (void)self; (void)ball;
+}
 // [TODOne] CBallManager::CBallManager
 // [TODOne] CBallManager::~CBallManager
 
@@ -433,6 +477,12 @@ char* GetBitmapRect_CBitmapRects(CBitmapRects *self, int id) {
 // ============================================================================
 // [TODOne] BallPoints::BallPoints
 // [TODOne] BallPoints::~BallPoints
+BallPoints::BallPoints(int count, int flags) {
+    (void)count; (void)flags;
+}
+void BallPoints::scalar_deleting_destructor(BallPoints* self, int flags) {
+    (void)self; (void)flags;
+}
 
 // ============================================================================
 // CBoardTile constructor stubs

@@ -4,23 +4,8 @@
 #include <new>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-        extern int __wcsicmp(const wchar_t* string1, const wchar_t* string2);
-        extern void* memcpy(void* dest, const void* src, size_t count);
-        extern void* memset(void* dest, int value, size_t count);
-        extern int LoadStringW(HINSTANCE hInstance, UINT uID, LPWSTR lpBuffer, int nMaxCount, int* result);
-    }
+    HWND GetMainWindowHwnd();
 }
-
-extern "C" void* g_BoardData; // Global board data
-extern "C" void* g_pLastLoadedLevel; // Global last loaded level
-
-extern "C" HWND GetMainWindowHwnd();
 
 int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, BoardCollection* board_collection, int* result)
 {
@@ -29,7 +14,6 @@ int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int b
     size_t board_size;
     int search_result;
     HWND main_window_hwnd;
-    int* temp_result;
     uint8_t log_buffer[8];
     wchar_t* search_name;
     void* source_data;
@@ -54,7 +38,7 @@ LABEL_5:
         {
             if (!Helpers::__wcsicmp(search_name, board_collection->board_name))
             {
-                board_data_ptr = reinterpret_cast<uint8_t*>(&g_BoardData) + board_collection->board_data_offset;
+                board_data_ptr = (uint8_t*)&g_BoardData + board_collection->board_data_offset;
                 board_size_high = *board_data_ptr++ << 8;
                 board_size = *board_data_ptr + board_size_high;
                 Helpers::memcpy(source_data, board_data_ptr + 1, board_size);
@@ -62,7 +46,7 @@ LABEL_5:
                     break;
             }
             ++board_index;
-            board_collection = reinterpret_cast<BoardCollection*>(reinterpret_cast<uint8_t*>(board_collection) + 516);
+            board_collection = (BoardCollection*)((uint8_t*)board_collection + 516);
             if (board_index >= board_count)
                 goto LABEL_5;
         }
@@ -70,14 +54,13 @@ LABEL_5:
         Helpers::memcpy(&g_pLastLoadedLevel, source_data, board_size);
         *result = -1;
         Helpers::memset(window_title, 0, 1024);
-        temp_result = nullptr;
-        Helpers::LoadStringW(nullptr, 0x3A98, window_title, 0x200, temp_result);
+        Helpers::LoadStringW((HINSTANCE)0, (HINSTANCE)0x3A98, window_title, (uint16_t*)0x200, 0, (int*)0);
         main_window_hwnd = GetMainWindowHwnd();
         SetWindowTextW(main_window_hwnd, window_title);
         search_result = 1;
     }
     
     flag = -1;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock*)&log_buffer)->~CLogBlock();
     return search_result;
 }

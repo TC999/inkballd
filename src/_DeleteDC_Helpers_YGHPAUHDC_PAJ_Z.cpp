@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall DeleteDC_Helpers(Helpers* self, HDC hdc, HDC a2, int*a3)
+BOOL __stdcall DeleteDC_Helpers(void* self, HDC hdc, HDC a2, int*a3)
 {
   BOOL v3; // esi
   signed int LastError; // eax

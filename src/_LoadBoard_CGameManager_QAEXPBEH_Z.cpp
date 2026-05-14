@@ -3,6 +3,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+
+extern "C" {
+    int AddBallToBoard(uint8_t ball_type);
+    CBoardTile* BuildTileObject(int tile_type, int x, int y);
+    void DisplayBoardLoadMsg();
+}
 void LoadBoard_CGameManager(CGameManager *self, const unsigned __int8 *a2, int a3)
 {
   int v4; // eax
@@ -96,7 +102,7 @@ void LoadBoard_CGameManager(CGameManager *self, const unsigned __int8 *a2, int a
   if ( v21 > 64 )
     goto LABEL_8;
   v23 = 0;
-  CBallManager::Init(*((CBallManager **)g_pCGameBoard + 2476), 0, v21, v9, v13, v17);
+  CBallManager::Init(*((CBallManager **)g_pCGameBoard + 2476));
   CGameBoard::AddGameObjectToUpdateList(g_pCGameBoard, *((CGameObject**)g_pCGameBoard + 2476));
   if ( a3 <= 0 || (int)&v22[v21] <= (int)v40 )
   {
@@ -155,7 +161,7 @@ LABEL_40:
           if ( v35 )
           {
             v36 = v38;
-            *((uint32_t *)v38 + 22) = v35;
+            *((CBoardTile **)v38 + 22) = v35;
             CGameBoard::SetTile(g_pCGameBoard, v36);
             goto LABEL_36;
           }
@@ -190,7 +196,7 @@ LABEL_36:
   if ( v44 < 0 )
 LABEL_8:
     DisplayBoardLoadMsg();
-  if ( CGameBoard::BltBoardToInk(g_pCGameBoard, 0, 0) == -2005532222 )
+  if ( BltBoardToInk(0) == -2005532222 )
     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
   if ( CDisplay::BltInk(g_pDisplay, 0) == -2005532222 )
     CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);

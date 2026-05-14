@@ -6,29 +6,32 @@
 
 void DrawToSurface_CScoreManager(CScoreManager* self)
 {
-    void* DDrawSurface;
-    void* lpVtbl;
-    uint32_t v14;
-    uint32_t v15;
-    uint32_t v16;
-    uint32_t v18;
-    uint32_t v19;
-    uint32_t v20;
-    uint32_t v21;
-    uint32_t v22;
-    uint32_t v23;
-    uint32_t v24;
-    uint32_t v25;
-    uint32_t v26;
-    uint32_t v38;
-    uint32_t v4;
-    uint32_t v7;
-    uint32_t v8;
-    uint32_t v9;
+    IDirectDrawSurface7* DDrawSurface;
+    IDirectDrawSurface7Vtbl* lpVtbl;
+    IDirectDrawSurface7* v4;
+    IDirectDrawSurface7* v7;
+    IDirectDrawSurface7Vtbl* v8;
+    IDirectDrawSurface7* v9;
+    IDirectDrawSurface7* v14;
+    IDirectDrawSurface7Vtbl* v15;
+    IDirectDrawSurface7* v16;
+    IDirectDrawSurface7* v18;
+    IDirectDrawSurface7Vtbl* v19;
+    IDirectDrawSurface7* tmpSurf;
+    IDirectDrawSurface7* v22;
+    IDirectDrawSurface7Vtbl* v23;
+    IDirectDrawSurface7* v24;
+    IDirectDrawSurface7* v25;
+    IDirectDrawSurface7Vtbl* v26;
   int v5; // edi
   DWORD v6; // edi
   DWORD v13; // edi
   DWORD v17; // edi
+  uint32_t score1; // score value (was v38)
+  uint32_t score2; // high score value
+  uint32_t digit;   // current digit
+  IDirectDrawSurface7* v35; // reused surface ptr
+  IDirectDrawSurface7* v36; // reused surface ptr
   char*BitmapRect; // [esp-8h] [ebp-3Ch]
   char*v28; // [esp-8h] [ebp-3Ch]
   char*v29; // [esp-8h] [ebp-3Ch]
@@ -37,98 +40,73 @@ void DrawToSurface_CScoreManager(CScoreManager* self)
   char*v32; // [esp-8h] [ebp-3Ch]
   char*v33; // [esp-8h] [ebp-3Ch]
   uint8_t v34[8]; // [esp+10h] [ebp-24h] BYREF
-  uint32_t v35; // [esp+18h] [ebp-1Ch]
-  uint32_t v36; // [esp+1Ch] [ebp-18h]
   CScoreManager *v37; // [esp+20h] [ebp-14h]
   int v39; // [esp+30h] [ebp-4h]
 
   v37 = self;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v34), "CScoreManager::DrawToSurface", 0);
   v39 = 0;
-  DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+  DDrawSurface = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   lpVtbl = DDrawSurface->lpVtbl;
-  v38 = DDrawSurface;
+  v36 = DDrawSurface;
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 107);
-  v4 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  lpVtbl->BltFast(v38, 0, 0, v4, (LPRECT)BitmapRect, 0);
+  v4 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  lpVtbl->BltFast(v36, 0, 0, v4, (LPRECT)BitmapRect, 0);
   v5 = *((uint32_t *)self + 3);
-  v38 = (struct IDirectDrawSurface7 *)*((uint32_t *)self + 9);
+  score1 = *((uint32_t *)self + 9);
   v6 = v5 - 12;
-  v7 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+  v7 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   v8 = v7->lpVtbl;
-  v36 = (uint32_t)v7;
+  v36 = v7;
   v28 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 133);
-  v9 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  v8->BltFast((IDirectDrawSurface7 *)v36, v6, 13, v9, (LPRECT)v28, 0);
+  v9 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  v8->BltFast(v36, v6, 13, v9, (LPRECT)v28, 0);
   do
   {
-    void* DDrawSurface; // auto-declared
-    void* lpVtbl; // auto-declared
-    uint32_t v10; // auto-declared
-    uint32_t v11; // auto-declared
-    uint32_t v12; // auto-declared
-    uint32_t v14; // auto-declared
-    uint32_t v15; // auto-declared
-    uint32_t v16; // auto-declared
-    uint32_t v18; // auto-declared
-    uint32_t v19; // auto-declared
-    uint32_t v20; // auto-declared
-    uint32_t v21; // auto-declared
-    uint32_t v22; // auto-declared
-    uint32_t v23; // auto-declared
-    uint32_t v24; // auto-declared
-    uint32_t v25; // auto-declared
-    uint32_t v26; // auto-declared
-    uint32_t v38; // auto-declared
-    uint32_t v4; // auto-declared
-    uint32_t v7; // auto-declared
-    uint32_t v8; // auto-declared
-    uint32_t v9; // auto-declared
     v6 -= 9;
-    v36 = (uint32_t)v38 % 0xA;
-    v38 = (struct IDirectDrawSurface7 *)((uint32_t)v38 / 0xA);
-    v10 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
-    v11 = v10->lpVtbl;
-    v35 = (uint32_t)v10;
-    v29 = CBitmapRects::GetBitmapRect(g_CBitmapRects, v36 + 123);
-    v12 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-    v11->BltFast((IDirectDrawSurface7 *)v35, v6, 13, v12, (LPRECT)v29, 0);
+    digit = score1 % 0xA;
+    score1 /= 0xA;
+    v14 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+    v15 = v14->lpVtbl;
+    v35 = v14;
+    v29 = CBitmapRects::GetBitmapRect(g_CBitmapRects, digit + 123);
+    v16 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+    v15->BltFast(v35, v6, 13, v16, (LPRECT)v29, 0);
   }
-  while ( v38 );
+  while ( score1 );
   v13 = v6 - 9;
-  v14 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
-  v15 = v14->lpVtbl;
-  v35 = (uint32_t)v14;
-  v30 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 122);
-  v16 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  v15->BltFast((IDirectDrawSurface7 *)v35, v13, 13, v16, (LPRECT)v30, 0);
-  v17 = v13 - 20;
-  v38 = (struct IDirectDrawSurface7 *)*((uint32_t *)v37 + 10);
-  v18 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+  v18 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   v19 = v18->lpVtbl;
-  v35 = (uint32_t)v18;
+  v35 = v18;
+  v30 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 122);
+  tmpSurf = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  v19->BltFast(v35, v13, 13, tmpSurf, (LPRECT)v30, 0);
+  v17 = v13 - 20;
+  score2 = *((uint32_t *)v37 + 10);
+  v35 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+  v19 = v35->lpVtbl;
   v31 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 121);
-  v20 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  v19->BltFast((IDirectDrawSurface7 *)v35, v17, 13, v20, (LPRECT)v31, 0);
+  tmpSurf = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  v19->BltFast(v35, v17, 13, tmpSurf, (LPRECT)v31, 0);
   do
   {
     v17 -= 9;
-    v35 = (uint32_t)v38 % 0xA;
-    v38 = (struct IDirectDrawSurface7 *)((uint32_t)v38 / 0xA);
-    v21 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
-    v22 = v21->lpVtbl;
-    v36 = (uint32_t)v21;
-    v32 = CBitmapRects::GetBitmapRect(g_CBitmapRects, v35 + 111);
-    v23 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-    v22->BltFast((IDirectDrawSurface7 *)v36, v17, 13, v23, (LPRECT)v32, 0);
+    digit = score2 % 0xA;
+    score2 /= 0xA;
+    v22 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+    v23 = v22->lpVtbl;
+    v36 = v22;
+    v32 = CBitmapRects::GetBitmapRect(g_CBitmapRects, digit + 111);
+    v24 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+    v23->BltFast(v36, v17, 13, v24, (LPRECT)v32, 0);
   }
-  while ( v38 );
-  v24 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
-  v25 = v24->lpVtbl;
-  v35 = (uint32_t)v24;
+  while ( score2 );
+  v25 = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pScoreManagerSurface);
+  v26 = v25->lpVtbl;
+  v35 = v25;
   v33 = CBitmapRects::GetBitmapRect(g_CBitmapRects, 110);
-  v26 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-  v25->BltFast((IDirectDrawSurface7 *)v35, v17 - 9, 13, v26, (LPRECT)v33, 0);
+  tmpSurf = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  v26->BltFast(v35, v17 - 9, 13, tmpSurf, (LPRECT)v33, 0);
   AddDisplayUpdateRect((struct tagRECT *)((char*)v37 + 20));
   v39 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v34)->~CLogBlock();

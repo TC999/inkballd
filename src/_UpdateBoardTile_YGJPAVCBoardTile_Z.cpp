@@ -3,8 +3,9 @@
 #include <windows.h>
 
 extern "C" {
-    int __stdcall UpdateBoardTile(RECT** tile_rect)
+    void UpdateBoardTile(void* tile_ptr)
     {
+      RECT** tile_rect = reinterpret_cast<RECT**>(tile_ptr);
       int blt_result; // eax
       IDirectDrawSurface7* board_buffer; // ebx
       int (__stdcall **blt_func)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t); // esi
@@ -31,11 +32,11 @@ extern "C" {
       }
       else
       {
-        board_buffer = CDisplay::GetBoardBuffer(g_pDisplay);
+        board_buffer = (IDirectDrawSurface7*)CDisplay::GetBoardBuffer(g_pDisplay);
         source_rect = tile_rect[8];
-        blt_func = reinterpret_cast<int (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t)>(&board_buffer->lpVtbl->Blt);
-        ddraw_surface = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
-        blt_result = (*blt_func)(board_buffer, &bounding_rect, ddraw_surface, source_rect, 0, 0);
+        blt_func = (int (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))(&board_buffer->lpVtbl->Blt);
+        ddraw_surface = (IDirectDrawSurface7*)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+        blt_result = (*blt_func)((uint32_t)board_buffer, (uint32_t)&bounding_rect, (uint32_t)ddraw_surface, (uint32_t)source_rect, 0, 0);
       }
       error_code[0] = blt_result;
       if (blt_result >= 0)
@@ -47,6 +48,6 @@ extern "C" {
       final_result = error_code[0];
       cleanup_flag = -1;
       ((Helpers::CLogBlock *)log_buffer)->~CLogBlock();
-      return final_result;
+      return;
     }
 }

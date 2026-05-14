@@ -3,7 +3,7 @@
 #include <new>
 
 extern "C" {
-    void __stdcall StartTimer()
+    void StartTimer()
     {
       uint8_t log_buffer[8];
 

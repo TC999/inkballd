@@ -3,15 +3,16 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+extern void CleanupTabletContexts();
+extern int SetAtGrow_CMFCArray_CTabletContextInfo_CTabletContextInfo___(uint32_t *self, int a2, const void*a3);
 int Init_CInk(CInk *self)
 {
-    void* CLSID_TpcPlatformManager;
-    void* GUID_BARRELDOWN;
-    void* IID_IInkCollect;
-    void* IID_IInkManager;
-    void* IID_IRenderInk;
-    void* IID_ITabletManager;
-    void* dword_10029E0;
+    GUID CLSID_TpcPlatformManager;
+    GUID GUID_BARRELDOWN;
+    GUID IID_IInkCollect;
+    GUID IID_IInkManager;
+    GUID IID_IRenderInk;
+    GUID IID_ITabletManager;
   CInk *v1; // edi
   uint32_t *v2; // eax
   bool v3; // zf
@@ -43,88 +44,88 @@ int Init_CInk(CInk *self)
   v24 = 0;
   *((uint32_t *)v1 + 4) = 1;
   CleanupTabletContexts();
-  *(uint32_t *)v23 = CoCreateInstance(&CLSID_TpcPlatformManager, 0, 1u, &IID_IInkManager, &g_pIInkManager);
+  *(uint32_t *)v23 = CoCreateInstance(CLSID_TpcPlatformManager, 0, 1u, IID_IInkManager, &g_pIInkManager);
   if ( *(int*)v23 < 0 )
   {
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002480, v23[0]);
+    if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002480, v23[0]);
   }
   else
   {
     *(uint32_t *)v23 = (*(int (__stdcall **)(LPVOID))(*(uint32_t *)g_pIInkManager + 12))(g_pIInkManager);
     if ( *(int*)v23 < 0 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-        WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002480, v23[0]);
+      if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+        WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002480, v23[0]);
     }
     else
     {
       *(uint32_t *)v23 = (*(int (__stdcall **)(LPVOID, struct IInkObject **))(*(uint32_t *)g_pIInkManager + 20))(
                          g_pIInkManager,
-                         &g_pIInkObject);
+                         (IInkObject**)&g_pIInkObject);
       if ( *(int*)v23 < 0 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-          WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002480, v23[0]);
+        if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002480, v23[0]);
       }
       else
       {
         *(uint32_t *)v23 = (**(int (__stdcall ***)(struct IInkObject *, GUID *, struct IRenderInk **))g_pIInkObject)(
-                           g_pIInkObject,
+                           (IInkObject*)g_pIInkObject,
                            &IID_IRenderInk,
-                           &g_pIRenderInk);
+                           (IRenderInk**)&g_pIRenderInk);
         if ( *(int*)v23 < 0 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-            WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002480, v23[0]);
+          if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+            WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002480, v23[0]);
         }
         else
         {
           *(uint32_t *)v23 = (**(int (__stdcall ***)(struct IInkObject *, GUID *, struct IInkCollect **))g_pIInkObject)(
-                             g_pIInkObject,
+                             (IInkObject*)g_pIInkObject,
                              &IID_IInkCollect,
-                             &g_pIInkCollect);
+                             (IInkCollect**)&g_pIInkCollect);
           if ( *(int*)v23 < 0 )
           {
-            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-              WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002480, v23[0]);
+            if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+              WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002480, v23[0]);
           }
           else
           {
             *(uint32_t *)v23 = (*(int (__stdcall **)(struct IInkObject *, void*))(*(uint32_t *)g_pIInkObject + 52))(
-                               g_pIInkObject,
+                               (IInkObject*)g_pIInkObject,
                                &g_rcInkSpace);
             *(uint32_t *)v23 = (*(int (__stdcall **)(struct IInkObject *, int*, uint32_t, struct IRenderingContext **))(*(uint32_t *)g_pIInkObject + 136))(
-                               g_pIInkObject,
+                               (IInkObject*)g_pIInkObject,
                                dword_10029E0,
                                0,
-                               &g_pIRenderingContext);
+                               (IRenderingContext**)&g_pIRenderingContext);
             if ( *(int*)v23 < 0 )
             {
-              if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002480, v23[0]);
+              if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002480, v23[0]);
             }
             else
             {
-              *(uint32_t *)v23 = (*(int (__stdcall **)(struct IRenderingContext *, void*, struct HWND__ *))(*(uint32_t *)g_pIRenderingContext + 24))(
-                                 g_pIRenderingContext,
+              *(uint32_t *)v23 = (*(int (__stdcall **)(struct IRenderingContext *, void*, RECT *))(*(uint32_t *)g_pIRenderingContext + 24))(
+                                 (IRenderingContext*)g_pIRenderingContext,
                                  &g_rcInkSpace,
                                  &g_rcClient);
               *(uint32_t *)v23 = (**(int (__stdcall ***)(LPVOID, GUID *, struct ITabletManager **))g_pIInkManager)(
                                  g_pIInkManager,
                                  &IID_ITabletManager,
-                                 &g_pTabletManager);
+                                 (ITabletManager**)&g_pTabletManager);
               if ( *(int*)v23 < 0 )
               {
-                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                  WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002480, v23[0]);
+                if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                  WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002480, v23[0]);
               }
               else
               {
                 v16 = 0;
                 *(uint32_t *)v23 = (*(int (__stdcall **)(struct ITabletManager *, uint32_t *))(*(uint32_t *)g_pTabletManager
                                                                                                + 16))(
-                                   g_pTabletManager,
+                                   (ITabletManager*)g_pTabletManager,
                                    &v16);
                 if ( *(int*)v23 >= 0 )
                 {
@@ -134,13 +135,13 @@ int Init_CInk(CInk *self)
                       goto LABEL_70;
                     v20 = 0;
                     *(uint32_t *)v23 = (*(int (__stdcall **)(struct ITabletManager *, uint32_t, int*))(*(uint32_t *)g_pTabletManager + 20))(
-                                       g_pTabletManager,
+                                       (ITabletManager*)g_pTabletManager,
                                        i,
                                        &v20);
                     if ( *(int*)v23 >= 0 )
                       break;
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xEu, &stru_1002480, v23[0]);
+                    if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0xEu, &stru_1002480, v23[0]);
 LABEL_45:
                     ;
                   }
@@ -152,10 +153,10 @@ LABEL_45:
                   v11 = 0;
                   v21 = 0;
                   LOBYTE(v24) = 1;
-                  v2 = operator new(0xCu);
+                  v2 = (uint32_t*)operator new(0xCu);
                   if ( v2 )
                   {
-                    *v2 = &CSink::`vftable';
+                    *v2 = (uint32_t)&CSink_vftable;
                     v2[1] = 0;
                     v2[2] = 0;
                   }
@@ -170,12 +171,12 @@ LABEL_45:
                     (*(void (__stdcall **)(uint32_t *))(*v6 + 4))(v6);
                     *(uint32_t *)v23 = (*(int (__stdcall **)(uint32_t *, GUID *, int*))*v6)(
                                        v6,
-                                       &IID_ITabletEventSink,
+                                       (GUID*)&IID_ITabletEventSink,
                                        &v21);
                     if ( *(int*)v23 >= 0 )
                       goto LABEL_23;
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xBu, &stru_1002480, v23[0]);
+                    if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0xBu, &stru_1002480, v23[0]);
                     (*(void (__stdcall **)(uint32_t *))(*v6 + 8))(v6);
                   }
                   if ( *(int*)v23 < 0 )
@@ -199,8 +200,8 @@ LABEL_23:
                                      v21);
                   if ( *(int*)v23 < 0 )
                   {
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xDu, &stru_1002480, v23[0]);
+                    if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0xDu, &stru_1002480, v23[0]);
                   }
                   else
                   {
@@ -216,7 +217,7 @@ LABEL_23:
                         do
                         {
                           if ( !memcmp(
-                                  (const void*)GUID_BARRELDOWN.Data1,
+                                  (const void*)&GUID_BARRELDOWN,
                                   (const void*)(v18 + *((uint32_t *)pv + 3)),
                                   0x10u) )
                             v11 = 1 << v22;
@@ -231,27 +232,27 @@ LABEL_23:
                     v9 = *(uint32_t *)v17;
                     *(uint32_t *)v23 = (*(int (__stdcall **)(struct IInkObject *, int, LPVOID))(*(uint32_t *)g_pIInkObject
                                                                                             + 60))(
-                                       g_pIInkObject,
+                                       (IInkObject*)g_pIInkObject,
                                        v8,
                                        v17);
                     CoTaskMemFree(v17);
                     *(uint32_t *)v23 = (*(int (__stdcall **)(int, uint8_t *))(*(uint32_t *)v7 + 56))(v7, v12);
                     *(uint32_t *)v23 = (*(int (__stdcall **)(struct IInkObject *, int, uint8_t *, void*))(*(uint32_t *)g_pIInkObject + 132))(
-                                       g_pIInkObject,
+                                       (IInkObject*)g_pIInkObject,
                                        v8,
                                        v12,
                                        &g_rcTabletInInk);
                     *((uint32_t *)v1 + 3) = 0;
                     *((uint32_t *)v1 + 2) = 0;
-                    *(uint32_t *)v23 = CMFCArray<CTabletContextInfo,CTabletContextInfo &>::SetAtGrow(
-                                       &g_arrTCI,
+                    *(uint32_t *)v23 = SetAtGrow_CMFCArray_CTabletContextInfo_CTabletContextInfo___(
+                                       (uint32_t*)&g_arrTCI,
                                        dword_10B068C,
-                                       &v6);
+                                       (const void*)&v6);
                     if ( *(int*)v23 < 0
-                      && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
-                      && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control
+                      && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
                     {
-                      WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xCu, &stru_1002480, v23[0]);
+                      WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0xCu, &stru_1002480, v23[0]);
                     }
                   }
                   if ( v21 )
@@ -261,8 +262,8 @@ LABEL_23:
                   }
                   goto LABEL_41;
                 }
-                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((uint8_t *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                  WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0xFu, &stru_1002480, v23[0]);
+                if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)(uintptr_t)WPP_GLOBAL_Control + 28) & 4) != 0 )
+                  WPP_SF_d(*((uint64_t *)(uintptr_t)WPP_GLOBAL_Control + 2), 0xFu, &stru_1002480, v23[0]);
               }
             }
           }

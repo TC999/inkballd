@@ -4,9 +4,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+#include <ddraw.h>
+
+extern HANDLE __stdcall GetObjectW(HGDIOBJ h, int c, LPVOID pv, int unused, int* out);
+
 uint32_t CreateSurfaceFromBitmap_CDisplay(CDisplay* self, CSurface**a2, HINSTANCE name, uint32_t a4, int cy)
 {
-    uint32_t v14;
   uint32_t v6; // esi
   HMODULE ModuleHandleW; // eax
   CSurface *v8; // ecx
@@ -30,16 +33,15 @@ uint32_t CreateSurfaceFromBitmap_CDisplay(CDisplay* self, CSurface**a2, HINSTANC
   v22 = 0;
   if ( name && a2 )
   {
-    uint32_t v14; // auto-declared
     if ( *((uint32_t *)self + 1) )
     {
       *a2 = 0;
       ModuleHandleW = GetModuleHandleW(0);
-      ho = Helpers::LoadImageW(ModuleHandleW, name, 0, a4, cy, 0x2000u, 0, v11);
+      ho = Helpers::LoadImageW(ModuleHandleW, L"INKBALL_BITMAP", 0, a4, cy, 0x2000u, 0, v11);
       if ( ho
-        || (ho = Helpers::LoadImageW(0, name, 0, a4, cy, 0x2010u, (uint32_t)v21, v12), (v21[0] & 0x80000000) == 0) )
+        || (ho = Helpers::LoadImageW(0, L"INKBALL_BITMAP", 0, a4, cy, 0x2010u, (uint32_t)v21, v12), (v21[0] & 0x80000000) == 0) )
       {
-        Helpers::GetObjectW(ho, (void*)0x18, pv, 0, v12);
+        GetObjectW(ho, 0x18, pv, 0, v12);
         memset(&v14, 0, sizeof(v14));
         v14.dwWidth = v16;
         v14.dwSize = 124;
@@ -56,7 +58,7 @@ uint32_t CreateSurfaceFromBitmap_CDisplay(CDisplay* self, CSurface**a2, HINSTANC
         *a2 = v9;
         v22 = 0;
         if ( (v21[0] & 0x80000000) != 0
-          || (v21[0] = CSurface::Create((LPDIRECTDRAWSURFACE7 *)*a2, *((struct IDirectDraw7 **)v19 + 1), &v14),
+          || (v21[0] = Create_CSurface(*a2, (LPDIRECTDRAWSURFACE7 *)*a2, *((struct IDirectDraw7 **)v19 + 1), &v14),
               (v21[0] & 0x80000000) != 0)
           || (v21[0] = CSurface::DrawBitmap(*a2, (HDC)ho, 0, 0, 0, 0), (v21[0] & 0x80000000) != 0) )
         {

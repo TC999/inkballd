@@ -5,17 +5,16 @@
 #include <windows.h>
 int CursorUp_CSink(CSink* self, int a1,
         int a2,
-        CSink *self,
         HDC a4,
         uint32_t a5,
         uint32_t a6,
         uint32_t a7,
         unsigned __int8 *a8)
 {
-  uint32_t v8; // ebx
-  unsigned __int8 *v10; // [esp-Ch] [ebp-2Ch]
-  char v12[8]; // [esp+14h] [ebp-Ch] BYREF
-  char v13[4]; // [esp+1Ch] [ebp-4h] BYREF
+  uint32_t v8;
+  unsigned __int8 *v10;
+  char v12[8];
+  char v13[4];
 
   *(uint32_t *)v13 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v12, "CSink::CursorUp", (int*)v13);
@@ -30,7 +29,7 @@ int CursorUp_CSink(CSink* self, int a1,
         {
           v10 = a8;
           *((uint32_t *)self + 2) = 0;
-          *(uint32_t *)v13 = (*(int (__stdcall **)(struct IInkCollect *, uint32_t, uint32_t, unsigned __int8 *, int, int))(*(uint32_t *)g_pIInkCollect + 16))(
+          *(uint32_t *)v13 = (*(int (__stdcall **)(IInkCollect*, uint32_t, uint32_t, unsigned __int8 *, int, int))(*(uint32_t *)g_pIInkCollect + 16))(
                              g_pIInkCollect,
                              v8,
                              a7,
@@ -43,12 +42,11 @@ int CursorUp_CSink(CSink* self, int a1,
           {
             WPP_SF_d(*((uint64_t *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002480, v13[0]);
           }
-          a4 = 0;
+          a4 = (HDC)0;
           GetInkBufferHDC(&a4);
           if ( a4 )
           {
-            *(uint32_t *)v13 = (*(int (__stdcall **)(struct IRenderingContext *, uint32_t, HDC))(*(uint32_t *)g_pIRenderingContext
-                                                                                                 + 36))(
+            *(uint32_t *)v13 = (*(int (__stdcall **)(IRenderingContext*, uint32_t, HDC))(*(uint32_t *)g_pIRenderingContext + 36))(
                                g_pIRenderingContext,
                                v8,
                                a4);
@@ -60,7 +58,7 @@ int CursorUp_CSink(CSink* self, int a1,
             }
             ReleaseInkBufferHDC(a4);
           }
-          *(uint32_t *)v13 = (*(int (__stdcall **)(struct IInkCollect *, uint32_t))(*(uint32_t *)g_pIInkCollect + 20))(
+          *(uint32_t *)v13 = (*(int (__stdcall **)(IInkCollect*, uint32_t))(*(uint32_t *)g_pIInkCollect + 20))(
                              g_pIInkCollect,
                              v8);
           if ( *(int*)v13 < 0

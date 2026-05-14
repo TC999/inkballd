@@ -45,11 +45,11 @@ LABEL_6:
     IntersectRect(&rcSrc, &rcDst, self + 2);
     CopyRect(&rcDst, &rcSrc);
     OffsetRect(&rcDst, -self[2].left, -self[2].top);
-    left = self[2].left + (unsigned int64_t)((double)rcDst.left / dSizeFactor);
-    v13 = self[2].top + (unsigned int64_t)((double)rcDst.top / dSizeFactor);
-    v14 = left + (unsigned int64_t)((double)(rcSrc.right - rcSrc.left) / dSizeFactor);
+    left = self[2].left + (long)(rcDst.left / dSizeFactor);
+    v13 = self[2].top + (long)(rcDst.top / dSizeFactor);
+    v14 = left + (long)((rcSrc.right - rcSrc.left) / dSizeFactor);
     bottom = self->bottom;
-    v15 = v13 + (unsigned int64_t)((double)(rcSrc.bottom - rcSrc.top) / dSizeFactor);
+    v15 = v13 + (long)((rcSrc.bottom - rcSrc.top) / dSizeFactor);
     v6 = (*(int (__stdcall **)(LONG, long*, LONG, tagRECT *, int, uint32_t))(*(uint32_t *)self->right + 20))(
            self->right,
            &left,
@@ -71,9 +71,9 @@ LABEL_9:
         top = self[2].top;
         left = self[2].left;
         v13 = top;
-        v14 = self[2].left + (unsigned int64_t)((double)(int)lprcSrca / dSizeFactor);
+        v14 = self[2].left + (long)((int)lprcSrca / dSizeFactor);
         v9 = self->bottom;
-        v15 = top + (unsigned int64_t)((double)(self[2].bottom - top) / dSizeFactor);
+        v15 = top + (long)((self[2].bottom - top) / dSizeFactor);
         v6 = (*(int (__stdcall **)(LONG, long*, LONG, uint32_t, int, uint32_t))(*(uint32_t *)self->right + 20))(
                self->right,
                &left,

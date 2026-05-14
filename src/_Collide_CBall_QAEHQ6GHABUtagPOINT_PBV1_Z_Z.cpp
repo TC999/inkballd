@@ -2,13 +2,14 @@
 #include <cstdint>
 #include <windows.h>
 
+struct BallPoint { int x; int y; };
+
 extern "C" {
 typedef int (__stdcall *CollisionCheckFunc)(const POINT*, const CBall*);
 }
 
 int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
 {
-    int BallPoint;
     int last_collision_point = -1;
     int first_collision_point = -1;
     BallPoint* next_point;

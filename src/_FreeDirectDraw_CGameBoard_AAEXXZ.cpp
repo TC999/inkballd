@@ -12,27 +12,27 @@ void FreeDirectDraw_CGameBoard(CGameBoard* self)
   v2 = 0;
   if ( g_pTimeManagerSurface )
   {
-    CSurface::scalar_deleting_destructor(g_pTimeManagerSurface, 1);
+    CSurface::scalar_deleting_destructor((CSurface*)g_pTimeManagerSurface, 1);
     g_pTimeManagerSurface = 0;
   }
   if ( g_pBallManagerSurface )
   {
-    CSurface::scalar_deleting_destructor(g_pBallManagerSurface, 1);
+    CSurface::scalar_deleting_destructor((CSurface*)g_pBallManagerSurface, 1);
     g_pBallManagerSurface = 0;
   }
   if ( g_pTileManagerSurface )
   {
-    CSurface::scalar_deleting_destructor(g_pTileManagerSurface, 1);
+    CSurface::scalar_deleting_destructor((CSurface*)g_pTileManagerSurface, 1);
     g_pTileManagerSurface = 0;
   }
   if ( g_pScoreManagerSurface )
   {
-    CSurface::scalar_deleting_destructor(g_pScoreManagerSurface, 1);
+    CSurface::scalar_deleting_destructor((CSurface*)g_pScoreManagerSurface, 1);
     g_pScoreManagerSurface = 0;
   }
   if ( g_pDisplay )
   {
-    CDisplay::scalar_deleting_destructor(g_pDisplay, 1);
+    CDisplay::scalar_deleting_destructor((CDisplay*)g_pDisplay, 1);
     g_pDisplay = 0;
   }
   v2 = -1;

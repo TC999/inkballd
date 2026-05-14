@@ -4,19 +4,16 @@
 #include <cstdlib>
 #include <windows.h>
 
-TabUtils* __stdcall GenerateLastErrorHR_TabUtils(TabUtils *self, int a2)
+uint32_t __stdcall GenerateLastErrorHR_TabUtils(uint32_t fallback, int unused)
 {
-    TabUtils* result;
-    bool v3;
+    uint32_t result;
 
-    result = (TabUtils*)GetLastError();
-    v3 = (int)result < 0;
+    result = GetLastError();
     if ((int)result > 0)
     {
-        result = (TabUtils*)((uint16_t)result | 0x80070000);
-        v3 = (int)result < 0;
+        result = (uint16_t)result | 0x80070000;
     }
-    if (!v3)
-        return self;
+    if ((int)result >= 0)
+        return fallback;
     return result;
 }

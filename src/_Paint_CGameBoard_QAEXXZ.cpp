@@ -12,15 +12,14 @@ void Paint_CGameBoard(CGameBoard *self)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v3, "CGameBoard::Paint", 0);
   v4 = 0;
   DirectDraw = CDisplay::GetDirectDraw(g_pDisplay);
-  if ( DirectDraw->lpVtbl->TestCooperativeLevel(DirectDraw) == -2005532085 )
+  if ( ((IDirectDraw7*)DirectDraw)->lpVtbl->TestCooperativeLevel(((IDirectDraw7*)DirectDraw)) == -2005532085 )
   {
-    void* DirectDraw; // auto-declared
     CGameBoard::CreateNewSurfaces(self);
-    CGameBoard::RestoreSurfaces((CScoreManager **)self);
+    CGameBoard::RestoreSurfaces(self);
   }
   if ( CGameBoard::DisplayFrame(self, 1, 1) == -2005532222 )
   {
-    CGameBoard::RestoreSurfaces((CScoreManager **)self);
+    CGameBoard::RestoreSurfaces(self);
     CGameBoard::DisplayFrame(self, 1, 1);
   }
   v4 = -1;

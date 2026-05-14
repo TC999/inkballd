@@ -11,19 +11,19 @@ int CursorDown_CSink(CSink *self,
         uint32_t a5,
         unsigned __int8 *a6)
 {
-    void* PlayingAreaRect; // auto-declared
-  uint32_t v6; // ecx
-  uint32_t v8; // ecx
-  int v9; // esi
-  uint32_t v11; // esi
-  uint32_t v13; // [esp-4h] [ebp-1Ch]
-  char v14[8]; // [esp+Ch] [ebp-Ch] BYREF
-  char v15[4]; // [esp+14h] [ebp-4h] BYREF
+  uint32_t v6;
+  uint32_t v8;
+  int v9;
+  uint32_t v11;
+  IInkStroke* stroke;
+  uint32_t v13;
+  char v14[8];
+  char v15[4];
 
   *(uint32_t *)v15 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v14, "CSink::CursorDown", (int*)v15);
   v6 = a2;
-  auto* TabletContextInfo = GetTabletContextInfo((uint32_t)a2);
+  auto* TabletContextInfo = GetTabletContextInfo(a2);
   if ( TabletContextInfo )
   {
     v8 = *((uint32_t *)TabletContextInfo + 4);
@@ -44,31 +44,30 @@ LABEL_17:
   v13 = a3;
   *((uint32_t *)self + 2) = 1;
   SetCursorAttributes(v13);
-  g_tcid = (uint32_t)v6;
+  g_tcid = v6;
   g_cid = v11;
-  if ( (*(int (__stdcall **)(struct IInkObject *, CSink **))(*(uint32_t *)g_pIInkObject + 16))(g_pIInkObject, &self) >= 0
+  if ( (*(int (__stdcall **)(IInkObject*, CSink **))(*(uint32_t *)g_pIInkObject + 16))(g_pIInkObject, &self) >= 0
     && (uint32_t)self >= 0x14 )
   {
-    (*(void (__stdcall **)(struct IInkObject *, uint32_t, char*))(*(uint32_t *)g_pIInkObject + 68))(
+    (*(void (__stdcall **)(IInkObject*, uint32_t, char*))(*(uint32_t *)g_pIInkObject + 68))(
       g_pIInkObject,
       0,
       reinterpret_cast<char*>(self) - 19);
     BltBoardToInk(0);
     CInk::SetInkRedrawFlag(*((CInk **)g_pCGameBoard + 2481));
-    PlayingAreaRect = CGameBoard::GetPlayingAreaRect(g_pCGameBoard);
+    void* PlayingAreaRect = CGameBoard::GetPlayingAreaRect(g_pCGameBoard);
     AddDisplayUpdateRect(PlayingAreaRect);
   }
-  a2 = 0;
-  *(uint32_t *)v15 = (*(int (__stdcall **)(struct IInkCollect *, struct IInkStroke *, uint32_t, struct IInkStroke **))(*(uint32_t *)g_pIInkCollect + 12))(
+  stroke = 0;
+  *(uint32_t *)v15 = (*(int (__stdcall **)(IInkCollect*, IInkStroke*, uint32_t, IInkStroke **))(*(uint32_t *)g_pIInkCollect + 12))(
                      g_pIInkCollect,
-                     v6,
+                     (IInkStroke*)v6,
                      v11,
-                     &a2);
+                     &stroke);
   if ( *(int*)v15 >= 0 )
   {
-    SetCursorStroke(v11, a2);
-    (*(void (__stdcall **)(struct IInkCollect *, uint32_t, uint32_t, unsigned __int8 *))(*(uint32_t *)g_pIInkCollect
-                                                                                               + 16))(
+    SetCursorStroke(v11, stroke);
+    (*(void (__stdcall **)(IInkCollect*, uint32_t, uint32_t, unsigned __int8 *))(*(uint32_t *)g_pIInkCollect + 16))(
       g_pIInkCollect,
       v11,
       a5,

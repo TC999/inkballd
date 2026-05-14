@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-LSTATUS __stdcall RegCreateKeyExW_Helpers(Helpers* self, HKEY hKey,
+LSTATUS __stdcall RegCreateKeyExW_Helpers(void* self, HKEY hKey,
         const WCHAR *lpSubKey,
         DWORD Reserved,
         LPWSTR lpClass,

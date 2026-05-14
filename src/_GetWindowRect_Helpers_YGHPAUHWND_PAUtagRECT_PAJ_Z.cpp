@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall GetWindowRect_Helpers(Helpers* self, HWND hWnd, RECT *lpRect, RECT *a3, int*a4)
+BOOL __stdcall GetWindowRect_Helpers(void* self, HWND hWnd, RECT *lpRect, RECT *a3, int*a4)
 {
   BOOL WindowRect; // esi
   signed int LastError; // eax

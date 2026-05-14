@@ -3,9 +3,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+
+extern "C" uint32_t dword_105C760;
+extern "C" void Sleep(uint32_t ms);
 int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
 {
-    void* DirectDraw;
+  IDirectDraw7* DirectDraw;
   int v4; // ebx
   uint32_t *v5; // edi
   bool v6; // cc
@@ -27,7 +30,6 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
   v16 = a2;
   if ( dword_105C760 )
   {
-    void* DirectDraw; // auto-declared
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2477) + 4))(*((uint32_t *)self + 2477));
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2478) + 4))(*((uint32_t *)self + 2478));
     (*(void (**)(uint32_t))(**((uint32_t **)self + 2479) + 4))(*((uint32_t *)self + 2479));
@@ -86,12 +88,12 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
   }
   Score = CScoreManager::GetScore(*((CScoreManager **)self + 2477));
   CTileManager::SetTiles(*((CTileManager **)self + 2478), Score);
-  DirectDraw = CDisplay::GetDirectDraw(g_pDisplay);
+  DirectDraw = (IDirectDraw7*)CDisplay::GetDirectDraw(g_pDisplay);
   NewSurfaces = DirectDraw->lpVtbl->TestCooperativeLevel(DirectDraw);
   v15 = NewSurfaces;
   if ( NewSurfaces >= 0 )
   {
-    NewSurfaces = CGameBoard::DisplayFrame(self, a3, 0);
+    NewSurfaces = (int)CGameBoard::DisplayFrame(self, a3, 0);
     v15 = NewSurfaces;
     if ( NewSurfaces < 0 )
     {
@@ -113,7 +115,7 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
   }
   if ( NewSurfaces == -2005532085 )
   {
-    NewSurfaces = CGameBoard::CreateNewSurfaces(self);
+    NewSurfaces = (int)CGameBoard::CreateNewSurfaces(self);
 LABEL_26:
     v15 = NewSurfaces;
   }

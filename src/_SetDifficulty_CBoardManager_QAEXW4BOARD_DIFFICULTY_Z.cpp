@@ -4,43 +4,9 @@
 #include <new>
 
 extern "C" {
-    namespace Helpers {
-        class CLogBlock {
-        public:
-            CLogBlock(void* buffer, const char* message, int);
-            ~CLogBlock();
-        };
-        extern void* memset(void* dest, int value, size_t count);
-    }
+    void KillPlayer(int reason);
 }
 
-extern "C" void KillPlayer(int reason);
-extern "C" BOARDHIST g_bhPrevBoards; // Global board history
-extern "C" BOARDHIST g_bhPrevBonusBoards; // Global bonus board history
-extern "C" int iBoardListCount; // Global board list count
-extern "C" int iBonusBoardListCount; // Global bonus board list count
-extern "C" int iNoviceBoardsCount; // Global novice boards count
-extern "C" int iNoviceBonusBoardsCount; // Global novice bonus boards count
-extern "C" int iBeginnerBoardsCount; // Global beginner boards count
-extern "C" int iBeginnerBonusBoardsCount; // Global beginner bonus boards count
-extern "C" int iIntermediateBoardsCount; // Global intermediate boards count
-extern "C" int iIntermediateBonusBoardsCount; // Global intermediate bonus boards count
-extern "C" int iAdvancedBoardsCount; // Global advanced boards count
-extern "C" int iAdvancedBonusBoardsCount; // Global advanced bonus boards count
-extern "C" int iExpertBoardsCount; // Global expert boards count
-extern "C" int iExpertBonusBoardsCount; // Global expert bonus boards count
-extern "C" void* paBoardList; // Global board list array
-extern "C" void* paBonusBoardList; // Global bonus board list array
-extern "C" BoardCollection g_aNoviceBoards; // Global novice boards
-extern "C" BoardCollection g_aNoviceBonusBoards; // Global novice bonus boards
-extern "C" BoardCollection g_aBeginnerBoards; // Global beginner boards
-extern "C" BoardCollection g_aBeginnerBonusBoards; // Global beginner bonus boards
-extern "C" BoardCollection g_aIntermediateBoards; // Global intermediate boards
-extern "C" BoardCollection g_aIntermediateBonusBoards; // Global intermediate bonus boards
-extern "C" BoardCollection g_aAdvancedBoards; // Global advanced boards
-extern "C" BoardCollection g_aAdvancedBonusBoards; // Global advanced bonus boards
-extern "C" BoardCollection g_aExpertBoards; // Global expert boards
-extern "C" BoardCollection g_aExpertBonusBoards; // Global expert bonus boards
 void SetDifficulty_CBoardManager(CBoardManager* self, int difficulty)
 {
     int bonus_board_count;
@@ -98,5 +64,5 @@ LABEL_11:
 LABEL_12:
     flag = -1;
     iBonusBoardListCount = bonus_board_count;
-    reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
+    ((Helpers::CLogBlock*)&log_buffer)->~CLogBlock();
 }

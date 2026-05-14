@@ -29,7 +29,7 @@ int RedrawBoardBuffer_CGameBoard(CGameBoard *self)
     {
       for ( i = 0; i < v4; ++i )
       {
-        TileByIndices = CGameBoard::GetTileByIndices(self, i, v10);
+        TileByIndices = (CBoardTile*)(intptr_t)CGameBoard::GetTileByIndices(self, i, v10);
         CGameBoard::SetTile(self, TileByIndices);
         v4 = *((uint32_t *)self + 2469);
       }
@@ -41,7 +41,7 @@ int RedrawBoardBuffer_CGameBoard(CGameBoard *self)
   v11[0] = v7;
   if ( v7 < 0
     || (v7 = CGameBoard::BltBoardToInk(self, 0, 0), v11[0] = v7, v7 < 0)
-    || (CInk::DrawInkToSurface(*((CInk **)self + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
+    || (CInk::DrawInkToSurface(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(self) + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
   {
     v2 = v7;
   }

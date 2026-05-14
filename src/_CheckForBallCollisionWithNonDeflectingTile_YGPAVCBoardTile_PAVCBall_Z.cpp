@@ -2,13 +2,15 @@
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
+#include <cfloat>
 #include <windows.h>
 CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
 {
-    uint32_t v10;
-    uint32_t v13;
-    uint32_t v16;
-    uint32_t v7;
+    RECT v8;
+    RECT v10;
+    POINT v13;
+    POINT v14;
+    uint32_t v7[8];
   int v1; // ebx
   int v2; // edi
   CBoardObject *v3; // esi
@@ -22,29 +24,24 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
 
   v1 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CheckForBallCollisionWithNonDeflectingTile", 0);
-  v12 = 1.797693134862316e308;
+  v12 = DBL_MAX;
   v17 = 0;
   v2 = -1;
   CBoardObject::GetCenterPoint(a1, &v13);
   CBoardObject::GetBoundingRect(a1, &v10);
-  v9[0] = CGameBoard::GetTile(g_pCGameBoard, v10.left, v10.top);
-  v9[1] = CGameBoard::GetTile(g_pCGameBoard, v10.right, v10.top);
-  v9[2] = CGameBoard::GetTile(g_pCGameBoard, v10.left, v10.bottom);
-  v9[3] = CGameBoard::GetTile(g_pCGameBoard, v10.right, v10.bottom);
-  v16 = v7;
+  v9[0] = (CBoardObject*)CGameBoard::GetTile(g_pCGameBoard, v10.left, v10.top);
+  v9[1] = (CBoardObject*)CGameBoard::GetTile(g_pCGameBoard, v10.right, v10.top);
+  v9[2] = (CBoardObject*)CGameBoard::GetTile(g_pCGameBoard, v10.left, v10.bottom);
+  v9[3] = (CBoardObject*)CGameBoard::GetTile(g_pCGameBoard, v10.right, v10.bottom);
   do
   {
-    uint32_t v10; // auto-declared
-    uint32_t v13; // auto-declared
-    uint32_t v14; // auto-declared
     uint32_t v16; // auto-declared
-    uint32_t v7; // auto-declared
-    uint32_t v8; // auto-declared
     v3 = v9[v1];
     if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t))(*(uint32_t *)v3 + 8))(v3, a1, 0) == 1 )
     {
       CBoardObject::GetBoundingRect(v3, &v8);
-      if ( CBall::VerifyCollision(a1, &v8, v16) )
+      v16 = v7[v1];
+      if ( CBall::VerifyCollision(a1, &v8, (void*)v16) )
       {
         CBoardObject::GetCenterPoint(v3, &v14);
         v15 = v14.y - v13.y;
@@ -56,7 +53,6 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
         }
       }
     }
-    ++v16;
     ++v1;
   }
   while ( v1 < 4 );
@@ -66,12 +62,11 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
   }
   else
   {
-    v5 = v9[v2];
-    CBoardTile::SetClosestSide(v5, &v7[v2]);
+    v5 = (CBoardTile*)v9[v2];
+    CBoardTile::SetClosestSide(v5, (void*)&v7[v2]);
     (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
   ((Helpers::CLogBlock*)v11)->~CLogBlock();
   return v5;
 }
-

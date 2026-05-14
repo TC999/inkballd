@@ -3,9 +3,18 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+
+#define LODWORD(x) (*(uint32_t*)&(x))
+
+extern void* g_tcid;
+extern void* g_cid;
+extern void* GetTabletContextInfo(void* tcid);
+extern void SetBoardActiveState(int active);
+extern int BltBoardToInk(void* rect);
+
 int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
 {
-    void* TabletContextInfo;
+  void* TabletContextInfo;
   int v5; // ecx
   uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
   uint32_t v9[2]; // [esp+64h] [ebp-2Ch] BYREF
@@ -31,9 +40,9 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
     v16 = 10 * a3;
   v17 = (float)v16;
   v13 = (*(int (__stdcall **)(struct IInkObject *, uint32_t *, float, uint32_t *))(*(uint32_t *)g_pIInkObject + 108))(
-          g_pIInkObject,
+          (IInkObject*)g_pIInkObject,
           v10,
-          COERCE_FLOAT(LODWORD(v17)),
+          v17,
           v14);
   if ( v13 )
   {
@@ -45,7 +54,7 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
     if ( a4 )
     {
       SetBoardActiveState(0);
-      (*(void (__stdcall **)(struct IInkObject *, int*))(*(uint32_t *)g_pIInkObject + 16))(g_pIInkObject, &v11);
+      (*(void (__stdcall **)(struct IInkObject *, int*))(*(uint32_t *)g_pIInkObject + 16))((IInkObject*)g_pIInkObject, &v11);
       v13 = (*(int (__stdcall **)(uint32_t, uint32_t, int, uint32_t *))(*(uint32_t *)v14[0] + 16))(v14[0], 0, 1, v9);
       if ( v13 < 0 || (v16 = 1, v9[0] != v11 - 1) )
         v16 = 0;
@@ -65,8 +74,8 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
           (*(void (__stdcall **)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t))(**(uint32_t **)TabletContextInfo
                                                                                             + 36))(
             *(uint32_t *)TabletContextInfo,
-            g_tcid,
-            g_cid,
+            (uint32_t)g_tcid,
+            (uint32_t)g_cid,
             0,
             0,
             0);
@@ -74,15 +83,15 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
         }
       }
       v13 = (*(int (__stdcall **)(struct IInkObject *, uint32_t *, float, uint32_t *))(*(uint32_t *)g_pIInkObject + 108))(
-              g_pIInkObject,
+              (IInkObject*)g_pIInkObject,
               v10,
-              COERCE_FLOAT(LODWORD(v17)),
+              v17,
               v14);
       if ( !v13 )
       {
         if ( (*(int (__stdcall **)(uint32_t, uint32_t, int, uint32_t *))(*(uint32_t *)v14[0] + 16))(v14[0], 0, 1, v9) >= 0 )
           (*(void (__stdcall **)(struct IInkObject *, uint32_t, int))(*(uint32_t *)g_pIInkObject + 68))(
-            g_pIInkObject,
+            (IInkObject*)g_pIInkObject,
             v9[0],
             1);
         if ( v14[0] )
@@ -93,7 +102,7 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
       }
       BltBoardToInk(0);
       *((uint32_t *)self + 4) = 1;
-      CInk::DrawInkToSurface(self, 0);
+      CInk::DrawInkToSurface(self);
       SetBoardActiveState(1);
     }
   }

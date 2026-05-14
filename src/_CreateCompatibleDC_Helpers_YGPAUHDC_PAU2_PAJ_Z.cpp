@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HDC __stdcall CreateCompatibleDC_Helpers(Helpers* self, HDC hdc, HDC a2, int*a3)
+HDC __stdcall CreateCompatibleDC_Helpers(void* self, HDC hdc, HDC a2, int*a3)
 {
   HDC CompatibleDC; // esi
   signed int LastError; // eax

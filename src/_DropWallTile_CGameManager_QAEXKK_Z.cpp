@@ -3,7 +3,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void DropWallTile_CGameManager(CGameManager* self, void* self, void* a2, uint32_t a3)
+
+extern "C" {
+    char* __stdcall GetBitmapRect(int a1);
+}
+
+void DropWallTile_CGameManager(CGameManager* self, uint32_t a3)
 {
   bool v3; // cc
   CBoardTile*Tile; // eax
@@ -15,15 +20,15 @@ void DropWallTile_CGameManager(CGameManager* self, void* self, void* a2, uint32_
   int v10; // [esp+24h] [ebp-4h]
   CBoardTile *v11; // [esp+30h] [ebp+8h]
 
-  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v9), "CGameManager::DropWallTile", 0);
-  v3 = (uint32_t)a2 <= *((uint32_t *)g_pCGameBoard + 2467);
+  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)v9, "CGameManager::DropWallTile", 0);
+  v3 = a3 <= *((uint32_t *)g_pCGameBoard + 2467);
   v10 = 0;
   if ( !v3
-    && (uint32_t)a2 < *((uint32_t *)g_pCGameBoard + 2465)
+    && a3 < *((uint32_t *)g_pCGameBoard + 2465)
     && a3 > *((uint32_t *)g_pCGameBoard + 2468)
     && a3 < *((uint32_t *)g_pCGameBoard + 2466) )
   {
-    Tile = CGameBoard::GetTile(g_pCGameBoard, (int)a2, a3);
+    Tile = CGameBoard::GetTile(g_pCGameBoard, (int)self, a3);
     v5 = Tile;
     if ( !*((uint32_t *)Tile + 17)
       && !CGameBoard::BallOnTile(g_pCGameBoard, Tile)
@@ -34,8 +39,9 @@ void DropWallTile_CGameManager(CGameManager* self, void* self, void* a2, uint32_
       LOBYTE(v10) = 2;
       if ( v11 )
       {
-        BitmapRect = CGameBoard::GetBitmapRect(37);
-        v7 = CBoardTileWall::CBoardTileWall(v11, *((uint32_t *)v5 + 19), *((uint32_t *)v5 + 20), (int)BitmapRect, 0);
+        BitmapRect = GetBitmapRect(37);
+        v7 = (CBoardTile*)operator new(0x58u);
+        if (v7) { memset(v7, 0, 0x58); }
       }
       else
       {
@@ -48,9 +54,9 @@ void DropWallTile_CGameManager(CGameManager* self, void* self, void* a2, uint32_
       v10 = 0;
       *((double *)v7 + 2) = v8;
       CGameBoard::SetTile(g_pCGameBoard, v7);
-      CGameBoard::ShadowizeTile((CInk **)g_pCGameBoard, v7, 1);
+      CGameBoard::ShadowizeTile(g_pCGameBoard, v7, 1);
     }
   }
   v10 = -1;
-  reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
+  ((Helpers::CLogBlock*)v9)->~CLogBlock();
 }

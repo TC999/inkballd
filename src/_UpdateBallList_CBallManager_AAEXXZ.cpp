@@ -5,7 +5,7 @@
 extern "C" {
 }
 
-CBall* UpdateBallList_CBallManager(CBallManager *self)
+void UpdateBallList_CBallManager(CBallManager *self)
 {
     int old_active_count;
     uint32_t* ball_list_ptr;

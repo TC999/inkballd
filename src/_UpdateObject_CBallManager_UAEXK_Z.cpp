@@ -28,7 +28,14 @@ void UpdateObject_CBallManager(CBallManager *self, uint32_t delta_time)
     }
     
     if (self->ball_count <= 0)
-        goto LABEL_12;
+    {
+        if (!self->timer_started)
+        {
+            self->timer_started = 1;
+            StartTimer();
+        }
+        goto LABEL_13;
+    }
     
     CBallManager::UpdateBallPositions(self, delta_time);
     self->next_ball_timer -= delta_time;
@@ -71,7 +78,6 @@ void UpdateObject_CBallManager(CBallManager *self, uint32_t delta_time)
         if (!self->timer_started)
         {
             self->timer_started = 1;
-LABEL_12:
             StartTimer();
         }
     }

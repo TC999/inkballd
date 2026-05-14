@@ -6,20 +6,20 @@
 int DisplayFrame_CGameBoard(CGameBoard* self, int a2, int a3)
 {
     void* BackBuffer;
-    void* PlayingAreaRect;
-    uint32_t v11;
-    uint32_t v12;
-  int v4; // edi
-  int v6; // eax
-  uint32_t *v8; // ebx
-  bool v10; // zf
-  uint8_t v14[8]; // [esp+30h] [ebp-20h] BYREF
-  uint32_t *v15; // [esp+38h] [ebp-18h]
-  char*v16; // [esp+3Ch] [ebp-14h]
-  int v17[3]; // [esp+40h] [ebp-10h] BYREF
-  int v18; // [esp+4Ch] [ebp-4h]
-  int v19; // [esp+5Ch] [ebp+Ch]
-  int v20; // [esp+5Ch] [ebp+Ch]
+    RECT* PlayingAreaRect;
+    RECT v12;
+    RECT v13;
+  int v4;
+  int v6;
+  uint32_t *v8;
+  bool v10;
+  uint8_t v14[8];
+  uint32_t *v15;
+  char*v16;
+  int v17[3];
+  int v18;
+  int v19;
+  int v20;
 
   v4 = 0;
   v17[0] = 0;
@@ -61,10 +61,6 @@ int DisplayFrame_CGameBoard(CGameBoard* self, int a2, int a3)
   v19 = 0;
   if ( *((int*)self + 656) > 0 )
   {
-    void* PlayingAreaRect; // auto-declared
-    uint32_t v11; // auto-declared
-    uint32_t v12; // auto-declared
-    uint32_t v13; // auto-declared
     v16 = reinterpret_cast<char*>(self) + 2628;
     while ( 1 )
     {
@@ -87,7 +83,7 @@ LABEL_17:
         goto LABEL_18;
     }
     BackBuffer = CDisplay::GetBackBuffer(g_pDisplay);
-    v6 = CGameBoard::BltBall(self, (struct tagRECT **)v8, BackBuffer);
+    v6 = CGameBoard::BltBall(self, (CBall*)v8, (IDirectDrawSurface7*)BackBuffer);
     v17[0] = v6;
     if ( v6 < 0 )
       goto LABEL_6;
@@ -102,15 +98,14 @@ LABEL_18:
     v20 = 0;
     if ( *((int*)self + 1018) > 0 )
     {
-      v11 = (struct tagRECT *)(reinterpret_cast<char*>(self) + 4076);
+      RECT* update_rects = (RECT*)(reinterpret_cast<char*>(self) + 4076);
       do
       {
-        v6 = CDisplay::Present(g_pDisplay, v11);
+        v6 = CDisplay::Present(g_pDisplay, &update_rects[v20]);
         v17[0] = v6;
         if ( v6 < 0 )
           goto LABEL_6;
         ++v20;
-        ++v11;
       }
       while ( v20 < *((uint32_t *)self + 1018) );
     }

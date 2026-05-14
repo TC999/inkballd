@@ -2,10 +2,8 @@
 #include <cstdint>
 
 extern "C" {
-    int __stdcall WPP_INIT_CONTROL_ARRAY(void* control_array)
+    void __stdcall WPP_INIT_CONTROL_ARRAY(void* control_array)
     {
-      int result; // eax
-
       WppControl* ctrl = reinterpret_cast<WppControl*>(control_array);
       
       // Initialize the control structure
@@ -16,8 +14,6 @@ extern "C" {
       ctrl->reserved1 = 0;
       ctrl->unknown2 = 0;
       
-      result = reinterpret_cast<int>(control_array) + 32;
-      
       // Initialize the second part of the structure
       ctrl->padding1 = 0;
       ctrl->unknown3 = 0;
@@ -25,7 +21,5 @@ extern "C" {
       ctrl->flags4 = 2;
       ctrl->reserved2 = 0;
       ctrl->unknown4 = 0;
-      
-      return result;
     }
 }

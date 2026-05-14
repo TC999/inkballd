@@ -12,7 +12,7 @@ void UpdateBounds_CGameBoard(CGameBoard *self)
 
   new (v1) Helpers::CLogBlock(v1, "CGameBoard::UpdateBounds", 0);
   v2 = 0;
-  CDisplay::UpdateBounds(g_pDisplay);
+  CDisplay::UpdateBounds((CDisplay*)g_pDisplay);
   v2 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }

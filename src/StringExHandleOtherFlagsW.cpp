@@ -3,13 +3,13 @@
 #include <cstring>
 
 extern "C" {
-    HRESULT __stdcall StringExHandleOtherFlagsW(
-            LPWSTR destination,
-            size_t dest_size,
-            size_t flags,
-            LPWSTR* dest_end,
-            size_t* remaining,
-            DWORD unused_flags)
+    void StringExHandleOtherFlagsW(
+            void* destination,
+            size_t* dest_size,
+            uint32_t flags,
+            void* dest_end,
+            void* remaining,
+            uint32_t unused_flags)
     {
       int offset; // ecx
       uint32_t* remaining_ptr; // ebx
@@ -19,7 +19,7 @@ extern "C" {
       uint16_t* last_ptr; // eax
 
       dest_words = reinterpret_cast<uint32_t>(destination) >> 1;
-      if (dest_words && (flags & 0x1000) != 0)
+        if (dest_words && (flags & 0x1000) != 0)
       {
         end_ptr = &buffer[offset];
         *reinterpret_cast<uint32_t*>(dest_size) = reinterpret_cast<uint32_t>(end_ptr);
@@ -31,12 +31,13 @@ extern "C" {
         memset(buffer, static_cast<uint8_t>(flags), reinterpret_cast<size_t>(destination));
         if (static_cast<uint8_t>(flags))
         {
-          if (!dest_words)
-            return 0;
-          last_ptr = &buffer[dest_words - 1];
-          *reinterpret_cast<uint32_t*>(dest_size) = reinterpret_cast<uint32_t>(last_ptr);
-          *remaining_ptr = 1;
-          *last_ptr = 0;
+          if (dest_words)
+          {
+            last_ptr = &buffer[dest_words - 1];
+            *reinterpret_cast<uint32_t*>(dest_size) = reinterpret_cast<uint32_t>(last_ptr);
+            *remaining_ptr = 1;
+            *last_ptr = 0;
+          }
         }
         else
         {
@@ -50,6 +51,5 @@ extern "C" {
         *remaining_ptr = dest_words;
         *buffer = 0;
       }
-      return 0;
     }
 }

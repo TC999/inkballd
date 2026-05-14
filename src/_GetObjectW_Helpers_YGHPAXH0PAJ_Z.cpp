@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int __stdcall GetObjectW_Helpers(Helpers* self, HANDLE h, void*c, LPVOID pv, uint32_t *a4, int*a5)
+int __stdcall GetObjectW_Helpers(void* self, HANDLE h, void*c, LPVOID pv, uint32_t *a4, int*a5)
 {
   int ObjectW; // esi
   signed int LastError; // eax

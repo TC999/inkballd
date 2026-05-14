@@ -6,9 +6,9 @@ extern "C" {
 }
 
 extern "C" bool BallOnTile(void* tile);
-extern "C" void* GetBitmapRect(int index);
+extern "C" char* __stdcall GetBitmapRect(int a1);
 extern "C" void UpdateBoardTile(void* tile);
-extern "C" void ShadowizeTile(void* tile);
+extern "C" void ShadowizeTile(CBoardTile* tile);
 
 void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *self, uint32_t delta_time)
 {
@@ -20,7 +20,7 @@ void UpdateObject_CBoardTileRLColored(CBoardTileRLColored *self, uint32_t delta_
     uint8_t log_buffer[16];
     int flag;
 
-    Helpers::CLogBlock::CLogBlock(&log_buffer, "CBoardTileRLColored::UpdateObject", 0);
+    Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock*)&log_buffer, "CBoardTileRLColored::UpdateObject", 0);
     self->animation_timer += delta_time;
     animation_state = self->animation_state;
     color_index = self->color_index;
@@ -57,8 +57,8 @@ LABEL_13:
     if (final_color != current_color)
     {
         self->bitmap_rect = GetBitmapRect(5 * final_color + self->tile_type + 77);
-        UpdateBoardTile(self);
-        ShadowizeTile(self);
+        UpdateBoardTile((void*)self);
+        ShadowizeTile((CBoardTile*)self);
     }
     
     flag = -1;

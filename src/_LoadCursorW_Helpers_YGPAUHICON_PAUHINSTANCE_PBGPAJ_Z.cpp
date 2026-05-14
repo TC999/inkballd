@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-HICON __stdcall LoadCursorW_Helpers(Helpers* self, HINSTANCE hInstance, const WCHAR *lpCursorName, uint16_t *a3, int*a4)
+HICON __stdcall LoadCursorW_Helpers(void* self, HINSTANCE hInstance, const WCHAR *lpCursorName, uint16_t *a3, int*a4)
 {
   HCURSOR CursorW; // esi
   signed int LastError; // eax

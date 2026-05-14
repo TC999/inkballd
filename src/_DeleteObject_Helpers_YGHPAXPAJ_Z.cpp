@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall DeleteObject_Helpers(Helpers* self, HGDIOBJ ho, uint32_t *a2, int*a3)
+BOOL __stdcall DeleteObject_Helpers(void* self, HGDIOBJ ho, uint32_t *a2, int*a3)
 {
   BOOL v3; // esi
   signed int LastError; // eax
