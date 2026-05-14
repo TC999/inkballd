@@ -51,7 +51,7 @@ int DisplayFrame_CGameBoard(CGameBoard* self, int a2, int a3)
     *(uint32_t *)(*((uint32_t *)self + 2479) + 8),
     g_pTimeManagerSurface,
     0);
-  if ( CInk::GetInkUpdateRect(*((CInk **)self + 2481), &v12) )
+  (CInk::GetInkUpdateRect(*((CInk**)self + 2481), &v12));
     CGameBoard::AddDisplayUpdateRect(self, &v12);
   PlayingAreaRect = CGameBoard::GetPlayingAreaRect(self);
   v6 = CDisplay::BltInk(g_pDisplay, PlayingAreaRect);
