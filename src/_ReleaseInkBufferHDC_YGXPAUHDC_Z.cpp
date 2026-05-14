@@ -15,7 +15,7 @@ void __stdcall ReleaseInkBufferHDC(HDC a1)
   v4 = 0;
   InkBuffer = CDisplay::GetInkBuffer(g_pDisplay);
   if ( InkBuffer )
-    v3[0] = InkBuffer->lpVtbl->ReleaseDC(InkBuffer, a1);
+    v3[0] = ((IInkBuffer*)InkBuffer)->lpVtbl->ReleaseDC((IInkBuffer*)InkBuffer, a1);
   v4 = -1;
   ((Helpers::CLogBlock*)v2)->~CLogBlock();
 }

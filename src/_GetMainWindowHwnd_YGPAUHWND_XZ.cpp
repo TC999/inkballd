@@ -6,7 +6,7 @@
 
 extern CGameBoard* g_pCGameBoard;
 
-extern "C" { HWND __stdcall GetMainWindowHwnd()
+HWND __stdcall GetMainWindowHwnd()
 {
     int v0;
     uint8_t v2[8];
@@ -15,4 +15,4 @@ extern "C" { HWND __stdcall GetMainWindowHwnd()
     v0 = *((uint32_t*)((char*)g_pCGameBoard + 2480));
     reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
     return (HWND)v0;
-}}
+}

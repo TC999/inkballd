@@ -26,7 +26,7 @@ void OnDisplayChange_CInk(CInk *self)
                 v3);
       if ( v5[0] >= 0 )
         v5[0] = (*(int (__stdcall **)(struct IInkObject *, uint32_t, uint8_t *, void*))(*(uint32_t *)g_pIInkObject + 132))(
-                  g_pIInkObject,
+                  (struct IInkObject *)g_pIInkObject,
                   *(uint32_t *)((char*)g_arrTCI + v1 + 8),
                   v3,
                   &g_rcTabletInInk);

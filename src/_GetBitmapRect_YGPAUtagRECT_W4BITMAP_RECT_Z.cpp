@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <windows.h>
 
-char* GetBitmapRect(int a1)
+char* __stdcall GetBitmapRect(int a1)
 {
     char* BitmapRect;
     char* v2;

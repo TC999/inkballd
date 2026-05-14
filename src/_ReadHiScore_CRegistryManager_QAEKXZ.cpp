@@ -12,7 +12,7 @@ int ReadHiScore_CRegistryManager(CRegistryManager *self)
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CRegistryManager::ReadHiScore", 0);
   v6 = 0;
-  if ( !ReadRegValueDWORD(HKEY_CURRENT_USER, (HKEY)&SubKey, (HKEY)&ValueName, Data) )
+  if ( !ReadRegValueDWORD(HKEY_CURRENT_USER, SubKey, ValueName, Data) )
   {
     CreateInkballKey();
     CRegistryManager::WriteHiScore(self, 0x88u);

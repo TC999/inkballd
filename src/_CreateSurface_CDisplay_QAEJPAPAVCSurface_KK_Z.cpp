@@ -6,7 +6,6 @@
 #include <windows.h>
 int CreateSurface_CDisplay(CDisplay* self, CSurface**a2, void*a3, DWORD a4)
 {
-    uint32_t v10;
   int v5; // eax
   int v6; // esi
   CSurface *v8; // ecx
@@ -22,7 +21,6 @@ int CreateSurface_CDisplay(CDisplay* self, CSurface**a2, void*a3, DWORD a4)
   v14 = 0;
   if ( !a2 )
   {
-    uint32_t v10; // auto-declared
     v5 = -2147024809;
 LABEL_3:
     v6 = v5;

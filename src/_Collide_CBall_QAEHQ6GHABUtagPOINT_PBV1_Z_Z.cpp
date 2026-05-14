@@ -29,7 +29,7 @@ int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
     last_collision_point = -1;
     first_collision_point = -1;
     CBoardObject::GetCenterPoint(self, &center_point);
-    next_point = CBall::GetNextPoint(self);
+    next_point = (BallPoint*)CBall::GetNextPoint(self);
     if (!next_point)
         goto LABEL_12;
     
@@ -46,7 +46,7 @@ int Collide_CBall(CBall *self, CollisionCheckFunc collision_check)
             last_collision_point = prev_ball_point;
             collision_occurred = 1;
         }
-        next_point = CBall::GetNextPoint(self);
+        next_point = (BallPoint*)CBall::GetNextPoint(self);
     }
     while (next_point);
     

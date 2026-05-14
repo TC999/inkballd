@@ -26,14 +26,14 @@ int GetInkUpdateRect_CInk(CInk *self, struct tagRECT *a2)
   {
     *((uint32_t *)self + 2) = 0;
     v8[0] = (*(int (__stdcall **)(struct IRenderingContext *, tagXFORM *))(*(uint32_t *)g_pIRenderingContext + 20))(
-              g_pIRenderingContext,
+              (struct IRenderingContext *)g_pIRenderingContext,
               &v6);
     if ( v8[0] >= 0 )
     {
       if ( g_pIStroke )
       {
         v8[0] = (*(int (__stdcall **)(struct IInkStroke *, uint32_t, struct tagRECT *))(*(uint32_t *)g_pIStroke + 16))(
-                  g_pIStroke,
+                  (struct IInkStroke *)g_pIStroke,
                   0,
                   a2);
         if ( v8[0] >= 0 )

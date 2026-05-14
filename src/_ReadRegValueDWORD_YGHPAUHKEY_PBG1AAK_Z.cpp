@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL __stdcall ReadRegValueDWORD(HKEY hKey, HKEY lpSubKey, HKEY lpValueName, LPBYTE lpData)
+BOOL __stdcall ReadRegValueDWORD(HKEY hKey, const wchar_t* lpSubKey, const wchar_t* lpValueName, LPBYTE lpData)
 {
   BOOL v4; // edi
   int*v6; // [esp+0h] [ebp-30h]

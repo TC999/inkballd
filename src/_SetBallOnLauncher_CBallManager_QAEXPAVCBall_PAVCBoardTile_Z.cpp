@@ -5,7 +5,7 @@
 #include <windows.h>
 void SetBallOnLauncher_CBallManager(CBallManager *self, CBall*a2, CBoardTile*a3)
 {
-    uint32_t v6;
+    tagPOINT v6;
   int v4; // eax
   uint8_t v5[8]; // [esp+10h] [ebp-1Ch] BYREF
   int v7; // [esp+28h] [ebp-4h]

@@ -174,8 +174,9 @@ char* GetBitmapRect_CGameBoard(CGameBoard *self, int a1) {
 void ToggleRLWalls_CGameBoard(CGameBoard *self, int color) {
     (void)self; (void)color;
 }
-void BltBoardToInk_CGameBoard(CGameBoard *self, struct tagRECT* a1, int a2) {
+int BltBoardToInk_CGameBoard(CGameBoard *self, struct tagRECT* a1, int a2) {
     (void)self; (void)a1; (void)a2;
+    return 0;
 }
 bool IsRemoteSession_CGameBoard(CGameBoard *self) {
     (void)self;
@@ -301,8 +302,8 @@ void CMovingObject::PrepareToMove(CMovingObject* self) {
 // ============================================================================
 // CDisplay static method stubs
 // ============================================================================
-int CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src) {
-    (void)self; (void)x; (void)y; (void)surface; (void)src;
+int CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src, uint32_t colorkey) {
+    (void)self; (void)x; (void)y; (void)surface; (void)src; (void)colorkey;
     return 0;
 }
 int CDisplay::Present(void* self, RECT* rect) {
@@ -321,11 +322,11 @@ void* CDisplay::GetDirectDraw(void* self) {
     (void)self;
     return nullptr;
 }
-void CDisplay::Clear(CDisplay* self) {
-    (void)self;
+void CDisplay::Clear(void* self, uint32_t color) {
+    (void)self; (void)color;
 }
-void CDisplay::ClearInk(CDisplay* self) {
-    (void)self;
+void CDisplay::ClearInk(void* self, RECT* rect, int color) {
+    (void)self; (void)rect; (void)color;
 }
 int DestroyObjects_CDisplay(CDisplay *self) {
     (void)self;
@@ -405,6 +406,11 @@ namespace Helpers {
 
     void PostMessageW(HWND h1, HWND h2, int msg, int p1, int p2, int* out) {
         (void)h1; (void)h2; (void)msg; (void)p1; (void)p2; (void)out;
+    }
+
+    int __stdcall GetObjectW_wpp(HGDIOBJ h, int c, LPVOID pv, int unused, int* out) {
+        (void)unused; (void)out;
+        return ::GetObjectW(h, c, pv);
     }
 }
 

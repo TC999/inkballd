@@ -64,7 +64,7 @@ int CreatePaletteFromBitmap_CDisplay(CDisplay* self, struct IDirectDrawPalette *
     FileW = CreateFileW(lpFileName, 0x80000000, 0, 0, 3u, 0, 0);
     if ( FileW == (HANDLE)-1 )
     {
-      if ( reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         LastError = (char)GetLastError();
         WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x1Du, &stru_1002FB8, LastError);
@@ -77,7 +77,7 @@ int CreatePaletteFromBitmap_CDisplay(CDisplay* self, struct IDirectDrawPalette *
       {
         if ( !ReadFile(FileW, &v31, 0x400u, &NumberOfBytesRead, 0) || NumberOfBytesRead != 1024 )
         {
-        if ( reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+        if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
         {
           v25 = (char)GetLastError();
           WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x20u, &stru_1002FB8, v25);
@@ -113,7 +113,7 @@ int CreatePaletteFromBitmap_CDisplay(CDisplay* self, struct IDirectDrawPalette *
                            a2,
                            0);
         if ( *(int*)v42 < 0
-          && reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control)
+          && WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control
           && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
         {
           WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x21u, &stru_1002FB8, v42[0]);
@@ -122,13 +122,13 @@ LABEL_21:
         v8 = *(uint32_t *)v42;
         goto LABEL_56;
       }
-      if ( reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         v26 = (char)GetLastError();
         WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x1Fu, &stru_1002FB8, v26);
       }
     }
-    else if ( reinterpret_cast<uint64_t>(WPP_GLOBAL_Control) != reinterpret_cast<uint64_t>(&WPP_GLOBAL_Control) && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+    else if ( WPP_GLOBAL_Control != (uint64_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
     {
       v27 = (char)GetLastError();
       WPP_SF_d(*(reinterpret_cast<uint64_t*>(WPP_GLOBAL_Control) + 2), 0x1Eu, &stru_1002FB8, v27);

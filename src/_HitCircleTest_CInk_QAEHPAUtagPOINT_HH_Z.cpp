@@ -99,7 +99,7 @@ int HitCircleTest_CInk(CInk *self, struct tagPOINT *a2, int a3, int a4)
           v14[0] = 0;
         }
       }
-      BltBoardToInk(0);
+      ::BltBoardToInk((tagRECT*)0);
       *((uint32_t *)self + 4) = 1;
       CInk::DrawInkToSurface(self);
       SetBoardActiveState(1);

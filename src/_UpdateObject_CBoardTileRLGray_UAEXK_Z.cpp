@@ -2,13 +2,6 @@
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
-}
-
-extern "C" bool BallOnTile(void* tile);
-extern "C" char* __stdcall GetBitmapRect(int a1);
-extern "C" void UpdateBoardTile(void* tile);
-extern "C" void ShadowizeTile(CBoardTile* tile);
 void UpdateObject_CBoardTileRLGray(CBoardTileRLGray* self, uint32_t delta_time)
 {
     uint32_t animation_state;

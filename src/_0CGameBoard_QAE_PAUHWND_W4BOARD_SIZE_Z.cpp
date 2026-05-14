@@ -30,9 +30,9 @@ CGameBoard* Ctor_CGameBoard(uint32_t *self, HWND a2, void*a3)
   v4 = 0;
   v22[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v20, "CGameBoard::CGameBoard", v22);
-  self[2480] = a2;
+  self[2480] = (uint32_t)(uintptr_t)a2;
   v23 = 0;
-  self[2475] = a3;
+  self[2475] = (uint32_t)(uintptr_t)a3;
   if ( a3 == (void*)1 )
     v5 = 1.0;
   else
@@ -56,33 +56,28 @@ CGameBoard* Ctor_CGameBoard(uint32_t *self, HWND a2, void*a3)
   self[2472] = 32;
   self[2473] = 0;
   self[2474] = 0;
-  *this = 0;
-  memset(this + 1, 0, 0x4B0u);
+  self[0] = 0;
+  memset(&self[1], 0, 0x4B0u);
   self[301] = 0;
-  memset(this + 302, 0, 0x100u);
+  memset(&self[302], 0, 0x100u);
   self[366] = 0;
-  memset(this + 367, 0, 0x484u);
+  memset(&self[367], 0, 0x484u);
   self[656] = 0;
-  memset(this + 657, 0, 0x100u);
-  memset(this + 721, 0, 0x484u);
+  memset(&self[657], 0, 0x100u);
+  memset(&self[721], 0, 0x484u);
   self[1018] = 0;
   self[2175] = 0;
   v6 = _time(0);
   _srand(v6);
-  v22[0] = CGameBoard::InitDirectDraw((CGameBoard *)this);
+  v22[0] = CGameBoard::InitDirectDraw((CGameBoard *)self);
   if ( v22[0] < 0 )
   {
-    std::bad_alloc::bad_alloc(reinterpret_cast<std::bad_alloc*>(pExceptionObject));
-    v7 = pExceptionObject;
-    goto LABEL_6;
+    throw std::bad_alloc();
   }
   v22[0] = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &g_pGamePiecesSurface, (HINSTANCE)0x1F5, 0x17Du, 0x190u);
   if ( v22[0] < 0 )
   {
-    std::bad_alloc::bad_alloc(reinterpret_cast<std::bad_alloc*>(v18));
-    v7 = v18;
-LABEL_6:
-    /* _CxxThrowException removed */
+    throw std::bad_alloc();
   }
   v22[0] = CSurface::SetColorKey(g_pGamePiecesSurface, 0xFF00FFu);
   self[2481] = 0;
@@ -98,7 +93,7 @@ LABEL_6:
   else
     v9 = 0;
   LOBYTE(v23) = 1;
-  self[2481] = v9;
+  self[2481] = (uint32_t)(uintptr_t)v9;
   v10 = (CBallManager *)operator new(0x518u);
   LOBYTE(v23) = 3;
   if ( v10 )
@@ -106,7 +101,7 @@ LABEL_6:
   else
     v11 = 0;
   LOBYTE(v23) = 1;
-  self[2476] = v11;
+  self[2476] = (uint32_t)(uintptr_t)v11;
   v12 = (CScoreManager *)operator new(0x2Cu);
   LOBYTE(v23) = 4;
   if ( v12 )
@@ -114,7 +109,7 @@ LABEL_6:
   else
     v13 = 0;
   LOBYTE(v23) = 1;
-  self[2477] = v13;
+  self[2477] = (uint32_t)(uintptr_t)v13;
   v14 = (CTileManager *)operator new(0x30u);
   LOBYTE(v23) = 5;
   if ( v14 )
@@ -122,14 +117,14 @@ LABEL_6:
   else
     v15 = 0;
   LOBYTE(v23) = 1;
-  self[2478] = v15;
+  self[2478] = (uint32_t)(uintptr_t)v15;
   v16 = (CTimeManager *)operator new(0x3Cu);
   LOBYTE(v23) = 6;
   if ( v16 )
     v4 = (v16 ? new (v16) CTimeManager() : 0);
   v23 = -1;
-  self[2479] = v4;
+  self[2479] = (uint32_t)(uintptr_t)v4;
   ((Helpers::CLogBlock*)v20)->~CLogBlock();
-  return this;
+  return (CGameBoard*)self;
 }
 

@@ -37,7 +37,7 @@ void SetTallness_CBall(CBall *self, void* new_tallness)
         new_ball_points = reinterpret_cast<BallPoints*>(operator new(4));
         flag = 2;
         if (new_ball_points)
-            created_points = BallPoints::BallPoints(new_ball_points, self->width, 0);
+            created_points = new (new_ball_points) BallPoints(self->width, 0);
         else
             created_points = nullptr;
             

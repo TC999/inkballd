@@ -12,7 +12,7 @@ BOOL __stdcall PointIntersectsWithTileDeflect(const struct tagPOINT *a1, const C
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "PointIntersectsWithTileDeflect", 0);
   v6 = 0;
-  v2 = CGameBoard::PointIntersectsWithTile(g_pCGameBoard, a1, a2, 1);
+  v2 = CGameBoard::PointIntersectsWithTile(g_pCGameBoard, a1, (CBall*)a2, 1);
   v6 = -1;
   v3 = v2;
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();

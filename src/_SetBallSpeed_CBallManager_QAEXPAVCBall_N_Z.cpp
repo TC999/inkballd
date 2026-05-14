@@ -7,7 +7,6 @@
 extern "C" {
     extern long double cosd(double angle);
     extern long double sind(double angle);
-    extern int GetRandomNumber(int max_value);
 }
 void SetBallSpeed_CBallManager(CBallManager* self, CBall* ball, double angle_degrees)
 {

@@ -54,7 +54,7 @@ LABEL_6:
   if ( CompatibleDC )
   {
     Helpers::SelectObject(CompatibleDC, h, 0, v15);
-    GetObjectW(h, (void*)0x18, pv, 0, v16);
+    Helpers::GetObjectW_wpp(h, 0x18, pv, 0, v16);
     if ( !wSrc )
       wSrc = v20;
     v11 = hSrc;

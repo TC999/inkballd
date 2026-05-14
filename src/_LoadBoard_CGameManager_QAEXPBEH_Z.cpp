@@ -197,9 +197,9 @@ LABEL_36:
 LABEL_8:
     DisplayBoardLoadMsg();
   if ( BltBoardToInk(0) == -2005532222 )
-    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+    CGameBoard::RestoreSurfaces((CGameBoard *)g_pCGameBoard);
   if ( CDisplay::BltInk(g_pDisplay, 0) == -2005532222 )
-    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+    CGameBoard::RestoreSurfaces((CGameBoard *)g_pCGameBoard);
   (*(void (**)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;

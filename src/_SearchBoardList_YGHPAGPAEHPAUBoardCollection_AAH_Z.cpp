@@ -3,10 +3,6 @@
 #include <windows.h>
 #include <new>
 
-extern "C" {
-    HWND GetMainWindowHwnd();
-}
-
 int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, BoardCollection* board_collection, int* result)
 {
     uint8_t* board_data_ptr;
@@ -55,7 +51,7 @@ LABEL_5:
         *result = -1;
         Helpers::memset(window_title, 0, 1024);
         Helpers::LoadStringW((HINSTANCE)0, (HINSTANCE)0x3A98, window_title, (uint16_t*)0x200, 0, (int*)0);
-        main_window_hwnd = GetMainWindowHwnd();
+        main_window_hwnd = ::GetMainWindowHwnd();
         SetWindowTextW(main_window_hwnd, window_title);
         search_result = 1;
     }

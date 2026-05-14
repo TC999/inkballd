@@ -63,6 +63,7 @@ namespace Helpers {
     int __stdcall __wcsicmp(const wchar_t* a, const wchar_t* b);
     void* __cdecl memcpy(void* dst, const void* src, size_t n);
     void* __cdecl memset(void* dst, int val, size_t n);
+    int __stdcall GetObjectW_wpp(HGDIOBJ h, int c, LPVOID pv, int unused, int* out);
 }
 
 // [TODO] TabUtils namespace — verify full definition
@@ -105,13 +106,13 @@ struct CGameBoard {
     static struct tagRECT* GetPlayingAreaRect(CGameBoard* self);
     static int BallOnTile(CGameBoard* self, CBoardTile* tile);
     static char* GetBitmapRect(CGameBoard* self, int a1);
-    static void BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2);
+    static int BltBoardToInk(CGameBoard* self, struct tagRECT* a1, int a2);
     static int ShadowizeTile(CGameBoard* self, CBoardTile* tile, int flags);
     static void SetTile(CGameBoard* self, CBoardTile* tile);
     static int Shadowize(CGameBoard* self, int a2, int a3, int a4, int a5);
     static int InitDirectDraw(CGameBoard* self);
     static void RedrawBoardBuffer(CGameBoard* self);
-    static void CreateNewSurfaces(CGameBoard* self);
+    static int CreateNewSurfaces(CGameBoard* self);
     static void RandomizeBallOrder(CGameBoard* self);
     static int DisplayFrame(CGameBoard* self, int a2, int a3);
     static void ResetBoard(CGameBoard* self);
@@ -120,7 +121,7 @@ struct CGameBoard {
     static void FreeDirectDraw(CGameBoard* self);
     static int BltBall(CGameBoard* self, CBall* ball, void* surface);
     static bool IsRemoteSession(CGameBoard* self);
-    static int PointIntersectsWithTile(CGameBoard* self, void* point, CBoardTile* tile);
+    static int PointIntersectsWithTile(CGameBoard* self, const void* point, void* tile, int deflect = 0);
     static CBoardTile* BuildTileObject(CGameBoard* self, int tile_type, int x, int y, int rect);
     static void DisplayBoardLoadMsg(CGameBoard* self);
 };
@@ -179,7 +180,7 @@ struct CBall {
     static int BallsIntersect(CBall* self, CBall* a2);
     static int VerifyCollision(CBall* self, void* rect, void* point);
     static void scalar_deleting_destructor(CBall* self, int flags);
-    static int GetNextPoint(CBall* self);
+    static void* GetNextPoint(CBall* self);
     static int GetPoint(CBall* self, int index);
     static void InitBallPoints(CBall* self);
     static int MovingTowards(CBall* self, void* a2);
@@ -406,7 +407,7 @@ struct CDisplay {
     void* vftable;
     CDisplay();
     ~CDisplay();
-    static int Blt(void* self, int x, int y, void* surface, RECT* src);
+    static int Blt(void* self, int x, int y, void* surface, RECT* src, uint32_t colorkey = 0);
     static int Present(void* self, RECT* rect);
     static int BltInk(void* self, RECT* rect);
     static int DestroyObjects(CDisplay* self);
@@ -417,15 +418,15 @@ struct CDisplay {
     static void* GetInkBuffer(void* self);
     static void* GetBackBuffer(void* self);
     static void* GetFrontBuffer(void* self);
-    static int CreateSurfaceFromBitmap(void* self, void** surface, int a3, int a4, int a5);
-    static int CreateSurface(void* self, void** surface, int a3, int a4);
-    static int CreateWindowedDisplay(void* self, HWND hWnd, uint32_t width, uint32_t height);
+    static int CreateSurfaceFromBitmap(void* self, void** surface, void* a3, int a4, int a5);
+    static int CreateSurface(void* self, void** surface, void* a3, int a4);
+    static int CreateWindowedDisplay(void* self, HWND hWnd, uint32_t width = 0, uint32_t height = 0);
     static int CreatePaletteFromBitmap(void* self, void** palette, const WCHAR* filename);
     static void scalar_deleting_destructor(void* self, int flags);
     static int ConvertGDIColor(void* self, uint32_t color);
     static void* GetDirectDraw(void* self);
-    static void Clear(CDisplay* self);
-    static void ClearInk(CDisplay* self);
+    static void Clear(void* self, uint32_t color = 0);
+    static void ClearInk(void* self, RECT* rect = 0, int color = 0);
 };
 
 struct CBallManager {
@@ -479,6 +480,14 @@ struct IInkManager;
 struct IInkCollect;
 struct IRenderInk;
 struct ITabletManager;
+struct IInkBuffer {
+    struct IInkBufferVtbl* lpVtbl;
+};
+struct IInkBufferVtbl {
+    void* dummy[3];
+    int (__stdcall *GetDC)(IInkBuffer*, HDC*);
+    int (__stdcall *ReleaseDC)(IInkBuffer*, HDC);
+};
 #ifndef __IDirectDraw7_FWD_DEFINED
 #define __IDirectDraw7_FWD_DEFINED
 #if !defined(DIRECTDRAW_VERSION) && !defined(__DDRAW_INCLUDED__)
@@ -486,7 +495,9 @@ struct IDirectDraw7;
 struct IDirectDraw7Vtbl {
     int (__stdcall *RestoreAllSurfaces)(IDirectDraw7*);
     int (__stdcall *TestCooperativeLevel)(IDirectDraw7*);
-    void* dummy[19];
+    void* dummy[3];
+    int (__stdcall *CreateSurface)(IDirectDraw7*, struct _DDSURFACEDESC2*, struct IDirectDrawSurface7**, uint32_t);
+    void* dummy2[15];
 };
 struct IDirectDraw7 {
     IDirectDraw7Vtbl* lpVtbl;
@@ -520,6 +531,9 @@ struct IDirectDrawSurface7Vtbl {
     int (__stdcall *SetPalette)(IDirectDrawSurface7*, IDirectDrawPalette*);
     int (__stdcall *Restore)(IDirectDrawSurface7*);
     int (__stdcall *SetColorKey)(IDirectDrawSurface7*, uint32_t, void*);
+    int (__stdcall *GetSurfaceDesc)(IDirectDrawSurface7*, void*);
+    int (__stdcall *GetDC)(IDirectDrawSurface7*, HDC*);
+    int (__stdcall *ReleaseDC)(IDirectDrawSurface7*, HDC);
 };
 struct IDirectDrawSurface7 {
     IDirectDrawSurface7Vtbl* lpVtbl;
@@ -527,6 +541,15 @@ struct IDirectDrawSurface7 {
 #endif
 #endif
 typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7;
+struct DDSURFACEDESC2 {
+    uint32_t dwSize;
+    uint32_t dwFlags;
+    uint32_t dwHeight;
+    uint32_t dwWidth;
+    uint32_t _padding[25];
+    struct { uint32_t dwCaps; } ddsCaps;
+};
+struct _DDSURFACEDESC2 : public DDSURFACEDESC2 {};
 struct BoardCollection {
     const wchar_t* board_name;
     uint32_t board_data_offset;
@@ -870,11 +893,23 @@ extern "C" {
     int __stdcall canRunInkball(int* param);
     int __stdcall AcceptInkInput();
     uint32_t CalcUnsqrtDistance(void* point1, void* point2);
-    HWND GetMainWindowHwnd();
+    HWND __stdcall GetMainWindowHwnd();
     void __stdcall SetCursorAttributes(uint32_t cursor_id);
     void __stdcall SetCursorStroke(uint32_t cursor_id, void* stroke);
     void GetInkBufferHDC(HDC* hdc);
     void __stdcall ReleaseInkBufferHDC(HDC hdc);
+    // Geometry helpers
+    void __stdcall NormalizeRect(struct tagRECT* a1);
+    BOOL __stdcall PointInRect(LONG a1, LONG a2, struct tagRECT* a3);
+    int __stdcall BoardIsActive();
+    void __stdcall ExpandRect(struct tagRECT* a1, int a2);
+    void __stdcall ConvertInkRectToDisplayRect(struct tagRECT* a1, struct tagXFORM* a2);
+    // Registry helper
+    BOOL __stdcall ReadRegValueDWORD(HKEY hKey, const wchar_t* lpSubKey, const wchar_t* lpValueName, LPBYTE lpData);
+    // CSurface_Create
+    int CSurface_Create(CSurface* self, struct IDirectDraw7* a2, struct DDSURFACEDESC2* a3);
+    // GetRandomNumber
+    int __stdcall GetRandomNumber(int max_value);
     // CRT helpers
     int __cdecl _time(void* timer);
     void __cdecl _srand(unsigned int seed);

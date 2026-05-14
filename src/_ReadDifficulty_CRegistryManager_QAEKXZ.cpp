@@ -12,7 +12,7 @@ int ReadDifficulty_CRegistryManager(CRegistryManager *self)
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CRegistryManager::ReadDifficulty", 0);
   v6 = 0;
-  if ( !ReadRegValueDWORD(HKEY_CURRENT_USER, (HKEY)&SubKey, (HKEY)&stru_1002CD8, Data) )
+  if ( !ReadRegValueDWORD(HKEY_CURRENT_USER, SubKey, stru_1002CD8, Data) )
   {
     CreateInkballKey();
     CRegistryManager::WriteDifficulty(self, 0);

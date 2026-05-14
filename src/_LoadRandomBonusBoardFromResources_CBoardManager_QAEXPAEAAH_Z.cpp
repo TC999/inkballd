@@ -4,11 +4,6 @@
 
 extern int iBonusBoardListCount;
 extern void* paBonusBoardList;
-extern "C" {
-    int GetRandomNumber(int max_value);
-    int __stdcall fPrevSeen(void* history, int index);
-    HWND __stdcall GetMainWindowHwnd();
-}
 
 void LoadRandomBonusBoardFromResources_CBoardManager(CBoardManager *self, uint8_t* output_buffer, int* result)
 {
@@ -28,7 +23,7 @@ void LoadRandomBonusBoardFromResources_CBoardManager(CBoardManager *self, uint8_
     {
         random_number = GetRandomNumber(iBonusBoardListCount);
     }
-    while (fPrevSeen(random_number, &g_bhPrevBonusBoards, iBonusBoardListCount));
+    while (fPrevSeen(&g_bhPrevBonusBoards, random_number));
     
     board_data_ptr = (uint8_t*)&g_BoardData + 
                      *(uint32_t*)((uint8_t*)paBonusBoardList + 129 * random_number);

@@ -1,10 +1,9 @@
-#include <ddraw.h>`n#include "global_types.h"
+#include "global_types.h"
 #include <new>
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-#include <ddraw.h>
 
 extern int CSurface_Create(CSurface* self, IDirectDraw7* dd, void* desc);
 extern HANDLE __stdcall GetObjectW_wpp(HGDIOBJ h, int c, LPVOID pv, int unused, int* out);

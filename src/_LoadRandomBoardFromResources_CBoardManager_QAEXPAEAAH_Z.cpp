@@ -4,11 +4,6 @@
 
 extern int iBoardListCount;
 extern void* paBoardList;
-extern "C" {
-    int GetRandomNumber(int max_value);
-    int __stdcall fPrevSeen(void* history, int index);
-    HWND __stdcall GetMainWindowHwnd();
-}
 
 void LoadRandomBoardFromResources_CBoardManager(CBoardManager *self, uint8_t* output_buffer, int* result)
 {
@@ -28,7 +23,7 @@ void LoadRandomBoardFromResources_CBoardManager(CBoardManager *self, uint8_t* ou
     {
         random_number = GetRandomNumber(iBoardListCount);
     }
-    while (fPrevSeen(random_number, &g_bhPrevBoards, iBoardListCount));
+    while (fPrevSeen(&g_bhPrevBoards, random_number));
     
     board_data_ptr = (uint8_t*)&g_BoardData + 
                      *(uint32_t*)((uint8_t*)paBoardList + 129 * random_number);

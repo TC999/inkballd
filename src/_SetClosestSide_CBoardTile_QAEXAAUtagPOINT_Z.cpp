@@ -17,7 +17,7 @@ void SetClosestSide_CBoardTile(CBoardTile* self, POINT* test_point)
     new (&log_buffer) Helpers::CLogBlock(&log_buffer, "CBoardTile::SetClosestSide", 0);
     flag = 0;
     
-    CBoardObject::GetBoundingRect(reinterpret_cast<uintptr_t>(self), &bounding_rect);
+    CBoardObject::GetBoundingRect((void*)self, &bounding_rect);
     
     // Calculate distances to all four sides
     test_point_top.x = test_point->x;

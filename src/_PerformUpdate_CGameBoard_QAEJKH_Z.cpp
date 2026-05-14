@@ -5,7 +5,6 @@
 #include <windows.h>
 
 extern "C" uint32_t dword_105C760;
-extern "C" void Sleep(uint32_t ms);
 int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
 {
   IDirectDraw7* DirectDraw;
@@ -99,7 +98,7 @@ int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
     {
       if ( NewSurfaces != -2005532222 )
         goto LABEL_27;
-      CGameBoard::RestoreSurfaces((CScoreManager **)self);
+      CGameBoard::RestoreSurfaces((CGameBoard *)self);
       CGameBoard::DisplayFrame(self, 1, 1);
     }
     *((uint32_t *)self + 1018) = 0;
