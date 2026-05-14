@@ -6,8 +6,8 @@
 
 void __stdcall DispError(HWND hWnd, HINSTANCE uID, HINSTANCE a3)
 {
-  int*v3; // [esp+0h] [ebp-20A4h]
-  int*v4; // [esp+0h] [ebp-20A4h]
+  int *v3 = 0; // [esp+0h] [ebp-20A4h]
+  int *v4 = 0; // [esp+0h] [ebp-20A4h]
   uint8_t v5[8]; // [esp+Ch] [ebp-2098h] BYREF
   WCHAR Text[4096]; // [esp+14h] [ebp-2090h] BYREF
   WCHAR Caption[64]; // [esp+2014h] [ebp-90h] BYREF
