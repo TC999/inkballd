@@ -1,5 +1,4 @@
 // [COMPLEX] Undeclared CBoardObject methods (GetCenterPoint, GetBoundingRect, PointInRect) — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -13,6 +12,9 @@ int CBoardTileBumper_CareAboutCollisions(CBoardObject* self, CBoardObject* a2, i
   int v9;
   uint8_t v14[16];
   int v15;
+  RECT v11;
+  POINT v12;
+  POINT v13;
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CBoardTileBumper::CareAboutCollisions", 0);
   v15 = 0;
@@ -61,5 +63,3 @@ LABEL_13:
   reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
   return v9;
 }
-
-#endif
