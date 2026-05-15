@@ -1,5 +1,4 @@
 // [COMPLEX] COM vtable call pattern — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -35,5 +34,3 @@ int CDisplay_BltInk(CDisplay* self, struct tagRECT *a2)
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v4;
 }
-
-#endif
