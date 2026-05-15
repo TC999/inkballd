@@ -187,12 +187,6 @@
     <ClCompile Include="src\CTileManager.cpp" />
     <ClCompile Include="src\CTimeManager.cpp" />
     <ClCompile Include="src\CBall.cpp" />
-    <ClCompile Include="src\_1CBoardManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CDisplay_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CGameBoard_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CGameManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CScoreManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CSurface_QAE_XZ.cpp" />
     <ClCompile Include="src\_AcceptInkInput_YGHXZ.cpp" />
     <ClCompile Include="src\_AddAliveBallToBoard_YGJHPAVCBoardTile_N_Z.cpp" />
     <ClCompile Include="src\_AddBall_CGameBoard_QAEXPAVCBall_Z.cpp" />
@@ -389,7 +383,7 @@
     <ClCompile Include="src\_Shadowize_CGameBoard_QAEJHHHH_Z.cpp" />
     <ClCompile Include="src\_ShadowizeTile_CGameBoard_QAEJPAVCBoardTile_H_Z.cpp" />
     <ClCompile Include="src\_ShadowizeTile_YGXPAVCBoardTile_Z.cpp" />
-    <ClCompile Include="src\_sind_YGNN_Z.cpp" />
+    <ClCompile Include="src\sind.cpp" />
     <ClCompile Include="src\_StartTimer_YGXXZ.cpp" />
     <ClCompile Include="src\_ToggleRLWalls_CGameBoard_QAEXW4BOARD_COLOR_Z.cpp" />
     <ClCompile Include="src\_ToggleRLWalls_YGXW4BOARD_COLOR_Z.cpp" />
