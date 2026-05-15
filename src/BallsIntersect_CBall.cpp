@@ -1,5 +1,4 @@
 // [COMPLEX] Undeclared CBall members (position_x, position_y, radius) — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <cmath>
@@ -21,5 +20,3 @@ bool CBall_BallsIntersect(CBall* self, const CBall* other_ball)
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return intersect_result;
 }
-
-#endif
