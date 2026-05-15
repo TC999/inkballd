@@ -151,7 +151,7 @@
     <ClCompile Include="src\BallPoints_BallPoints.cpp" />
     <ClCompile Include="src\BallPoints__scalar_deleting_destructor_.cpp" />
     <ClCompile Include="src\BallPoints_~BallPoints.cpp" />
-    <ClCompile Include="src\CBall_QAE_PAUtagRECT_W4BOARD_COLOR_HH_Z.cpp" />
+    <ClCompile Include="src\CBall_ctor.cpp" />
     <ClCompile Include="src\CBallManager.cpp" />
     <ClCompile Include="src\CBitmapRects.cpp" />
     <ClCompile Include="src\CBoardManager.cpp" />
