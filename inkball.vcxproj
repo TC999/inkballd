@@ -193,7 +193,7 @@
     <ClCompile Include="src\_1CDisplay_QAE_XZ.cpp" />
     <ClCompile Include="src\_1CGameBoard_QAE_XZ.cpp" />
     <ClCompile Include="src\_1CGameManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_1CInk_QAE_XZ.cpp" />
+    <ClCompile Include="src\CInk.cpp" />
     <ClCompile Include="src\_1CScoreManager_QAE_XZ.cpp" />
     <ClCompile Include="src\_1CSurface_QAE_XZ.cpp" />
     <ClCompile Include="src\_AcceptInkInput_YGHXZ.cpp" />
