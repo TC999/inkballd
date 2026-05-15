@@ -146,26 +146,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-
-    <ClCompile Include="src\_0BallPoints_QAE_H_Z.cpp" />
-    <ClCompile Include="src\_0CBall_QAE_PAUtagRECT_W4BOARD_COLOR_HH_Z.cpp" />
-    <ClCompile Include="src\_0CBallManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CBitmapRects_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CBoardManager_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CBoardObject_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CBoardTile_QAE_W4TILE_TYPE_HHPAUtagRECT_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTile_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CBoardTileBreakWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileBumper_QAE_HHPAUtagRECT_W4BOARD_COLOR_W4TILE_DIRECTION_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileChevron_QAE_HHPAUtagRECT_W4TILE_DIRECTION_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileDrain_QAE_W4TILE_TYPE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileOWF_QAE_HHPAUtagRECT_W4BOARD_COLOR_W4TILE_DIRECTION_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileRLColored_QAE_HHPAUtagRECT_W4BOARD_COLOR_H_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileRLGray_QAE_HHPAUtagRECT_W4BOARD_COLOR_HKK_Z.cpp" />
-    <ClCompile Include="src\_0CBoardTileWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
-    <ClCompile Include="src\_0CDisplay_QAE_XZ.cpp" />
+    <ClCompile Include="src\BallPoints.cpp" />
+    <ClCompile Include="src\CBall_QAE_PAUtagRECT_W4BOARD_COLOR_HH_Z.cpp" />
+    <ClCompile Include="src\CBallManager.cpp" />
+    <ClCompile Include="src\CBitmapRects.cpp" />
+    <ClCompile Include="src\CBoardManager.cpp" />
+    <ClCompile Include="src\CBoardObject.cpp" />
+    <ClCompile Include="src\CBoardTile_QAE_W4TILE_TYPE_HHPAUtagRECT_Z.cpp" />
+    <ClCompile Include="src\CBoardTile.cpp" />
+    <ClCompile Include="src\CBoardTileBreakWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
+    <ClCompile Include="src\CBoardTileBumper_QAE_HHPAUtagRECT_W4BOARD_COLOR_W4TILE_DIRECTION_Z.cpp" />
+    <ClCompile Include="src\CBoardTileChevron_QAE_HHPAUtagRECT_W4TILE_DIRECTION_Z.cpp" />
+    <ClCompile Include="src\CBoardTileDrain_QAE_W4TILE_TYPE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
+    <ClCompile Include="src\CBoardTileOWF_QAE_HHPAUtagRECT_W4BOARD_COLOR_W4TILE_DIRECTION_Z.cpp" />
+    <ClCompile Include="src\CBoardTileRLColored_QAE_HHPAUtagRECT_W4BOARD_COLOR_H_Z.cpp" />
+    <ClCompile Include="src\CBoardTileRLGray_QAE_HHPAUtagRECT_W4BOARD_COLOR_HKK_Z.cpp" />
+    <ClCompile Include="src\CBoardTileWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
+    <ClCompile Include="src\CDisplay.cpp" />
     <ClCompile Include="src\CGameBoard.cpp" />
-    <ClCompile Include="src\_0CGameManager_QAE_PAUHWND_Z.cpp" />
+    <ClCompile Include="src\CGameManager.cpp" />
     <ClCompile Include="src\_0CInk_QAE_PAUHWND_Z.cpp" />
     <ClCompile Include="src\_0CMovingObject_QAE_XZ.cpp" />
     <ClCompile Include="src\_0CScoreManager_QAE_XZ.cpp" />
