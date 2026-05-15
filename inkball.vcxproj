@@ -187,10 +187,10 @@
     <ClCompile Include="src\CTileManager.cpp" />
     <ClCompile Include="src\CTimeManager.cpp" />
     <ClCompile Include="src\CBall.cpp" />
-    <ClCompile Include="src\_AcceptInkInput_YGHXZ.cpp" />
-    <ClCompile Include="src\_AddAliveBallToBoard_YGJHPAVCBoardTile_N_Z.cpp" />
-    <ClCompile Include="src\_AddBall_CGameBoard_QAEXPAVCBall_Z.cpp" />
-    <ClCompile Include="src\_AddBallGenerator_CBallManager_QAEXPAVCBoardTile_Z.cpp" />
+    <ClCompile Include="src\AcceptInkInput.cpp" />
+    <ClCompile Include="src\AddAliveBallToBoard.cpp" />
+    <ClCompile Include="src\AddBall_CGameBoard.cpp" />
+    <ClCompile Include="src\AddBallGenerator_CBallManager.cpp" />
     <ClCompile Include="src\AddBallToBoard.cpp" />
     <ClCompile Include="src\AddBallToUpdateList.cpp" />
     <ClCompile Include="src\_AddDisplayUpdateRect_CGameBoard_QAEXAAUtagRECT_Z.cpp" />
