@@ -1,5 +1,5 @@
 //----- (0100BA9A) --------------------------------------------------------
-void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
+void __thiscall CInk::DrawInkToSurface(CInk *self, struct tagRECT *a2)
 {
   int v2; // ecx
   int v3; // eax
@@ -38,5 +38,5 @@ void __thiscall CInk::DrawInkToSurface(CInk *this, struct tagRECT *a2)
   v7[0] = v3;
   ReleaseInkBufferHDC(v6);
   v8 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
 }

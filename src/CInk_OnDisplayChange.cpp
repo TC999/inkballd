@@ -1,5 +1,5 @@
 //----- (0100C27B) --------------------------------------------------------
-void __thiscall CInk::OnDisplayChange(CInk *this)
+void __thiscall CInk::OnDisplayChange(CInk *self)
 {
   int v1; // esi
   int v2; // edi

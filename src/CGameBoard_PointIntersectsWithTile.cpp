@@ -1,6 +1,6 @@
 //----- (010086FD) --------------------------------------------------------
 BOOL __thiscall CGameBoard::PointIntersectsWithTile(
-        CGameBoard *this,
+        CGameBoard *self,
         const struct tagPOINT *a2,
         const struct CBall *a3,
         int a4)
@@ -15,7 +15,7 @@ BOOL __thiscall CGameBoard::PointIntersectsWithTile(
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::PointIntersectsWithTile", 0);
   y = a2->y;
   v11 = 0;
-  Tile = CGameBoard::GetTile(this, a2->x, y);
+  Tile = CGameBoard::GetTile(self, a2->x, y);
   if ( (*(int (__thiscall **)(struct CBoardTile *, const struct CBall *, const struct tagPOINT *))(*(_DWORD *)Tile + 8))(
          Tile,
          a3,

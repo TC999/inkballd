@@ -1,5 +1,5 @@
 //----- (0100953E) --------------------------------------------------------
-void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
+void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *self)
 {
   int v2; // ebx
   int v3; // eax
@@ -14,34 +14,34 @@ void __thiscall CGameBoard::RandomizeBallOrder(CGameBoard *this)
 
   v2 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::RandomizeBallOrder", 0);
-  v3 = *((_DWORD *)this + 656);
+  v3 = *((_DWORD *)self + 656);
   v11 = 0;
   if ( v3 > 0 )
   {
-    v4 = (int *)((char *)this + 2628);
+    v4 = (int *)((char *)self + 2628);
     do
     {
-      RandomNumber = CGameBoard::GetRandomNumber(this, v3);
+      RandomNumber = CGameBoard::GetRandomNumber(self, v3);
       v6 = *v4;
-      v7 = (int *)((char *)this + 4 * RandomNumber + 2628);
+      v7 = (int *)((char *)self + 4 * RandomNumber + 2628);
       *v4 = *v7;
       *v7 = v6;
-      v3 = *((_DWORD *)this + 656);
+      v3 = *((_DWORD *)self + 656);
       ++v2;
       ++v4;
     }
     while ( v2 < v3 );
   }
   v8 = 0;
-  if ( *((int *)this + 656) > 0 )
+  if ( *((int *)self + 656) > 0 )
   {
-    v9 = (char *)this + 2628;
+    v9 = (char *)self + 2628;
     do
     {
       *(_DWORD *)(*(_DWORD *)v9 + 164) = v8++;
       v9 += 4;
     }
-    while ( v8 < *((_DWORD *)this + 656) );
+    while ( v8 < *((_DWORD *)self + 656) );
   }
   v11 = -1;
   Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);

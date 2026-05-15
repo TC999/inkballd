@@ -1,5 +1,5 @@
 //----- (0100BBE1) --------------------------------------------------------
-void __thiscall CInk::ClearInk(CInk *this)
+void __thiscall CInk::ClearInk(CInk *self)
 {
   int v1; // ecx
   _BYTE v2[8]; // [esp+10h] [ebp-1Ch] BYREF
@@ -18,5 +18,5 @@ void __thiscall CInk::ClearInk(CInk *this)
               0,
               v3);
   v5 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+  ((Helpers::CLogBlock *)v2)->~CLogBlock();
 }

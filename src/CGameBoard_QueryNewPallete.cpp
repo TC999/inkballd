@@ -1,5 +1,5 @@
 //----- (01008DFE) --------------------------------------------------------
-void __thiscall CGameBoard::QueryNewPallete(CGameBoard *this)
+void __thiscall CGameBoard::QueryNewPallete(CGameBoard *self)
 {
   struct IDirectDrawSurface7 *FrontBuffer; // eax
   struct IDirectDrawSurface7 *v2; // eax

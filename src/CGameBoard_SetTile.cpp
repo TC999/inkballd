@@ -1,5 +1,5 @@
 //----- (0100825A) --------------------------------------------------------
-void __thiscall CGameBoard::SetTile(CGameBoard *this, struct CBoardTile *a2)
+void __thiscall CGameBoard::SetTile(CGameBoard *self, struct CBoardTile *a2)
 {
   int v3; // eax
   struct IDirectDrawSurface7 *BoardBuffer; // ebx
@@ -11,11 +11,11 @@ void __thiscall CGameBoard::SetTile(CGameBoard *this, struct CBoardTile *a2)
   int v10; // [esp+30h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::SetTile", 0);
-  v3 = *((_DWORD *)a2 + 19) + *((_DWORD *)a2 + 20) * *((_DWORD *)this + 2469);
+  v3 = *((_DWORD *)a2 + 19) + *((_DWORD *)a2 + 20) * *((_DWORD *)self + 2469);
   v10 = 0;
   if ( v3 < 289 )
-    *((_DWORD *)this + v3 + 721) = a2;
-  if ( *((_DWORD *)this + 2475) == 1 )
+    *((_DWORD *)self + v3 + 721) = a2;
+  if ( *((_DWORD *)self + 2475) == 1 )
   {
     CDisplay::BltToBoard(
       g_pDisplay,

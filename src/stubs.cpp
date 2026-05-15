@@ -112,7 +112,7 @@ void* g_aExpertBoards = nullptr;
 void* g_aExpertBonusBoards = nullptr;
 
 // ============================================================================
-// extern "C" function stubs (unique to this file)
+// extern "C" function stubs (unique to self file)
 // ============================================================================
 extern "C" {
     int __stdcall WinSqmIsOptedIn() { return 0; }
@@ -125,7 +125,7 @@ extern "C" {
 }
 
 // ============================================================================
-// Static member stubs (unique to this file, not in .cpp files)
+// Static member stubs (unique to self file, not in .cpp files)
 // ============================================================================
 void CUIBarObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)out; }
 void CBoardObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)out; }

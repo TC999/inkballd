@@ -1,5 +1,5 @@
 //----- (01008379) --------------------------------------------------------
-int __thiscall CGameBoard::BltBall(CGameBoard *this, struct tagRECT **a2, struct IDirectDrawSurface7 *a3)
+int __thiscall CGameBoard::BltBall(CGameBoard *self, struct tagRECT **a2, struct IDirectDrawSurface7 *a3)
 {
   struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
   struct IDirectDrawSurface7 *DDrawSurface; // eax

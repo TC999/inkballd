@@ -1,5 +1,5 @@
 //----- (010083EF) --------------------------------------------------------
-int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, int a5)
+int __thiscall CGameBoard::Shadowize(CGameBoard *self, int a2, int a3, int a4, int a5)
 {
   int v6; // ebx
   int v7; // eax
@@ -30,9 +30,9 @@ int __thiscall CGameBoard::Shadowize(CGameBoard *this, int a2, int a3, int a4, i
     if ( ++v7 >= a5 )
       goto LABEL_11;
   }
-  v8 = *((_DWORD *)this + a2 + v7 * *((_DWORD *)this + 2469) + 721);
+  v8 = *((_DWORD *)self + a2 + v7 * *((_DWORD *)self + 2469) + 721);
   CBoardObject::GetBoundingRect((CBoardObject *)v8, &v16);
-  if ( *((_DWORD *)this + 2475) != 1 )
+  if ( *((_DWORD *)self + 2475) != 1 )
   {
     CBoardObject::GetBoundingRect((CBoardObject *)v8, &v17);
     BoardBuffer = CDisplay::GetBoardBuffer(g_pDisplay);

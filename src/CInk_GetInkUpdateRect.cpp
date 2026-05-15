@@ -1,5 +1,5 @@
 //----- (0100BB3B) --------------------------------------------------------
-int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
+void __thiscall CInk::GetInkUpdateRect(CInk *self, struct tagRECT *a2)
 {
   int v3; // edi
   bool v4; // zf
@@ -11,16 +11,16 @@ int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
   v3 = 0;
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CInk::GetInkUpdateRect", v8);
-  v4 = *((_DWORD *)this + 3) == 0;
+  v4 = *((_DWORD *)self + 3) == 0;
   v9 = 0;
   if ( !v4 )
   {
-    *((_DWORD *)this + 3) = 0;
-    CInk::DrawInkToSurface(this, 0);
+    *((_DWORD *)self + 3) = 0;
+    CInk::DrawInkToSurface(self, 0);
   }
-  if ( *((_DWORD *)this + 2) )
+  if ( *((_DWORD *)self + 2) )
   {
-    *((_DWORD *)this + 2) = 0;
+    *((_DWORD *)self + 2) = 0;
     v8[0] = (*(int (__stdcall **)(struct IRenderingContext *, tagXFORM *))(*(_DWORD *)g_pIRenderingContext + 20))(
               g_pIRenderingContext,
               &v6);
@@ -42,6 +42,6 @@ int __thiscall CInk::GetInkUpdateRect(CInk *this, struct tagRECT *a2)
     }
   }
   v9 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  ((Helpers::CLogBlock *)v7)->~CLogBlock();
   return v3;
 }

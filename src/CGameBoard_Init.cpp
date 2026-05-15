@@ -1,5 +1,5 @@
 //----- (010080B9) --------------------------------------------------------
-int __thiscall CGameBoard::Init(CGameBoard *this)
+int __thiscall CGameBoard::Init(CGameBoard *self)
 {
   CInk *v2; // ecx
   int v3; // eax
@@ -10,7 +10,7 @@ int __thiscall CGameBoard::Init(CGameBoard *this)
 
   v7[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CGameBoard::Init", v7);
-  v2 = (CInk *)*((_DWORD *)this + 2481);
+  v2 = (CInk *)*((_DWORD *)self + 2481);
   v8 = 0;
   v3 = CInk::Init(v2);
   v8 = -1;

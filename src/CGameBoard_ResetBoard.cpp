@@ -1,5 +1,5 @@
 //----- (010093CD) --------------------------------------------------------
-void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
+void __thiscall CGameBoard::ResetBoard(CGameBoard *self)
 {
   CBall **v2; // ebx
   void **v3; // ebx
@@ -9,14 +9,14 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CGameBoard::ResetBoard", 0);
   v6 = 0;
-  *(_DWORD *)this = 0;
-  memset((char *)this + 4, 0, 0x4B0u);
-  *((_DWORD *)this + 301) = 0;
-  memset((char *)this + 1208, 0, 0x100u);
-  *((_DWORD *)this + 366) = 0;
-  memset((char *)this + 1468, 0, 0x484u);
-  *((_DWORD *)this + 656) = 0;
-  v2 = (CBall **)((char *)this + 2628);
+  *(_DWORD *)self = 0;
+  memset((char *)self + 4, 0, 0x4B0u);
+  *((_DWORD *)self + 301) = 0;
+  memset((char *)self + 1208, 0, 0x100u);
+  *((_DWORD *)self + 366) = 0;
+  memset((char *)self + 1468, 0, 0x484u);
+  *((_DWORD *)self + 656) = 0;
+  v2 = (CBall **)((char *)self + 2628);
   v5 = 64;
   do
   {
@@ -29,8 +29,8 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
     --v5;
   }
   while ( v5 );
-  *((_DWORD *)this + 2473) = 0;
-  v3 = (void **)((char *)this + 2884);
+  *((_DWORD *)self + 2473) = 0;
+  v3 = (void **)((char *)self + 2884);
   v5 = 289;
   do
   {
@@ -43,7 +43,7 @@ void __thiscall CGameBoard::ResetBoard(CGameBoard *this)
     --v5;
   }
   while ( v5 );
-  CInk::ClearInk(*((CInk **)this + 2481));
+  CInk::ClearInk(*((CInk **)self + 2481));
   CDisplay::ClearInk(g_pDisplay, 0, 0);
   CDisplay::Clear(g_pDisplay, 0);
   v6 = -1;

@@ -1,5 +1,9 @@
 //----- (0100C7F7) --------------------------------------------------------
-int __thiscall CInk::Init(CInk *this)
+extern "C" void CleanupTabletContexts();
+extern "C" void FreeCursorStroke();
+extern const GUID CLSID_TpcPlatformManager;
+extern const GUID IID_IInkManager;
+int __thiscall CInk::Init(CInk *self)
 {
   CInk *v1; // edi
   _DWORD *v2; // eax
@@ -25,8 +29,8 @@ int __thiscall CInk::Init(CInk *this)
   char v23[4]; // [esp+64h] [ebp-14h] BYREF
   int v24; // [esp+74h] [ebp-4h]
 
-  v1 = this;
-  v15 = this;
+  v1 = self;
+  v15 = self;
   *(_DWORD *)v23 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v13, "CInk::Init", (int *)v23);
   v24 = 0;
@@ -144,7 +148,7 @@ LABEL_45:
                   v2 = operator new(0xCu);
                   if ( v2 )
                   {
-                    *v2 = &CSink::`vftable';
+                    *v2 = &CSink::vftable;
                     v2[1] = 0;
                     v2[2] = 0;
                   }
@@ -262,6 +266,6 @@ LABEL_23:
 LABEL_70:
   v4 = *(_DWORD *)v23;
   v24 = -1;
-  Helpers::CLogBlock::~CLogBlock(v13);
+  ((Helpers::CLogBlock *)v13)->~CLogBlock();
   return v4;
 }

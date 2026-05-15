@@ -1,5 +1,5 @@
 //----- (01008E72) --------------------------------------------------------
-void __thiscall CGameBoard::UpdateBounds(CGameBoard *this)
+void __thiscall CGameBoard::UpdateBounds(CGameBoard *self)
 {
   _BYTE v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]

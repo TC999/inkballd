@@ -22,5 +22,5 @@ void CBall_destructor(CBall* self)
 
 CBall::~CBall()
 {
-    CBall_destructor(this);
+    CBall_destructor(self);
 }

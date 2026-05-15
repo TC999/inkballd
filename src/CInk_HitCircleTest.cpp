@@ -1,5 +1,5 @@
 //----- (0100C0E9) --------------------------------------------------------
-int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int a4)
+int __thiscall CInk::HitCircleTest(CInk *self, struct tagPOINT *a2, int a3, int a4)
 {
   int v5; // ecx
   struct CTabletContextInfo *TabletContextInfo; // eax
@@ -66,7 +66,7 @@ int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int 
             0,
             0,
             0);
-          *((_DWORD *)this + 4) = 0;
+          *((_DWORD *)self + 4) = 0;
         }
       }
       v13 = (*(int (__stdcall **)(struct IInkObject *, _DWORD *, float, _DWORD *))(*(_DWORD *)g_pIInkObject + 108))(
@@ -88,12 +88,12 @@ int __thiscall CInk::HitCircleTest(CInk *this, struct tagPOINT *a2, int a3, int 
         }
       }
       BltBoardToInk(0);
-      *((_DWORD *)this + 4) = 1;
-      CInk::DrawInkToSurface(this, 0);
+      *((_DWORD *)self + 4) = 1;
+      CInk::DrawInkToSurface(self, 0);
       SetBoardActiveState(1);
     }
   }
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  ((Helpers::CLogBlock *)v8)->~CLogBlock();
   return v12;
 }

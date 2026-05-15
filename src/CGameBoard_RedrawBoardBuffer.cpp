@@ -1,5 +1,5 @@
 //----- (01008EB3) --------------------------------------------------------
-int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
+int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *self)
 {
   int v2; // edi
   bool v3; // cc
@@ -15,29 +15,29 @@ int __thiscall CGameBoard::RedrawBoardBuffer(CGameBoard *this)
   v2 = 0;
   v11[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::RedrawBoardBuffer", v11);
-  v3 = *((_DWORD *)this + 2470) <= 0;
+  v3 = *((_DWORD *)self + 2470) <= 0;
   v12 = 0;
   v10 = 0;
   if ( !v3 )
   {
-    v4 = *((_DWORD *)this + 2469);
+    v4 = *((_DWORD *)self + 2469);
     do
     {
       for ( i = 0; i < v4; ++i )
       {
-        TileByIndices = CGameBoard::GetTileByIndices(this, i, v10);
-        CGameBoard::SetTile(this, TileByIndices);
-        v4 = *((_DWORD *)this + 2469);
+        TileByIndices = CGameBoard::GetTileByIndices(self, i, v10);
+        CGameBoard::SetTile(self, TileByIndices);
+        v4 = *((_DWORD *)self + 2469);
       }
       ++v10;
     }
-    while ( v10 < *((_DWORD *)this + 2470) );
+    while ( v10 < *((_DWORD *)self + 2470) );
   }
-  v7 = CGameBoard::Shadowize(this, 0, 17, 0, 17);
+  v7 = CGameBoard::Shadowize(self, 0, 17, 0, 17);
   v11[0] = v7;
   if ( v7 < 0
-    || (v7 = CGameBoard::BltBoardToInk(this, 0, 0), v11[0] = v7, v7 < 0)
-    || (CInk::DrawInkToSurface(*((CInk **)this + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
+    || (v7 = CGameBoard::BltBoardToInk(self, 0, 0), v11[0] = v7, v7 < 0)
+    || (CInk::DrawInkToSurface(*((CInk **)self + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
   {
     v2 = v7;
   }

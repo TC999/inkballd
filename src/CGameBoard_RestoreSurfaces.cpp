@@ -1,5 +1,5 @@
 //----- (010095CF) --------------------------------------------------------
-int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
+int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **self)
 {
   struct IDirectDraw7 *DirectDraw; // eax
   int v3; // esi
@@ -46,17 +46,17 @@ int __thiscall CGameBoard::RestoreSurfaces(CScoreManager **this)
       if ( v3 >= 0 )
       {
         if ( g_pGamePiecesSurface )
-          CSurface::`scalar deleting destructor'(g_pGamePiecesSurface, 1);
+          CSurface::scalar_deleting_destructor(g_pGamePiecesSurface, 1);
         g_pGamePiecesSurface = v11;
         v3 = CSurface::SetColorKey(v11, 0xFF00FFu);
         v13[0] = v3;
         if ( v3 >= 0 )
         {
-          CScoreManager::Restore(this[2477]);
-          CTileManager::Restore(this[2478]);
-          CBallManager::Restore(this[2476]);
-          CTimeManager::Restore(this[2479]);
-          CGameBoard::RedrawBoardBuffer((CGameBoard *)this);
+          CScoreManager::Restore(self[2477]);
+          CTileManager::Restore(self[2478]);
+          CBallManager::Restore(self[2476]);
+          CTimeManager::Restore(self[2479]);
+          CGameBoard::RedrawBoardBuffer((CGameBoard *)self);
           v13[0] = 0;
           v3 = 0;
         }

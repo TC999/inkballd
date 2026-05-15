@@ -1,5 +1,5 @@
 //----- (01008C38) --------------------------------------------------------
-int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
+int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *self)
 {
   char *v2; // ecx
   LPVOID *v3; // edi
@@ -12,7 +12,7 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
   int v11[4]; // [esp+20h] [ebp-14h] BYREF
   int v12; // [esp+30h] [ebp-4h]
 
-  v10[3] = (const char *)this;
+  v10[3] = (const char *)self;
   v11[0] = -2147024882;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CGameBoard::CreateNewSurfaces", v11);
   v12 = 1;
@@ -28,67 +28,67 @@ int __thiscall CGameBoard::CreateNewSurfaces(CGameBoard *this)
   {
     v11[0] = CDisplay::CreateWindowedDisplay(
                v3,
-               *((HWND *)this + 2480),
-               *((_DWORD *)this + 2465),
-               *((_DWORD *)this + 2466));
+               *((HWND *)self + 2480),
+               *((_DWORD *)self + 2465),
+               *((_DWORD *)self + 2466));
     if ( v11[0] < 0 )
     {
-      CDisplay::`scalar deleting destructor'((CDisplay *)v3, 1);
+      CDisplay::scalar_deleting_destructor((CDisplay *)v3, 1);
     }
     else
     {
       if ( g_pDisplay )
-        CDisplay::`scalar deleting destructor'(g_pDisplay, 1);
+        CDisplay::scalar_deleting_destructor(g_pDisplay, 1);
       g_pDisplay = (CDisplay *)v3;
     }
   }
   if ( v11[0] >= 0 )
   {
     v4 = g_pBallManagerSurface;
-    v11[0] = CBallManager::InitSurface(*((CBallManager **)this + 2476));
+    v11[0] = CBallManager::InitSurface(*((CBallManager **)self + 2476));
     if ( v11[0] < 0 )
     {
       g_pBallManagerSurface = v4;
     }
     else if ( v4 )
     {
-      CSurface::`scalar deleting destructor'(v4, 1);
+      CSurface::scalar_deleting_destructor(v4, 1);
     }
     if ( v11[0] >= 0 )
     {
       v5 = g_pScoreManagerSurface;
-      v11[0] = CScoreManager::InitSurface(*((CScoreManager **)this + 2477));
+      v11[0] = CScoreManager::InitSurface(*((CScoreManager **)self + 2477));
       if ( v11[0] < 0 )
       {
         g_pScoreManagerSurface = v5;
       }
       else if ( v5 )
       {
-        CSurface::`scalar deleting destructor'(v5, 1);
+        CSurface::scalar_deleting_destructor(v5, 1);
       }
       if ( v11[0] >= 0 )
       {
         v6 = g_pTileManagerSurface;
-        v11[0] = CTileManager::InitSurface(*((CTileManager **)this + 2478));
+        v11[0] = CTileManager::InitSurface(*((CTileManager **)self + 2478));
         if ( v11[0] < 0 )
         {
           g_pTileManagerSurface = v6;
         }
         else if ( v6 )
         {
-          CSurface::`scalar deleting destructor'(v6, 1);
+          CSurface::scalar_deleting_destructor(v6, 1);
         }
         if ( v11[0] >= 0 )
         {
           v7 = g_pTimeManagerSurface;
-          v11[0] = CTimeManager::InitSurface(*((CTimeManager **)this + 2479));
+          v11[0] = CTimeManager::InitSurface(*((CTimeManager **)self + 2479));
           if ( v11[0] < 0 )
           {
             g_pTimeManagerSurface = v7;
           }
           else if ( v7 )
           {
-            CSurface::`scalar deleting destructor'(v7, 1);
+            CSurface::scalar_deleting_destructor(v7, 1);
           }
         }
       }

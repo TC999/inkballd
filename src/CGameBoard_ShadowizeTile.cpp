@@ -1,5 +1,5 @@
 //----- (010094BF) --------------------------------------------------------
-int __thiscall CGameBoard::ShadowizeTile(CInk **this, struct CBoardTile *a2, int a3)
+int __thiscall CGameBoard::ShadowizeTile(CInk **self, struct CBoardTile *a2, int a3)
 {
   int v4; // edi
   int v5; // eax
@@ -13,12 +13,12 @@ int __thiscall CGameBoard::ShadowizeTile(CInk **this, struct CBoardTile *a2, int
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CGameBoard::ShadowizeTile", v9);
   v10 = 0;
   CBoardObject::GetBoundingRect(a2, &v7);
-  v5 = CGameBoard::BltBoardToInk((CGameBoard *)this, &v7, 1);
+  v5 = CGameBoard::BltBoardToInk((CGameBoard *)self, &v7, 1);
   v9[0] = v5;
   if ( v5 >= 0 )
   {
-    CGameBoard::AddDisplayUpdateRect((CGameBoard *)this, &v7);
-    CInk::SetInkRedrawFlag(this[2481]);
+    CGameBoard::AddDisplayUpdateRect((CGameBoard *)self, &v7);
+    CInk::SetInkRedrawFlag(self[2481]);
     v9[0] = 0;
   }
   else

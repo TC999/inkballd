@@ -1,5 +1,7 @@
 //----- (0100C739) --------------------------------------------------------
-void __thiscall CInk::Cleanup(CInk *this)
+extern "C" void CleanupTabletContexts();
+extern "C" void FreeCursorStroke();
+void __thiscall CInk::Cleanup(CInk *self)
 {
   _BYTE v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
@@ -27,5 +29,5 @@ void __thiscall CInk::Cleanup(CInk *this)
   g_pIInkManager = 0;
   FreeCursorStroke();
   v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  ((Helpers::CLogBlock *)v1)->~CLogBlock();
 }

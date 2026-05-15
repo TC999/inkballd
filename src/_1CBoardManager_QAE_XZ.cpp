@@ -9,7 +9,7 @@ CBoardManager::~CBoardManager()
     int flag;
 
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CBoardManager::~CBoardManager", 0);
-    current_difficulty = *((uint32_t*)this + 1);
+    current_difficulty = *((uint32_t*)self + 1);
     flag = 0;
     
     CRegistryManager::WriteDifficulty(reinterpret_cast<CRegistryManager*>(&g_CRegistryManager), current_difficulty);

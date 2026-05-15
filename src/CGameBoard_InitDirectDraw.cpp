@@ -1,5 +1,5 @@
 //----- (010089DE) --------------------------------------------------------
-int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
+int __thiscall CGameBoard::InitDirectDraw(CGameBoard *self)
 {
   int v2; // esi
   char *v3; // ecx
@@ -15,7 +15,7 @@ int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
   int v14; // [esp+2BCh] [ebp-4h]
 
   v2 = 0;
-  v10[2] = this;
+  v10[2] = self;
   WindowedDisplay = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::InitDirectDraw", &WindowedDisplay);
   v14 = 1;
@@ -34,14 +34,14 @@ int __thiscall CGameBoard::InitDirectDraw(CGameBoard *this)
     goto LABEL_11;
   WindowedDisplay = CDisplay::CreateWindowedDisplay(
                       (LPVOID *)v4,
-                      *((HWND *)this + 2480),
-                      *((_DWORD *)this + 2465),
-                      *((_DWORD *)this + 2466));
+                      *((HWND *)self + 2480),
+                      *((_DWORD *)self + 2465),
+                      *((_DWORD *)self + 2466));
   if ( WindowedDisplay >= 0 )
     goto LABEL_16;
   if ( g_pDisplay )
   {
-    CDisplay::`scalar deleting destructor'(g_pDisplay, 1);
+    CDisplay::scalar_deleting_destructor(g_pDisplay, 1);
     g_pDisplay = 0;
   }
   if ( WindowedDisplay >= 0 )
@@ -59,11 +59,11 @@ LABEL_11:
     memset(Caption, 0, 128);
     memset(Text, 0, sizeof(Text));
     Helpers::LoadStringW(0, 0x3AA3u, Caption, (unsigned __int16 *)0x40, 0, v7);
-    if ( CGameBoard::IsRemoteSession(this) == 1 )
+    if ( CGameBoard::IsRemoteSession(self) == 1 )
       Helpers::LoadStringW(0, 0x3AABu, Text, (unsigned __int16 *)0x100, 0, v8);
     else
       Helpers::LoadStringW(0, 0x3AA5u, Text, (unsigned __int16 *)0x100, 0, v8);
-    MessageBoxW(*((HWND *)this + 2480), Text, Caption, 0x10u);
+    MessageBoxW(*((HWND *)self + 2480), Text, Caption, 0x10u);
     v2 = WindowedDisplay;
   }
   v14 = -1;

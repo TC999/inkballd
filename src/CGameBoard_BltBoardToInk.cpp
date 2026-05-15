@@ -1,5 +1,5 @@
 //----- (01008BE4) --------------------------------------------------------
-int __thiscall CGameBoard::BltBoardToInk(CGameBoard *this, struct tagRECT *a2, int a3)
+int __thiscall CGameBoard::BltBoardToInk(CGameBoard *self, struct tagRECT *a2, int a3)
 {
   int v3; // esi
   _BYTE v5[8]; // [esp+10h] [ebp-18h] BYREF
