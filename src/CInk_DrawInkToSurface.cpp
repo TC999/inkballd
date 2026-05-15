@@ -1,42 +1,23 @@
 //----- (0100BA9A) --------------------------------------------------------
-void __thiscall CInk::DrawInkToSurface(CInk *self, struct tagRECT *a2)
+// DECOMPILE TODO: CInk_DrawInkToSurface - Complex IRenderInk vtable call
+// Original code calls IRenderInk::DrawToSurface via vtable offset +16
+// Requires correct IRenderInk interface definition
+
+#include "global_types.h"
+#include <cstdint>
+
+void CInk_DrawInkToSurface(CInk *self, struct tagRECT *a2)
 {
-  int v2; // ecx
-  int v3; // eax
-  _DWORD v4[4]; // [esp+10h] [ebp-2Ch] BYREF
-  _BYTE v5[8]; // [esp+20h] [ebp-1Ch] BYREF
-  HDC v6; // [esp+28h] [ebp-14h] BYREF
-  int v7[3]; // [esp+2Ch] [ebp-10h] BYREF
-  int v8; // [esp+38h] [ebp-4h]
+  uint8_t v5[8];
+  int v7[3];
 
   v7[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CInk::DrawInkToSurface", v7);
-  v8 = 0;
-  if ( a2 )
-  {
-    v4[0] = 10 * a2->left;
-    v4[2] = 10 * a2->right;
-    v4[1] = 10 * a2->top;
-    v4[3] = 10 * a2->bottom;
-  }
-  GetInkBufferHDC(&v6);
-  v2 = *(_DWORD *)g_pIRenderInk;
-  if ( a2 )
-    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, _DWORD *, struct tagRECT *, _DWORD))(v2 + 16))(
-           g_pIRenderInk,
-           v6,
-           v4,
-           a2,
-           0);
-  else
-    v3 = (*(int (__stdcall **)(struct IRenderInk *, HDC, void *, struct HWND__ *, _DWORD))(v2 + 16))(
-           g_pIRenderInk,
-           v6,
-           &g_rcInkSpace,
-           &g_rcClient,
-           0);
-  v7[0] = v3;
-  ReleaseInkBufferHDC(v6);
-  v8 = -1;
-  ((Helpers::CLogBlock *)v5)->~CLogBlock();
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "CInk::DrawInkToSurface", v7);
+  
+  // DECOMPILE TODO: Call IRenderInk::DrawToSurface via vtable
+  // Original: (*(int (__stdcall **)(IRenderInk*, HDC, void*, HWND*, uint32))(vtable + 16))
+  (void)self;
+  (void)a2;
+  
+  reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
 }

@@ -151,7 +151,7 @@ LABEL_67:
       }
       if ( (uint16_t)wParam != 40042 )
         goto LABEL_80;
-      CInk::ClearInk(*((CInk **)g_pCGameBoard + 2481));
+      CInk_ClearInk(*((CInk **)g_pCGameBoard + 2481));
       BltBoardToInk(0);
     }
     else
@@ -259,7 +259,7 @@ LABEL_30:
         }
         goto LABEL_53;
       case 0x7Eu:
-        CInk::OnDisplayChange(*((CInk **)g_pCGameBoard + 2481));
+        CInk_OnDisplayChange(*((CInk **)g_pCGameBoard + 2481));
         break;
     }
     goto LABEL_80;

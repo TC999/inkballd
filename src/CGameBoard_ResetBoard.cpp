@@ -47,7 +47,7 @@ void CGameBoard::ResetBoard(CGameBoard *self)
     --v5;
   }
   while ( v5 );
-  CInk::ClearInk(*((CInk **)self + 2481));
+  CInk_ClearInk(*((CInk **)self + 2481));
   CDisplay::ClearInk(g_pDisplay, 0, 0);
   CDisplay::Clear(g_pDisplay, 0);
   v6 = -1;

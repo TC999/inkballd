@@ -22,7 +22,7 @@ int CGameBoard::ShadowizeTile(CGameBoard* self, CBoardTile*a2, int a3)
   if ( v5 >= 0 )
   {
     CGameBoard::AddDisplayUpdateRect(self, &v7);
-    CInk::SetInkRedrawFlag(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(self) + 2481));
+    CInk_SetInkRedrawFlag(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(self) + 2481));
     v9[0] = 0;
   }
   else

@@ -15,9 +15,9 @@ int __stdcall CheckForBallCollisionWithInk(CBall* a1)
   v7 = 0;
   CBoardObject::GetCenterPoint(a1, &v6);
   v2 = *((uint32_t *)a1 + 6) / 2;
-  if ( CInk::HitCircleTest(*((CInk **)g_pCGameBoard + 2481), &v6, v2, 0) && CBall::Collide(a1, InkHitTest) )
+  if ( CInk_HitCircleTest(*((CInk **)g_pCGameBoard + 2481), &v6, v2, 0) && CBall::Collide(a1, InkHitTest) )
   {
-    CInk::HitCircleTest(*((CInk **)g_pCGameBoard + 2481), &v6, v2, 1);
+    CInk_HitCircleTest(*((CInk **)g_pCGameBoard + 2481), &v6, v2, 1);
     CDisplay::BltInk(g_pDisplay, 0);
     PlayingAreaRect = CGameBoard::GetPlayingAreaRect(g_pCGameBoard);
     AddDisplayUpdateRect(PlayingAreaRect);

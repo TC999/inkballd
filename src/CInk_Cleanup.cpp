@@ -1,9 +1,13 @@
 //----- (0100C739) --------------------------------------------------------
+#include "global_types.h"
+#include <cstdint>
+
 extern "C" void CleanupTabletContexts();
 extern "C" void FreeCursorStroke();
-void __thiscall CInk::Cleanup(CInk *self)
+
+void CInk_Cleanup(CInk *self)
 {
-  _BYTE v1[16]; // [esp+10h] [ebp-14h] BYREF
+  uint8_t v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v1, "CInk::Cleanup", 0);

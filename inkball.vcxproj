@@ -337,21 +337,21 @@
     <ClCompile Include="src\PerformStandardWallDeflection.cpp" />
     <ClCompile Include="src\CGameBoard_PerformUpdate.cpp" />
     <ClCompile Include="src\PointInRect.cpp" />
-    <ClCompile Include="src\_PointIntersectsWithTileDeflect_YGHABUtagPOINT_PBVCBall_Z.cpp" />
-    <ClCompile Include="src\_PointIntersectsWithTile_CGameBoard_QAEHABUtagPOINT_PBVCBall_H_Z.cpp" />
-    <ClCompile Include="src\_PrepareToMove_CMovingObject_QAEXXZ.cpp" />
-    <ClCompile Include="src\_Present_CDisplay_QAEJPAUtagRECT_Z.cpp" />
-    <ClCompile Include="src\_QueryNewPallete_CGameBoard_QAEXXZ.cpp" />
-    <ClCompile Include="src\_RandomizeBallOrder_CGameBoard_QAEXXZ.cpp" />
-    <ClCompile Include="src\_ReadDifficulty_CRegistryManager_QAEKXZ.cpp" />
-    <ClCompile Include="src\_ReadHiScore_CRegistryManager_QAEKXZ.cpp" />
-    <ClCompile Include="src\_ReadRegValueDWORD_YGHPAUHKEY_PBG1AAK_Z.cpp" />
-    <ClCompile Include="src\_RectIntersectsRect_YGHPAUtagRECT_0_Z.cpp" />
-    <ClCompile Include="src\_RedrawBoardBuffer_CGameBoard_QAEJXZ.cpp" />
-    <ClCompile Include="src\_ReleaseInkBufferHDC_YGXPAUHDC_Z.cpp" />
-    <ClCompile Include="src\_Release_CBall_QAEKXZ.cpp" />
-    <ClCompile Include="src\_ResetBoard_CGameBoard_QAEXXZ.cpp" />
-    <ClCompile Include="src\_ResetScore_CScoreManager_QAEXXZ.cpp" />
+    <ClCompile Include="src\PointIntersectsWithTileDeflect.cpp" />
+    <ClCompile Include="src\CGameBoard_PointIntersectsWithTile.cpp" />
+    <ClCompile Include="src\PrepareToMove_CMovingObject.cpp" />
+    <ClCompile Include="src\Present_CDisplay.cpp" />
+    <ClCompile Include="src\CGameBoard_QueryNewPallete.cpp" />
+    <ClCompile Include="src\CGameBoard_RandomizeBallOrder.cpp" />
+    <ClCompile Include="src\ReadDifficulty_CRegistryManager.cpp" />
+    <ClCompile Include="src\ReadHiScore_CRegistryManager.cpp" />
+    <ClCompile Include="src\ReadRegValueDWORD.cpp" />
+    <ClCompile Include="src\RectIntersectsRect.cpp" />
+    <ClCompile Include="src\CGameBoard_RedrawBoardBuffer.cpp" />
+    <ClCompile Include="src\ReleaseInkBufferHDC.cpp" />
+    <ClCompile Include="src\Release_CBall.cpp" />
+    <ClCompile Include="src\CGameBoard_ResetBoard.cpp" />
+    <ClCompile Include="src\ResetScore_CScoreManager.cpp" />
     <ClCompile Include="src\_ResetTileCount_CTileManager_QAEXXZ.cpp" />
     <ClCompile Include="src\_RestoreSurfaces_CGameBoard_QAEJXZ.cpp" />
     <ClCompile Include="src\_Round_YGKN_Z.cpp" />
@@ -404,6 +404,8 @@
     <ClCompile Include="src\simple_test.cpp" />
     <ClCompile Include="src\sind.cpp" />
     <ClCompile Include="src\stubs.cpp" />
+    <ClCompile Include="src\fPortraitMode.cpp" />
+    <ClCompile Include="src\fPrevSeen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />

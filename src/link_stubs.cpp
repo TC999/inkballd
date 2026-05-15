@@ -32,11 +32,11 @@ extern "C" {
     void* g_pInkSurface = nullptr;
     double dSizeFactor = 1.0;
     HINSTANCE g_hInstance = nullptr;
-    void* g_pIRenderingContext = nullptr;
-    void* g_pIInkCollect = nullptr;
-    void* g_pIInkManager = nullptr;
-    void* g_pTabletManager = nullptr;
-    void* g_pIRenderInk = nullptr;
+    IRenderingContext* g_pIRenderingContext = nullptr;
+    IInkCollect* g_pIInkCollect = nullptr;
+    IInkManager* g_pIInkManager = nullptr;
+    ITabletManager* g_pTabletManager = nullptr;
+    IRenderInk* g_pIRenderInk = nullptr;
     const GUID stru_1003974 = {};
     const GUID stru_1002FB8 = {};
     const GUID stru_10039F4 = {};
@@ -164,18 +164,8 @@ int CDisplay::CreateSurfaceFromBitmap(void* self, void** surface, void* a3, int 
 int CDisplay::DestroyObjects(CDisplay* self) { (void)self; return 0; }
 
 // ============================================================================
-// CInk static members
+// CInk static members - REMOVED: implementations in separate CInk_*.cpp files
 // ============================================================================
-int CInk::Init(CInk* self) { (void)self; return 0; }
-void CInk::ClearInk(CInk* self) { (void)self; }
-void CInk::OnDisplayChange(CInk* self) { (void)self; }
-void CInk::SetInkRedrawFlag(CInk* self) { (void)self; }
-void CInk::SetInkModifiedFlag(CInk* self) { (void)self; }
-void CInk::DrawInkToSurface(CInk* self, tagRECT* a2) { (void)self; (void)a2; }
-void CInk::GetInkUpdateRect(CInk* self, RECT* out) { (void)self; (void)out; }
-int CInk::HitCircleTest(CInk* self, void* point, int a3, int a4) { (void)self; (void)point; (void)a3; (void)a4; return 0; }
-void CInk::Cleanup(CInk* self) { (void)self; }
-void CInk::scalar_deleting_destructor(CInk* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
 // CBallManager static members

@@ -1,16 +1,19 @@
 //----- (0100C27B) --------------------------------------------------------
-void __thiscall CInk::OnDisplayChange(CInk *self)
+#include "global_types.h"
+#include <cstdint>
+
+void CInk_OnDisplayChange(CInk *self)
 {
   int v1; // esi
   int v2; // edi
-  _BYTE v3[16]; // [esp+10h] [ebp-28h] BYREF
-  _BYTE v4[8]; // [esp+20h] [ebp-18h] BYREF
+  uint8_t v3[16]; // [esp+10h] [ebp-28h] BYREF
+  uint8_t v4[8]; // [esp+20h] [ebp-18h] BYREF
   int v5[3]; // [esp+28h] [ebp-10h] BYREF
   int v6; // [esp+34h] [ebp-4h]
 
   v1 = 0;
   v5[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v4, "CInk::OnDisplayChange", v5);
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v4), "CInk::OnDisplayChange", v5);
   v6 = 0;
   if ( dword_10B068C > 0 )
   {
@@ -32,5 +35,5 @@ void __thiscall CInk::OnDisplayChange(CInk *self)
     while ( v2 );
   }
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }

@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <new>
 
-int __stdcall fPortraitMode()
+extern "C" int fPortraitMode()
 {
   BOOL v0;
   int SystemMetrics;

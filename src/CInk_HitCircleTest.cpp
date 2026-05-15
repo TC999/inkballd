@@ -1,15 +1,20 @@
 //----- (0100C0E9) --------------------------------------------------------
-int __thiscall CInk::HitCircleTest(CInk *self, struct tagPOINT *a2, int a3, int a4)
+#include "global_types.h"
+#include <cstdint>
+
+extern void* GetTabletContextInfo(uint32_t id);
+
+int CInk_HitCircleTest(CInk *self, struct tagPOINT *a2, int a3, int a4)
 {
   int v5; // ecx
-  struct CTabletContextInfo *TabletContextInfo; // eax
-  _BYTE v8[8]; // [esp+5Ch] [ebp-34h] BYREF
-  _DWORD v9[2]; // [esp+64h] [ebp-2Ch] BYREF
-  _DWORD v10[2]; // [esp+6Ch] [ebp-24h] BYREF
+  void* TabletContextInfo; // eax
+  uint8_t v8[8]; // [esp+5Ch] [ebp-34h] BYREF
+  uint32_t v9[2]; // [esp+64h] [ebp-2Ch] BYREF
+  uint32_t v10[2]; // [esp+6Ch] [ebp-24h] BYREF
   int v11; // [esp+74h] [ebp-1Ch] BYREF
   int v12; // [esp+78h] [ebp-18h]
   int v13; // [esp+7Ch] [ebp-14h] BYREF
-  _DWORD v14[3]; // [esp+80h] [ebp-10h] BYREF
+  uint32_t v14[3]; // [esp+80h] [ebp-10h] BYREF
   int v15; // [esp+8Ch] [ebp-4h]
   int v16; // [esp+98h] [ebp+8h]
   float v17; // [esp+9Ch] [ebp+Ch]
@@ -89,7 +94,7 @@ int __thiscall CInk::HitCircleTest(CInk *self, struct tagPOINT *a2, int a3, int 
       }
       BltBoardToInk(0);
       *((_DWORD *)self + 4) = 1;
-      CInk::DrawInkToSurface(self, 0);
+      CInk_DrawInkToSurface(self, 0);
       SetBoardActiveState(1);
     }
   }

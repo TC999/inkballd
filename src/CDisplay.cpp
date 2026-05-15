@@ -28,7 +28,7 @@ CDisplay::~CDisplay()
     error_code = 0;
     Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "CDisplay::~CDisplay", error_code);
     cleanup_flag = 0;
-    destroy_result = CDisplay::DestroyObjects(self);
+    destroy_result = CDisplay::DestroyObjects(this);
     cleanup_flag = -1;
     error_code = destroy_result;
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();

@@ -45,7 +45,7 @@ extern "C" {
     uint32_t dword_10B0674 = 0;
     uint32_t dword_10B0678 = 0;
     uint32_t dword_10B0670 = 0;
-    void* g_pIInkObject = nullptr;
+    IInkObject* g_pIInkObject = nullptr;
     void* g_pIStroke = nullptr;
     void* g_BoardData = nullptr;
     void* g_CBitmapRects = nullptr;

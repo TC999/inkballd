@@ -169,7 +169,7 @@ void Dtor_CGameBoard(CGameBoard* self)
     v4 = (CInk**)(reinterpret_cast<char*>(self) + 9924);
     if (*v4)
     {
-        CInk::scalar_deleting_destructor(*v4, 1);
+        CInk_scalar_deleting_destructor(*v4, 1);
         *v4 = 0;
     }
     v6 = -1;

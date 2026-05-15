@@ -216,17 +216,18 @@ struct CInk {
     CInk();
     CInk(HWND hWnd);
     ~CInk();
-    void ClearInk(CInk* self);
-    void OnDisplayChange(CInk* self);
-    void Cleanup(CInk* self);
-    void SetInkRedrawFlag(CInk* self);
-    void SetInkModifiedFlag(CInk* self);
-    int HitCircleTest(CInk* self, void* point, int a3, int a4);
-    int Init(CInk* self);
-    void scalar_deleting_destructor(CInk* self, int flags);
-    void DrawInkToSurface(CInk* self, struct tagRECT* a2 = 0);
-    void GetInkUpdateRect(CInk* self, RECT* out);
 };
+// CInk methods implemented as global functions
+extern void CInk_ClearInk(CInk* self);
+extern void CInk_OnDisplayChange(CInk* self);
+extern void CInk_Cleanup(CInk* self);
+extern void CInk_SetInkRedrawFlag(CInk* self);
+extern void CInk_SetInkModifiedFlag(CInk* self);
+extern int CInk_HitCircleTest(CInk* self, struct tagPOINT* point, int a3, int a4);
+extern int CInk_Init(CInk* self);
+extern void* CInk_scalar_deleting_destructor(CInk* self, char flags);
+extern void CInk_DrawInkToSurface(CInk* self, struct tagRECT* a2 = 0);
+extern int CInk_GetInkUpdateRect(CInk* self, RECT* out);
 struct CSink {
     void* vftable;
     uint32_t unk[64];
@@ -887,7 +888,7 @@ extern "C" {
     void* GetTabletContextInfo(uint32_t id);
     void ShadowizeTile(CBoardTile* tile);
     void UpdateBoardTile(void* tile);
-    int __stdcall fPortraitMode();
+    int fPortraitMode();
     bool fPrevSeen(void* board_hist, int index);
     void ScoreBall(void* ball, uint32_t color);
     void __stdcall ScoreBreak(void* ball);

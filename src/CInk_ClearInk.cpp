@@ -1,8 +1,11 @@
 //----- (0100BBE1) --------------------------------------------------------
-void __thiscall CInk::ClearInk(CInk *self)
+#include "global_types.h"
+#include <cstdint>
+
+void CInk_ClearInk(CInk *self)
 {
   int v1; // ecx
-  _BYTE v2[8]; // [esp+10h] [ebp-1Ch] BYREF
+  uint8_t v2[8]; // [esp+10h] [ebp-1Ch] BYREF
   int v3; // [esp+18h] [ebp-14h] BYREF
   int v4[3]; // [esp+1Ch] [ebp-10h] BYREF
   int v5; // [esp+28h] [ebp-4h]

@@ -20,7 +20,7 @@ int GetInkUpdateRect_CInk(CInk *self, struct tagRECT *a2)
   if ( !v4 )
   {
     *((uint32_t *)self + 3) = 0;
-    CInk::DrawInkToSurface(self, 0);
+    CInk_DrawInkToSurface(self, 0);
   }
   if ( *((uint32_t *)self + 2) )
   {

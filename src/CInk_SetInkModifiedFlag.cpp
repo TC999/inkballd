@@ -1,9 +1,12 @@
 //----- (0100B88A) --------------------------------------------------------
-void __thiscall CInk::SetInkModifiedFlag(CInk *self)
-{
-  _BYTE v2[8]; // [esp+4h] [ebp-8h] BYREF
+#include "global_types.h"
+#include <cstdint>
 
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v2, "CInk::SetInkModifiedFlag", 0);
-  *((_DWORD *)self + 2) = 1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v2);
+void CInk_SetInkModifiedFlag(CInk *self)
+{
+  uint8_t v2[8]; // [esp+4h] [ebp-8h] BYREF
+
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v2), "CInk::SetInkModifiedFlag", 0);
+  *((uint32_t*)self + 2) = 1;
+  reinterpret_cast<Helpers::CLogBlock*>(v2)->~CLogBlock();
 }

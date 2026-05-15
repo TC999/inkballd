@@ -92,14 +92,3 @@ BallPoints* BallPoints_ctor(BallPoints* this_ptr, int radius)
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return this_ptr;
 }
-
-void operator delete[](void* ptr);
-
-void BallPoints_dtor(BallPoints* self)
-{
-    if (self->data_array)
-    {
-        operator delete[](self->data_array);
-        self->data_array = nullptr;
-    }
-}

@@ -41,7 +41,7 @@ int CGameBoard::RedrawBoardBuffer(CGameBoard *self)
   v11[0] = v7;
   if ( v7 < 0
     || (v7 = CGameBoard::BltBoardToInk(self, 0, 0), v11[0] = v7, v7 < 0)
-    || (CInk::DrawInkToSurface(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(self) + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
+    || (CInk_DrawInkToSurface(*reinterpret_cast<CInk**>(reinterpret_cast<uint8_t*>(self) + 2481), 0), v7 = CDisplay::BltInk(g_pDisplay, 0), v11[0] = v7, v7 < 0) )
   {
     v2 = v7;
   }

@@ -1,26 +1,29 @@
 //----- (0100BB3B) --------------------------------------------------------
-void __thiscall CInk::GetInkUpdateRect(CInk *self, struct tagRECT *a2)
+#include "global_types.h"
+#include <cstdint>
+
+int CInk_GetInkUpdateRect(CInk *self, struct tagRECT *a2)
 {
   int v3; // edi
   bool v4; // zf
   tagXFORM v6; // [esp+10h] [ebp-30h] BYREF
-  _BYTE v7[8]; // [esp+28h] [ebp-18h] BYREF
+  uint8_t v7[8]; // [esp+28h] [ebp-18h] BYREF
   int v8[3]; // [esp+30h] [ebp-10h] BYREF
   int v9; // [esp+3Ch] [ebp-4h]
 
   v3 = 0;
   v8[0] = 0;
-  Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CInk::GetInkUpdateRect", v8);
-  v4 = *((_DWORD *)self + 3) == 0;
+  Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v7), "CInk::GetInkUpdateRect", v8);
+  v4 = *((uint32_t*)self + 3) == 0;
   v9 = 0;
   if ( !v4 )
   {
-    *((_DWORD *)self + 3) = 0;
-    CInk::DrawInkToSurface(self, 0);
+    *((uint32_t*)self + 3) = 0;
+    CInk_DrawInkToSurface(self, 0);
   }
-  if ( *((_DWORD *)self + 2) )
+  if ( *((uint32_t*)self + 2) )
   {
-    *((_DWORD *)self + 2) = 0;
+    *((uint32_t*)self + 2) = 0;
     v8[0] = (*(int (__stdcall **)(struct IRenderingContext *, tagXFORM *))(*(_DWORD *)g_pIRenderingContext + 20))(
               g_pIRenderingContext,
               &v6);
@@ -29,7 +32,7 @@ void __thiscall CInk::GetInkUpdateRect(CInk *self, struct tagRECT *a2)
       if ( g_pIStroke )
       {
         v8[0] = (*(int (__stdcall **)(struct IInkStroke *, _DWORD, struct tagRECT *))(*(_DWORD *)g_pIStroke + 16))(
-                  g_pIStroke,
+                  (IInkStroke*)g_pIStroke,
                   0,
                   a2);
         if ( v8[0] >= 0 )
@@ -42,6 +45,6 @@ void __thiscall CInk::GetInkUpdateRect(CInk *self, struct tagRECT *a2)
     }
   }
   v9 = -1;
-  ((Helpers::CLogBlock *)v7)->~CLogBlock();
+  reinterpret_cast<Helpers::CLogBlock*>(v7)->~CLogBlock();
   return v3;
 }
