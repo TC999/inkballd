@@ -200,9 +200,8 @@
     <ClCompile Include="src\_AddAliveBallToBoard_YGJHPAVCBoardTile_N_Z.cpp" />
     <ClCompile Include="src\_AddBall_CGameBoard_QAEXPAVCBall_Z.cpp" />
     <ClCompile Include="src\_AddBallGenerator_CBallManager_QAEXPAVCBoardTile_Z.cpp" />
-    <ClCompile Include="src\_AddBallToBoard_YGJH_Z.cpp" />
-    <ClCompile Include="src\_AddBallToUpdateList_CGameBoard_QAEXPAVCBall_Z.cpp" />
-    <ClCompile Include="src\_AddBallToUpdateList_YGXPAVCBall_Z.cpp" />
+    <ClCompile Include="src\AddBallToBoard.cpp" />
+    <ClCompile Include="src\AddBallToUpdateList.cpp" />
     <ClCompile Include="src\_AddDisplayUpdateRect_CGameBoard_QAEXAAUtagRECT_Z.cpp" />
     <ClCompile Include="src\_AddDisplayUpdateRect_YGXAAUtagRECT_Z.cpp" />
     <ClCompile Include="src\_AddGameObjectToUpdateList_CGameBoard_QAEXPAVCGameObject_Z.cpp" />
