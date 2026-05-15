@@ -1,24 +1,15 @@
-#if 0
+
 // [COMPLEX] Duplicate class definitions, undeclared globals, WPP patterns — left wrapped
-#if 0
+
 #include "global_types.h"
 #include <cstdint>
 #include <new>
 #include <windows.h>
 
+extern void __stdcall DisplayBoardLoadMsg();
+extern int CBall_ctor(int this_ptr, int rect_x, int rect_y, int should_add, int ball_radius);
+
 extern "C" {
-    int NumBallsOnBoard(void* game_board);
-    void DisplayBoardLoadMsg();
-    void GetCenterPoint(void* obj, void* point);
-    char* GetBitmapRect(int rect_id);
-    int CBall_ctor(int a1, int a2, int a3, int a4, int a5);
-    void AddRef(void* ball);
-    void SetBallSpeed(void* mgr, void* ball, double speed);
-    void AddBall(void* game_board, void* ball);
-}
-extern "C" {
-    extern void* g_pCGameBoard;
-    
     int __stdcall AddAliveBallToBoard(int ball_type, void* tile, double speed)
     {
         char* bitmap_rect;
@@ -31,11 +22,11 @@ extern "C" {
 
         Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(log_buffer), "AddAliveBallToBoard", 0);
         
-        if (NumBallsOnBoard(g_pCGameBoard) >= 64) {
+        if (CGameBoard::NumBallsOnBoard(g_pCGameBoard) >= 64) {
             DisplayBoardLoadMsg();
         }
         
-        GetCenterPoint(tile, &center_point);
+        CBoardObject::GetCenterPoint(tile, &center_point);
         init_step = 1;
         
         ball_object = operator new(0x1A8u);
@@ -57,7 +48,7 @@ extern "C" {
         init_step = 0;
         if (ball_result)
         {
-            AddRef(reinterpret_cast<void*>(ball_result));
+            CBall::AddRef(reinterpret_cast<CBall*>(ball_result));
             
             auto ball_layout = reinterpret_cast<CBallLayout*>(ball_result);
             ball_layout->field_24 = *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(g_pCGameBoard) + 2471);
@@ -65,14 +56,14 @@ extern "C" {
             ball_layout->field_C = static_cast<double>(center_point.x) - static_cast<double>(*reinterpret_cast<int*>(reinterpret_cast<char*>(g_pCGameBoard) + 2471)) * 0.5;
             ball_layout->field_10 = static_cast<double>(center_point.y) - 0.5 * static_cast<double>(*reinterpret_cast<int*>(reinterpret_cast<char*>(g_pCGameBoard) + 2471));
             
-            SetBallSpeed(*reinterpret_cast<void**>(reinterpret_cast<char*>(g_pCGameBoard) + 2476), 
-                                     reinterpret_cast<void*>(ball_result), 
-                                     speed);
+            CBallManager::SetBallSpeed(*reinterpret_cast<CBallManager**>(reinterpret_cast<char*>(g_pCGameBoard) + 2476), 
+                                       reinterpret_cast<CBall*>(ball_result), 
+                                       speed);
             
             ball_layout->field_154 = 1;
             ball_layout->field_158 = 1;
             
-            AddBall(g_pCGameBoard, reinterpret_cast<void*>(ball_result));
+            CGameBoard::AddBall(g_pCGameBoard, reinterpret_cast<CBall*>(ball_result));
             
             init_step = -1;
             error_code[0] = 0;
@@ -86,7 +77,3 @@ extern "C" {
         }
     }
 }
-
-#endif
-
-#endif

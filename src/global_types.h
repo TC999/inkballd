@@ -705,26 +705,30 @@ extern "C" {
 
 // Low-level memory layout for CBall — used for raw byte-offset access
 struct CBallLayout {
-    uint32_t vftable_ptr;
-    uint32_t field_24;
-    uint32_t field_28;
-    uint32_t field_32;
-    uint32_t field_44;
-    uint32_t field_30;   // offset 0x30 (DWORD 12) — bitmap rect pointer [TODO] verify type
-    uint32_t field_56;
-    uint32_t field_112;
-    uint32_t field_116;
-    uint32_t field_120;
-    uint32_t field_124;
-    uint32_t field_128;
-    uint32_t field_132;
-    uint32_t field_136;
-    uint32_t field_140;
-    uint32_t field_144;
-    uint32_t field_152;
-    uint32_t field_156;
-    uint32_t field_160;
-    uint32_t ball_points_array[64];
+    uint32_t vftable_ptr;       // DWORD[0]  byte 0x00
+    uint32_t field_24;          // DWORD[1]  byte 0x04
+    uint32_t field_28;          // DWORD[2]  byte 0x08
+    uint32_t field_C;           // DWORD[3]  byte 0x0C — center.x offset
+    uint32_t field_10;          // DWORD[4]  byte 0x10 — center.y offset
+    uint32_t field_32;          // DWORD[5]  byte 0x14
+    uint32_t field_44;          // DWORD[6]  byte 0x18
+    uint32_t field_30;          // DWORD[7]  byte 0x1C — bitmap rect pointer [TODO] verify type
+    uint32_t field_56;          // DWORD[8]  byte 0x20
+    uint32_t field_112;         // DWORD[9]  byte 0x24
+    uint32_t field_116;         // DWORD[10] byte 0x28
+    uint32_t field_120;         // DWORD[11] byte 0x2C
+    uint32_t field_124;         // DWORD[12] byte 0x30
+    uint32_t field_128;         // DWORD[13] byte 0x34
+    uint32_t field_132;         // DWORD[14] byte 0x38
+    uint32_t field_136;         // DWORD[15] byte 0x3C
+    uint32_t field_140;         // DWORD[16] byte 0x40
+    uint32_t field_144;         // DWORD[17] byte 0x44
+    uint32_t field_152;         // DWORD[18] byte 0x48
+    uint32_t field_154;         // DWORD[19] byte 0x4C — init flag
+    uint32_t field_156;         // DWORD[20] byte 0x50
+    uint32_t field_158;         // DWORD[21] byte 0x54 — init flag
+    uint32_t field_160;         // DWORD[22] byte 0x58
+    uint32_t ball_points_array[64]; // DWORD[23..86]
 };
 
 // BadAlloc memory layout
