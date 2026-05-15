@@ -186,8 +186,7 @@
     <ClCompile Include="src\CSurface.cpp" />
     <ClCompile Include="src\CTileManager.cpp" />
     <ClCompile Include="src\CTimeManager.cpp" />
-    <ClCompile Include="src\_1CBall_AAE_XZ.cpp" />
-    <ClCompile Include="src\_1CBallManager_QAE_XZ.cpp" />
+    <ClCompile Include="src\CBall.cpp" />
     <ClCompile Include="src\_1CBoardManager_QAE_XZ.cpp" />
     <ClCompile Include="src\_1CDisplay_QAE_XZ.cpp" />
     <ClCompile Include="src\_1CGameBoard_QAE_XZ.cpp" />
