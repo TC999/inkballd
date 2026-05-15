@@ -166,6 +166,9 @@ struct CBall {
     void* ball_points_data;
     void* ball_points_ptr;
     int tile_type;
+    uint32_t board_left;
+    uint32_t board_top;
+    int point_count;
     ~CBall();
     static int* GetDrainPoints(CBall* self);
     static int* GetBreakWallPoints(CBall* self);

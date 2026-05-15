@@ -1,12 +1,9 @@
 // [COMPLEX] Undeclared CBall members (position_x, position_y, velocity_x, velocity_y), undeclared GetBoardRect — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-extern "C" {
 extern void GetBoardRect(RECT* rect);
-}
 
 int CBall_CheckBoardBounds(CBall* self)
 {
@@ -60,5 +57,3 @@ LABEL_9:
     reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
     return collision_occurred;
 }
-
-#endif

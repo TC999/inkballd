@@ -1,11 +1,11 @@
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
 
-#if 0
-extern "C" {
-    extern BOOL PointInRect(LONG x, LONG y, const RECT* rect);
+struct BallPoint {
+    int x;
+    int y;
+};
 
 int VerifyCollision_CBall(CBall *self, RECT* collision_rect, POINT* collision_point)
 {
@@ -31,7 +31,7 @@ LABEL_4:
     {
         while (true)
         {
-            current_point = CBall::GetPoint(self, point_index);
+            current_point = (BallPoint*)CBall::GetPoint(self, point_index);
             collision_point->x = center_point.x + current_point->x;
             point_y = center_point.y + current_point->y;
             point_x = collision_point->x;
@@ -47,6 +47,3 @@ LABEL_4:
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
     return collision_found;
 }
-#endif
-
-#endif

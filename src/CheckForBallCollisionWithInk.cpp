@@ -1,14 +1,19 @@
 // [COMPLEX] Undeclared CInk::HitCircleTest, undeclared locals (v6, InkHitTest, PlayingAreaRect, AddDisplayUpdateRect) — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
+
+extern int __stdcall InkHitTest(const struct tagRECT* a1);
+extern void __stdcall AddDisplayUpdateRect(void* rect);
+
 int __stdcall CheckForBallCollisionWithInk(CBall* a1)
 {
   int v1;
   int v2;
   uint8_t v5[8];
   int v7;
+  POINT v6;
+  RECT* PlayingAreaRect;
 
   v1 = 0;
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v5), "CheckForBallCollisionWithInk", 0);
@@ -27,5 +32,3 @@ int __stdcall CheckForBallCollisionWithInk(CBall* a1)
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v1;
 }
-
-#endif

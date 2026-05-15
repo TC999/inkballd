@@ -1,5 +1,4 @@
 // [COMPLEX] COM vtable call, missing parameter a5 — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -27,12 +26,12 @@ int CDisplay_BltToBoard(
   IsColorKeyed = CSurface::IsColorKeyed(a4);
   v7 = **((uint32_t **)self + 6);
   v12 = IsColorKeyed != 0;
-  DDrawSurface = CSurface::GetDDrawSurface(a4);
+  void* DDrawSurface = CSurface::GetDDrawSurface(a4);
   v9 = (*(int (__stdcall **)(uint32_t, uint32_t, uint32_t, struct IDirectDrawSurface7 *, struct tagRECT *, BOOL))(v7 + 28))(
          *((uint32_t *)self + 6),
          a2,
          a3,
-         DDrawSurface,
+         (struct IDirectDrawSurface7*)DDrawSurface,
          a5,
          v12);
   v15 = -1;
@@ -41,5 +40,3 @@ int CDisplay_BltToBoard(
   reinterpret_cast<Helpers::CLogBlock*>(v13)->~CLogBlock();
   return v10;
 }
-
-#endif

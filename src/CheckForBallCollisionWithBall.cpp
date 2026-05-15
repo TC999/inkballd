@@ -1,5 +1,4 @@
 // [COMPLEX] Undeclared CBall members, CBall::Collide — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -38,5 +37,3 @@ int __stdcall CheckForBallCollisionWithBall(CBall* a1)
   reinterpret_cast<Helpers::CLogBlock*>(v6)->~CLogBlock();
   return v7;
 }
-
-#endif

@@ -1,5 +1,4 @@
 // [COMPLEX] Undeclared CBoardObject methods, undeclared v12/v13/v15 — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
@@ -14,6 +13,9 @@ int CBoardTileOWF_CareAboutCollisions(int* self, CBoardObject* a2, int* a3)
   int v10;
   uint8_t v14[8];
   int v16;
+  RECT v12;
+  POINT v13;
+  POINT v15;
 
   Helpers::CLogBlock::CLogBlock(reinterpret_cast<Helpers::CLogBlock*>(v14), "CBoardTileOWF::CareAboutCollisions", 0);
   v16 = 0;
@@ -75,5 +77,3 @@ LABEL_21:
   reinterpret_cast<Helpers::CLogBlock*>(v14)->~CLogBlock();
   return v10;
 }
-
-#endif
