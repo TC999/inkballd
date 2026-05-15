@@ -1,12 +1,12 @@
-// [COMPLEX] Undeclared variables (v7, v8, RectIntersectsRect), goto — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
-int CGameBoard_BallOnTile(CGameBoard* self, CBoardTile* a2)
+int CGameBoard::BallOnTile(CGameBoard* self, CBoardTile* a2)
 {
   int v3;
   CBoardObject **v4;
   int v5;
+  struct tagRECT v7;
+  struct tagRECT v8;
   uint8_t v9[16];
   int v10;
 
@@ -41,5 +41,3 @@ LABEL_6:
   reinterpret_cast<Helpers::CLogBlock*>(v9)->~CLogBlock();
   return v5;
 }
-
-#endif

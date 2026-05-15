@@ -1,7 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 
-static void CGameBoard_AddRLColoredWallToList(CGameBoard* self, CBoardTileRLColored* a2)
+void CGameBoard::AddRLColoredWallToList(CGameBoard* self, CBoardTileRLColored* a2)
 {
   int v3;
   uint8_t v4[8];

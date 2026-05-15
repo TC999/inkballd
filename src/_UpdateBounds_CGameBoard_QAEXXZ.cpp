@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <new>
 
-void UpdateBounds_CGameBoard(CGameBoard *self)
+void CGameBoard::UpdateBounds(CGameBoard *self)
 {
   uint8_t v1[16];
   int v2;

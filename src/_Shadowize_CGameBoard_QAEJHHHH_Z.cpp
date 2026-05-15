@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int Shadowize_CGameBoard(CGameBoard *self, int a2, int a3, int a4, int a5)
+int CGameBoard::Shadowize(CGameBoard *self, int a2, int a3, int a4, int a5)
 {
     void* BoardBuffer;
     void* DDrawSurface;

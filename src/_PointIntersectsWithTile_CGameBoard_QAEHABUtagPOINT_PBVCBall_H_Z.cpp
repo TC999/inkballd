@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-BOOL PointIntersectsWithTile_CGameBoard(CGameBoard *self,
+BOOL CGameBoard::PointIntersectsWithTile(CGameBoard *self,
         const struct tagPOINT *a2,
         const CBall*a3,
         int a4)

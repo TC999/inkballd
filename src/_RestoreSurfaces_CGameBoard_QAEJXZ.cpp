@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int RestoreSurfaces_CGameBoard(CGameBoard *self)
+int CGameBoard::RestoreSurfaces(CGameBoard *self)
 {
     IDirectDraw7* DirectDraw;
     void* BoardBuffer;

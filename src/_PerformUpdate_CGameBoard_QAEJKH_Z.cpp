@@ -5,7 +5,7 @@
 #include <windows.h>
 
 extern "C" uint32_t dword_105C760;
-int PerformUpdate_CGameBoard(CGameBoard *self, uint32_t a2, int a3)
+int CGameBoard::PerformUpdate(CGameBoard *self, uint32_t a2, int a3)
 {
   IDirectDraw7* DirectDraw;
   int v4; // ebx

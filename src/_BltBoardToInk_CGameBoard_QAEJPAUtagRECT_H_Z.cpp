@@ -1,9 +1,7 @@
-// [COMPLEX] Undeclared CDisplay::ClearInk, g_pDisplay — left wrapped
-#if 0
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-int CGameBoard_BltBoardToInk(CGameBoard* self, struct tagRECT *a2, int a3)
+int CGameBoard::BltBoardToInk(CGameBoard* self, struct tagRECT *a2, int a3)
 {
   int v3;
   uint8_t v5[8];
@@ -19,5 +17,3 @@ int CGameBoard_BltBoardToInk(CGameBoard* self, struct tagRECT *a2, int a3)
   reinterpret_cast<Helpers::CLogBlock*>(v5)->~CLogBlock();
   return v3;
 }
-
-#endif

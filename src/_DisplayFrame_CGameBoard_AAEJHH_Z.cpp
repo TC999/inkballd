@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int DisplayFrame_CGameBoard(CGameBoard* self, int a2, int a3)
+int CGameBoard::DisplayFrame(CGameBoard* self, int a2, int a3)
 {
     void* BackBuffer;
     RECT* PlayingAreaRect;

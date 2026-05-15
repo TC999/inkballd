@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int ShadowizeTile_CGameBoard(CGameBoard* self, CBoardTile*a2, int a3)
+int CGameBoard::ShadowizeTile(CGameBoard* self, CBoardTile*a2, int a3)
 {
     RECT v7;
   int v4; // edi

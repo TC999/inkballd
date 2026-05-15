@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int InitDirectDraw_CGameBoard(CGameBoard *self)
+int CGameBoard::InitDirectDraw(CGameBoard *self)
 {
     void* color_key;
     IDirectDrawSurface7* InkBuffer;

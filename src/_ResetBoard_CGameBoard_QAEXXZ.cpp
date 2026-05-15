@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void ResetBoard_CGameBoard(CGameBoard *self)
+void CGameBoard::ResetBoard(CGameBoard *self)
 {
   CBall **v2; // ebx
   void**v3; // ebx

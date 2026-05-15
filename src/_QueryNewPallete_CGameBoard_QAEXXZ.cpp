@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void QueryNewPallete_CGameBoard(CGameBoard *self)
+void CGameBoard::QueryNewPallete(CGameBoard *self)
 {
     IDirectDrawPalette* palette;
     IDirectDrawSurface7* FrontBuffer;

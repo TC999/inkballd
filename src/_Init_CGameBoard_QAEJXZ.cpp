@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int Init_CGameBoard(CGameBoard* self)
+int CGameBoard::Init(CGameBoard* self)
 {
   CInk *v2; // ecx
   int v3; // eax

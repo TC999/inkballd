@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void AddGameObjectToUpdateList_CGameBoard(CGameBoard *self, CGameObject* a2)
+void CGameBoard::AddGameObjectToUpdateList(CGameBoard *self, CGameObject* a2)
 {
   uint8_t v3[8]; // [esp+4h] [ebp-8h] BYREF
 

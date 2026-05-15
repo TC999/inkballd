@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int RedrawBoardBuffer_CGameBoard(CGameBoard *self)
+int CGameBoard::RedrawBoardBuffer(CGameBoard *self)
 {
   int v2; // edi
   bool v3; // cc

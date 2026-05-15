@@ -101,11 +101,11 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
               {
                 if ( dword_10B0604 == 1 )
                 {
-                  dword_10B062C = CGameBoard::GetTileByIndices(
+                  dword_10B062C = (uint32_t)(uintptr_t)CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
                                     *((uint32_t *)g_pCGameBoard + 2469) - 1,
                                     dword_10B0600);
-                  dword_10B0618 = CGameBoard::GetTileByIndices(
+                  dword_10B0618 = (uint32_t)(uintptr_t)CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
                                     0,
                                     *((uint32_t *)g_pCGameBoard + 2470) - dword_10B0600 - 1);
@@ -146,8 +146,8 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
               }
               else
               {
-                dword_10B062C = CGameBoard::GetTileByIndices(g_pCGameBoard, dword_10B0600, 0);
-                dword_10B0618 = CGameBoard::GetTileByIndices(
+                dword_10B062C = (uint32_t)(uintptr_t)CGameBoard::GetTileByIndices(g_pCGameBoard, dword_10B0600, 0);
+                dword_10B0618 = (uint32_t)(uintptr_t)CGameBoard::GetTileByIndices(
                                   g_pCGameBoard,
                                   *((uint32_t *)g_pCGameBoard + 2469) - dword_10B0600 - 1,
                                   *((uint32_t *)g_pCGameBoard + 2470) - 1);

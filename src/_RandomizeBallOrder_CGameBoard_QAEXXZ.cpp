@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void RandomizeBallOrder_CGameBoard(CGameBoard *self)
+void CGameBoard::RandomizeBallOrder(CGameBoard *self)
 {
   int v2; // ebx
   int v3; // eax

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void Paint_CGameBoard(CGameBoard *self)
+void CGameBoard::Paint(CGameBoard *self)
 {
     void* DirectDraw;
   uint8_t v3[16]; // [esp+10h] [ebp-14h] BYREF

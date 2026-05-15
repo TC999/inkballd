@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
     <ClCompile Include="src\_0BallPoints_QAE_H_Z.cpp" />
     <ClCompile Include="src\_0CBall_QAE_PAUtagRECT_W4BOARD_COLOR_HH_Z.cpp" />
     <ClCompile Include="src\_0CBallManager_QAE_XZ.cpp" />
@@ -163,7 +164,7 @@
     <ClCompile Include="src\_0CBoardTileRLGray_QAE_HHPAUtagRECT_W4BOARD_COLOR_HKK_Z.cpp" />
     <ClCompile Include="src\_0CBoardTileWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />
     <ClCompile Include="src\_0CDisplay_QAE_XZ.cpp" />
-    <ClCompile Include="src\_0CGameBoard_QAE_PAUHWND_W4BOARD_SIZE_Z.cpp" />
+    <ClCompile Include="src\CGameBoard.cpp" />
     <ClCompile Include="src\_0CGameManager_QAE_PAUHWND_Z.cpp" />
     <ClCompile Include="src\_0CInk_QAE_PAUHWND_Z.cpp" />
     <ClCompile Include="src\_0CMovingObject_QAE_XZ.cpp" />
@@ -307,6 +308,7 @@
     <ClCompile Include="src\_HitCircleTest_CInk_QAEHPAUtagPOINT_HH_Z.cpp" />
     <ClCompile Include="src\_Init_CBallManager_QAEXHHKHH_Z.cpp" />
     <ClCompile Include="src\_Init_CGameBoard_QAEJXZ.cpp" />
+    <ClCompile Include="src\_InitDirectDraw_CGameBoard_AAEJXZ.cpp" />
     <ClCompile Include="src\_Init_CGameManager_QAEJXZ.cpp" />
     <ClCompile Include="src\_Init_CInk_QAEJXZ.cpp" />
     <ClCompile Include="src\_InitBallPoints_CBall_QAEXXZ.cpp" />
@@ -319,13 +321,14 @@
     <ClCompile Include="src\_InkBallRecovery_YGKPAX_Z.cpp" />
     <ClCompile Include="src\_InkHitTest_YGHABUtagRECT_Z.cpp" />
     <ClCompile Include="src\_IsColorKeyed_CSurface_QAEHXZ.cpp" />
+    <ClCompile Include="src\_IsRemoteSession_CGameBoard_QAEHXZ.cpp" />
     <ClCompile Include="src\_KillPlayer_YGXW4DEATH_REASON_Z.cpp" />
     <ClCompile Include="src\_LoadBoard_CGameManager_QAEXPBEH_Z.cpp" />
     <ClCompile Include="src\_LoadBoardFromResources_CBoardManager_QAEHPAGPAEAAH_Z.cpp" />
     <ClCompile Include="src\_LoadNextLevel_YGXXZ.cpp" />
     <ClCompile Include="src\_LoadRandomBoardFromResources_CBoardManager_QAEXPAEAAH_Z.cpp" />
     <ClCompile Include="src\_LoadRandomBonusBoardFromResources_CBoardManager_QAEXPAEAAH_Z.cpp" />
-    <ClCompile Include="src\_MainWndProc.cpp" />
+    <ClCompile Include="src\MainWndProc.cpp" />
     <ClCompile Include="src\_MovingTowards_CBall_QAEHPAV1_Z.cpp" />
     <ClCompile Include="src\_NormalizeRect_YGXPAUtagRECT_Z.cpp" />
     <ClCompile Include="src\_NumBallsOnBoard_CGameBoard_QAEHXZ.cpp" />

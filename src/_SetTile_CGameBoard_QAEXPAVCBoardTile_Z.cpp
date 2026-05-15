@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void SetTile_CGameBoard(CGameBoard *self, CBoardTile*a2)
+void CGameBoard::SetTile(CGameBoard *self, CBoardTile*a2)
 {
     void* BoardBuffer;
     void* DDrawSurface;

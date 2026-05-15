@@ -1,7 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-struct tagRECT* GetPlayingAreaRect_CGameBoard(CGameBoard *self)
+struct tagRECT* CGameBoard::GetPlayingAreaRect(CGameBoard *self)
 {
   uint8_t v3[8];
 

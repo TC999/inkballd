@@ -79,6 +79,7 @@ struct CGameObject;
 struct CBoardTile;
 struct CBitmapRects;
 struct CScoreManager;
+struct CBoardTileRLColored;
 struct CGameBoard {
     void* vftable;
     uint32_t field_4;
@@ -90,17 +91,19 @@ struct CGameBoard {
     uint32_t field_1C;
     static void QueryNewPallete(CGameBoard* self);
     static void UpdateBounds(CGameBoard* self);
-    static int Paint(CGameBoard* self);
+    static void Paint(CGameBoard* self);
     static int PerformUpdate(CGameBoard* self, uint32_t a2, int a3);
     static CBoardTile* GetTile(CGameBoard* self, int a2, int a3);
-    static int GetTileByIndices(CGameBoard* self, int a2, int a3);
-    static void RestoreSurfaces(CGameBoard* self);
+    static CBoardTile* GetTileByIndices(CGameBoard* self, int a2, int a3);
+    static int RestoreSurfaces(CGameBoard* self);
+    static int Init(CGameBoard* self);
     static int GetRandomNumber(CGameBoard* self, int max_value);
     static void AddDisplayUpdateRect(CGameBoard* self, struct tagRECT* a2);
     static void ToggleRLWalls(CGameBoard* self, int color);
     static void AddBall(CGameBoard* self, CBall* ball);
     static void AddBallToUpdateList(CGameBoard* self, CBall* ball);
     static void AddGameObjectToUpdateList(CGameBoard* self, CGameObject* obj);
+    static void AddRLColoredWallToList(CGameBoard* self, CBoardTileRLColored* a2);
     static CBall* GetBall(CGameBoard* self, int index);
     static int NumBallsOnBoard(CGameBoard* self);
     static struct tagRECT* GetPlayingAreaRect(CGameBoard* self);
@@ -111,7 +114,7 @@ struct CGameBoard {
     static void SetTile(CGameBoard* self, CBoardTile* tile);
     static int Shadowize(CGameBoard* self, int a2, int a3, int a4, int a5);
     static int InitDirectDraw(CGameBoard* self);
-    static void RedrawBoardBuffer(CGameBoard* self);
+    static int RedrawBoardBuffer(CGameBoard* self);
     static int CreateNewSurfaces(CGameBoard* self);
     static void RandomizeBallOrder(CGameBoard* self);
     static int DisplayFrame(CGameBoard* self, int a2, int a3);
@@ -119,9 +122,9 @@ struct CGameBoard {
     static void PerformGameUpdate(CGameBoard* self);
     static void scalar_deleting_destructor(CGameBoard* self, int flags);
     static void FreeDirectDraw(CGameBoard* self);
-    static int BltBall(CGameBoard* self, CBall* ball, void* surface);
+    static int BltBall(CGameBoard* self, CBall* ball, struct IDirectDrawSurface7* surface);
     static bool IsRemoteSession(CGameBoard* self);
-    static int PointIntersectsWithTile(CGameBoard* self, const void* point, void* tile, int deflect = 0);
+    static BOOL PointIntersectsWithTile(CGameBoard* self, const struct tagPOINT* point, const CBall* tile, int deflect = 0);
     static CBoardTile* BuildTileObject(CGameBoard* self, int tile_type, int x, int y, int rect);
     static void DisplayBoardLoadMsg(CGameBoard* self);
 };
@@ -904,6 +907,7 @@ extern "C" {
     int __stdcall BoardIsActive();
     void __stdcall ExpandRect(struct tagRECT* a1, int a2);
     void __stdcall ConvertInkRectToDisplayRect(struct tagRECT* a1, struct tagXFORM* a2);
+    BOOL __stdcall RectIntersectsRect(struct tagRECT* a1, struct tagRECT* a2);
     // Registry helper
     BOOL __stdcall ReadRegValueDWORD(HKEY hKey, const wchar_t* lpSubKey, const wchar_t* lpValueName, LPBYTE lpData);
     // CSurface_Create

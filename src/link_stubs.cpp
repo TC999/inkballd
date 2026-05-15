@@ -139,42 +139,12 @@ void CBall::InitBallPoints(CBall* self) { (void)self; }
 void CBall::scalar_deleting_destructor(CBall* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
-// CGameBoard static members
+// CGameBoard static members — stubs only for methods without _mangled impl
 // ============================================================================
-void CGameBoard::QueryNewPallete(CGameBoard* self) { (void)self; }
-void CGameBoard::UpdateBounds(CGameBoard* self) { (void)self; }
-int CGameBoard::Paint(CGameBoard* self) { (void)self; return 0; }
-int CGameBoard::PerformUpdate(CGameBoard* self, uint32_t a2, int a3) { (void)self; (void)a2; (void)a3; return 0; }
-int CGameBoard::GetTileByIndices(CGameBoard* self, int a2, int a3) { (void)self; (void)a2; (void)a3; return 0; }
-int CGameBoard::GetRandomNumber(CGameBoard* self, int max_value) { (void)self; (void)max_value; return 0; }
-void CGameBoard::AddDisplayUpdateRect(CGameBoard* self, tagRECT* a2) { (void)self; (void)a2; }
 void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) { (void)self; (void)color; }
-void CGameBoard::AddBall(CGameBoard* self, CBall* ball) { (void)self; (void)ball; }
-void CGameBoard::AddBallToUpdateList(CGameBoard* self, CBall* ball) { (void)self; (void)ball; }
-void CGameBoard::AddGameObjectToUpdateList(CGameBoard* self, CGameObject* obj) { (void)self; (void)obj; }
-CBall* CGameBoard::GetBall(CGameBoard* self, int index) { (void)self; (void)index; return nullptr; }
-int CGameBoard::NumBallsOnBoard(CGameBoard* self) { (void)self; return 0; }
-tagRECT* CGameBoard::GetPlayingAreaRect(CGameBoard* self) { (void)self; static RECT r = {}; return &r; }
-int CGameBoard::BallOnTile(CGameBoard* self, CBoardTile* tile) { (void)self; (void)tile; return 0; }
-char* CGameBoard::GetBitmapRect(CGameBoard* self, int a1) { (void)self; (void)a1; return nullptr; }
-int CGameBoard::BltBoardToInk(CGameBoard* self, tagRECT* a1, int a2) { (void)self; (void)a1; (void)a2; return 0; }
-int CGameBoard::ShadowizeTile(CGameBoard* self, CBoardTile* tile, int flags) { (void)self; (void)tile; (void)flags; return 0; }
-void CGameBoard::SetTile(CGameBoard* self, CBoardTile* tile) { (void)self; (void)tile; }
-int CGameBoard::Shadowize(CGameBoard* self, int a2, int a3, int a4, int a5) { (void)self; (void)a2; (void)a3; (void)a4; (void)a5; return 0; }
-int CGameBoard::InitDirectDraw(CGameBoard* self) { (void)self; return 0; }
-void CGameBoard::RedrawBoardBuffer(CGameBoard* self) { (void)self; }
-int CGameBoard::CreateNewSurfaces(CGameBoard* self) { (void)self; return 0; }
-void CGameBoard::RandomizeBallOrder(CGameBoard* self) { (void)self; }
-int CGameBoard::DisplayFrame(CGameBoard* self, int a2, int a3) { (void)self; (void)a2; (void)a3; return 0; }
-void CGameBoard::ResetBoard(CGameBoard* self) { (void)self; }
-int CGameBoard::BltBall(CGameBoard* self, CBall* ball, void* surface) { (void)self; (void)ball; (void)surface; return 0; }
-int CGameBoard::PointIntersectsWithTile(CGameBoard* self, const void* point, void* tile, int deflect) { (void)self; (void)point; (void)tile; (void)deflect; return 0; }
-CBoardTile* CGameBoard::GetTile(CGameBoard* self, int a2, int a3) { (void)self; (void)a2; (void)a3; return nullptr; }
 CBoardTile* CGameBoard::BuildTileObject(CGameBoard* self, int tile_type, int x, int y, int rect) { (void)self; (void)tile_type; (void)x; (void)y; (void)rect; return nullptr; }
 void CGameBoard::DisplayBoardLoadMsg(CGameBoard* self) { (void)self; }
-void CGameBoard::FreeDirectDraw(CGameBoard* self) { (void)self; }
 void CGameBoard::scalar_deleting_destructor(CGameBoard* self, int flags) { (void)self; (void)flags; }
-bool CGameBoard::IsRemoteSession(CGameBoard* self) { (void)self; return false; }
 
 // ============================================================================
 // CDisplay static members

@@ -127,7 +127,6 @@ extern "C" {
 // ============================================================================
 // Static member stubs (unique to this file, not in .cpp files)
 // ============================================================================
-void CGameBoard::RestoreSurfaces(CGameBoard* self) { (void)self; }
 void CUIBarObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)out; }
 void CBoardObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)out; }
 void CMovingObject::PrepareToMove(CMovingObject* self) { (void)self; }

@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-CBall* GetBall_CGameBoard(CGameBoard *self, int a2)
+CBall* CGameBoard::GetBall(CGameBoard *self, int a2)
 {
   int v3; // esi
   uint8_t v5[8]; // [esp+4h] [ebp-8h] BYREF

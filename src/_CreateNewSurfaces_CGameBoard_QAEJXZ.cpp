@@ -4,7 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-int CreateNewSurfaces_CGameBoard(CGameBoard* self)
+int CGameBoard::CreateNewSurfaces(CGameBoard* self)
 {
   void*v2; // ecx
   CDisplay *v3; // edi

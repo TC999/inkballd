@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-CBoardTile* GetTileByIndices_CGameBoard(CGameBoard *self, int a2, int a3)
+CBoardTile* CGameBoard::GetTileByIndices(CGameBoard *self, int a2, int a3)
 {
   int v4; // esi
   uint8_t v6[8]; // [esp+4h] [ebp-8h] BYREF

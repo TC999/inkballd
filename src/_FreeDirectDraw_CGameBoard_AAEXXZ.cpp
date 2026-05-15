@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
-void FreeDirectDraw_CGameBoard(CGameBoard* self)
+void CGameBoard::FreeDirectDraw(CGameBoard* self)
 {
   uint8_t v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
