@@ -1,9 +1,14 @@
 // [COMPLEX] Many undeclared constructors, duplicate code blocks — left wrapped
-#if 0
+
 #include "global_types.h"
 #include <cstdint>
 #include <windows.h>
-CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
+
+extern void __stdcall DisplayBoardLoadMsg();
+extern "C" int __stdcall AddAliveBallToBoard(int ball_type, void* tile, double speed);
+extern void AddBallGenerator_CBallManager(CBallManager* self, CBoardTile* tile);
+
+CBoardTile* __stdcall BuildTileObject(int a1, int a2, int a3)
 {
   uint32_t v4; // ebx
   char*v5; // eax
@@ -66,8 +71,9 @@ CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
     LOBYTE(v42) = 2;
     if ( v52 )
     {
-      BitmapRect = CGameBoard::GetBitmapRect(0);
-      v33 = CBoardTile::CBoardTile(v52, 0, a2, a3, (int)BitmapRect);
+      BitmapRect = CGameBoard::GetBitmapRect(g_pCGameBoard, 0);
+      new (v52) CBoardTile(0, a2, a3, (int)BitmapRect);
+      v33 = v52;
     }
     else
     {
@@ -117,8 +123,9 @@ CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
             LOBYTE(v42) = 8;
             if ( v44 )
             {
-              v10 = CGameBoard::GetBitmapRect(v9 + 4 * v8 + 17);
-              v11 = CBoardTileDrain::CBoardTileDrain(v44, v9 + 2, a2, a3, (int)v10, v8);
+              v10 = CGameBoard::GetBitmapRect(g_pCGameBoard, v9 + 4 * v8 + 17);
+              new (v44) CBoardTileDrain(v9 + 2, a2, a3, (int)v10, v8);
+              v11 = v44;
             }
             else
             {
@@ -131,7 +138,7 @@ CBoardTile*__stdcall BuildTileObject(int a1, int a2, int a3)
             v12 = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
 LABEL_16:
             *((double *)v11 + 2) = v12;
-            v6 = v11;
+            v6 = (CBoardObject*)v11;
             goto LABEL_75;
           }
         }
@@ -145,8 +152,9 @@ LABEL_16:
           LOBYTE(v42) = 11;
           if ( v45 )
           {
-            v14 = CGameBoard::GetBitmapRect(v13 + 37);
-            v11 = CBoardTileWall::CBoardTileWall(v45, a2, a3, (int)v14, v13);
+            v14 = CGameBoard::GetBitmapRect(g_pCGameBoard, v13 + 37);
+            new (v45) CBoardTileWall(a2, a3, (int)v14, v13);
+            v11 = v45;
           }
           else
           {
@@ -169,8 +177,9 @@ LABEL_16:
           LOBYTE(v42) = 14;
           if ( v46 )
           {
-            v16 = CGameBoard::GetBitmapRect(v15 + 42);
-            v11 = CBoardTileBreakWall::CBoardTileBreakWall(v46, a2, a3, (int)v16, v15);
+            v16 = CGameBoard::GetBitmapRect(g_pCGameBoard, v15 + 42);
+            new (v46) CBoardTileBreakWall(a2, a3, (int)v16, v15);
+            v11 = v46;
           }
           else
           {
@@ -196,8 +205,9 @@ LABEL_16:
             LOBYTE(v42) = 17;
             if ( v47 )
             {
-              v19 = CGameBoard::GetBitmapRect(5 * v18 + v17 + 47);
-              v11 = CBoardTileOWF::CBoardTileOWF(v47, a2, a3, (int)v19, v17, v18);
+              v19 = CGameBoard::GetBitmapRect(g_pCGameBoard, 5 * v18 + v17 + 47);
+              new (v47) CBoardTileOWF(a2, a3, (int)v19, v17, v18);
+              v11 = v47;
             }
             else
             {
@@ -219,14 +229,14 @@ LABEL_16:
           v21 = (a1 >> 8) & 0xF;
           v22 = (a1 >> 4) & 0xF;
           v41 = 5 * v20 + 77;
-          v48 = CGameBoard::GetBitmapRect(v41);
+          v48 = CGameBoard::GetBitmapRect(g_pCGameBoard, v41);
           LOBYTE(v42) = 19;
           v23 = operator new(0x70u);
           v40 = v23;
           LOBYTE(v42) = 20;
           if ( v23 )
-            v11 = CBoardTileRLGray::CBoardTileRLGray(
-                    (CBoardTile *)v23,
+          {
+            new ((CBoardTile*)v23) CBoardTileRLGray(
                     a2,
                     a3,
                     (int)v48,
@@ -234,6 +244,8 @@ LABEL_16:
                     v20,
                     1000 * (v21 + 1) / 2,
                     1000 * (v22 + 1) / 2);
+            v11 = (CBoardTile*)v23;
+          }
           else
             v11 = 0;
           *((uint32_t *)v11 + 9) = v41;
@@ -251,13 +263,16 @@ LABEL_16:
           v25 = (a1 >> 4) & 0xF;
           if ( v25 <= 4 )
           {
-            v49 = CGameBoard::GetBitmapRect(5 * v25 + v24 + 77);
+            v49 = CGameBoard::GetBitmapRect(g_pCGameBoard, 5 * v25 + v24 + 77);
             LOBYTE(v42) = 22;
             v26 = operator new(0x60u);
             v40 = v26;
             LOBYTE(v42) = 23;
             if ( v26 )
-              v11 = CBoardTileRLColored::CBoardTileRLColored((CBoardTile *)v26, a2, a3, (int)v49, v24, v25);
+            {
+              new ((CBoardTile*)v26) CBoardTileRLColored(a2, a3, (int)v49, v24, v25);
+              v11 = (CBoardTile*)v26;
+            }
             else
               v11 = 0;
             *((uint32_t *)v11 + 9) = 5 * v25 + v24 + 77;
@@ -278,8 +293,9 @@ LABEL_16:
           LOBYTE(v42) = 26;
           if ( v50 )
           {
-            v28 = CGameBoard::GetBitmapRect(v27 + 102);
-            v11 = CBoardTileChevron::CBoardTileChevron(v50, a2, a3, (int)v28, v27);
+            v28 = CGameBoard::GetBitmapRect(g_pCGameBoard, v27 + 102);
+            new (v50) CBoardTileChevron(a2, a3, (int)v28, v27);
+            v11 = v50;
           }
           else
           {
@@ -305,8 +321,9 @@ LABEL_16:
             LOBYTE(v42) = 29;
             if ( v51 )
             {
-              v31 = CGameBoard::GetBitmapRect(5 * v30 + v29 + 67);
-              v11 = CBoardTileBumper::CBoardTileBumper(v51, a2, a3, (int)v31, v29, 2 * v30);
+              v31 = CGameBoard::GetBitmapRect(g_pCGameBoard, 5 * v30 + v29 + 67);
+              new (v51) CBoardTileBumper(a2, a3, (int)v31, v29, 2 * v30);
+              v11 = v51;
             }
             else
             {
@@ -323,15 +340,16 @@ LABEL_16:
         break;
     }
 LABEL_17:
-    DisplayBoardLoadMsg();
+    CGameBoard::DisplayBoardLoadMsg(g_pCGameBoard);
   }
   LOBYTE(v42) = 4;
   v43 = (CBoardObject *)operator new(0x58u);
   LOBYTE(v42) = 5;
   if ( v43 )
   {
-    v5 = CGameBoard::GetBitmapRect(1);
-    v6 = CBoardTile::CBoardTile(v43, 1, a2, a3, (int)v5);
+    v5 = CGameBoard::GetBitmapRect(g_pCGameBoard, 1);
+    new (v43) CBoardTile(1, a2, a3, (int)v5);
+    v6 = v43;
   }
   else
   {
@@ -344,11 +362,9 @@ LABEL_17:
   v42 = 0;
   *((double *)v6 + 1) = (double)v7;
   *((double *)v6 + 2) = (double)(*((uint32_t *)g_pCGameBoard + 2468) + a3 * *((uint32_t *)g_pCGameBoard + 2472));
-  CBallManager::AddBallGenerator(*((CBallManager **)g_pCGameBoard + 2476), v6);
+  AddBallGenerator_CBallManager(*((CBallManager **)g_pCGameBoard + 2476), (CBoardTile*)v6);
 LABEL_75:
   v42 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v39)->~CLogBlock();
-  return v6;
+  return (CBoardTile*)v6;
 }
-
-#endif

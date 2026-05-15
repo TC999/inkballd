@@ -239,6 +239,7 @@ struct CBoardTile;
 struct CBoardTileWall {
     void* vftable;
     uint32_t unk[30];
+    CBoardTileWall(int x, int y, int rect_param, int color);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -246,12 +247,14 @@ struct CBoardTileBreakWall {
     void* vftable;
     uint32_t unk[30];
     int tile_type;
+    CBoardTileBreakWall(int x, int y, int rect_param, int color);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
 struct CBoardTileBumper {
     void* vftable;
     uint32_t unk[30];
+    CBoardTileBumper(int x, int y, int rect_param, int color, int direction);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -259,18 +262,21 @@ struct CBoardTileChevron {
     void* vftable;
     uint32_t unk[30];
     int chevron_direction;
+    CBoardTileChevron(int x, int y, int rect_param, int direction);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
 struct CBoardTileDrain {
     void* vftable;
     uint32_t unk[30];
+    CBoardTileDrain(int tile_type, int x, int y, int rect_param, int color);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
 struct CBoardTileOWF {
     void* vftable;
     uint32_t unk[30];
+    CBoardTileOWF(int x, int y, int rect_param, int color, int direction);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -286,6 +292,7 @@ struct CBoardTileRLGray {
     uint32_t min_time;
     uint32_t max_time;
     char* bitmap_rect;
+    CBoardTileRLGray(int x, int y, int rect_param, int color, int tile_sub_type, int min_ms, int max_ms);
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
@@ -375,6 +382,7 @@ struct CBoardTileRLColored {
     uint32_t animation_state;
     uint32_t color_index;
     char* bitmap_rect;
+    CBoardTileRLColored(int x, int y, int rect_param, int color, int tile_sub_type);
     static void ToggleState(void* self);
 };
 

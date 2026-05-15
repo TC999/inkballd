@@ -152,6 +152,14 @@ void CBoardManager::SetDifficulty(CBoardManager* m, uint32_t d) { (void)m; (void
 // CBoardTile constructors
 CBoardTile::CBoardTile() {}
 CBoardTile::CBoardTile(int tile_type, int x, int y, int rect_param) { (void)tile_type; (void)x; (void)y; (void)rect_param; }
+CBoardTileDrain::CBoardTileDrain(int tile_type, int x, int y, int rect_param, int color) { (void)tile_type; (void)x; (void)y; (void)rect_param; (void)color; }
+CBoardTileWall::CBoardTileWall(int x, int y, int rect_param, int color) { (void)x; (void)y; (void)rect_param; (void)color; }
+CBoardTileBreakWall::CBoardTileBreakWall(int x, int y, int rect_param, int color) { (void)x; (void)y; (void)rect_param; (void)color; }
+CBoardTileOWF::CBoardTileOWF(int x, int y, int rect_param, int color, int direction) { (void)x; (void)y; (void)rect_param; (void)color; (void)direction; }
+CBoardTileRLGray::CBoardTileRLGray(int x, int y, int rect_param, int color, int tile_sub_type, int min_ms, int max_ms) { (void)x; (void)y; (void)rect_param; (void)color; (void)tile_sub_type; (void)min_ms; (void)max_ms; }
+CBoardTileRLColored::CBoardTileRLColored(int x, int y, int rect_param, int color, int tile_sub_type) { (void)x; (void)y; (void)rect_param; (void)color; (void)tile_sub_type; }
+CBoardTileChevron::CBoardTileChevron(int x, int y, int rect_param, int direction) { (void)x; (void)y; (void)rect_param; (void)direction; }
+CBoardTileBumper::CBoardTileBumper(int x, int y, int rect_param, int color, int direction) { (void)x; (void)y; (void)rect_param; (void)color; (void)direction; }
 
 // BallPoints
 BallPoints::BallPoints(int count, int flags) { (void)count; (void)flags; }
