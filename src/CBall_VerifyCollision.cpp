@@ -1,6 +1,8 @@
 //----- (01004822) --------------------------------------------------------
-int __thiscall CBall::VerifyCollision(CBall *this, struct tagRECT *a2, struct tagPOINT *a3)
+int CBall::VerifyCollision(CBall* self, void* rect, void* point)
 {
+  struct tagRECT* a2 = (struct tagRECT*)rect;
+  struct tagPOINT* a3 = (struct tagPOINT*)point;
   int v4; // ebx
   struct BallPoint *Point; // eax
   int v6; // esi
@@ -13,8 +15,8 @@ int __thiscall CBall::VerifyCollision(CBall *this, struct tagRECT *a2, struct ta
   v4 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CBall::VerifyCollision", 0);
   v12 = 0;
-  CBoardObject::GetCenterPoint(this, &v11);
-  if ( *((int *)this + 33) <= 0 )
+  CBoardObject::GetCenterPoint(self, &v11);
+  if ( *((int *)self + 33) <= 0 )
   {
 LABEL_4:
     v6 = 0;
@@ -23,19 +25,19 @@ LABEL_4:
   {
     while ( 1 )
     {
-      Point = CBall::GetPoint(this, v4);
+      Point = (struct BallPoint *)CBall::GetPoint(self, v4);
       a3->x = v11.x + *(_DWORD *)Point;
       v9 = v11.y + *((_DWORD *)Point + 1);
       x = a3->x;
       a3->y = v9;
       if ( PointInRect(x, v9, a2) )
         break;
-      if ( ++v4 >= *((_DWORD *)this + 33) )
+      if ( ++v4 >= *((_DWORD *)self + 33) )
         goto LABEL_4;
     }
     v6 = 1;
   }
   v12 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  ((Helpers::CLogBlock *)v10)->~CLogBlock();
   return v6;
 }

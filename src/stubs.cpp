@@ -163,7 +163,7 @@ CBoardTileBumper::CBoardTileBumper(int x, int y, int rect_param, int color, int 
 
 // BallPoints
 BallPoints::BallPoints(int count, int flags) { (void)count; (void)flags; }
-void BallPoints::scalar_deleting_destructor(BallPoints* self, int flags) { (void)self; (void)flags; }
+// void BallPoints::scalar_deleting_destructor(BallPoints* self, int flags) { (void)self; (void)flags; }
 
 // CGameBoard standalone helpers
 CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) { (void)self; (void)hWnd; (void)param; return self; }

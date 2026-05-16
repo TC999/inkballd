@@ -708,6 +708,9 @@ extern "C" {
     extern const GUID IID_ITabletEventSink;
     extern const GUID IID_IUnknown;
     extern void* CSink_vftable;
+    extern void* CBall_vftable;
+    extern int BreakPoints[256];
+    extern int DrainPoints[256];
 }
 
 // ============================================================================

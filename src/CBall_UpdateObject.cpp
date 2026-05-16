@@ -1,5 +1,5 @@
 //----- (01004C37) --------------------------------------------------------
-void __thiscall CBall::UpdateObject(CBall *this, unsigned int a2)
+void CBall::UpdateObject(CBall* self, unsigned int a2)
 {
   bool v3; // zf
   double v4; // st7
@@ -7,29 +7,29 @@ void __thiscall CBall::UpdateObject(CBall *this, unsigned int a2)
   int v6; // [esp+20h] [ebp-4h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBall::UpdateObject", 0);
-  v3 = *((_DWORD *)this + 39) == 0;
+  v3 = *((_DWORD *)self + 39) == 0;
   v6 = 0;
   if ( !v3 )
   {
     v4 = (double)a2 / 1000.0;
-    *((double *)this + 12) = *((double *)this + 1);
-    *((double *)this + 13) = *((double *)this + 2);
-    *((double *)this + 1) = *((double *)this + 8) * v4 + *((double *)this + 1);
-    *((double *)this + 2) = v4 * *((double *)this + 9) + *((double *)this + 2);
-    if ( !CBall::CheckBoardBounds(this) )
+    *((double *)self + 12) = *((double *)self + 1);
+    *((double *)self + 13) = *((double *)self + 2);
+    *((double *)self + 1) = *((double *)self + 8) * v4 + *((double *)self + 1);
+    *((double *)self + 2) = v4 * *((double *)self + 9) + *((double *)self + 2);
+    if ( !CBall::CheckBoardBounds(self) )
     {
-      CBall::AddRef(this);
-      CheckForBallCollisionWithNonDeflectingTile(this);
-      if ( (int)*((double *)this + 1) != (int)*((double *)this + 12)
-        || (int)*((double *)this + 2) != (int)*((double *)this + 13) )
+      CBall::AddRef(self);
+      CheckForBallCollisionWithNonDeflectingTile(self);
+      if ( (int)*((double *)self + 1) != (int)*((double *)self + 12)
+        || (int)*((double *)self + 2) != (int)*((double *)self + 13) )
       {
-        CheckForBallCollisionWithBall(this);
-        CheckForBallCollisionWithInk(this);
-        CheckForBallCollisionWithTile(this);
+        CheckForBallCollisionWithBall(self);
+        CheckForBallCollisionWithInk(self);
+        CheckForBallCollisionWithTile(self);
       }
-      CBall::Release(this);
+      CBall::Release(self);
     }
   }
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
 }

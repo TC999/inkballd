@@ -116,27 +116,27 @@ namespace Helpers {
 }
 
 // ============================================================================
-// CBall static members
+// CBall static members — moved to real implementations in CBall_*.cpp files
 // ============================================================================
-void CBall::SetTallness(CBall* self, int tallness) { (void)self; (void)tallness; }
-void CBall::SetXVel(CBall* self, long double vel) { (void)self; (void)vel; }
-void CBall::SetYVel(CBall* self, long double vel) { (void)self; (void)vel; }
-int* CBall::GetDrainPoints(CBall* self) { (void)self; return nullptr; }
-int* CBall::GetBreakWallPoints(CBall* self) { (void)self; return nullptr; }
-int CBall::GetCurrBallPoint(CBall* self) { (void)self; return 0; }
-int CBall::GetPrevBallPoint(CBall* self) { (void)self; return 0; }
-int CBall::AddRef(CBall* self) { (void)self; return 0; }
-int CBall::Release(CBall* self) { (void)self; return 0; }
-void CBall::Deflect(CBall* self, double x, double y) { (void)self; (void)x; (void)y; }
-bool CBall::CheckBoardBounds(CBall* self) { (void)self; return false; }
-int CBall::Collide(CBall* self, void* a2) { (void)self; (void)a2; return 0; }
-int CBall::BallsIntersect(CBall* self, CBall* a2) { (void)self; (void)a2; return 0; }
-int CBall::MovingTowards(CBall* self, void* a2) { (void)self; (void)a2; return 0; }
-int CBall::VerifyCollision(CBall* self, void* rect, void* point) { (void)self; (void)rect; (void)point; return 0; }
-void* CBall::GetNextPoint(CBall* self) { (void)self; return nullptr; }
-int CBall::GetPoint(CBall* self, int index) { (void)self; (void)index; return 0; }
-void CBall::InitBallPoints(CBall* self) { (void)self; }
-void CBall::scalar_deleting_destructor(CBall* self, int flags) { (void)self; (void)flags; }
+// void CBall::SetTallness(CBall* self, int tallness) { (void)self; (void)tallness; }
+// void CBall::SetXVel(CBall* self, long double vel) { (void)self; (void)vel; }
+// void CBall::SetYVel(CBall* self, long double vel) { (void)self; (void)vel; }
+// int* CBall::GetDrainPoints(CBall* self) { (void)self; return nullptr; }
+// int* CBall::GetBreakWallPoints(CBall* self) { (void)self; return nullptr; }
+// int CBall::GetCurrBallPoint(CBall* self) { (void)self; return 0; }
+// int CBall::GetPrevBallPoint(CBall* self) { (void)self; return 0; }
+// int CBall::AddRef(CBall* self) { (void)self; return 0; }
+// int CBall::Release(CBall* self) { (void)self; return 0; }
+// void CBall::Deflect(CBall* self, double x, double y) { (void)self; (void)x; (void)y; }
+// bool CBall::CheckBoardBounds(CBall* self) { (void)self; return false; }
+// int CBall::Collide(CBall* self, void* a2) { (void)self; (void)a2; return 0; }
+// int CBall::BallsIntersect(CBall* self, CBall* a2) { (void)self; (void)a2; return 0; }
+// int CBall::MovingTowards(CBall* self, void* a2) { (void)self; (void)a2; return 0; }
+// int CBall::VerifyCollision(CBall* self, void* rect, void* point) { (void)self; (void)rect; (void)point; return 0; }
+// void* CBall::GetNextPoint(CBall* self) { (void)self; return nullptr; }
+// int CBall::GetPoint(CBall* self, int index) { (void)self; (void)index; return 0; }
+// void CBall::InitBallPoints(CBall* self) { (void)self; }
+// void CBall::scalar_deleting_destructor(CBall* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
 // CGameBoard static members — stubs only for methods without _mangled impl

@@ -1,5 +1,5 @@
 //----- (01004BE8) --------------------------------------------------------
-int __thiscall CBall::Release(CBall *this)
+int CBall::Release(CBall* self)
 {
   bool v2; // zf
   int v3; // edi
@@ -8,11 +8,11 @@ int __thiscall CBall::Release(CBall *this)
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBall::Release", 0);
   v6 = 0;
-  v2 = (*((_DWORD *)this + 34))-- == 1;
-  v3 = *((_DWORD *)this + 34);
+  v2 = (*((_DWORD *)self + 34))-- == 1;
+  v3 = *((_DWORD *)self + 34);
   if ( v2 )
-    CBall::`scalar deleting destructor'(this, 1);
+    CBall::scalar_deleting_destructor(self, 1);
   v6 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
   return v3;
 }

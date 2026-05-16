@@ -1,8 +1,7 @@
 //----- (01004BC2) --------------------------------------------------------
-CBall *__thiscall CBall::`scalar deleting destructor'(CBall *this, char a2)
+void CBall::scalar_deleting_destructor(CBall* self, int flags)
 {
-  CBall::~CBall(this);
-  if ( (a2 & 1) != 0 )
-    operator delete(this);
-  return this;
+  self->~CBall();
+  if ( (flags & 1) != 0 )
+    operator delete(self);
 }

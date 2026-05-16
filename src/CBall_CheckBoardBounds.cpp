@@ -5,7 +5,7 @@
 
 extern void GetBoardRect(RECT* rect);
 
-int CBall_CheckBoardBounds(CBall* self)
+bool CBall::CheckBoardBounds(CBall* self)
 {
     int collision_occurred = 0;
     double left_bound;
