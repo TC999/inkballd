@@ -1,5 +1,5 @@
 //----- (0100AECB) --------------------------------------------------------
-void __thiscall CGameManager::LoadBoard(CGameManager *this, const unsigned __int8 *a2, int a3)
+void CGameManager::LoadBoard(CGameManager *self, const unsigned __int8 *a2, int a3)
 {
   int v4; // eax
   const unsigned __int8 *v5; // esi
@@ -151,7 +151,7 @@ LABEL_40:
           if ( v35 )
           {
             v36 = v38;
-            *((_DWORD *)v38 + 22) = v35;
+            *((_DWORD *)v38 + 22) = (_DWORD)(uintptr_t)v35;
             CGameBoard::SetTile(g_pCGameBoard, v36);
             goto LABEL_36;
           }
@@ -187,11 +187,11 @@ LABEL_36:
 LABEL_8:
     DisplayBoardLoadMsg();
   if ( CGameBoard::BltBoardToInk(g_pCGameBoard, 0, 0) == -2005532222 )
-    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+    CGameBoard::RestoreSurfaces(g_pCGameBoard);
   if ( CDisplay::BltInk(g_pDisplay, 0) == -2005532222 )
-    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+    CGameBoard::RestoreSurfaces(g_pCGameBoard);
   (*(void (__thiscall **)(_DWORD))(**((_DWORD **)g_pCGameBoard + 2479) + 4))(*((_DWORD *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v37);
+  ((Helpers::CLogBlock*)v37)->~CLogBlock();
 }

@@ -1,5 +1,5 @@
 //----- (0100B1CB) --------------------------------------------------------
-void __thiscall CGameManager::DropWallTile(CGameManager *this, void *a2, unsigned int a3)
+void CGameManager::DropWallTile(CGameManager *self, void *a2, unsigned int a3)
 {
   bool v3; // cc
   struct CBoardTile *Tile; // eax
@@ -30,8 +30,8 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void *a2, unsigne
       LOBYTE(v10) = 2;
       if ( v11 )
       {
-        BitmapRect = CGameBoard::GetBitmapRect(37);
-        v7 = CBoardTileWall::CBoardTileWall(v11, *((_DWORD *)v5 + 19), *((_DWORD *)v5 + 20), (int)BitmapRect, 0);
+        BitmapRect = CGameBoard::GetBitmapRect(g_pCGameBoard, 37);
+        v7 = CBoardTileWall_CBoardTileWall((CBoardTileWall*)v11, *((_DWORD *)v5 + 19), *((_DWORD *)v5 + 20), (int)BitmapRect, 0);
       }
       else
       {
@@ -44,9 +44,9 @@ void __thiscall CGameManager::DropWallTile(CGameManager *this, void *a2, unsigne
       v10 = 0;
       *((double *)v7 + 2) = v8;
       CGameBoard::SetTile(g_pCGameBoard, v7);
-      CGameBoard::ShadowizeTile((CInk **)g_pCGameBoard, v7, 1);
+      CGameBoard::ShadowizeTile(g_pCGameBoard, v7, 1);
     }
   }
   v10 = -1;
-  Helpers::CLogBlock::~CLogBlock(v9);
+  ((Helpers::CLogBlock*)v9)->~CLogBlock();
 }

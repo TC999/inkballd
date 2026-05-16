@@ -17,7 +17,7 @@ void __stdcall LoadNextLevel()
     ((CBoardManager*)g_CBoardManager)->LoadRandomBoardFromResources((unsigned char*)&g_BoardData, v2);
   else
     ((CBoardManager*)g_CBoardManager)->LoadRandomBonusBoardFromResources((unsigned char*)&g_BoardData, v2);
-  CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &g_BoardData, v2[0]);
+  CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (const unsigned __int8*)&g_BoardData, v2[0]);
   v3 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v1)->~CLogBlock();
 }

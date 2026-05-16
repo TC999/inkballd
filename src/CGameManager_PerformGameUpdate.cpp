@@ -1,5 +1,5 @@
 //----- (0100B312) --------------------------------------------------------
-void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
+void CGameManager::PerformGameUpdate(CGameManager *self)
 {
   CGameManager *v1; // esi
   unsigned int v2; // edx
@@ -16,8 +16,8 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   struct tagRECT *v13; // [esp-8h] [ebp-18h]
   DWORD Time; // [esp+8h] [ebp-8h]
 
-  v1 = this;
-  if ( *((_DWORD *)this + 1) )
+  v1 = self;
+  if ( *((_DWORD *)self + 1) )
   {
     Time = timeGetTime();
     v2 = (Time - *(_DWORD *)v1) % 0x42;
@@ -58,7 +58,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2479), &stru_10B0630);
               if ( CDisplay::Present(g_pDisplay, &stru_10B0630) == -2005532222 )
-                CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                CGameBoard::RestoreSurfaces(g_pCGameBoard);
               CScoreManager::IncrementScore(*((CScoreManager **)g_pCGameBoard + 2477), 1);
               CDisplay::Blt(
                 g_pDisplay,
@@ -68,7 +68,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2477), &stru_10B0630);
               if ( CDisplay::Present(g_pDisplay, &stru_10B0630) == -2005532222 )
-                CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                CGameBoard::RestoreSurfaces(g_pCGameBoard);
               Score = CScoreManager::GetScore(*((CScoreManager **)g_pCGameBoard + 2477));
               CTileManager::SetTiles(*((CTileManager **)g_pCGameBoard + 2478), Score);
               CDisplay::Blt(
@@ -79,33 +79,33 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 0);
               CUIBarObject::GetBoundingRect(*((CUIBarObject **)g_pCGameBoard + 2478), &stru_10B0630);
               if ( CDisplay::Present(g_pDisplay, &stru_10B0630) == -2005532222 )
-                CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                CGameBoard::RestoreSurfaces(g_pCGameBoard);
               if ( dword_10B062C )
               {
                 CDisplay::BltInk(g_pDisplay, &stru_10B061C);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
-                  CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                  CGameBoard::RestoreSurfaces(g_pCGameBoard);
               }
               if ( dword_10B0618 )
               {
                 CDisplay::BltInk(g_pDisplay, &stru_10B0608);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
-                  CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                  CGameBoard::RestoreSurfaces(g_pCGameBoard);
               }
               if ( dword_10B0604 )
               {
                 if ( dword_10B0604 == 1 )
                 {
-                  dword_10B062C = CGameBoard::GetTileByIndices(
+                  dword_10B062C = (uintptr_t)CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
                                     *((_DWORD *)g_pCGameBoard + 2469) - 1,
                                     dword_10B0600);
-                  dword_10B0618 = CGameBoard::GetTileByIndices(
+                  dword_10B0618 = (uintptr_t)CGameBoard::GetTileByIndices(
                                     g_pCGameBoard,
                                     0,
                                     *((_DWORD *)g_pCGameBoard + 2470) - dword_10B0600 - 1);
-                  CBoardObject::GetBoundingRect(dword_10B062C, &stru_10B061C);
-                  CBoardObject::GetBoundingRect(dword_10B0618, &stru_10B0608);
+                  CBoardObject::GetBoundingRect((void*)dword_10B062C, &stru_10B061C);
+                  CBoardObject::GetBoundingRect((void*)dword_10B0618, &stru_10B0608);
                   GoldVersionOfTile = GetGoldVersionOfTile(*((_DWORD *)dword_10B062C + 9));
                   BitmapRect = (struct tagRECT *)GetBitmapRect(GoldVersionOfTile);
                   CDisplay::Blt(
@@ -115,7 +115,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                     g_pGamePiecesSurface,
                     BitmapRect);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
-                    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                    CGameBoard::RestoreSurfaces(g_pCGameBoard);
                   v9 = GetGoldVersionOfTile(*((_DWORD *)dword_10B0618 + 9));
                   v13 = (struct tagRECT *)GetBitmapRect(v9);
                   CDisplay::Blt(
@@ -125,9 +125,9 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                     g_pGamePiecesSurface,
                     v13);
                   if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
-                    CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                    CGameBoard::RestoreSurfaces(g_pCGameBoard);
                   ++dword_10B0600;
-                  v1 = this;
+                  v1 = self;
                   if ( dword_10B0600 >= *((_DWORD *)g_pCGameBoard + 2470) )
                   {
                     dword_10B0600 = 0;
@@ -136,18 +136,18 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                 }
                 else
                 {
-                  v1 = this;
+                  v1 = self;
                 }
               }
               else
               {
-                dword_10B062C = CGameBoard::GetTileByIndices(g_pCGameBoard, dword_10B0600, 0);
-                dword_10B0618 = CGameBoard::GetTileByIndices(
+                dword_10B062C = (uintptr_t)CGameBoard::GetTileByIndices(g_pCGameBoard, dword_10B0600, 0);
+                dword_10B0618 = (uintptr_t)CGameBoard::GetTileByIndices(
                                   g_pCGameBoard,
                                   *((_DWORD *)g_pCGameBoard + 2469) - dword_10B0600 - 1,
                                   *((_DWORD *)g_pCGameBoard + 2470) - 1);
-                CBoardObject::GetBoundingRect(dword_10B062C, &stru_10B061C);
-                CBoardObject::GetBoundingRect(dword_10B0618, &stru_10B0608);
+                CBoardObject::GetBoundingRect((void*)dword_10B062C, &stru_10B061C);
+                CBoardObject::GetBoundingRect((void*)dword_10B0618, &stru_10B0608);
                 v6 = GetGoldVersionOfTile(*((_DWORD *)dword_10B062C + 9));
                 v10 = (struct tagRECT *)GetBitmapRect(v6);
                 CDisplay::Blt(
@@ -157,7 +157,7 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                   g_pGamePiecesSurface,
                   v10);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B061C) == -2005532222 )
-                  CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                  CGameBoard::RestoreSurfaces(g_pCGameBoard);
                 v7 = GetGoldVersionOfTile(*((_DWORD *)dword_10B0618 + 9));
                 v11 = (struct tagRECT *)GetBitmapRect(v7);
                 CDisplay::Blt(
@@ -167,9 +167,9 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
                   g_pGamePiecesSurface,
                   v11);
                 if ( CDisplay::Present(g_pDisplay, &stru_10B0608) == -2005532222 )
-                  CGameBoard::RestoreSurfaces((CScoreManager **)g_pCGameBoard);
+                  CGameBoard::RestoreSurfaces(g_pCGameBoard);
                 ++dword_10B0600;
-                v1 = this;
+                 v1 = self;
                 if ( dword_10B0600 >= *((_DWORD *)g_pCGameBoard + 2469) )
                 {
                   dword_10B0600 = 0;
@@ -190,6 +190,6 @@ void __thiscall CGameManager::PerformGameUpdate(CGameManager *this)
   }
   else
   {
-    CGameManager::UpdateTime(this);
+    CGameManager::UpdateTime(self);
   }
 }

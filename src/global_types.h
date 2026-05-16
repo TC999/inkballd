@@ -203,10 +203,14 @@ struct CGameManager {
     uint32_t field_14;
     uint32_t field_18;
     uint32_t field_1C;
+    CGameManager(HWND hWnd);
+    ~CGameManager();
     static void UpdateTime(CGameManager* self);
-    static void DropWallTile(CGameManager* self, void* p1, void* p2);
-    static void LoadBoard(CGameManager* self, void* data, int size);
-    static void scalar_deleting_destructor(CGameManager* self, int flags);
+    static void DropWallTile(CGameManager* self, void* p1, unsigned int p2);
+    static void LoadBoard(CGameManager* self, const unsigned __int8* data, int size);
+    static void scalar_deleting_destructor(CGameManager* self, char flags);
+    static int Init(CGameManager* self);
+    static void PerformGameUpdate(CGameManager* self);
 };
 struct CDisplay;
 struct CSurface;
@@ -239,6 +243,7 @@ struct CGameObject;
 struct CMovingObject;
 struct CUIBarObject;
 struct CBoardTile;
+// CBoardTileWall static members
 struct CBoardTileWall {
     void* vftable;
     uint32_t unk[30];
@@ -246,6 +251,7 @@ struct CBoardTileWall {
     static void DeflectBall(void* self, void* ball);
     static void CareAboutCollisions(void* self);
 };
+CBoardTile* CBoardTileWall_CBoardTileWall(CBoardTileWall* self, int x, int y, int rect_param, int color);
 struct CBoardTileBreakWall {
     void* vftable;
     uint32_t unk[30];
@@ -662,8 +668,8 @@ extern "C" {
     extern uint32_t dword_10B0664;
     extern uint32_t dword_10B0668;
     extern uint32_t dword_10B0640;
-    extern uint32_t dword_10B062C;
-    extern uint32_t dword_10B0618;
+    extern uintptr_t dword_10B062C;
+    extern uintptr_t dword_10B0618;
     extern uint32_t dword_10B0600;
     extern uint32_t dword_10B0604;
     extern RECT stru_10B0630;
@@ -1086,3 +1092,8 @@ extern "C" {
     int __cdecl sub_42AFE0(int a1);
 }
 */
+
+// External function declarations (added for compilation)
+extern "C" int __stdcall AddBallToBoard(int ball_type);
+extern CBoardTile* __stdcall BuildTileObject(int a1, int a2, int a3);
+void __stdcall DisplayBoardLoadMsg();

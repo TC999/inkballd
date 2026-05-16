@@ -172,12 +172,12 @@ int CDisplay::DestroyObjects(CDisplay* self) { (void)self; return 0; }
 // ============================================================================
 
 // ============================================================================
-// CGameManager static members
+// CGameManager static members — now implemented in CGameManager_*.cpp
 // ============================================================================
-void CGameManager::LoadBoard(CGameManager* self, void* data, int size) { (void)self; (void)data; (void)size; }
-void CGameManager::DropWallTile(CGameManager* self, void* p1, void* p2) { (void)self; (void)p1; (void)p2; }
-void CGameManager::UpdateTime(CGameManager* self) { (void)self; }
-void CGameManager::scalar_deleting_destructor(CGameManager* self, int flags) { (void)self; (void)flags; }
+// void CGameManager::LoadBoard(CGameManager* self, const unsigned __int8* data, int size) { (void)self; (void)data; (void)size; }
+// void CGameManager::DropWallTile(CGameManager* self, void* p1, unsigned int p2) { (void)self; (void)p1; (void)p2; }
+// void CGameManager::UpdateTime(CGameManager* self) { (void)self; }
+// void CGameManager::scalar_deleting_destructor(CGameManager* self, char flags) { (void)self; (void)flags; }
 
 // ============================================================================
 // CScoreManager static members (implemented in dedicated .cpp files)
@@ -264,9 +264,7 @@ extern "C" {
     void __stdcall PerformStandardWallDeflection(void* tile, void* ball) { (void)tile; (void)ball; }
     void ScoreBall(void* ball, uint32_t color) { (void)ball; (void)color; }
     void SetBallColor(void* ball, uint32_t color) { (void)ball; (void)color; }
-    int AddBallToBoard(int ball_type) { (void)ball_type; return 0; }
-    CBoardTile* BuildTileObject(int a1, int a2, int a3) { (void)a1; (void)a2; (void)a3; return nullptr; }
-    void DisplayBoardLoadMsg() {}
+// int __stdcall AddBallToBoard(int ball_type) { (void)ball_type; return 0; }
     // SearchBoardList implemented in SearchBoardList.cpp
     bool __stdcall BallOnTile(void* tile) { (void)tile; return false; }
     void __stdcall AddRLColoredWallToList(void* tile) { (void)tile; }
@@ -274,6 +272,8 @@ extern "C" {
     int CSurface_Create(CSurface* self, IDirectDraw7* a2, DDSURFACEDESC2* a3) { (void)self; (void)a2; (void)a3; return 0; }
     void* GetTabletContextInfo(uint32_t id) { (void)id; return nullptr; }
 }
+// CBoardTile* __stdcall BuildTileObject(int a1, int a2, int a3) { (void)a1; (void)a2; (void)a3; return nullptr; }
+// void __stdcall DisplayBoardLoadMsg() {}
 
 // C++ linkage standalone functions
 void CGameBoard_AddRLColoredWallToList(CGameBoard* self, CBoardTileRLColored* tile) { (void)self; (void)tile; }

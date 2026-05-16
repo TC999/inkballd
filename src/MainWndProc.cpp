@@ -69,7 +69,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
       {
         if ( Msg == 516 )
         {
-          CGameManager::DropWallTile((CGameManager*)g_pCGameManager, (void*)(__int16)lParam, (void*)(intptr_t)SHIWORD(lParam));
+          CGameManager::DropWallTile((CGameManager*)g_pCGameManager, (void*)(__int16)lParam, (unsigned int)(SHIWORD(lParam)));
         }
         else if ( Msg == 529 )
         {
@@ -196,12 +196,12 @@ LABEL_67:
         }
 LABEL_50:
         ((CBoardManager*)g_CBoardManager)->LoadRandomBoardFromResources((unsigned char*)&BoardData, &iBoardSizeBytes);
-        CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
+        CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (const unsigned __int8*)&BoardData, iBoardSizeBytes);
         goto LABEL_53;
       }
       KillPlayer(2);
       ((CBoardManager*)g_CBoardManager)->LoadRandomBoardFromResources((unsigned char*)&BoardData, &iBoardSizeBytes);
-      CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
+      CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (const unsigned __int8*)&BoardData, iBoardSizeBytes);
     }
     InvalidateRect(v23, 0, 0);
     goto LABEL_53;

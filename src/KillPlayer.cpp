@@ -40,7 +40,7 @@ LABEL_7:
   if ( a1 != 2 )
   {
     LastLoadedBoardData = (const unsigned __int8*)((CBoardManager*)g_CBoardManager)->GetLastLoadedBoardData();
-    CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (void*)LastLoadedBoardData, -1);
+    CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (const unsigned __int8*)LastLoadedBoardData, -1);
     CGameManager::UpdateTime((CGameManager*)g_pCGameManager);
   }
   (*(void (__thiscall **)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));

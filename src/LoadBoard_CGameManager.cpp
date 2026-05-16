@@ -4,11 +4,10 @@
 #include <cstdlib>
 #include <windows.h>
 
-extern "C" {
-    int AddBallToBoard(uint8_t ball_type);
-    CBoardTile* BuildTileObject(int tile_type, int x, int y);
-    void DisplayBoardLoadMsg();
-}
+// Forward declarations now provided by global_types.h
+// extern int __stdcall AddBallToBoard(int ball_type);
+// extern CBoardTile* __stdcall BuildTileObject(int a1, int a2, int a3);
+// void __stdcall DisplayBoardLoadMsg();
 void LoadBoard_CGameManager(CGameManager *self, const unsigned __int8 *a2, int a3)
 {
   int v4; // eax

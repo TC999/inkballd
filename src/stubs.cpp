@@ -23,8 +23,8 @@ extern "C" {
     uint32_t dword_10D2F34 = 0;
     uint32_t dword_10D2F30 = 0;
     uint32_t dword_10B0640 = 0;
-    uint32_t dword_10B062C = 0;
-    uint32_t dword_10B0618 = 0;
+    uintptr_t dword_10B062C = 0;
+    uintptr_t dword_10B0618 = 0;
     uint32_t dword_10B0600 = 0;
     uint32_t dword_10B0604 = 0;
     RECT stru_10B0630 = {};

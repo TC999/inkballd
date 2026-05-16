@@ -1,5 +1,5 @@
 //----- (0100A3E3) --------------------------------------------------------
-CGameManager *__thiscall CGameManager::CGameManager(CGameManager *this, HWND a2)
+CGameManager::CGameManager(HWND a2)
 {
   char *v3; // ecx
   CGameBoard *v4; // eax
@@ -13,7 +13,7 @@ CGameManager *__thiscall CGameManager::CGameManager(CGameManager *this, HWND a2)
   v6[2] = v3;
   LOBYTE(v7) = 2;
   if ( v3 )
-    v4 = CGameBoard::CGameBoard((CGameBoard *)v3, a2, (void *)1);
+    v4 = CGameBoard_Ctor((CGameBoard *)v3, a2, (void *)1);
   else
     v4 = 0;
   g_pCGameBoard = v4;
@@ -23,6 +23,5 @@ CGameManager *__thiscall CGameManager::CGameManager(CGameManager *this, HWND a2)
   *((_DWORD *)this + 3) = 0;
   CGameManager::UpdateTime(this);
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock(v6);
-  return this;
+  ((Helpers::CLogBlock*)v6)->~CLogBlock();
 }

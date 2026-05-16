@@ -81,6 +81,11 @@ struct CBoardTileRLGray;
 struct CRegistryManager;
 struct CTabLicense;
 
+// External function declarations
+extern "C" int __stdcall AddBallToBoard(int ball_type);
+extern CBoardTile* __stdcall BuildTileObject(int a1, int a2, int a3);
+void __stdcall DisplayBoardLoadMsg();
+
 // COM interfaces
 struct IUnknown;
 struct IInkStroke;

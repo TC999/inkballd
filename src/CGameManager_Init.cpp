@@ -1,5 +1,5 @@
 //----- (01009C0D) --------------------------------------------------------
-int __thiscall CGameManager::Init(CGameManager *this)
+int CGameManager::Init(CGameManager *self)
 {
   int v1; // eax
   int v2; // esi
@@ -14,6 +14,6 @@ int __thiscall CGameManager::Init(CGameManager *this)
   v6 = -1;
   v5[0] = v1;
   v2 = v1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  ((Helpers::CLogBlock*)v4)->~CLogBlock();
   return v2;
 }

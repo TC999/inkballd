@@ -1,8 +1,7 @@
 //----- (01010FF8) --------------------------------------------------------
-CGameManager *__thiscall CGameManager::`scalar deleting destructor'(CGameManager *this, char a2)
+void CGameManager::scalar_deleting_destructor(CGameManager *self, char a2)
 {
-  CGameManager::~CGameManager(this);
+  self->~CGameManager();
   if ( (a2 & 1) != 0 )
-    operator delete(this);
-  return this;
+    operator delete(self);
 }

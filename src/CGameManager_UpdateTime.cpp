@@ -1,5 +1,5 @@
 //----- (0100A087) --------------------------------------------------------
-void __thiscall CGameManager::UpdateTime(CGameManager *this)
+void CGameManager::UpdateTime(CGameManager *self)
 {
-  *(_DWORD *)this = timeGetTime();
+  *(_DWORD *)self = timeGetTime();
 }
