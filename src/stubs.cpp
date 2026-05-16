@@ -144,8 +144,8 @@ void CDisplay::ClearInk(void* self, RECT* rect, int color) { (void)self; (void)r
 int CBoardManager::LoadBoardFromResources(CBoardManager* m, const wchar_t* n, void* d, int* s) {
     (void)m; (void)n; (void)d; (void)s; return 0;
 }
-int CBoardManager::LoadRandomBoardFromResources(CBoardManager* m, void* d, int* s) {
-    (void)m; (void)d; (void)s; return 0;
+void CBoardManager::LoadRandomBoardFromResources(CBoardManager* m, void* d, int* a3) {
+    (void)m; (void)d; (void)a3;
 }
 void CBoardManager::SetDifficulty(CBoardManager* m, uint32_t d) { (void)m; (void)d; }
 

@@ -208,6 +208,11 @@
     <ClCompile Include="src\CBall_~CBall.cpp" />
     <ClCompile Include="src\CBitmapRects.cpp" />
     <ClCompile Include="src\CBoardManager.cpp" />
+    <ClCompile Include="src\CBoardManager_GetLastLoadedBoardData.cpp" />
+    <ClCompile Include="src\CBoardManager_LoadBoardFromResources.cpp" />
+    <ClCompile Include="src\CBoardManager_LoadRandomBoardFromResources.cpp" />
+    <ClCompile Include="src\CBoardManager_LoadRandomBonusBoardFromResources.cpp" />
+    <ClCompile Include="src\CBoardManager_SetDifficulty.cpp" />
     <ClCompile Include="src\CBoardObject.cpp" />
     <ClCompile Include="src\CBoardTile.cpp" />
     <ClCompile Include="src\CBoardTileBreakWall_QAE_HHPAUtagRECT_W4BOARD_COLOR_Z.cpp" />

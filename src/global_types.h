@@ -802,10 +802,10 @@ struct CBoardManager {
     CBoardManager();
     ~CBoardManager();
     static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
-    static int LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
+    static void LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* a3);
+    static void LoadRandomBonusBoardFromResources(CBoardManager* manager, void* boardData, int* a3);
     static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
     static void* GetLastLoadedBoardData(CBoardManager* manager);
-    static int LoadRandomBonusBoardFromResources(CBoardManager* manager, void* boardData, int* boardSize);
 };
 
 struct CBitmapRects {

@@ -16,8 +16,8 @@ extern "C" {
     int BreakPoints[256] = {};
     int DrainPoints[256] = {};
     int iBoardCollectionsCount = 0;
-    int iBoardCounts = 0;
-    void* pBoardCollections = nullptr;
+    int* iBoardCounts = nullptr;
+    void** pBoardCollections = nullptr;
     BOARDHIST g_bhPrevBoards = {};
     BOARDHIST g_bhPrevBonusBoards = {};
     uint32_t dword_10B068C = 0;
@@ -225,7 +225,7 @@ void CRegistryManager::WriteHiScore(CRegistryManager* self, int score) { (void)s
 // CBoardManager static members
 // ============================================================================
 void* CBoardManager::GetLastLoadedBoardData(CBoardManager* self) { (void)self; return nullptr; }
-int CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* boardData, int* boardSize) { (void)self; (void)boardData; (void)boardSize; return 0; }
+void CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* boardData, int* a3) { (void)self; (void)boardData; (void)a3; }
 
 // ============================================================================
 // CSurface static members
@@ -275,7 +275,7 @@ extern "C" {
     int AddBallToBoard(int ball_type) { (void)ball_type; return 0; }
     CBoardTile* BuildTileObject(int a1, int a2, int a3) { (void)a1; (void)a2; (void)a3; return nullptr; }
     void DisplayBoardLoadMsg() {}
-    int SearchBoardList(wchar_t* a1, unsigned char* a2, int a3, BoardCollection* a4, int* a5) { (void)a1; (void)a2; (void)a3; (void)a4; (void)a5; return 0; }
+    int SearchBoardList(wchar_t* a1, unsigned char* a2, int a3, void* a4, int* a5) { (void)a1; (void)a2; (void)a3; (void)a4; (void)a5; return 0; }
     bool __stdcall BallOnTile(void* tile) { (void)tile; return false; }
     void __stdcall AddRLColoredWallToList(void* tile) { (void)tile; }
     void FreeCursorStroke() {}
