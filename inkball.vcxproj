@@ -241,6 +241,12 @@
     <ClCompile Include="src\CInk__scalar_deleting_destructor_.cpp" />
     <ClCompile Include="src\CMovingObject.cpp" />
     <ClCompile Include="src\CScoreManager.cpp" />
+    <ClCompile Include="src\CScoreManager_DrawToSurface.cpp" />
+    <ClCompile Include="src\CScoreManager_GetScore.cpp" />
+    <ClCompile Include="src\CScoreManager_IncrementScore.cpp" />
+    <ClCompile Include="src\CScoreManager_InitSurface.cpp" />
+    <ClCompile Include="src\CScoreManager_ResetScore.cpp" />
+    <ClCompile Include="src\CScoreManager_Restore.cpp" />
     <ClCompile Include="src\CSurface.cpp" />
     <ClCompile Include="src\CTileManager.cpp" />
     <ClCompile Include="src\CTimeManager.cpp" />
