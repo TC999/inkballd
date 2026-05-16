@@ -222,10 +222,8 @@ uint32_t CRegistryManager::ReadHiScore(CRegistryManager* self) { (void)self; ret
 void CRegistryManager::WriteHiScore(CRegistryManager* self, int score) { (void)self; (void)score; }
 
 // ============================================================================
-// CBoardManager static members
+// CBoardManager static members (removed - actual implementations in separate .cpp files)
 // ============================================================================
-void* CBoardManager::GetLastLoadedBoardData(CBoardManager* self) { (void)self; return nullptr; }
-void CBoardManager::LoadRandomBonusBoardFromResources(CBoardManager* self, void* boardData, int* a3) { (void)self; (void)boardData; (void)a3; }
 
 // ============================================================================
 // CSurface static members
@@ -275,7 +273,7 @@ extern "C" {
     int AddBallToBoard(int ball_type) { (void)ball_type; return 0; }
     CBoardTile* BuildTileObject(int a1, int a2, int a3) { (void)a1; (void)a2; (void)a3; return nullptr; }
     void DisplayBoardLoadMsg() {}
-    int SearchBoardList(wchar_t* a1, unsigned char* a2, int a3, void* a4, int* a5) { (void)a1; (void)a2; (void)a3; (void)a4; (void)a5; return 0; }
+    // SearchBoardList implemented in SearchBoardList.cpp
     bool __stdcall BallOnTile(void* tile) { (void)tile; return false; }
     void __stdcall AddRLColoredWallToList(void* tile) { (void)tile; }
     void FreeCursorStroke() {}

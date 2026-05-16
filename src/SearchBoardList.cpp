@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <new>
 
-int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, BoardCollection* board_collection, int* result)
+int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection_ptr, int* result)
 {
     uint8_t* board_data_ptr;
     uint16_t board_size_high;
@@ -19,6 +19,7 @@ int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int b
 
     search_name = board_name;
     source_data = output_buffer;
+    BoardCollection* board_collection = static_cast<BoardCollection*>(board_collection_ptr);
     new (&log_buffer) Helpers::CLogBlock(&log_buffer, "SearchBoardList", 0);
     flag = 0;
     board_index = 0;

@@ -1,4 +1,5 @@
 //----- (01005B15) --------------------------------------------------------
+#include "global_types.h"
 void __thiscall CBoardManager::LoadRandomBoardFromResources(unsigned __int8 *Src, int *a3)
 {
   int RandomNumber; // esi
@@ -15,7 +16,7 @@ void __thiscall CBoardManager::LoadRandomBoardFromResources(unsigned __int8 *Src
   v11 = 0;
   do
     RandomNumber = GetRandomNumber(iBoardListCount);
-  while ( fPrevSeen(RandomNumber, (struct BOARDHIST *)&g_bhPrevBoards, iBoardListCount) );
+  while ( fPrevSeen(&g_bhPrevBoards, RandomNumber) );
   v4 = (unsigned __int8 *)&g_BoardData + *((_DWORD *)paBoardList + 129 * RandomNumber);
   v5 = *v4++ << 8;
   v6 = *v4 + v5;

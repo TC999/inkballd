@@ -141,13 +141,7 @@ void* CDisplay::GetDirectDraw(void* self) { (void)self; return nullptr; }
 void CDisplay::Clear(void* self, uint32_t color) { (void)self; (void)color; }
 void CDisplay::ClearInk(void* self, RECT* rect, int color) { (void)self; (void)rect; (void)color; }
 
-int CBoardManager::LoadBoardFromResources(CBoardManager* m, const wchar_t* n, void* d, int* s) {
-    (void)m; (void)n; (void)d; (void)s; return 0;
-}
-void CBoardManager::LoadRandomBoardFromResources(CBoardManager* m, void* d, int* a3) {
-    (void)m; (void)d; (void)a3;
-}
-void CBoardManager::SetDifficulty(CBoardManager* m, uint32_t d) { (void)m; (void)d; }
+// CBoardManager member functions implemented in separate .cpp files
 
 // CBoardTile constructors
 CBoardTile::CBoardTile() {}

@@ -1,4 +1,5 @@
 //----- (01005AAC) --------------------------------------------------------
+#include "global_types.h"
 int __thiscall CBoardManager::LoadBoardFromResources(
         unsigned __int16 *a2,
         unsigned __int8 *a3,
@@ -17,7 +18,7 @@ int __thiscall CBoardManager::LoadBoardFromResources(
   {
     if ( v4 >= iBoardCollectionsCount )
       break;
-    v5 = SearchBoardList(a2, a3, *(&iBoardCounts + v4), *(&pBoardCollections + v4), a4);
+    v5 = SearchBoardList(reinterpret_cast<wchar_t*>(a2), reinterpret_cast<uint8_t*>(a3), iBoardCounts[v4], *(&pBoardCollections + v4), a4);
     ++v4;
   }
   while ( !v5 );

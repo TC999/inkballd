@@ -5,10 +5,7 @@
 extern "C" {
 }
 
-extern "C" int SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection, int* result);
-extern "C" int iBoardCollectionsCount; // Global board collections count
-extern "C" int* iBoardCounts; // Global board counts array
-extern "C" void** pBoardCollections; // Global board collections array
+// Declarations moved to global_types.h
 
 int LoadBoardFromResources_CBoardManager(CBoardManager *self,
     wchar_t* board_name,

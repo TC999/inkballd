@@ -1,4 +1,5 @@
 //----- (01005CCB) --------------------------------------------------------
+#include "global_types.h"
 void __thiscall CBoardManager::SetDifficulty(int a2)
 {
   int v3; // eax

@@ -87,7 +87,7 @@ LRESULT __stdcall MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, uint32_t *lPar
           CheckMenuItem(Menu, iLastChecked, 0);
           iLastChecked = 40006;
           CheckMenuItem(hMenu, 0x9C46u, 8u);
-          CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 4);
+          ((CBoardManager*)g_CBoardManager)->SetDifficulty(4);
           goto LABEL_50;
         case 0x9C4Au:
           if ( *((uint32_t *)g_pCGameManager + 2) )
@@ -161,7 +161,7 @@ LABEL_67:
         CheckMenuItem(Menu, iLastChecked, 0);
         iLastChecked = 40005;
         CheckMenuItem(hMenu, 0x9C45u, 8u);
-        CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 3);
+        ((CBoardManager*)g_CBoardManager)->SetDifficulty(3);
         goto LABEL_50;
       }
       if ( (uint16_t)wParam == 40000 )
@@ -177,30 +177,30 @@ LABEL_67:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40002;
             CheckMenuItem(hMenu, 0x9C42u, 8u);
-            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 0);
+            ((CBoardManager*)g_CBoardManager)->SetDifficulty(0);
             break;
           case 0x9C43u:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40003;
             CheckMenuItem(hMenu, 0x9C43u, 8u);
-            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 1);
+            ((CBoardManager*)g_CBoardManager)->SetDifficulty(1);
             break;
           case 0x9C44u:
             CheckMenuItem(Menu, iLastChecked, 0);
             iLastChecked = 40004;
             CheckMenuItem(hMenu, 0x9C44u, 8u);
-            CBoardManager::SetDifficulty((CBoardManager*)g_CBoardManager, 2);
+            ((CBoardManager*)g_CBoardManager)->SetDifficulty(2);
             break;
           default:
             goto LABEL_80;
         }
 LABEL_50:
-        CBoardManager::LoadRandomBoardFromResources((CBoardManager *)g_CBoardManager, &BoardData, &iBoardSizeBytes);
+        ((CBoardManager*)g_CBoardManager)->LoadRandomBoardFromResources((unsigned char*)&BoardData, &iBoardSizeBytes);
         CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
         goto LABEL_53;
       }
       KillPlayer(2);
-      CBoardManager::LoadRandomBoardFromResources((CBoardManager *)g_CBoardManager, &BoardData, &iBoardSizeBytes);
+      ((CBoardManager*)g_CBoardManager)->LoadRandomBoardFromResources((unsigned char*)&BoardData, &iBoardSizeBytes);
       CGameManager::LoadBoard((CGameManager*)g_pCGameManager, &BoardData, iBoardSizeBytes);
     }
     InvalidateRect(v23, 0, 0);

@@ -714,6 +714,42 @@ extern "C" {
 }
 
 // ============================================================================
+// Missing global variables and functions for CBoardManager
+// ============================================================================
+extern "C" {
+    extern int iBoardCollectionsCount;
+    extern int* iBoardCounts;
+    extern void** pBoardCollections;
+    extern int iBoardListCount;
+    extern int iBonusBoardListCount;
+    extern int iBeginnerBoardsCount;
+    extern int iBeginnerBonusBoardsCount;
+    extern int iIntermediateBoardsCount;
+    extern int iIntermediateBonusBoardsCount;
+    extern int iAdvancedBoardsCount;
+    extern int iAdvancedBonusBoardsCount;
+    extern int iExpertBoardsCount;
+    extern int iExpertBonusBoardsCount;
+    extern int iNoviceBoardsCount;
+    extern int iNoviceBonusBoardsCount;
+    extern void* paBoardList;
+    extern void* paBonusBoardList;
+    extern void* g_aBeginnerBoards;
+    extern void* g_aBeginnerBonusBoards;
+    extern void* g_aIntermediateBoards;
+    extern void* g_aIntermediateBonusBoards;
+    extern void* g_aAdvancedBoards;
+    extern void* g_aAdvancedBonusBoards;
+    extern void* g_aExpertBoards;
+    extern void* g_aExpertBonusBoards;
+    extern void* g_aNoviceBoards;
+    extern void* g_aNoviceBonusBoards;
+    extern void* g_BoardData;
+    extern void* g_pLastLoadedLevel;
+    int __stdcall SearchBoardList(wchar_t* board_name, uint8_t* output_buffer, int board_count, void* board_collection, int* result);
+}
+
+// ============================================================================
 // Layout structures for object memory layouts
 // ============================================================================
 
@@ -801,11 +837,11 @@ struct CBoardManager {
     uint32_t difficulty_level;
     CBoardManager();
     ~CBoardManager();
-    static int LoadBoardFromResources(CBoardManager* manager, const wchar_t* name, void* boardData, int* boardSize);
-    static void LoadRandomBoardFromResources(CBoardManager* manager, void* boardData, int* a3);
-    static void LoadRandomBonusBoardFromResources(CBoardManager* manager, void* boardData, int* a3);
-    static void SetDifficulty(CBoardManager* manager, uint32_t difficulty);
-    static void* GetLastLoadedBoardData(CBoardManager* manager);
+    int LoadBoardFromResources(unsigned __int16* name, unsigned __int8* boardData, int* boardSize);
+    void LoadRandomBoardFromResources(unsigned char* boardData, int* a3);
+    void LoadRandomBonusBoardFromResources(unsigned char* boardData, int* a3);
+    void SetDifficulty(int difficulty);
+    const unsigned __int8* GetLastLoadedBoardData();
 };
 
 struct CBitmapRects {

@@ -39,7 +39,7 @@ LABEL_7:
   CTileManager::ResetTileCount(*((CTileManager **)g_pCGameBoard + 2478));
   if ( a1 != 2 )
   {
-    LastLoadedBoardData = (const unsigned __int8*)CBoardManager::GetLastLoadedBoardData((CBoardManager *)&g_CBoardManager);
+    LastLoadedBoardData = (const unsigned __int8*)((CBoardManager*)g_CBoardManager)->GetLastLoadedBoardData();
     CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (void*)LastLoadedBoardData, -1);
     CGameManager::UpdateTime((CGameManager*)g_pCGameManager);
   }
