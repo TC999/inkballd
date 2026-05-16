@@ -1,5 +1,6 @@
-//----- (01005278) --------------------------------------------------------
-void __thiscall CBallManager::SetBallSpeed(CBallManager *this, struct CBall *a2, double a3)
+﻿//----- (01005278) --------------------------------------------------------
+#include "math_utils.h"
+void CBallManager::SetBallSpeed(CBallManager *self, struct CBall *a2, double a3)
 {
   int v4; // eax
   int v5; // ecx
@@ -19,12 +20,12 @@ void __thiscall CBallManager::SetBallSpeed(CBallManager *this, struct CBall *a2,
   double v19; // [esp+40h] [ebp+Ch]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v13, "CBallManager::SetBallSpeed", 0);
-  v4 = *((_DWORD *)this + 325);
-  v5 = *((_DWORD *)this + 324);
+  v4 = *((_DWORD *)self + 325);
+  v5 = *((_DWORD *)self + 324);
   v15 = 0;
   HIDWORD(v14) = v4;
   if ( v4 != v5 )
-    HIDWORD(v14) = *((_DWORD *)this + 324) + GetRandomNumber(v4 - v5);
+    HIDWORD(v14) = *((_DWORD *)self + 324) + GetRandomNumber(v4 - v5);
   v14 = (double)SHIDWORD(v14);
   v6 = a3;
   if ( a3 != -1.0 )
@@ -83,5 +84,5 @@ LABEL_19:
   }
 LABEL_21:
   v15 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v13);
+  ((Helpers::CLogBlock *)v13)->~CLogBlock();
 }

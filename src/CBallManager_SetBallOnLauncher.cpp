@@ -1,5 +1,5 @@
-//----- (01005205) --------------------------------------------------------
-void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, struct CBall *a2, struct CBoardTile *a3)
+﻿//----- (01005205) --------------------------------------------------------
+void CBallManager::SetBallOnLauncher(CBallManager *self, struct CBall *a2, struct CBoardTile *a3)
 {
   int v4; // eax
   _BYTE v5[8]; // [esp+10h] [ebp-1Ch] BYREF
@@ -9,7 +9,7 @@ void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, struct CBall
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBallManager::SetBallOnLauncher", 0);
   v7 = 0;
-  if ( *((_DWORD *)this + 20) )
+  if ( *((_DWORD *)self + 20) )
   {
     CBoardObject::GetCenterPoint(a3, &v6);
     v4 = *((_DWORD *)a2 + 6) / 2;
@@ -18,5 +18,5 @@ void __thiscall CBallManager::SetBallOnLauncher(CBallManager *this, struct CBall
     *((double *)a2 + 2) = (double)(int)v8;
   }
   v7 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
 }

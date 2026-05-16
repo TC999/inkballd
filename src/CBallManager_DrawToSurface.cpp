@@ -1,5 +1,5 @@
-//----- (0100504B) --------------------------------------------------------
-void __thiscall CBallManager::DrawToSurface(CBallManager *this)
+﻿//----- (0100504B) --------------------------------------------------------
+void CBallManager::DrawToSurface(CBallManager *self)
 {
   struct IDirectDrawSurface7 *DDrawSurface; // edi
   struct IDirectDrawSurface7Vtbl *lpVtbl; // esi
@@ -22,14 +22,14 @@ void __thiscall CBallManager::DrawToSurface(CBallManager *this)
   int i; // [esp+44h] [ebp-10h]
   int v21; // [esp+50h] [ebp-4h]
 
-  v18 = this;
+  v18 = self;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v16, "CBallManager::DrawToSurface", 0);
   v21 = 0;
-  DDrawSurface = CSurface::GetDDrawSurface(g_pBallManagerSurface);
+  DDrawSurface = (struct IDirectDrawSurface7 *)CSurface::GetDDrawSurface(g_pBallManagerSurface);
   lpVtbl = DDrawSurface->lpVtbl;
-  v19 = (struct tagRECT *)((char *)this + 20);
+  v19 = (struct tagRECT *)((char *)self + 20);
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 106);
-  v4 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
+  v4 = (struct IDirectDrawSurface7 *)CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   lpVtbl->Blt(DDrawSurface, v19, v4, (LPRECT)BitmapRect, 0, 0);
   for ( i = 0; i < 6; ++i )
   {
@@ -46,7 +46,7 @@ void __thiscall CBallManager::DrawToSurface(CBallManager *this)
       {
         if ( v11.right > 104 )
           v14 += 104 - v11.right;
-        v7 = CSurface::GetDDrawSurface(g_pBallManagerSurface);
+        v7 = (struct IDirectDrawSurface7 *)CSurface::GetDDrawSurface(g_pBallManagerSurface);
         v8 = v7->lpVtbl;
         v9 = *v5;
         v17 = v7;
@@ -59,5 +59,5 @@ void __thiscall CBallManager::DrawToSurface(CBallManager *this)
   }
   AddDisplayUpdateRect(v19);
   v21 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v16);
+  ((Helpers::CLogBlock *)v16)->~CLogBlock();
 }

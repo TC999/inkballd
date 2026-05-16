@@ -102,7 +102,7 @@ void LoadBoard_CGameManager(CGameManager *self, const unsigned __int8 *a2, int a
   if ( v21 > 64 )
     goto LABEL_8;
   v23 = 0;
-  CBallManager::Init(*((CBallManager **)g_pCGameBoard + 2476));
+  CBallManager::Init(*((CBallManager **)g_pCGameBoard + 2476), 0, 0, 0, 0, 0); // DECOMPILE TODO: extract original params from binary
   CGameBoard::AddGameObjectToUpdateList(g_pCGameBoard, *((CGameObject**)g_pCGameBoard + 2476));
   if ( a3 <= 0 || (int)&v22[v21] <= (int)v40 )
   {

@@ -1,5 +1,5 @@
-//----- (01004F54) --------------------------------------------------------
-void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, unsigned int a2)
+﻿//----- (01004F54) --------------------------------------------------------
+void CBallManager::UpdateBallPositions(CBallManager *self, unsigned int a2)
 {
   double v3; // st7
   int v4; // eax
@@ -11,23 +11,23 @@ void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, unsigned i
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CBallManager::UpdateBallPositions", 0);
   v3 = (double)a2 / 1000.0;
-  v4 = *((_DWORD *)this + 14);
+  v4 = *((_DWORD *)self + 14);
   if ( *(double *)(v4 + 8) > 6.0 )
   {
     v5 = 0.0;
     *(double *)(v4 + 64) = *(double *)(v4 + 64) - 6.0;
-    *(double *)(*((_DWORD *)this + 14) + 8) = *(double *)(*((_DWORD *)this + 14) + 64) * v3
-                                            + *(double *)(*((_DWORD *)this + 14) + 8);
-    *(double *)(*((_DWORD *)this + 14) + 16) = *(double *)(*((_DWORD *)this + 14) + 72) * v3
-                                             + *(double *)(*((_DWORD *)this + 14) + 16);
+    *(double *)(*((_DWORD *)self + 14) + 8) = *(double *)(*((_DWORD *)self + 14) + 64) * v3
+                                            + *(double *)(*((_DWORD *)self + 14) + 8);
+    *(double *)(*((_DWORD *)self + 14) + 16) = *(double *)(*((_DWORD *)self + 14) + 72) * v3
+                                             + *(double *)(*((_DWORD *)self + 14) + 16);
   }
   else
   {
     *(double *)(v4 + 64) = 0.0;
     v5 = 0.0;
-    *(double *)(*((_DWORD *)this + 14) + 8) = 6.0;
+    *(double *)(*((_DWORD *)self + 14) + 8) = 6.0;
   }
-  v6 = (char *)this + 60;
+  v6 = (char *)self + 60;
   for ( i = 5; i > 0; --i )
   {
     v7 = *(_DWORD *)v6;
@@ -46,5 +46,5 @@ void __thiscall CBallManager::UpdateBallPositions(CBallManager *this, unsigned i
     }
     v6 += 4;
   }
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  ((Helpers::CLogBlock *)v8)->~CLogBlock();
 }

@@ -1,5 +1,5 @@
-//----- (01005453) --------------------------------------------------------
-void __thiscall CBallManager::UpdateObject(CBallManager *this, unsigned int a2)
+﻿//----- (01005453) --------------------------------------------------------
+void CBallManager::UpdateObject(CBallManager *self, unsigned int a2)
 {
   bool v3; // zf
   int v4; // eax
@@ -11,58 +11,58 @@ void __thiscall CBallManager::UpdateObject(CBallManager *this, unsigned int a2)
   struct CBoardTile *RandomBallLauncher; // [esp+34h] [ebp+8h]
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v8, "CBallManager::UpdateObject", 0);
-  v3 = *((_DWORD *)this + 321) == 0;
+  v3 = *((_DWORD *)self + 321) == 0;
   v9 = 0;
   if ( !v3 )
   {
-    CBallManager::UpdateBallList(this);
-    CBallManager::InitBallPositions(this);
-    *((_DWORD *)this + 321) = 0;
+    CBallManager::UpdateBallList(self);
+    CBallManager::InitBallPositions(self);
+    *((_DWORD *)self + 321) = 0;
   }
-  if ( *((int *)this + 10) <= 0 )
+  if ( *((int *)self + 10) <= 0 )
     goto LABEL_12;
-  CBallManager::UpdateBallPositions(this, a2);
-  *((_DWORD *)this + 322) -= a2;
-  v4 = *((_DWORD *)this + 322);
+  CBallManager::UpdateBallPositions(self, a2);
+  *((_DWORD *)self + 322) -= a2;
+  v4 = *((_DWORD *)self + 322);
   if ( v4 <= 800 )
   {
-    *((_DWORD *)this + 12) += a2;
-    if ( *((_DWORD *)this + 12) >= 0x64u )
+    *((_DWORD *)self + 12) += a2;
+    if ( *((_DWORD *)self + 12) >= 0x64u )
     {
-      v3 = *((_DWORD *)this + 13) == 0;
-      *((_DWORD *)this + 12) = 0;
-      *((_DWORD *)this + 13) = v3;
+      v3 = *((_DWORD *)self + 13) == 0;
+      *((_DWORD *)self + 12) = 0;
+      *((_DWORD *)self + 13) = v3;
     }
   }
-  if ( v4 <= 0 && *((int *)this + 20) > 0 )
+  if ( v4 <= 0 && *((int *)self + 20) > 0 )
   {
-    RandomBallLauncher = CBallManager::GetRandomBallLauncher(this);
+    RandomBallLauncher = CBallManager::GetRandomBallLauncher(self);
     if ( BallOnTile(RandomBallLauncher) )
     {
-      *((_DWORD *)this + 322) = 0;
+      *((_DWORD *)self + 322) = 0;
       goto LABEL_13;
     }
-    v7 = *((_DWORD *)this + 9);
-    *((_DWORD *)this + 9) = v7 + 1;
+    v7 = *((_DWORD *)self + 9);
+    *((_DWORD *)self + 9) = v7 + 1;
     Ball = GetBall(v7);
-    CBallManager::SetBallOnLauncher(this, Ball, RandomBallLauncher);
-    CBallManager::SetBallSpeed(this, Ball, -1.0);
+    CBallManager::SetBallOnLauncher(self, Ball, RandomBallLauncher);
+    CBallManager::SetBallSpeed(self, Ball, -1.0);
     *((_DWORD *)Ball + 40) = 1;
     *((_DWORD *)Ball + 39) = 1;
-    v6 = *((_DWORD *)this + 11);
-    --*((_DWORD *)this + 10);
-    *((_DWORD *)this + 13) = 0;
-    *((_DWORD *)this + 322) = v6;
-    CBallManager::UpdateBallList(this);
-    if ( !*((_DWORD *)this + 323) )
+    v6 = *((_DWORD *)self + 11);
+    --*((_DWORD *)self + 10);
+    *((_DWORD *)self + 13) = 0;
+    *((_DWORD *)self + 322) = v6;
+    CBallManager::UpdateBallList(self);
+    if ( !*((_DWORD *)self + 323) )
     {
-      *((_DWORD *)this + 323) = 1;
+      *((_DWORD *)self + 323) = 1;
 LABEL_12:
       StartTimer();
     }
   }
 LABEL_13:
-  (*(void (__thiscall **)(CBallManager *))(*(_DWORD *)this + 4))(this);
+  (*(void (**)(CBallManager *))(*(_DWORD *)self + 4))(self);
   v9 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v8);
+  ((Helpers::CLogBlock *)v8)->~CLogBlock();
 }

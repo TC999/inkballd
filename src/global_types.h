@@ -480,7 +480,7 @@ struct CBallManager {
     static void DrawToSurface(CBallManager* self);
     static void Restore(CBallManager* self);
     static void scalar_deleting_destructor(CBallManager* self, int flags);
-    static void Init(CBallManager* self);
+    static void Init(CBallManager* self, int a2, int a3, unsigned int a4, int a5, int a6);
     static void AddBallToBoard(CBallManager* self, CBall* ball);
 };
 

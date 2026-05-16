@@ -1,5 +1,5 @@
-//----- (01004E41) --------------------------------------------------------
-void __thiscall CBallManager::UpdateBallList(CBallManager *this)
+﻿//----- (01004E41) --------------------------------------------------------
+void CBallManager::UpdateBallList(CBallManager *self)
 {
   int v2; // edi
   _DWORD *v3; // edx
@@ -20,8 +20,8 @@ void __thiscall CBallManager::UpdateBallList(CBallManager *this)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v13, "CBallManager::UpdateBallList", 0);
   v16 = 0;
   v15 = 0;
-  v2 = *((_DWORD *)this + 14);
-  v3 = (_DWORD *)((char *)this + 56);
+  v2 = *((_DWORD *)self + 14);
+  v3 = (_DWORD *)((char *)self + 56);
   v14 = 5;
   do
   {
@@ -32,12 +32,12 @@ void __thiscall CBallManager::UpdateBallList(CBallManager *this)
     ++v3;
   }
   while ( !v5 );
-  *((_DWORD *)this + 19) = v2;
+  *((_DWORD *)self + 19) = v2;
   *(_DWORD *)(v2 + 156) = 0;
-  v6 = *((_DWORD *)this + 9);
-  if ( v6 < v6 + *((_DWORD *)this + 10) )
+  v6 = *((_DWORD *)self + 9);
+  if ( v6 < v6 + *((_DWORD *)self + 10) )
   {
-    v7 = (int *)((char *)this + 56);
+    v7 = (int *)((char *)self + 56);
     do
     {
       Ball = GetBall(v6);
@@ -52,8 +52,8 @@ void __thiscall CBallManager::UpdateBallList(CBallManager *this)
         break;
       ++v6;
     }
-    while ( v6 < *((_DWORD *)this + 10) + *((_DWORD *)this + 9) );
+    while ( v6 < *((_DWORD *)self + 10) + *((_DWORD *)self + 9) );
   }
   v16 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v13);
+  ((Helpers::CLogBlock *)v13)->~CLogBlock();
 }

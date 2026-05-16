@@ -37,7 +37,7 @@ CBallManager::CBallManager()
     *((uint32_t*)this + 5) = 0;
     *((uint32_t*)this + 6) = 0;
     *((uint32_t*)this + 7) = 42;
-    if (CBallManager::InitSurface(this) < 0)
+    if (InitSurface(this) < 0)
     {
         // [TODO] exception handling — decompiled CxxThrowException pattern
     }

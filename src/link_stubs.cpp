@@ -168,19 +168,8 @@ int CDisplay::DestroyObjects(CDisplay* self) { (void)self; return 0; }
 // ============================================================================
 
 // ============================================================================
-// CBallManager static members
+// CBallManager static members - REMOVED: now in CBallManager_*.cpp
 // ============================================================================
-int CBallManager::InitSurface(CBallManager* self) { (void)self; return 0; }
-void CBallManager::Init(CBallManager* self) { (void)self; }
-void CBallManager::UpdateBallList(CBallManager* self) { (void)self; }
-void CBallManager::UpdateBallPositions(CBallManager* self, uint32_t delta_time) { (void)self; (void)delta_time; }
-void CBallManager::InitBallPositions(CBallManager* self) { (void)self; }
-void CBallManager::SetBallOnLauncher(CBallManager* self, CBall* ball, CBoardTile* tile) { (void)self; (void)ball; (void)tile; }
-void CBallManager::SetBallSpeed(CBallManager* self, CBall* ball, double speed) { (void)self; (void)ball; (void)speed; }
-CBoardTile* CBallManager::GetRandomBallLauncher(CBallManager* self) { (void)self; return nullptr; }
-void CBallManager::DrawToSurface(CBallManager* self) { (void)self; }
-void CBallManager::Restore(CBallManager* self) { (void)self; }
-void CBallManager::scalar_deleting_destructor(CBallManager* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
 // CGameManager static members

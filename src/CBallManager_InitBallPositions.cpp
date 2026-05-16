@@ -1,5 +1,5 @@
-//----- (01004EE8) --------------------------------------------------------
-void __thiscall CBallManager::InitBallPositions(CBallManager *this)
+﻿//----- (01004EE8) --------------------------------------------------------
+void CBallManager::InitBallPositions(CBallManager *self)
 {
   char *v2; // eax
   int v3; // edx
@@ -7,9 +7,9 @@ void __thiscall CBallManager::InitBallPositions(CBallManager *this)
   _BYTE v5[8]; // [esp+4h] [ebp-8h] BYREF
 
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v5, "CBallManager::InitBallPositions", 0);
-  *(double *)(*((_DWORD *)this + 14) + 8) = 104.0;
-  *(double *)(*((_DWORD *)this + 14) + 16) = 14.0;
-  v2 = (char *)this + 60;
+  *(double *)(*((_DWORD *)self + 14) + 8) = 104.0;
+  *(double *)(*((_DWORD *)self + 14) + 16) = 14.0;
+  v2 = (char *)self + 60;
   v3 = 5;
   do
   {
@@ -19,9 +19,9 @@ void __thiscall CBallManager::InitBallPositions(CBallManager *this)
     v4 = *(_DWORD *)v2;
     v2 += 4;
     *(double *)(v4 + 16) = 14.0;
-    *((_DWORD *)this + 13) = 0;
+    *((_DWORD *)self + 13) = 0;
     --v3;
   }
   while ( v3 );
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v5);
+  ((Helpers::CLogBlock *)v5)->~CLogBlock();
 }
