@@ -227,6 +227,14 @@
     <ClCompile Include="src\CDisplay.cpp" />
     <ClCompile Include="src\CGameBoard.cpp" />
     <ClCompile Include="src\CGameManager.cpp" />
+    <ClCompile Include="src\CGameManager_CGameManager.cpp" />
+    <ClCompile Include="src\CGameManager_DropWallTile.cpp" />
+    <ClCompile Include="src\CGameManager_Init.cpp" />
+    <ClCompile Include="src\CGameManager_LoadBoard.cpp" />
+    <ClCompile Include="src\CGameManager_PerformGameUpdate.cpp" />
+    <ClCompile Include="src\CGameManager_UpdateTime.cpp" />
+    <ClCompile Include="src\CGameManager__scalar_deleting_destructor_.cpp" />
+    <ClCompile Include="src\CGameManager_~CGameManager.cpp" />
     <ClCompile Include="src\CInk.cpp" />
     <ClCompile Include="src\CInk_CInk.cpp" />
     <ClCompile Include="src\CInk_Cleanup.cpp" />
