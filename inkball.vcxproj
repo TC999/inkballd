@@ -406,6 +406,13 @@
     <ClCompile Include="src\stubs.cpp" />
     <ClCompile Include="src\fPortraitMode.cpp" />
     <ClCompile Include="src\fPrevSeen.cpp" />
+    <ClCompile Include="src\_AddRef_CBall_QAEKXZ.cpp" />
+    <ClCompile Include="src\_cosd_YGNN_Z.cpp" />
+    <ClCompile Include="src\_IncrementScore_CScoreManager_QAEXH_Z.cpp" />
+    <ClCompile Include="src\_Restore_CBallManager_QAEXXZ.cpp" />
+    <ClCompile Include="src\_Restore_CScoreManager_QAEXXZ.cpp" />
+    <ClCompile Include="src\_Restore_CTileManager_QAEXXZ.cpp" />
+    <ClCompile Include="src\_Restore_CTimeManager_QAEXXZ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
