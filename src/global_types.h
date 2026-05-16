@@ -328,7 +328,7 @@ struct CScoreManager {
     void* vftable;
     CScoreManager();
     ~CScoreManager();
-    static void IncrementScore(void* self, uint32_t count);
+    static void IncrementScore(void* self, int count);
     static uint32_t GetScore(void* self);
     static void ResetScore(void* self);
     static int InitSurface(CScoreManager* self);
@@ -367,7 +367,7 @@ struct CSurface {
     CSurface();
     ~CSurface();
     static int IsColorKeyed(CSurface* self);
-    static void* GetDDrawSurface(void* self);
+    static IDirectDrawSurface7* GetDDrawSurface(void* self);
     static void Clear(CSurface* self, uint32_t color);
     static int SetColorKey(void* self, uint32_t color);
     static void scalar_deleting_destructor(void* self, int flags);

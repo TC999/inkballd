@@ -1,5 +1,5 @@
 //----- (0100D21B) --------------------------------------------------------
-void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
+void CScoreManager::DrawToSurface(CScoreManager *self)
 {
   struct IDirectDrawSurface7 *DDrawSurface; // eax
   struct IDirectDrawSurface7Vtbl *lpVtbl; // edi
@@ -40,7 +40,7 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   struct IDirectDrawSurface7 *v38; // [esp+24h] [ebp-10h]
   int v39; // [esp+30h] [ebp-4h]
 
-  v37 = this;
+  v37 = self;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v34, "CScoreManager::DrawToSurface", 0);
   v39 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
@@ -49,8 +49,8 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, 107);
   v4 = CSurface::GetDDrawSurface(g_pGamePiecesSurface);
   lpVtbl->BltFast(v38, 0, 0, v4, (LPRECT)BitmapRect, 0);
-  v5 = *((_DWORD *)this + 3);
-  v38 = (struct IDirectDrawSurface7 *)*((_DWORD *)this + 9);
+  v5 = *((_DWORD *)self + 3);
+  v38 = (struct IDirectDrawSurface7 *)*((_DWORD *)self + 9);
   v6 = v5 - 12;
   v7 = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   v8 = v7->lpVtbl;
@@ -107,5 +107,5 @@ void __thiscall CScoreManager::DrawToSurface(CScoreManager *this)
   v25->BltFast((IDirectDrawSurface7 *)v35, v17 - 9, 13, v26, (LPRECT)v33, 0);
   AddDisplayUpdateRect((struct tagRECT *)((char *)v37 + 20));
   v39 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v34);
+  ((Helpers::CLogBlock *)v34)->~CLogBlock();
 }

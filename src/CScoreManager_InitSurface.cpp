@@ -1,5 +1,5 @@
 //----- (0100D125) --------------------------------------------------------
-int __thiscall CScoreManager::InitSurface(CScoreManager *this)
+int CScoreManager::InitSurface(CScoreManager *self)
 {
   int Surface; // eax
   int v3; // esi
@@ -11,13 +11,13 @@ int __thiscall CScoreManager::InitSurface(CScoreManager *this)
 
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CScoreManager::InitSurface", v8);
-  v6 = *((_DWORD *)this + 4);
-  v5 = (void *)*((_DWORD *)this + 3);
+  v6 = *((_DWORD *)self + 4);
+  v5 = (void *)*((_DWORD *)self + 3);
   v9 = 0;
   Surface = CDisplay::CreateSurface(g_pDisplay, &g_pScoreManagerSurface, v5, v6);
   v9 = -1;
   v8[0] = Surface;
   v3 = Surface;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  ((Helpers::CLogBlock *)v7)->~CLogBlock();
   return v3;
 }

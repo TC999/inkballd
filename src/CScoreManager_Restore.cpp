@@ -1,5 +1,5 @@
 //----- (0100D1CB) --------------------------------------------------------
-void __thiscall CScoreManager::Restore(CScoreManager *this)
+void CScoreManager::Restore(CScoreManager *self)
 {
   struct IDirectDrawSurface7 *DDrawSurface; // eax
   _BYTE v3[16]; // [esp+10h] [ebp-14h] BYREF
@@ -9,7 +9,7 @@ void __thiscall CScoreManager::Restore(CScoreManager *this)
   v4 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
-  (*(void (__thiscall **)(CScoreManager *))(*(_DWORD *)this + 4))(this);
+  (*(void (__thiscall **)(CScoreManager *))(*(_DWORD *)self + 4))(self);
   v4 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v3);
+  ((Helpers::CLogBlock *)v3)->~CLogBlock();
 }

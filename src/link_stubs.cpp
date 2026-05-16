@@ -180,16 +180,10 @@ void CGameManager::UpdateTime(CGameManager* self) { (void)self; }
 void CGameManager::scalar_deleting_destructor(CGameManager* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
-// CScoreManager static members
+// CScoreManager static members (implemented in dedicated .cpp files)
 // ============================================================================
-int CScoreManager::InitSurface(CScoreManager* self) { (void)self; return 0; }
-void CScoreManager::IncrementScore(void* self, uint32_t count) { (void)self; (void)count; }
-uint32_t CScoreManager::GetScore(void* self) { (void)self; return 0; }
-void CScoreManager::ResetScore(void* self) { (void)self; }
-void CScoreManager::Restore(CScoreManager* self) { (void)self; }
-void CScoreManager::UpdateObject(CScoreManager* self, uint32_t delta_time) { (void)self; (void)delta_time; }
-void CScoreManager::DrawToSurface(CScoreManager* self) { (void)self; }
 void CScoreManager::scalar_deleting_destructor(CScoreManager* self, int flags) { (void)self; (void)flags; }
+void CScoreManager::UpdateObject(CScoreManager* self, uint32_t delta_time) { (void)self; (void)delta_time; }
 
 // ============================================================================
 // CTileManager static members
@@ -230,7 +224,7 @@ void CRegistryManager::WriteHiScore(CRegistryManager* self, int score) { (void)s
 // ============================================================================
 int CSurface::ConvertGDIColor(CSurface* self, uint32_t color) { (void)self; (void)color; return 0; }
 int CSurface::IsColorKeyed(CSurface* self) { (void)self; return 0; }
-void* CSurface::GetDDrawSurface(void* self) { (void)self; return nullptr; }
+IDirectDrawSurface7* CSurface::GetDDrawSurface(void* self) { (void)self; return nullptr; }
 int CSurface::SetColorKey(void* self, uint32_t color) { (void)self; (void)color; return 0; }
 int CSurface::DrawBitmap(CSurface* self, void* bitmap, int a3, int a4, int a5, int a6) { (void)self; (void)bitmap; (void)a3; (void)a4; (void)a5; (void)a6; return 0; }
 void CSurface::scalar_deleting_destructor(void* self, int flags) { (void)self; (void)flags; }
