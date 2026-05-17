@@ -12,7 +12,7 @@ extern "C" {
     void* g_pCGameManager = nullptr;
     void* g_CBoardManager = nullptr;
     void* g_CRegistryManager = nullptr;
-    CGameBoard* g_pCGameBoard = nullptr;
+    CGameBoard* g_pCGameBoard;
     void* SQM_INCREMENT_DWORD = nullptr;
     void* BoardData = nullptr;
     int iBoardSizeBytes = 0;
