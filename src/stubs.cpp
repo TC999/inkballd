@@ -167,7 +167,7 @@ int CGameBoard_Init(CGameBoard* self) { (void)self; return 0; }
 
 // CGameManager standalone stubs
 extern "C" {
-    void* CGameManager_ctor(void* self, HWND hWnd) { (void)self; (void)hWnd; return self; }
+    void* CGameManager_ctor(void* self, HWND hWnd) { return CGameManager_Ctor_impl(reinterpret_cast<CGameManager*>(self), hWnd); }
     void CGameManager_dtor(void* self) { (void)self; }
     int CGameManager_Init(void* self) { (void)self; return 0; }
     void CGameManager_LoadBoard(void* self, void* boardData, int boardSize) { (void)self; (void)boardData; (void)boardSize; }

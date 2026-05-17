@@ -914,6 +914,8 @@ extern "C" {
 // CGameManager standalone function declarations (replacing invalid static ctor/dtor)
 // ============================================================================
 extern "C" {
+    CGameManager* CGameManager_Ctor_impl(CGameManager* self, HWND hWnd);
+    void CGameManager_Dtor_impl(CGameManager* self);
     void* CGameManager_ctor(void* self, HWND hWnd);
     void CGameManager_dtor(void* self);
     int CGameManager_Init(void* self);
