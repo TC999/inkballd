@@ -1,8 +1,6 @@
 //----- (01009BE7) --------------------------------------------------------
-CGameBoard *__thiscall CGameBoard::`scalar deleting destructor'(CGameBoard *this, char a2)
+#include "global_types.h"
+void CGameBoard::scalar_deleting_destructor(CGameBoard* self, int flags)
 {
-  CGameBoard::~CGameBoard(this);
-  if ( (a2 & 1) != 0 )
-    operator delete(this);
-  return this;
+  CGameBoard_Dtor(self, flags);
 }

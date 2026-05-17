@@ -1,5 +1,5 @@
 //----- (01008626) --------------------------------------------------------
-char *__stdcall CGameBoard::GetBitmapRect(int a1)
+char * CGameBoard::GetBitmapRect(CGameBoard *self, int a1)
 {
   char *BitmapRect; // eax
   char *v2; // esi
@@ -11,6 +11,6 @@ char *__stdcall CGameBoard::GetBitmapRect(int a1)
   BitmapRect = CBitmapRects::GetBitmapRect(g_CBitmapRects, a1);
   v5 = -1;
   v2 = BitmapRect;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v4);
+  ((Helpers::CLogBlock *)v4)->~CLogBlock();
   return v2;
 }

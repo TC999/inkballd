@@ -160,8 +160,9 @@ BallPoints::BallPoints(int count, int flags) { (void)count; (void)flags; }
 // void BallPoints::scalar_deleting_destructor(BallPoints* self, int flags) { (void)self; (void)flags; }
 
 // CGameBoard standalone helpers
-CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) { (void)self; (void)hWnd; (void)param; return self; }
-void CGameBoard_Dtor(CGameBoard* self, int flags) { (void)self; (void)flags; }
+// DECOMPILE TODO: now implemented in CGameBoard_CGameBoard.cpp / CGameBoard_~CGameBoard.cpp
+// CGameBoard* CGameBoard_Ctor(CGameBoard* self, HWND hWnd, void* param) { (void)self; (void)hWnd; (void)param; return self; }
+// void CGameBoard_Dtor(CGameBoard* self, int flags) { (void)self; (void)flags; }
 int CGameBoard_Init(CGameBoard* self) { (void)self; return 0; }
 
 // CGameManager standalone stubs

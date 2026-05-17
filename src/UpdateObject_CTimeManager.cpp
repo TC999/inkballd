@@ -70,7 +70,7 @@ void UpdateObject_CTimeManager(CTimeManager* self, CTimeManager* this_ptr, uint3
           *reinterpret_cast<uint32_t*>(this_ptr + 12) = 1;
           *reinterpret_cast<uint32_t*>(this_ptr + 13) = 1;
         }
-        (*(void(__thiscall **)(CTimeManager*))(*reinterpret_cast<uint32_t*>(this_ptr + 4)))(this_ptr);
+        (*(void(**)(CTimeManager*))(*reinterpret_cast<uint32_t*>(this_ptr + 4)))(this_ptr);
 LABEL_18:
         dword_105C81C = *reinterpret_cast<uint32_t*>(this_ptr + 9);
       }

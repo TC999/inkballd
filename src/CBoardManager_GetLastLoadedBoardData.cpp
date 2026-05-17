@@ -1,6 +1,6 @@
 //----- (01005E13) --------------------------------------------------------
 #include "global_types.h"
-const unsigned __int8 *__thiscall CBoardManager::GetLastLoadedBoardData()
+const unsigned __int8 *CBoardManager::GetLastLoadedBoardData()
 {
   _BYTE v2[8]; // [esp+0h] [ebp-8h] BYREF
 

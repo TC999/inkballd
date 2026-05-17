@@ -1,5 +1,5 @@
 //----- (010087BA) --------------------------------------------------------
-int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
+int CGameBoard::DisplayFrame(CGameBoard *self, int a2, int a3)
 {
   int v4; // edi
   struct tagRECT *PlayingAreaRect; // eax
@@ -26,39 +26,39 @@ int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
     goto LABEL_25;
   CDisplay::Blt(
     g_pDisplay,
-    *(_DWORD *)(*((_DWORD *)this + 2476) + 4),
-    *(_DWORD *)(*((_DWORD *)this + 2476) + 8),
+    *(_DWORD *)(*((_DWORD *)self + 2476) + 4),
+    *(_DWORD *)(*((_DWORD *)self + 2476) + 8),
     g_pBallManagerSurface,
     0);
   CDisplay::Blt(
     g_pDisplay,
-    *(_DWORD *)(*((_DWORD *)this + 2477) + 4),
-    *(_DWORD *)(*((_DWORD *)this + 2477) + 8),
+    *(_DWORD *)(*((_DWORD *)self + 2477) + 4),
+    *(_DWORD *)(*((_DWORD *)self + 2477) + 8),
     g_pScoreManagerSurface,
     0);
   CDisplay::Blt(
     g_pDisplay,
-    *(_DWORD *)(*((_DWORD *)this + 2478) + 4),
-    *(_DWORD *)(*((_DWORD *)this + 2478) + 8),
+    *(_DWORD *)(*((_DWORD *)self + 2478) + 4),
+    *(_DWORD *)(*((_DWORD *)self + 2478) + 8),
     g_pTileManagerSurface,
     0);
   CDisplay::Blt(
     g_pDisplay,
-    *(_DWORD *)(*((_DWORD *)this + 2479) + 4),
-    *(_DWORD *)(*((_DWORD *)this + 2479) + 8),
+    *(_DWORD *)(*((_DWORD *)self + 2479) + 4),
+    *(_DWORD *)(*((_DWORD *)self + 2479) + 8),
     g_pTimeManagerSurface,
     0);
-  if ( CInk::GetInkUpdateRect(*((CInk **)this + 2481), &v12) )
-    CGameBoard::AddDisplayUpdateRect(this, &v12);
-  PlayingAreaRect = CGameBoard::GetPlayingAreaRect(this);
+  if ( CInk_GetInkUpdateRect(*((CInk **)self + 2481), &v12) )
+    CGameBoard::AddDisplayUpdateRect(self, &v12);
+  PlayingAreaRect = CGameBoard::GetPlayingAreaRect(self);
   v6 = CDisplay::BltInk(g_pDisplay, PlayingAreaRect);
   v17[0] = v6;
   if ( v6 < 0 )
     goto LABEL_6;
   v19 = 0;
-  if ( *((int *)this + 656) > 0 )
+  if ( *((int *)self + 656) > 0 )
   {
-    v16 = (char *)this + 2628;
+    v16 = (char *)self + 2628;
     while ( 1 )
     {
       v8 = *(_DWORD **)v16;
@@ -71,16 +71,16 @@ int __thiscall CGameBoard::DisplayFrame(CGameBoard *this, int a2, int a3)
         CMovingObject::GetMovementRect((CMovingObject *)v8, &v13);
         *v15 = 0;
 LABEL_16:
-        CGameBoard::AddDisplayUpdateRect(this, &v13);
+        CGameBoard::AddDisplayUpdateRect(self, &v13);
       }
 LABEL_17:
       ++v19;
       v16 += 4;
-      if ( v19 >= *((_DWORD *)this + 656) )
+      if ( v19 >= *((_DWORD *)self + 656) )
         goto LABEL_18;
     }
-    BackBuffer = CDisplay::GetBackBuffer(g_pDisplay);
-    v6 = CGameBoard::BltBall(this, (struct tagRECT **)v8, BackBuffer);
+    BackBuffer = (struct IDirectDrawSurface7 *)CDisplay::GetBackBuffer(g_pDisplay);
+    v6 = CGameBoard::BltBall(self, (CBall *)v8, BackBuffer);
     v17[0] = v6;
     if ( v6 < 0 )
       goto LABEL_6;
@@ -93,9 +93,9 @@ LABEL_18:
   if ( !a2 )
   {
     v20 = 0;
-    if ( *((int *)this + 1018) > 0 )
+    if ( *((int *)self + 1018) > 0 )
     {
-      v11 = (struct tagRECT *)((char *)this + 4076);
+      v11 = (struct tagRECT *)((char *)self + 4076);
       do
       {
         v6 = CDisplay::Present(g_pDisplay, v11);
@@ -105,7 +105,7 @@ LABEL_18:
         ++v20;
         ++v11;
       }
-      while ( v20 < *((_DWORD *)this + 1018) );
+      while ( v20 < *((_DWORD *)self + 1018) );
     }
 LABEL_25:
     v17[0] = 0;
@@ -119,6 +119,6 @@ LABEL_6:
   v4 = v6;
 LABEL_7:
   v18 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v14);
+  ((Helpers::CLogBlock *)v14)->~CLogBlock();
   return v4;
 }

@@ -43,7 +43,7 @@ LABEL_7:
     CGameManager::LoadBoard((CGameManager*)g_pCGameManager, (const unsigned __int8*)LastLoadedBoardData, -1);
     CGameManager::UpdateTime((CGameManager*)g_pCGameManager);
   }
-  (*(void (__thiscall **)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
+  (*(void (**)(uint32_t))(**((uint32_t **)g_pCGameBoard + 2479) + 4))(*((uint32_t *)g_pCGameBoard + 2479));
   if ( !v5 )
     *((uint32_t *)g_pCGameManager + 1) = 1;
   v8 = -1;

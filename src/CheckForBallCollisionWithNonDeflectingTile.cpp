@@ -37,7 +37,7 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
   {
     uint32_t v16; // auto-declared
     v3 = v9[v1];
-    if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t))(*(uint32_t *)v3 + 8))(v3, a1, 0) == 1 )
+    if ( (*(int (**)(CBoardObject *, CBall*, uint32_t))(*(uint32_t *)v3 + 8))(v3, a1, 0) == 1 )
     {
       CBoardObject::GetBoundingRect(v3, &v8);
       v16 = v7[v1];
@@ -64,7 +64,7 @@ CBoardTile*__stdcall CheckForBallCollisionWithNonDeflectingTile(CBall*a1)
   {
     v5 = (CBoardTile*)v9[v2];
     CBoardTile::SetClosestSide(v5, (void*)&v7[v2]);
-    (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
+    (*(void (**)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
   ((Helpers::CLogBlock*)v11)->~CLogBlock();

@@ -16,7 +16,7 @@ int GetTileCount_CTileManager(CTileManager* self)
   if ( v2 )
   {
     *((uint32_t *)self + 9) = v2 - 1;
-    (*(void (__thiscall **)(void*))(*(uint32_t *)self + 4))(self);
+    (*(void (**)(void*))(*(uint32_t *)self + 4))(self);
     v3 = 1;
   }
   else

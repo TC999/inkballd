@@ -9,7 +9,7 @@ void CScoreManager::ResetScore(void *self)
   v2 = *(_DWORD *)self;
   v4 = 0;
   *((_DWORD *)self + 10) = 0;
-  (*(void (__thiscall **)(CScoreManager *))(v2 + 4))((CScoreManager *)self);
+  (*(void (**)(CScoreManager *))(v2 + 4))((CScoreManager *)self);
   v4 = -1;
   ((Helpers::CLogBlock *)v3)->~CLogBlock();
 }

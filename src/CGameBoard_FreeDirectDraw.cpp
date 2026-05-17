@@ -1,5 +1,5 @@
 //----- (01009749) --------------------------------------------------------
-void __thiscall CGameBoard::FreeDirectDraw(CGameBoard *this)
+void CGameBoard::FreeDirectDraw(CGameBoard *self)
 {
   _BYTE v1[16]; // [esp+10h] [ebp-14h] BYREF
   int v2; // [esp+20h] [ebp-4h]
@@ -8,29 +8,29 @@ void __thiscall CGameBoard::FreeDirectDraw(CGameBoard *this)
   v2 = 0;
   if ( g_pTimeManagerSurface )
   {
-    CSurface::`scalar deleting destructor'(g_pTimeManagerSurface, 1);
+    delete g_pTimeManagerSurface;
     g_pTimeManagerSurface = 0;
   }
   if ( g_pBallManagerSurface )
   {
-    CSurface::`scalar deleting destructor'(g_pBallManagerSurface, 1);
+    delete g_pBallManagerSurface;
     g_pBallManagerSurface = 0;
   }
   if ( g_pTileManagerSurface )
   {
-    CSurface::`scalar deleting destructor'(g_pTileManagerSurface, 1);
+    delete g_pTileManagerSurface;
     g_pTileManagerSurface = 0;
   }
   if ( g_pScoreManagerSurface )
   {
-    CSurface::`scalar deleting destructor'(g_pScoreManagerSurface, 1);
+    delete g_pScoreManagerSurface;
     g_pScoreManagerSurface = 0;
   }
   if ( g_pDisplay )
   {
-    CDisplay::`scalar deleting destructor'(g_pDisplay, 1);
+    delete g_pDisplay;
     g_pDisplay = 0;
   }
   v2 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v1);
+  ((Helpers::CLogBlock *)v1)->~CLogBlock();
 }

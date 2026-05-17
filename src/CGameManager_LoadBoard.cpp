@@ -190,7 +190,7 @@ LABEL_8:
     CGameBoard::RestoreSurfaces(g_pCGameBoard);
   if ( CDisplay::BltInk(g_pDisplay, 0) == -2005532222 )
     CGameBoard::RestoreSurfaces(g_pCGameBoard);
-  (*(void (__thiscall **)(_DWORD))(**((_DWORD **)g_pCGameBoard + 2479) + 4))(*((_DWORD *)g_pCGameBoard + 2479));
+  (*(void (**)(_DWORD))(**((_DWORD **)g_pCGameBoard + 2479) + 4))(*((_DWORD *)g_pCGameBoard + 2479));
   CGameBoard::PerformUpdate(g_pCGameBoard, 0, 1);
   v43 = -1;
   ((Helpers::CLogBlock*)v37)->~CLogBlock();

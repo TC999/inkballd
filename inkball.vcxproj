@@ -152,14 +152,14 @@
     <ClCompile Include="src\AddBallGenerator_CBallManager.cpp" />
     <ClCompile Include="src\AddBallToBoard.cpp" />
     <ClCompile Include="src\AddBallToUpdateList.cpp" />
-    <ClCompile Include="src\AddBall_CGameBoard.cpp" />
-    <ClCompile Include="src\AddDisplayUpdateRect_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_AddBall.cpp -->
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_AddDisplayUpdateRect.cpp -->
     <ClCompile Include="src\AddDisplayUpdateRect.cpp" />
-    <ClCompile Include="src\AddGameObjectToUpdateList_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_AddGameObjectToUpdateList.cpp -->
     <ClCompile Include="src\AddGameObjectToUpdateList.cpp" />
-    <ClCompile Include="src\AddRLColoredWallToList_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_AddRLColoredWallToList.cpp -->
     <ClCompile Include="src\AddRLColoredWallToList.cpp" />
-    <ClCompile Include="src\BallOnTile_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_BallOnTile.cpp -->
     <ClCompile Include="src\BallOnTile.cpp" />
     <ClCompile Include="src\BallPoints.cpp" />
     <ClCompile Include="src\BallPoints_BallPoints.cpp" />
@@ -341,7 +341,7 @@
     <ClCompile Include="src\Deflect_CBall.cpp" />
     <ClCompile Include="src\DestroyObjects_CDisplay.cpp" />
     <ClCompile Include="src\DisplayBoardLoadMsg.cpp" />
-    <ClCompile Include="src\DisplayFrame_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_DisplayFrame.cpp -->
     <ClCompile Include="src\DrawBitmap_CSurface.cpp" />
     <ClCompile Include="src\DrawInkToSurface_CInk.cpp" />
     <ClCompile Include="src\DrawToSurface_CBallManager.cpp" />
@@ -352,12 +352,12 @@
     <ClCompile Include="src\ExitBadCommandLine.cpp" />
     <ClCompile Include="src\ExpandRect.cpp" />
     <ClCompile Include="src\FreeCursorStroke.cpp" />
-    <ClCompile Include="src\CGameBoard_reeDirectDraw.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_FreeDirectDraw.cpp -->
     <ClCompile Include="src\GetBackBuffer_CDisplay.cpp" />
     <ClCompile Include="src\CGameBoard_GetBall.cpp" />
     <ClCompile Include="src\GetBall.cpp" />
     <ClCompile Include="src\GetBitmapRect_CBitmapRects.cpp" />
-    <ClCompile Include="src\GetBitmapRect_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_GetBitmapRect.cpp -->
     <ClCompile Include="src\GetBitmapRect.cpp" />
     <ClCompile Include="src\GetBoardBuffer_CDisplay.cpp" />
     <ClCompile Include="src\GetBoardRect.cpp" />
@@ -420,7 +420,7 @@
     <ClCompile Include="src\CGameBoard_ResetBoard.cpp" />
     <ClCompile Include="src\ResetScore_CScoreManager.cpp" />
     <ClCompile Include="src\ResetTileCount_CTileManager.cpp" />
-    <ClCompile Include="src\RestoreSurfaces_CGameBoard.cpp" />
+    <!-- DECOMPILE TODO: duplicate of CGameBoard_RestoreSurfaces.cpp -->
     <ClCompile Include="src\Round.cpp" />
     <ClCompile Include="src\ScoreBall.cpp" />
     <ClCompile Include="src\ScoreBreak.cpp" />

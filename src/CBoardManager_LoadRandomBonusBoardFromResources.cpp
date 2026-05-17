@@ -1,6 +1,6 @@
 //----- (01005BF0) --------------------------------------------------------
 #include "global_types.h"
-void __thiscall CBoardManager::LoadRandomBonusBoardFromResources(unsigned __int8 *Src, int *a3)
+void CBoardManager::LoadRandomBonusBoardFromResources(unsigned __int8 *Src, int *a3)
 {
   int RandomNumber; // esi
   unsigned __int8 *v4; // eax

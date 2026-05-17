@@ -144,7 +144,8 @@ namespace Helpers {
 void CGameBoard::ToggleRLWalls(CGameBoard* self, int color) { (void)self; (void)color; }
 CBoardTile* CGameBoard::BuildTileObject(CGameBoard* self, int tile_type, int x, int y, int rect) { (void)self; (void)tile_type; (void)x; (void)y; (void)rect; return nullptr; }
 void CGameBoard::DisplayBoardLoadMsg(CGameBoard* self) { (void)self; }
-void CGameBoard::scalar_deleting_destructor(CGameBoard* self, int flags) { (void)self; (void)flags; }
+// DECOMPILE TODO: now implemented in CGameBoard__scalar_deleting_destructor_.cpp
+// void CGameBoard::scalar_deleting_destructor(CGameBoard* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
 // CDisplay static members

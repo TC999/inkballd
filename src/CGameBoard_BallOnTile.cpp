@@ -1,5 +1,5 @@
 //----- (0100866F) --------------------------------------------------------
-int __thiscall CGameBoard::BallOnTile(CGameBoard *this, struct CBoardTile *a2)
+int CGameBoard::BallOnTile(CGameBoard *self, struct CBoardTile *a2)
 {
   int v3; // ebx
   CBoardObject **v4; // edi
@@ -13,14 +13,14 @@ int __thiscall CGameBoard::BallOnTile(CGameBoard *this, struct CBoardTile *a2)
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v9, "CGameBoard::BallOnTile", 0);
   v10 = 0;
   CBoardObject::GetBoundingRect(a2, &v8);
-  if ( *((int *)this + 656) <= 0 )
+  if ( *((int *)self + 656) <= 0 )
   {
 LABEL_6:
     v5 = 0;
   }
   else
   {
-    v4 = (CBoardObject **)((char *)this + 2628);
+    v4 = (CBoardObject **)((char *)self + 2628);
     while ( 1 )
     {
       if ( *((_DWORD *)*v4 + 39) )
@@ -31,12 +31,12 @@ LABEL_6:
       }
       ++v3;
       ++v4;
-      if ( v3 >= *((_DWORD *)this + 656) )
+      if ( v3 >= *((_DWORD *)self + 656) )
         goto LABEL_6;
     }
     v5 = 1;
   }
   v10 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v9);
+  ((Helpers::CLogBlock *)v9)->~CLogBlock();
   return v5;
 }

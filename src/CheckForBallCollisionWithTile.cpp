@@ -45,7 +45,7 @@ CBoardTile*__stdcall CheckForBallCollisionWithTile(CBall*a1)
   do
   {
     v3 = v11[v1];
-    if ( (*(int (__thiscall **)(CBoardObject *, CBall*, uint32_t *))(*(uint32_t *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
+    if ( (*(int (**)(CBoardObject *, CBall*, uint32_t *))(*(uint32_t *)v3 + 8))(v3, a1, &v10[2 * v1]) == 2 )
     {
       CBoardObject::GetBoundingRect(v3, &v8);
       if ( CBall::VerifyCollision(a1, &v8, (void*)&v7[v1]) )
@@ -71,7 +71,7 @@ CBoardTile*__stdcall CheckForBallCollisionWithTile(CBall*a1)
   {
     v5 = (CBoardTile*)v11[v2];
     CBoardTile::SetClosestSide(v5, (void*)&v7[v2]);
-    (*(void (__thiscall **)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
+    (*(void (**)(CBoardTile *, CBall*))(*(uint32_t *)v5 + 4))(v5, a1);
   }
   v17 = -1;
   ((Helpers::CLogBlock*)v9)->~CLogBlock();

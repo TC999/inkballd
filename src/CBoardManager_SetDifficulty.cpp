@@ -1,6 +1,6 @@
 //----- (01005CCB) --------------------------------------------------------
 #include "global_types.h"
-void __thiscall CBoardManager::SetDifficulty(int a2)
+void CBoardManager::SetDifficulty(int a2)
 {
   int v3; // eax
   _BYTE v4[16]; // [esp+10h] [ebp-14h] BYREF

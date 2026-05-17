@@ -1,6 +1,6 @@
 //----- (01005AAC) --------------------------------------------------------
 #include "global_types.h"
-int __thiscall CBoardManager::LoadBoardFromResources(
+int CBoardManager::LoadBoardFromResources(
         unsigned __int16 *a2,
         unsigned __int8 *a3,
         int *a4)
