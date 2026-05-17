@@ -278,6 +278,8 @@
     <ClCompile Include="src\DispError.cpp" />
     <ClCompile Include="src\GetTileCount_CTileManager.cpp" />
     <ClCompile Include="src\GetTime_CTimeManager.cpp" />
+    <ClCompile Include="src\Helpers_CLogBlock_CLogBlock.cpp" />
+    <ClCompile Include="src\Helpers_CLogBlock_~CLogBlock.cpp" />
     <ClCompile Include="src\HitCircleTest_CInk.cpp" />
     <ClCompile Include="src\InitBallPoints_CBall.cpp" />
     <ClCompile Include="src\InitBallPositions_CBallManager.cpp" />
