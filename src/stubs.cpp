@@ -12,7 +12,7 @@ extern "C" {
     void* g_pCGameManager = nullptr;
     void* g_CBoardManager = nullptr;
     void* g_CRegistryManager = nullptr;
-    CGameBoard* g_pCGameBoard;
+    CGameBoard* g_pCGameBoard = nullptr;
     void* SQM_INCREMENT_DWORD = nullptr;
     void* BoardData = nullptr;
     int iBoardSizeBytes = 0;
@@ -230,9 +230,4 @@ extern "C" void CleanupTabletContexts() {}
 // extern "C" cdecl PerformStandardWallDeflection (different from stdcall version in link_stubs.cpp)
 extern "C" void PerformStandardWallDeflection(void* tile, void* ball) { (void)tile; (void)ball; }
 
-// Helpers::CLogBlock
-namespace Helpers {
-    CLogBlock::CLogBlock(void* self, const char* name, int line) : line(line), name(name) { (void)self; }
-    CLogBlock::CLogBlock(void* self, const char* name, int* context) : line(0), name(name) { (void)self; (void)context; }
-    CLogBlock::~CLogBlock() {}
-}
+// Helpers::CLogBlock — defined in Helpers_CLogBlock_CLogBlock.cpp / Helpers_CLogBlock_~CLogBlock.cpp
