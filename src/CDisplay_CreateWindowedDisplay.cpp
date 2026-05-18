@@ -1,5 +1,8 @@
 //----- (0100F271) --------------------------------------------------------
-int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned int xRight, int yBottom)
+// DECOMPILE TODO: DirectDrawCreateEx needs ddraw.lib linked
+extern "C" HRESULT WINAPI DirectDrawCreateEx(GUID* lpGuid, LPVOID* lplpDD, REFIID iid, IUnknown* pUnkOuter);
+extern const GUID IID_IDirectDraw7;
+int CDisplay::CreateWindowedDisplay(void* self, HWND hWnd, unsigned int xRight, int yBottom)
 {
   void (__thiscall **v5)(LPVOID *); // eax
   LPVOID *v6; // edi
@@ -24,23 +27,23 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
 
   *(_DWORD *)v24 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int *)v24);
-  v5 = (void (__thiscall **)(LPVOID *))*this;
+  v5 = (void (__thiscall **)(LPVOID *))*(void**)self;
   v25 = 0;
-  (*v5)(this);
-  v6 = this + 1;
-  *(_DWORD *)v24 = DirectDrawCreateEx(0, this + 1, &IID_IDirectDraw7, 0);
+  (*v5)((LPVOID*)self);
+  v6 = (void**)self + 1;
+  *(_DWORD *)v24 = DirectDrawCreateEx(0, (void**)self + 1, *(IID*)&IID_IDirectDraw7, 0);
   if ( *(int *)v24 < 0 )
   {
-    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
+    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x18u, &stru_1002FB8, v24[0]);
   }
   else
   {
     *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, HWND, int))(*(_DWORD *)*v6 + 80))(*v6, hWnd, 8);
     if ( *(int *)v24 < 0 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
+      if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+        WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x17u, &stru_1002FB8, v24[0]);
     }
     else
     {
@@ -57,7 +60,7 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
         rc.left = pvParam;
       if ( rc.top < v20 )
         rc.top = v20;
-      Helpers::SetWindowPos(hWnd, 0, (HWND)rc.left, rc.top, 0, 0, 0x15u, 0, v17);
+      Helpers::SetWindowPos(hWnd, 0, rc.left, rc.top, 0, 0, 0x15u, 0, v17);
       memset(v18, 0, sizeof(v18));
       v8 = *v6;
       v18[0] = 124;
@@ -66,12 +69,12 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
       *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, _DWORD *, LPVOID *, _DWORD))(*(_DWORD *)v8 + 24))(
                          v8,
                          v18,
-                         this + 2,
+                         (void**)self + 2,
                          0);
       if ( *(int *)v24 < 0 )
       {
-        if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-          WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
+        if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+          WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x16u, &stru_1002FB8, v24[0]);
       }
       else
       {
@@ -84,36 +87,36 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
         *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, _DWORD *, LPVOID *, _DWORD))(*(_DWORD *)*v6 + 24))(
                            *v6,
                            v18,
-                           this + 3,
+                           (void**)self + 3,
                            0);
         if ( *(int *)v24 < 0 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-            WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
+          if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+            WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x15u, &stru_1002FB8, v24[0]);
         }
         else
         {
           *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, _DWORD *, LPVOID *, _DWORD))(*(_DWORD *)*v6 + 24))(
                              *v6,
                              v18,
-                             this + 5,
+                              (LPVOID*)((uint8_t*)self + 20),
                              0);
           if ( *(int *)v24 < 0 )
           {
-            if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-              WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
+            if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+              WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x14u, &stru_1002FB8, v24[0]);
           }
           else
           {
             *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, _DWORD *, LPVOID *, _DWORD))(*(_DWORD *)*v6 + 24))(
                                *v6,
                                v18,
-                               this + 6,
+                                (LPVOID*)((uint8_t*)self + 24),
                                0);
             if ( *(int *)v24 < 0 )
             {
-              if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
+              if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x13u, &stru_1002FB8, v24[0]);
             }
             else
             {
@@ -124,30 +127,30 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
                                  0);
               if ( *(int *)v24 < 0 )
               {
-                if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                  WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
+                if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                  WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x12u, &stru_1002FB8, v24[0]);
               }
               else
               {
                 *(_DWORD *)v24 = (*(int (__stdcall **)(int, _DWORD, HWND))(*(_DWORD *)v23 + 32))(v23, 0, hWnd);
                 if ( *(int *)v24 < 0 )
                 {
-                  if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                    WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
+                  if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                    WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x11u, &stru_1002FB8, v24[0]);
                 }
                 else
                 {
-                  *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(_DWORD *)this[2] + 112))(this[2], v23);
+                  *(_DWORD *)v24 = (*(int (__stdcall **)(LPVOID, int))(*(_DWORD *)((void**)self)[2] + 112))(((void**)self)[2], v23);
                   if ( *(int *)v24 < 0 )
                   {
-                    if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-                      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
+                    if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+                      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x10u, &stru_1002FB8, v24[0]);
                   }
                   else
                   {
-                    this[7] = hWnd;
-                    this[12] = (LPVOID)1;
-                    CDisplay::UpdateBounds((CDisplay *)this);
+                    ((HWND*)self)[7] = hWnd;
+                    ((LPVOID*)self)[12] = (LPVOID)1;
+                    CDisplay::UpdateBounds((CDisplay *)self);
                   }
                 }
                 (*(void (__stdcall **)(int))(*(_DWORD *)v23 + 8))(v23);
@@ -160,6 +163,6 @@ int __thiscall CDisplay::CreateWindowedDisplay(LPVOID *this, HWND hWnd, unsigned
   }
   v9 = *(_DWORD *)v24;
   v25 = -1;
-  Helpers::CLogBlock::~CLogBlock(v21);
+  ((Helpers::CLogBlock*)v21)->~CLogBlock();
   return v9;
 }

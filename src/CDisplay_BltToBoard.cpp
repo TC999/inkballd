@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <windows.h>
 int CDisplay_BltToBoard(
-        CDisplay* self,
+        void* self,
         uint32_t a2,
         uint32_t a3,
         CSurface* a4,

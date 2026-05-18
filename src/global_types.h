@@ -381,6 +381,7 @@ struct CSurface {
     static int DrawBitmap(CSurface* self, void* bitmap, int a3, int a4, int a5, int a6);
     static int GetSurfaceDesc(CSurface* self, void* desc);
     static int ConvertGDIColor(CSurface* self, uint32_t color);
+    static int Create(void* self, struct IDirectDrawSurface7** pSurface, struct IDirectDraw7* dd, struct DDSURFACEDESC2* desc);
 };
 
 struct CBoardTileRLColored {
@@ -428,26 +429,26 @@ struct CDisplay {
     void* vftable;
     CDisplay();
     ~CDisplay();
-    static int Blt(void* self, int x, int y, void* surface, RECT* src, uint32_t colorkey = 0);
+    static int Blt(void* self, unsigned int x, unsigned int y, void* surface, struct tagRECT* src, unsigned int colorkey = 0);
     static int Present(void* self, RECT* rect);
-    static int BltInk(void* self, RECT* rect);
-    static int DestroyObjects(CDisplay* self);
-    static int UpdateBounds(CDisplay* self);
-    static int SetPalette(void* self, void* palette);
+    static int BltInk(void* self, struct tagRECT* rect);
+    static int DestroyObjects(void* self);
+    static int UpdateBounds(void* self);
+    static int SetPalette(void* self, struct IDirectDrawPalette* palette);
     static int BltToBoard(void* self, uint64_t a2, uint64_t a3, void* surface, RECT* src);
-    static void* GetBoardBuffer(void* self);
-    static void* GetInkBuffer(void* self);
-    static void* GetBackBuffer(void* self);
-    static void* GetFrontBuffer(void* self);
-    static int CreateSurfaceFromBitmap(void* self, void** surface, void* a3, int a4, int a5);
-    static int CreateSurface(void* self, void** surface, void* a3, int a4);
-    static int CreateWindowedDisplay(void* self, HWND hWnd, uint32_t width = 0, uint32_t height = 0);
-    static int CreatePaletteFromBitmap(void* self, void** palette, const WCHAR* filename);
+    static struct IDirectDrawSurface7* GetBoardBuffer(void* self);
+    static struct IDirectDrawSurface7* GetInkBuffer(void* self);
+    static struct IDirectDrawSurface7* GetBackBuffer(void* self);
+    static struct IDirectDrawSurface7* GetFrontBuffer(void* self);
+    static unsigned int CreateSurfaceFromBitmap(void* self, void** surface, const WCHAR* name, unsigned int a4, int cy);
+    static int CreateSurface(void* self, void** surface, void* a3, DWORD a4);
+    static int CreateWindowedDisplay(void* self, HWND hWnd, unsigned int width = 0, int height = 0);
+    static int CreatePaletteFromBitmap(void* self, struct IDirectDrawPalette** palette, WCHAR* filename);
     static void scalar_deleting_destructor(void* self, int flags);
-    static int ConvertGDIColor(void* self, uint32_t color);
-    static void* GetDirectDraw(void* self);
-    static void Clear(void* self, uint32_t color = 0);
-    static void ClearInk(void* self, RECT* rect = 0, int color = 0);
+    static int ConvertGDIColor(void* self, COLORREF color);
+    static struct IDirectDraw7* GetDirectDraw(void* self);
+    static int Clear(void* self, unsigned int color);
+    static int ClearInk(void* self, struct tagRECT* rect, int color);
 };
 
 struct CBallManager {

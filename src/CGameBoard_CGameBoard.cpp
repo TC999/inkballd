@@ -69,7 +69,7 @@ CGameBoard *CGameBoard_Ctor(CGameBoard *self, HWND a2, void *a3)
     ((Helpers::CLogBlock *)v20)->~CLogBlock();
     return self;
   }
-  v21[0] = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &g_pGamePiecesSurface, (void*)(uintptr_t)0x1F5, 0x17Du, 400);
+  v21[0] = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &g_pGamePiecesSurface, (const WCHAR*)(uintptr_t)0x1F5, 0x17Du, 400);
   if ( v21[0] < 0 )
   {
     ((Helpers::CLogBlock *)v20)->~CLogBlock();

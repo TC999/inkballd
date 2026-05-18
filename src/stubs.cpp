@@ -131,15 +131,7 @@ void CUIBarObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)ou
 void CBoardObject::GetBoundingRect(void* self, RECT* out) { (void)self; (void)out; }
 void CMovingObject::PrepareToMove(CMovingObject* self) { (void)self; }
 
-int CDisplay::Blt(void* self, int x, int y, void* surface, RECT* src, uint32_t colorkey) {
-    (void)self; (void)x; (void)y; (void)surface; (void)src; (void)colorkey; return 0;
-}
-int CDisplay::Present(void* self, RECT* rect) { (void)self; (void)rect; return 0; }
-int CDisplay::BltInk(void* self, RECT* rect) { (void)self; (void)rect; return 0; }
-int CDisplay::ConvertGDIColor(void* self, uint32_t color) { (void)self; (void)color; return 0; }
-void* CDisplay::GetDirectDraw(void* self) { (void)self; return nullptr; }
-void CDisplay::Clear(void* self, uint32_t color) { (void)self; (void)color; }
-void CDisplay::ClearInk(void* self, RECT* rect, int color) { (void)self; (void)rect; (void)color; }
+// CDisplay static members — now defined in CDisplay_*.cpp files
 
 // CBoardManager member functions implemented in separate .cpp files
 

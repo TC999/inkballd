@@ -74,7 +74,7 @@ CGameBoard* Ctor_CGameBoard(uint32_t *self, HWND a2, void*a3)
   {
     throw std::bad_alloc();
   }
-  v22[0] = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &g_pGamePiecesSurface, (HINSTANCE)0x1F5, 0x17Du, 0x190u);
+  v22[0] = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, &g_pGamePiecesSurface, (const WCHAR*)(uintptr_t)0x1F5, 0x17Du, 0x190u);
   if ( v22[0] < 0 )
   {
     throw std::bad_alloc();

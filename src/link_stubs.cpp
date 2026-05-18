@@ -148,21 +148,8 @@ void CGameBoard::DisplayBoardLoadMsg(CGameBoard* self) { (void)self; }
 // void CGameBoard::scalar_deleting_destructor(CGameBoard* self, int flags) { (void)self; (void)flags; }
 
 // ============================================================================
-// CDisplay static members
+// CDisplay static members — now defined in CDisplay_*.cpp files
 // ============================================================================
-int CDisplay::UpdateBounds(CDisplay* self) { (void)self; return 0; }
-void* CDisplay::GetBackBuffer(void* self) { (void)self; return nullptr; }
-void* CDisplay::GetInkBuffer(void* self) { (void)self; return nullptr; }
-void* CDisplay::GetFrontBuffer(void* self) { (void)self; return nullptr; }
-void* CDisplay::GetBoardBuffer(void* self) { (void)self; return nullptr; }
-int CDisplay::CreateSurface(void* self, void** surface, void* a3, int a4) { (void)self; (void)surface; (void)a3; (void)a4; return 0; }
-int CDisplay::SetPalette(void* self, void* palette) { (void)self; (void)palette; return 0; }
-int CDisplay::BltToBoard(void* self, uint64_t a2, uint64_t a3, void* surface, tagRECT* src) { (void)self; (void)a2; (void)a3; (void)surface; (void)src; return 0; }
-int CDisplay::CreatePaletteFromBitmap(void* self, void** palette, const WCHAR* filename) { (void)self; (void)palette; (void)filename; return 0; }
-void CDisplay::scalar_deleting_destructor(void* self, int flags) { (void)self; (void)flags; }
-int CDisplay::CreateWindowedDisplay(void* self, HWND hWnd, uint32_t width, uint32_t height) { (void)self; (void)hWnd; (void)width; (void)height; return 0; }
-int CDisplay::CreateSurfaceFromBitmap(void* self, void** surface, void* a3, int a4, int a5) { (void)self; (void)surface; (void)a3; (void)a4; (void)a5; return 0; }
-int CDisplay::DestroyObjects(CDisplay* self) { (void)self; return 0; }
 
 // ============================================================================
 // CInk static members - REMOVED: implementations in separate CInk_*.cpp files

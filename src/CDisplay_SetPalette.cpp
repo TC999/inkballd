@@ -1,5 +1,5 @@
 //----- (0100E796) --------------------------------------------------------
-int __thiscall CDisplay::SetPalette(CDisplay *this, struct IDirectDrawPalette *a2)
+int CDisplay::SetPalette(void* self, struct IDirectDrawPalette *a2)
 {
   int v3; // eax
   int v4; // esi
@@ -10,15 +10,14 @@ int __thiscall CDisplay::SetPalette(CDisplay *this, struct IDirectDrawPalette *a
   v7[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v6, "CDisplay::SetPalette", v7);
   v8 = 0;
-  if ( *((_DWORD *)this + 2) )
-    v3 = (*(int (__stdcall **)(_DWORD, struct IDirectDrawPalette *))(**((_DWORD **)this + 2) + 124))(
-           *((_DWORD *)this + 2),
+  if (*((_DWORD *)self + 2) )
+    v3 = (*(int (__stdcall **)(_DWORD, struct IDirectDrawPalette *))(**((_DWORD **)self + 2) + 124))(*((_DWORD *)self + 2),
            a2);
   else
     v3 = -2147467261;
   v8 = -1;
   v4 = v3;
   v7[0] = v3;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v6);
+  ((Helpers::CLogBlock *)v6)->~CLogBlock();
   return v4;
 }

@@ -1,5 +1,5 @@
 //----- (0100E6B4) --------------------------------------------------------
-int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
+int CDisplay::ClearInk(void* self, struct tagRECT *a2, int a3)
 {
   int v4; // eax
   int v5; // esi
@@ -10,12 +10,11 @@ int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
   v8[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v7, "CDisplay::ClearInk", v8);
   v9 = 0;
-  if ( *((_DWORD *)this + 5) )
-    v4 = (*(int (__stdcall **)(_DWORD, struct tagRECT *, _DWORD, struct tagRECT *, int, _DWORD))(**((_DWORD **)this + 5)
-                                                                                               + 20))(
-           *((_DWORD *)this + 5),
+  if (*((_DWORD *)self + 5) )
+    v4 = (*(int (__stdcall **)(_DWORD, struct tagRECT *, _DWORD, struct tagRECT *, int, _DWORD))(**((_DWORD **)self + 5)
+                                                                                               + 20))(*((_DWORD *)self + 5),
            a2,
-           *((_DWORD *)this + 6),
+           *((_DWORD *)self + 6),
            a2,
            0x1000000,
            0);
@@ -24,6 +23,6 @@ int __thiscall CDisplay::ClearInk(CDisplay *this, struct tagRECT *a2, int a3)
   v9 = -1;
   v5 = v4;
   v8[0] = v4;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v7);
+  ((Helpers::CLogBlock *)v7)->~CLogBlock();
   return v5;
 }

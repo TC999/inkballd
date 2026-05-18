@@ -1,11 +1,12 @@
 //----- (0100F624) --------------------------------------------------------
-unsigned int __thiscall CDisplay::CreateSurfaceFromBitmap(
-        CDisplay *this,
-        struct CSurface **a2,
+unsigned int CDisplay::CreateSurfaceFromBitmap(
+        void* self,
+        void** a2p,
         const WCHAR *name,
         unsigned int a4,
         int cy)
 {
+  CSurface** a2 = (CSurface**)a2p;
   unsigned int v6; // esi
   HMODULE ModuleHandleW; // eax
   CSurface *v8; // ecx
@@ -23,20 +24,20 @@ unsigned int __thiscall CDisplay::CreateSurfaceFromBitmap(
   unsigned int v21[4]; // [esp+B4h] [ebp-14h] BYREF
   int v22; // [esp+C4h] [ebp-4h]
 
-  v19 = this;
+  v19 = (CDisplay*)self;
   v21[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v18, "CDisplay::CreateSurfaceFromBitmap", (int *)v21);
   v22 = 0;
   if ( name && a2 )
   {
-    if ( *((_DWORD *)this + 1) )
+    if (*((_DWORD *)self + 1) )
     {
       *a2 = 0;
       ModuleHandleW = GetModuleHandleW(0);
       ho = Helpers::LoadImageW(ModuleHandleW, name, 0, a4, cy, 0x2000u, 0, v11);
       if ( ho || (ho = Helpers::LoadImageW(0, name, 0, a4, cy, 0x2010u, v21, v12), (v21[0] & 0x80000000) == 0) )
       {
-        Helpers::GetObjectW(ho, (void *)0x18, pv, 0, v12);
+        Helpers::GetObjectW_wpp(ho, 0x18, pv, 0, v12);
         memset(&v14, 0, sizeof(v14));
         v14.dwWidth = v16;
         v14.dwSize = 124;
@@ -47,19 +48,19 @@ unsigned int __thiscall CDisplay::CreateSurfaceFromBitmap(
         v8 = (CSurface *)operator new(0x84u);
         LOBYTE(v22) = 2;
         if ( v8 )
-          v9 = CSurface::CSurface(v8);
+          v9 = new(v8) CSurface();
         else
           v9 = 0;
         *a2 = v9;
         v22 = 0;
         if ( (v21[0] & 0x80000000) != 0
-          || (v21[0] = CSurface::Create((LPDIRECTDRAWSURFACE7 *)*a2, *((struct IDirectDraw7 **)v19 + 1), &v14),
+          || (v21[0] = CSurface::Create(*a2, (LPDIRECTDRAWSURFACE7 *)*a2, *((struct IDirectDraw7 **)v19 + 1), &v14),
               (v21[0] & 0x80000000) != 0)
           || (v21[0] = CSurface::DrawBitmap(*a2, (HDC)ho, 0, 0, 0, 0), (v21[0] & 0x80000000) != 0) )
         {
           if ( *a2 )
           {
-            CSurface::`scalar deleting destructor'(*a2, 1);
+            delete *a2;
             *a2 = 0;
           }
         }
@@ -79,6 +80,6 @@ unsigned int __thiscall CDisplay::CreateSurfaceFromBitmap(
     v21[0] = -2147024809;
   }
   v22 = -1;
-  Helpers::CLogBlock::~CLogBlock(v18);
+  ((Helpers::CLogBlock*)v18)->~CLogBlock();
   return v6;
 }

@@ -1,5 +1,5 @@
 //----- (0100EB98) --------------------------------------------------------
-int __thiscall CDisplay::UpdateBounds(CDisplay *this)
+int CDisplay::UpdateBounds(void* self)
 {
   bool v2; // zf
   _DWORD *v3; // ebx
@@ -15,29 +15,29 @@ int __thiscall CDisplay::UpdateBounds(CDisplay *this)
 
   v12[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v11, "CDisplay::UpdateBounds", v12);
-  v2 = *((_DWORD *)this + 12) == 0;
+  v2 = *((_DWORD *)self + 12) == 0;
   v13 = 0;
   if ( v2 )
   {
-    SystemMetrics = (int *)Helpers::GetSystemMetrics((Helpers *)1, 0, v10);
+    SystemMetrics = (int *)Helpers::GetSystemMetrics((void*)1, 0, v10);
     v6 = Helpers::GetSystemMetrics(0, 0, SystemMetrics);
-    SetRect((LPRECT)this + 2, 0, 0, v6, v9);
+    SetRect((LPRECT)((uint8_t*)self + 8), 0, 0, v6, v9);
   }
   else
   {
-    Helpers::GetClientRect(*((HWND *)this + 7), (HWND)this + 8, 0, v10);
-    ClientToScreen(*((HWND *)this + 7), (LPPOINT)this + 4);
-    v3 = (_DWORD *)((char *)this + 40);
-    ClientToScreen(*((HWND *)this + 7), (LPPOINT)this + 5);
-    v4 = *((_DWORD *)this + 8);
-    if ( v4 > *((_DWORD *)this + 10) )
+    Helpers::GetClientRect(*((HWND *)self + 7), (RECT*)((uint8_t*)self + 32), 0, (int*)v10);
+    ClientToScreen(*((HWND *)self + 7), (LPPOINT)((uint8_t*)self + 32));
+    v3 = (_DWORD *)((char *)self + 40);
+    ClientToScreen(*((HWND *)self + 7), (LPPOINT)((uint8_t*)self + 40));
+    v4 = *((_DWORD *)self + 8);
+    if ( v4 > *((_DWORD *)self + 10) )
     {
-      *((_DWORD *)this + 8) = *v3;
+      *((_DWORD *)self + 8) = *v3;
       *v3 = v4;
     }
   }
   v7 = v12[0];
   v13 = -1;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v11);
+  ((Helpers::CLogBlock *)v11)->~CLogBlock();
   return v7;
 }

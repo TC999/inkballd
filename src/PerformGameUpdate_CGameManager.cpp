@@ -113,9 +113,9 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                   CBoardObject::GetBoundingRect((void*)dword_10B0618, &stru_10B0608);
                   GoldVersionOfTile = GetGoldVersionOfTile(*((uint32_t *)dword_10B062C + 9));
                   BitmapRect = (struct tagRECT *)GetBitmapRect(GoldVersionOfTile);
-                  CDisplay::Blt(
-                    g_pDisplay,
-                    (uint64_t)*((double *)dword_10B062C + 1),
+                  CDisplay::BltToBoard(
+                  g_pDisplay,
+                  (uint64_t)*((double *)dword_10B062C + 1),
                     (uint64_t)*((double *)dword_10B062C + 2),
                     g_pGamePiecesSurface,
                     BitmapRect);
@@ -123,9 +123,9 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                     CGameBoard::RestoreSurfaces((CGameBoard *)g_pCGameBoard);
                   v9 = GetGoldVersionOfTile(*((uint32_t *)dword_10B0618 + 9));
                   v13 = (struct tagRECT *)GetBitmapRect(v9);
-                  CDisplay::Blt(
-                    g_pDisplay,
-                    (uint64_t)*((double *)dword_10B0618 + 1),
+                  CDisplay::BltToBoard(
+                  g_pDisplay,
+                  (uint64_t)*((double *)dword_10B0618 + 1),
                     (uint64_t)*((double *)dword_10B0618 + 2),
                     g_pGamePiecesSurface,
                     v13);
@@ -155,7 +155,7 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                 CBoardObject::GetBoundingRect((void*)dword_10B0618, &stru_10B0608);
                 v6 = GetGoldVersionOfTile(*((uint32_t *)dword_10B062C + 9));
                 v10 = (struct tagRECT *)GetBitmapRect(v6);
-                CDisplay::Blt(
+                CDisplay::BltToBoard(
                   g_pDisplay,
                   (uint64_t)*((double *)dword_10B062C + 1),
                   (uint64_t)*((double *)dword_10B062C + 2),
@@ -165,7 +165,7 @@ void CGameManager_PerformGameUpdate(CGameManager *self)
                   CGameBoard::RestoreSurfaces((CGameBoard *)g_pCGameBoard);
                 v7 = GetGoldVersionOfTile(*((uint32_t *)dword_10B0618 + 9));
                 v11 = (struct tagRECT *)GetBitmapRect(v7);
-                CDisplay::Blt(
+                CDisplay::BltToBoard(
                   g_pDisplay,
                   (uint64_t)*((double *)dword_10B0618 + 1),
                   (uint64_t)*((double *)dword_10B0618 + 2),

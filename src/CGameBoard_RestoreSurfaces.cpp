@@ -31,7 +31,7 @@ int CGameBoard::RestoreSurfaces(CGameBoard *self)
     BackBuffer->lpVtbl->Restore(BackBuffer);
     FrontBuffer = (struct IDirectDrawSurface7 *)CDisplay::GetFrontBuffer(g_pDisplay);
     FrontBuffer->lpVtbl->Restore(FrontBuffer);
-    v9 = CDisplay::CreatePaletteFromBitmap(g_pDisplay, (void **)&v12, (const WCHAR *)0x1F5);
+    v9 = CDisplay::CreatePaletteFromBitmap(g_pDisplay, (struct IDirectDrawPalette **)&v12, (WCHAR*)(uintptr_t)0x1F5);
     v13[0] = v9;
     if ( v9 >= 0 )
     {
@@ -41,7 +41,7 @@ int CGameBoard::RestoreSurfaces(CGameBoard *self)
         (*(void (__stdcall **)(struct IDirectDrawPalette *))(*(_DWORD *)v12 + 8))(v12);
         v12 = 0;
       }
-      v3 = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, (void **)&v11, (void*)(uintptr_t)0x1F5, 0x17Du, 0x190u);
+      v3 = CDisplay::CreateSurfaceFromBitmap(g_pDisplay, (void **)&v11, (const WCHAR*)(uintptr_t)0x1F5, 0x17Du, 0x190u);
       v13[0] = v3;
       if ( v3 >= 0 )
       {

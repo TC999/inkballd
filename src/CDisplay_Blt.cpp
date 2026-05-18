@@ -1,9 +1,9 @@
 //----- (0100E4C4) --------------------------------------------------------
-int __thiscall CDisplay::Blt(
-        CDisplay *this,
+int CDisplay::Blt(
+        void* self,
         unsigned int a2,
         unsigned int a3,
-        struct IDirectDrawSurface7 *a4,
+        void* a4,
         struct tagRECT *a5,
         unsigned int a6)
 {
@@ -16,9 +16,8 @@ int __thiscall CDisplay::Blt(
   v11[0] = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v10, "CDisplay::Blt", v11);
   v12 = 0;
-  if ( *((_DWORD *)this + 3) )
-    v7 = (*(int (__stdcall **)(_DWORD, unsigned int, unsigned int, struct IDirectDrawSurface7 *, struct tagRECT *, unsigned int))(**((_DWORD **)this + 3) + 28))(
-           *((_DWORD *)this + 3),
+  if (*((_DWORD *)self + 3) )
+    v7 = (*(int (__stdcall **)(_DWORD, unsigned int, unsigned int, void*, struct tagRECT *, unsigned int))(**((_DWORD **)self + 3) + 28))(*((_DWORD *)self + 3),
            a2,
            a3,
            a4,
@@ -29,6 +28,6 @@ int __thiscall CDisplay::Blt(
   v12 = -1;
   v8 = v7;
   v11[0] = v7;
-  Helpers::CLogBlock::~CLogBlock((Helpers::CLogBlock *)v10);
+  ((Helpers::CLogBlock *)v10)->~CLogBlock();
   return v8;
 }

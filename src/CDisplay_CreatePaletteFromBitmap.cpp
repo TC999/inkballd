@@ -1,5 +1,5 @@
 //----- (0100E7F6) --------------------------------------------------------
-int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectDrawPalette **a2, WCHAR *lpFileName)
+int CDisplay::CreatePaletteFromBitmap(void* self, struct IDirectDrawPalette **a2, WCHAR *lpFileName)
 {
   bool v4; // zf
   HRSRC ResourceW; // eax
@@ -42,10 +42,10 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
   int v43; // [esp+468h] [ebp-4h]
   LPCWSTR lpFileNamea; // [esp+478h] [ebp+Ch]
 
-  v40 = this;
+  v40 = (CDisplay*)self;
   *(_DWORD *)v42 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v38, "CDisplay::CreatePaletteFromBitmap", (int *)v42);
-  v4 = *((_DWORD *)this + 1) == 0;
+  v4 = *((_DWORD *)self + 1) == 0;
   v43 = 0;
   if ( v4 || !lpFileName || !a2 )
   {
@@ -60,10 +60,10 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
     FileW = CreateFileW(lpFileName, 0x80000000, 0, 0, 3u, 0, 0);
     if ( FileW == (HANDLE)-1 )
     {
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         LastError = GetLastError();
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Du, &stru_1002FB8, LastError);
+        WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x1Du, &stru_1002FB8, LastError);
       }
       goto LABEL_6;
     }
@@ -73,10 +73,10 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
       {
         if ( !ReadFile(FileW, &v31, 0x400u, &NumberOfBytesRead, 0) || NumberOfBytesRead != 1024 )
         {
-          if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
           {
             v25 = GetLastError();
-            WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x20u, &stru_1002FB8, v25);
+            WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x20u, &stru_1002FB8, v25);
           }
           Helpers::CloseHandle(FileW, 0, v30);
           goto LABEL_6;
@@ -109,31 +109,31 @@ int __thiscall CDisplay::CreatePaletteFromBitmap(CDisplay *this, struct IDirectD
                            a2,
                            0);
         if ( *(int *)v42 < 0
-          && WPP_GLOBAL_Control != &WPP_GLOBAL_Control
-          && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+          && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control
+          && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
         {
-          WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x21u, &stru_1002FB8, v42[0]);
+          WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x21u, &stru_1002FB8, v42[0]);
         }
 LABEL_21:
         v8 = *(_DWORD *)v42;
         goto LABEL_56;
       }
-      if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+      if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
       {
         v26 = GetLastError();
-        WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Fu, &stru_1002FB8, v26);
+        WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x1Fu, &stru_1002FB8, v26);
       }
     }
-    else if ( WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
+    else if ( (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
     {
       v27 = GetLastError();
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Eu, &stru_1002FB8, v27);
+      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x1Eu, &stru_1002FB8, v27);
     }
     Helpers::CloseHandle(FileW, 0, v30);
     goto LABEL_6;
   }
   Resource = Helpers::LoadResource(0, ResourceW, 0, v30);
-  v7 = LockResource(Resource);
+  v7 = (_DWORD*)LockResource(Resource);
   if ( v7 )
   {
     v9 = *v7 < 0x28u;
@@ -153,7 +153,7 @@ LABEL_21:
     v13 = 0;
     if ( lpFileNamea )
     {
-      v14 = v10 + 1;
+      v14 = (_BYTE*)(v10 + 1);
       v15 = (_BYTE *)(&v31 - v10);
       v16 = (_BYTE *)(&v32 - v10);
       v17 = (char *)((char *)v33 - v39);
@@ -176,8 +176,8 @@ LABEL_21:
                        &v31,
                        a2,
                        0);
-    if ( *(int *)v42 < 0 && WPP_GLOBAL_Control != &WPP_GLOBAL_Control && (*((_BYTE *)WPP_GLOBAL_Control + 28) & 4) != 0 )
-      WPP_SF_d(*((_QWORD *)WPP_GLOBAL_Control + 2), 0x1Cu, &stru_1002FB8, v42[0]);
+    if ( *(int *)v42 < 0 && (uintptr_t)WPP_GLOBAL_Control != (uintptr_t)&WPP_GLOBAL_Control && (*((uint8_t *)&WPP_GLOBAL_Control + 28) & 4) != 0 )
+      WPP_SF_d(*((uint64_t *)&WPP_GLOBAL_Control + 2), 0x1Cu, &stru_1002FB8, v42[0]);
     goto LABEL_21;
   }
 LABEL_6:
@@ -185,6 +185,6 @@ LABEL_6:
   *(_DWORD *)v42 = -2147467259;
 LABEL_56:
   v43 = -1;
-  Helpers::CLogBlock::~CLogBlock(v38);
+  ((Helpers::CLogBlock*)v38)->~CLogBlock();
   return v8;
 }

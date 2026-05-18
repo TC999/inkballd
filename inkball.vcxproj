@@ -240,6 +240,7 @@
     <ClCompile Include="src\CDisplay_GetFrontBuffer.cpp" />
     <ClCompile Include="src\CDisplay_GetInkBuffer.cpp" />
     <ClCompile Include="src\CDisplay_Present.cpp" />
+    <ClCompile Include="src\CDisplay_Stubs.cpp" />
     <ClCompile Include="src\CDisplay_SetPalette.cpp" />
     <ClCompile Include="src\CDisplay_UpdateBounds.cpp" />
     <ClCompile Include="src\CGameBoard.cpp" />
