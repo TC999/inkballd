@@ -9,7 +9,7 @@ void CBallManager::Restore(CBallManager *self)
   v4 = 0;
   DDrawSurface = (struct IDirectDrawSurface7 *)CSurface::GetDDrawSurface(g_pBallManagerSurface);
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
-  (*(void (**)(CBallManager *))(*(_DWORD *)self + 4))(self);
+  CBallManager::DrawToSurface(self);
   v4 = -1;
   ((Helpers::CLogBlock *)v3)->~CLogBlock();
 }

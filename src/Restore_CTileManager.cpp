@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+extern void DrawToSurface_CTileManager(CTileManager* self);
 void Restore_CTileManager(CTileManager *self)
 {
     IDirectDrawSurface7* DDrawSurface;
@@ -13,7 +14,7 @@ void Restore_CTileManager(CTileManager *self)
   v4 = 0;
   DDrawSurface = static_cast<IDirectDrawSurface7*>(CSurface::GetDDrawSurface(g_pTileManagerSurface));
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
-  (*(void (**)(CTileManager *))(*(uint32_t *)self + 4))(self);
+  DrawToSurface_CTileManager(self);
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }

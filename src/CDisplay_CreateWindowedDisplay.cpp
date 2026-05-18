@@ -4,7 +4,6 @@ extern "C" HRESULT WINAPI DirectDrawCreateEx(GUID* lpGuid, LPVOID* lplpDD, REFII
 extern const GUID IID_IDirectDraw7;
 int CDisplay::CreateWindowedDisplay(void* self, HWND hWnd, unsigned int xRight, int yBottom)
 {
-  void (__thiscall **v5)(LPVOID *); // eax
   LPVOID *v6; // edi
   LONG v7; // eax
   LPVOID v8; // eax
@@ -27,9 +26,8 @@ int CDisplay::CreateWindowedDisplay(void* self, HWND hWnd, unsigned int xRight, 
 
   *(_DWORD *)v24 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int *)v24);
-  v5 = (void (__thiscall **)(LPVOID *))*(void**)self;
   v25 = 0;
-  (*v5)((LPVOID*)self);
+  CDisplay::DestroyObjects(self);
   v6 = (void**)self + 1;
   *(_DWORD *)v24 = DirectDrawCreateEx(0, (void**)self + 1, *(IID*)&IID_IDirectDraw7, 0);
   if ( *(int *)v24 < 0 )

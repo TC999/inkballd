@@ -17,7 +17,7 @@ void Restore_CBallManager(CBallManager *self)
     flag = 0;
     ddraw_surface = static_cast<IDirectDrawSurface7*>(CSurface::GetDDrawSurface(g_pBallManagerSurface));
     ddraw_surface->lpVtbl->Restore(ddraw_surface);
-    (reinterpret_cast<void(*)(CBallManager*)>(self->restore_function))(self);
+    CBallManager::DrawToSurface(self);
     flag = -1;
     reinterpret_cast<Helpers::CLogBlock*>(&log_buffer)->~CLogBlock();
 }

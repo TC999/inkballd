@@ -15,7 +15,7 @@ void IncrementScore_CScoreManager(CScoreManager* self, uint32_t a2)
   v5 = 0;
   if ( v3 >= *((uint32_t *)self + 9) )
     *((uint32_t *)self + 9) = v3;
-  (*(void (**)(void*))(*(uint32_t *)self + 4))(self);
+  CScoreManager::DrawToSurface(self);
   v5 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v4)->~CLogBlock();
 }

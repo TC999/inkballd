@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <windows.h>
+extern void DrawToSurface_CTileManager(CTileManager* self);
 int GetTileCount_CTileManager(CTileManager* self)
 {
   int v2; // eax
@@ -16,7 +17,7 @@ int GetTileCount_CTileManager(CTileManager* self)
   if ( v2 )
   {
     *((uint32_t *)self + 9) = v2 - 1;
-    (*(void (**)(void*))(*(uint32_t *)self + 4))(self);
+    DrawToSurface_CTileManager(self);
     v3 = 1;
   }
   else

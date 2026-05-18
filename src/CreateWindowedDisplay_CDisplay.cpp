@@ -28,13 +28,10 @@ int CreateWindowedDisplay_CDisplay(CDisplay* self, HWND hWnd, uint32_t xRight, i
   int v23; // [esp+B4h] [ebp-14h] BYREF
   char v24[4]; // [esp+B8h] [ebp-10h] BYREF
   int v25; // [esp+C4h] [ebp-4h]
-  void* dd_object; // the DirectDraw object
-
   *(uint32_t *)v24 = 0;
   Helpers::CLogBlock::CLogBlock((Helpers::CLogBlock *)v21, "CDisplay::CreateWindowedDisplay", (int*)v24);
-  dd_object = *(void**)self;
   v25 = 0;
-  (*(void (**)(CDisplay*))(*(uint32_t*)dd_object))(self);
+  CDisplay::DestroyObjects(self);
   v6 = (uint32_t*)((uint8_t*)self + 4);
   *(uint32_t *)v24 = DirectDrawCreateEx(0, (LPVOID*)v6, IID_IDirectDraw7, 0);
   if ( *(int*)v24 < 0 )

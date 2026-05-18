@@ -62,7 +62,7 @@ LABEL_12:
     }
   }
 LABEL_13:
-  (*(void (**)(CBallManager *))(*(_DWORD *)self + 4))(self);
+  CBallManager::DrawToSurface(self);
   v9 = -1;
   ((Helpers::CLogBlock *)v8)->~CLogBlock();
 }

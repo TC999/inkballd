@@ -1,6 +1,7 @@
 #include "global_types.h"
 #include <cstdint>
 #include <new>
+extern void DrawToSurface_CTimeManager(CTimeManager* self);
 void SetTime_CTimeManager(CTimeManager* self, uint32_t time_value)
 {
   uint8_t log_buffer[16]; // [esp+10h] [ebp-14h] BYREF
@@ -10,7 +11,7 @@ void SetTime_CTimeManager(CTimeManager* self, uint32_t time_value)
   cleanup_flag = 0;
   *((uint32_t*)self + 13) = 0;
   *((uint32_t*)self + 9) = time_value;
-  (*(void(**)(void*))(*(uint32_t*)self + 4))(self);
+  DrawToSurface_CTimeManager(self);
   cleanup_flag = -1;
   reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();
 }

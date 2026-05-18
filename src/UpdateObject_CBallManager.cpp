@@ -83,7 +83,7 @@ void UpdateObject_CBallManager(CBallManager *self, uint32_t delta_time)
     }
     
 LABEL_13:
-    (reinterpret_cast<void(__thiscall*)(CBallManager*)>(self->update_function))(self);
+    CBallManager::DrawToSurface(self);
     flag = -1;
     ((Helpers::CLogBlock *)&log_buffer)->~CLogBlock();
 }

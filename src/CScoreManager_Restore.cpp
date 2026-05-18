@@ -9,7 +9,7 @@ void CScoreManager::Restore(CScoreManager *self)
   v4 = 0;
   DDrawSurface = CSurface::GetDDrawSurface(g_pScoreManagerSurface);
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
-  (*(void (**)(CScoreManager *))(*(_DWORD *)self + 4))(self);
+  CScoreManager::DrawToSurface(self);
   v4 = -1;
   ((Helpers::CLogBlock *)v3)->~CLogBlock();
 }

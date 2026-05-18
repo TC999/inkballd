@@ -25,10 +25,10 @@ extern "C" {
       else
         game_board = 0;
       g_pCGameBoard = game_board;
-      *reinterpret_cast<uint32_t*>(this_ptr + 4) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 1) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 2) = 0;
-      *reinterpret_cast<uint32_t*>(this_ptr + 3) = 0;
+      *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(this_ptr) + 4) = 0;
+      *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(this_ptr) + 8) = 0;
+      *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(this_ptr) + 12) = 0;
+      *reinterpret_cast<uint32_t*>(reinterpret_cast<char*>(this_ptr) + 16) = 0;
       CGameManager::UpdateTime(this_ptr);
       init_step = -1;
       reinterpret_cast<Helpers::CLogBlock*>(log_buffer)->~CLogBlock();

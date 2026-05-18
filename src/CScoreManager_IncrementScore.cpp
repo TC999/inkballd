@@ -11,7 +11,7 @@ void CScoreManager::IncrementScore(void *self, int a2)
   v5 = 0;
   if ( v3 >= *((_DWORD *)self + 9) )
     *((_DWORD *)self + 9) = v3;
-  (*(void (**)(CScoreManager *))(*(_DWORD *)self + 4))((CScoreManager *)self);
+  CScoreManager::DrawToSurface((CScoreManager *)self);
   v5 = -1;
   ((Helpers::CLogBlock *)v4)->~CLogBlock();
 }

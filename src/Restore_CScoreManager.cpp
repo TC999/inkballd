@@ -13,7 +13,7 @@ void Restore_CScoreManager(CScoreManager *self)
   v4 = 0;
   DDrawSurface = static_cast<IDirectDrawSurface7*>(CSurface::GetDDrawSurface(g_pScoreManagerSurface));
   DDrawSurface->lpVtbl->Restore(DDrawSurface);
-  (*(void (**)(CScoreManager *))(*(uint32_t *)self + 4))(self);
+  CScoreManager::DrawToSurface(self);
   v4 = -1;
   reinterpret_cast<Helpers::CLogBlock*>(v3)->~CLogBlock();
 }
