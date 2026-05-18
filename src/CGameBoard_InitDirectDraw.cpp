@@ -10,8 +10,8 @@ int CGameBoard::InitDirectDraw(CGameBoard *self)
   int v2;
   void*v3;
   CDisplay *v4;
-  int*v7;
-  int*v8;
+  int*v7 = nullptr;
+  int*v8 = nullptr;
   uint8_t v9[8];
   void*v10;
   uint32_t v11[3];
